@@ -4,7 +4,7 @@ MAINTAiNER jangky000 <jangky000@mme.dongguk.edu> mistercle <mistercle@gmail.com>
 RUN mkdir -p /temp
 WORKDIR /temp
 ADD . /temp
-RUN cd /server
+CMD ["cd", "/server"]
 RUN npm install
 
 ENV NODE_ENV development
