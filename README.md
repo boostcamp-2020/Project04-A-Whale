@@ -22,7 +22,7 @@
 - J174 장규영
 - J216 한예지
 
-# jekins 자동배포
+# jekins 자동 배포
 
 ### Installation
 
