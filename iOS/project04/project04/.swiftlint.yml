@@ -1,0 +1,8 @@
+excluded:
+- SupportFiles/AppDelegate.swift
+- SupportFiles/SceneDelegate.swift
+disabled_rules:
+- trailing_whitespace
+- line_length
+type_name:
+  min_length: 2
