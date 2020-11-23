@@ -5,27 +5,58 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bucket List View Controller-->
+        <!--버킷 리스트-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="BucketListViewController" customModule="project04" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4A3-nZ-8GB">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OXm-Kg-sKI">
+                                    <size key="itemSize" width="414" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="OQM-co-Jvr">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vvF-na-r8x">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="414" height="128"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4A3-nZ-8GB" secondAttribute="trailing" id="aiP-Fl-o35"/>
+                            <constraint firstAttribute="bottom" secondItem="4A3-nZ-8GB" secondAttribute="bottom" id="bnn-7O-Nwu"/>
+                            <constraint firstItem="4A3-nZ-8GB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oie-8u-4l7"/>
+                            <constraint firstItem="4A3-nZ-8GB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="siF-kb-NYB"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="41J-DK-SiT"/>
+                    <navigationItem key="navigationItem" title="버킷 리스트" id="41J-DK-SiT"/>
                     <connections>
+                        <outlet property="collectionView" destination="4A3-nZ-8GB" id="uvx-gn-34E"/>
                         <segue destination="K7m-xK-FEA" kind="show" identifier="DetailListSegue" id="vwZ-Ke-ChO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1799" y="104"/>
+            <point key="canvasLocation" x="1798.5507246376812" y="103.79464285714285"/>
         </scene>
         <!--Detail List View Controller-->
         <scene sceneID="0eY-c2-fQo">
@@ -49,6 +80,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Yyh-U8-5or" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eNX-TO-Kf3">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -60,14 +92,14 @@
             </objects>
             <point key="canvasLocation" x="13.043478260869566" y="103.79464285714285"/>
         </scene>
-        <!--Item-->
+        <!--Bucket-->
         <scene sceneID="0ST-aB-1gM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4RZ-Vt-roc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="acW-GZ-2Yb"/>
+                    <tabBarItem key="tabBarItem" title="Bucket" id="acW-GZ-2Yb"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TNa-Un-h2Z">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="TNa-Un-h2Z">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
