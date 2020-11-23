@@ -8,8 +8,9 @@
 import Foundation
 
 struct Bucket: Hashable {
-    enum Section {
+    enum Section: String {
         case todo
+        case done
     }
     
     let title: String

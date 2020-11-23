@@ -48,7 +48,13 @@
                             <constraint firstItem="4A3-nZ-8GB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="siF-kb-NYB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="버킷 리스트" id="41J-DK-SiT"/>
+                    <navigationItem key="navigationItem" title="버킷 리스트" id="41J-DK-SiT">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="Pgi-Se-bK7">
+                            <connections>
+                                <action selector="didTouchPlusButton:" destination="BYZ-38-t0r" id="Shj-07-CCI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="4A3-nZ-8GB" id="uvx-gn-34E"/>
                         <segue destination="K7m-xK-FEA" kind="show" identifier="DetailListSegue" id="vwZ-Ke-ChO"/>
@@ -113,6 +119,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
