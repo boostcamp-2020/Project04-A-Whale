@@ -40,6 +40,4 @@ class DetailListViewModel: DetailListViewModelProtocol {
     func listReviseAction(_ newElement: DetailList, at index: Int) {
         list?[index] = newElement
     }
-    
-    
 }
