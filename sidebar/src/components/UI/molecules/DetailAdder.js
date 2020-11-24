@@ -29,4 +29,7 @@ const DetailAdder = () => {
             )
         }} />
     );
+
 }
+
+export default DetailAdder;
