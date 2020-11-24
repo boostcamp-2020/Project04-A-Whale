@@ -2,15 +2,10 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import { Link } from 'react-router-dom';
-import AbandonButton from '../UI/atoms/buttons/AbandonButton';
+import BucketListItem from '../UI/molecules/BucketListItem';
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -48,17 +43,7 @@ const MyBucketList = ({ bucketList }) => {
         <div className={classes.drawerHeader} />
         <List>
           {bucketList.map((bucket, index) => {
-            return (
-              <ListItem key={index} role={undefined} dense button>
-                <ListItemIcon>
-                  <ListAltIcon />
-                </ListItemIcon>
-                <ListItemText primary={bucket} />
-                <ListItemSecondaryAction>
-                  <AbandonButton />
-                </ListItemSecondaryAction>
-              </ListItem>
-            );
+            return <BucketListItem key={index} bucket={bucket} />;
           })}
         </List>
         <Link to="/bucket-list/new">
