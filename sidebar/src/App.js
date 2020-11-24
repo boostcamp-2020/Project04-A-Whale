@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter as Router } from 'react-router-dom';
-import Routes from 'routes';
+import Routes from './routes';
 
 const App = () => {
   return (
