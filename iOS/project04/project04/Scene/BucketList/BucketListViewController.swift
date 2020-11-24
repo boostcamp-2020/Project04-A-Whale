@@ -101,5 +101,11 @@ extension BucketListViewController: UICollectionViewDelegate {
         let bucket = dataSource?.itemIdentifier(for: indexPath)
         performSegue(withIdentifier: "DetailListSegue", sender: bucket)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        performSegue(withIdentifier: "DetailListSegue", sender: nil)
+    }
 }
 

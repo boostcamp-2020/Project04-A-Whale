@@ -18,6 +18,8 @@
 		C1655C9E256B7ED30067E3C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1655C9D256B7ED30067E3C5 /* Assets.xcassets */; };
 		C1655CA1256B7ED30067E3C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1655C9F256B7ED30067E3C5 /* LaunchScreen.storyboard */; };
 		C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */; };
+		C1900D88256B8E220071E8C7 /* DetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D87256B8E220071E8C7 /* DetailList.swift */; };
+		C1900D8C256B910F0071E8C7 /* DetailListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		C1655CA0256B7ED30067E3C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1655CA2256B7ED30067E3C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListViewController.swift; sourceTree = "<group>"; };
+		C1900D87256B8E220071E8C7 /* DetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailList.swift; path = project04/Model/DetailList.swift; sourceTree = SOURCE_ROOT; };
+		C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailListViewModel.swift; path = project04/ViewModel/DetailListViewModel.swift; sourceTree = SOURCE_ROOT; };
 		EA43E93461629E8CD0B41E3B /* Pods-project04.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project04.debug.xcconfig"; path = "Target Support Files/Pods-project04/Pods-project04.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +105,7 @@
 		C1900D74256B82840071E8C7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C1900D87256B8E220071E8C7 /* DetailList.swift */,
 				8259AAF8256B9C19006698FC /* Bucket.swift */,
 			);
 			path = Model;
@@ -109,6 +114,7 @@
 		C1900D75256B828D0071E8C7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */,
 				8259AAFC256B9D49006698FC /* BucketListViewModel.swift */,
 			);
 			path = ViewModel;
@@ -250,10 +256,12 @@
 			files = (
 				C1655C99256B7ED10067E3C5 /* BucketListViewController.swift in Sources */,
 				C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */,
+				C1900D88256B8E220071E8C7 /* DetailList.swift in Sources */,
 				8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */,
 				C1655C97256B7ED10067E3C5 /* SceneDelegate.swift in Sources */,
 				8259AAF9256B9C19006698FC /* Bucket.swift in Sources */,
 				C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */,
+				C1900D8C256B910F0071E8C7 /* DetailListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +411,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = project04/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/project04/App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,7 +431,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = project04/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/project04/App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
