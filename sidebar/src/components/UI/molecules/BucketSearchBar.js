@@ -1,14 +1,15 @@
 import React from 'react';
 import InputText from '../atoms/InputText';
 
-const BucketSearchBar = ({style, variant, label, defaultValue, onChangeHandler}) => {
-
+const BucketSearchBar = ({onChangeHandler}) => {
+    const style = {
+        color:'inherit',
+    }
     return (
         <InputText
         style={style} 
-        variant={variant} 
-        label={label} 
-        defaultValue={defaultValue} 
+        variant="outlined" 
+        label="검색어를 입력해주세요" 
         onChange={onChangeHandler} />
     );
 }
