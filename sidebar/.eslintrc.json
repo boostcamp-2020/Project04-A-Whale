@@ -24,6 +24,7 @@
         "no-restricted-syntax": "off",
         "no-await-in-loop": "off",
         "react/prop-types": "off",
+        "react/jsx-props-no-spreading": "off",
         "react/jsx-one-expression-per-line": "off",
         "import/no-unresolved": "off",
         "react/no-array-index-key": "off",
