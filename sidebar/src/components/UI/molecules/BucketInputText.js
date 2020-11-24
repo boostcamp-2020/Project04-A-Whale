@@ -1,10 +1,7 @@
 import React from 'react';
 import InputText from '../atoms/InputText';
 
-const BucketInputText = ({label}) => {
-    const style = {
-        color:'inherit',
-    }
+const BucketInputText = ({style, label}) => {
     return (
         <InputText
         style={style} 
