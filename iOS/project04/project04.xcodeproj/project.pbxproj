@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8259AAF9256B9C19006698FC /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259AAF8256B9C19006698FC /* Bucket.swift */; };
+		8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259AAFC256B9D49006698FC /* BucketListViewModel.swift */; };
 		B20CB3CD1814FA9193815C42 /* Pods_project04.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549A8B673E411EE0B839D8C7 /* Pods_project04.framework */; };
 		C11AC460256B7F8B00E45667 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C11AC45F256B7F8B00E45667 /* .swiftlint.yml */; };
 		C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1655C94256B7ED10067E3C5 /* AppDelegate.swift */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		331A739A467DFE1643A7FAD2 /* Pods-project04.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project04.release.xcconfig"; path = "Target Support Files/Pods-project04/Pods-project04.release.xcconfig"; sourceTree = "<group>"; };
 		549A8B673E411EE0B839D8C7 /* Pods_project04.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project04.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8259AAF8256B9C19006698FC /* Bucket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
+		8259AAFC256B9D49006698FC /* BucketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListViewModel.swift; sourceTree = "<group>"; };
 		C11AC45F256B7F8B00E45667 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1655C91256B7ED10067E3C5 /* project04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project04.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1655C94256B7ED10067E3C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 		C1655C93256B7ED10067E3C5 /* project04 */ = {
 			isa = PBXGroup;
 			children = (
+				C1655CA2256B7ED30067E3C5 /* Info.plist */,
 				C11AC45F256B7F8B00E45667 /* .swiftlint.yml */,
 				C1900D79256B84C70071E8C7 /* App */,
 				C1900D77256B83970071E8C7 /* Scene */,
@@ -101,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				C1900D87256B8E220071E8C7 /* DetailList.swift */,
+				8259AAF8256B9C19006698FC /* Bucket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -109,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */,
+				8259AAFC256B9D49006698FC /* BucketListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -138,7 +145,6 @@
 				C1655C9F256B7ED30067E3C5 /* LaunchScreen.storyboard */,
 				C1655C94256B7ED10067E3C5 /* AppDelegate.swift */,
 				C1655C96256B7ED10067E3C5 /* SceneDelegate.swift */,
-				C1655CA2256B7ED30067E3C5 /* Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -251,7 +257,9 @@
 				C1655C99256B7ED10067E3C5 /* BucketListViewController.swift in Sources */,
 				C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */,
 				C1900D88256B8E220071E8C7 /* DetailList.swift in Sources */,
+				8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */,
 				C1655C97256B7ED10067E3C5 /* SceneDelegate.swift in Sources */,
+				8259AAF9256B9C19006698FC /* Bucket.swift in Sources */,
 				C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */,
 				C1900D8C256B910F0071E8C7 /* DetailListViewModel.swift in Sources */,
 			);
