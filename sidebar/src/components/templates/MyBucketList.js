@@ -6,7 +6,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import { Link } from 'react-router-dom';
+import AbandonButton from '../UI/atoms/buttons/AbandonButton';
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -29,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    button: {
+      margin: theme.spacing(1),
+    },
   },
 }));
 
@@ -40,11 +47,19 @@ const MyBucketList = ({ bucketList }) => {
       <main className={clsx(classes.content)}>
         <div className={classes.drawerHeader} />
         <List>
-          {bucketList.map((text, index) => (
-            <ListItem button key={index}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {bucketList.map((bucket, index) => {
+            return (
+              <ListItem key={index} role={undefined} dense button>
+                <ListItemIcon>
+                  <ListAltIcon />
+                </ListItemIcon>
+                <ListItemText primary={bucket} />
+                <ListItemSecondaryAction>
+                  <AbandonButton />
+                </ListItemSecondaryAction>
+              </ListItem>
+            );
+          })}
         </List>
         <Link to="/bucket-list/new">
           <Fab color="primary" aria-label="add" className={classes.fab}>
