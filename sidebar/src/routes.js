@@ -1,11 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import MyBucketListPage from './components/pages/MyBucketListPage';
+import MyBucketListDetailPage from './components/pages/MyBucketListDetailPage';
 import pathURI from './constants/path';
 
 const routes = () => (
   <Switch>
-    <Route exact path={pathURI.home} component={MyBucketListPage} />
+    <Route exact path={pathURI.myBucketList} component={MyBucketListPage} />
+    <Route exact path={pathURI.myBucketListDetail} component={MyBucketListDetailPage} />
     <Route path={pathURI.login} />
     <Route path={pathURI.register} />
   </Switch>
