@@ -4,6 +4,7 @@ import BucketSearchBar from '../UI/molecules/BucketSearchBar';
 import BucketContents from '../UI/organisms/BucketContents';
 import DetailList from '../UI/organisms/DetailList';
 import Title from '../UI/molecules/Title';
+import Buttons from '../UI/organisms/Buttons';
 
 const BucketCreateTemplateWrapper = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const BucketCreateTemplate = ({ details, AddHandler, RemoveHandler }) => {
       <BucketSearchBar />
       <BucketContents />
       <DetailList details={details} AddHandler={AddHandler} RemoveHandler={RemoveHandler} />
+      <Buttons />
     </BucketCreateTemplateWrapper>
   );
 };
