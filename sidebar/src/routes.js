@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import pathURI from './constants/path';
-import AchieveCreate from './components/templates/achieve_create/AchieveCreate';
+import AchieveCreate from './components/pages/AchieveCreate';
 
 const routes = () => (
   <Switch>
