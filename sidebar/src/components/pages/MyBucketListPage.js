@@ -1,6 +1,6 @@
 import React from 'react';
-import MyBucketList from '../templates/my_bucket_list/MyBucketList';
-import Menu from '../templates/menu/Menu';
+import MyBucketList from '../templates/my_bucket_list';
+import Header from '../UI/organisms/header';
 
 const MyBucketListPage = () => {
   const bucketList = [
@@ -18,7 +18,7 @@ const MyBucketListPage = () => {
 
   return (
     <>
-      <Menu title="내 목표" />
+      <Header title="내 목표" />
       <MyBucketList bucketList={bucketList} />
     </>
   );

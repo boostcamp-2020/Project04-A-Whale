@@ -1,15 +1,7 @@
 import React from 'react';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing(3),
-    right: theme.spacing(3),
-  },
-}));
+import useStyles from './style';
 
 const AddButton = () => {
   const classes = useStyles();

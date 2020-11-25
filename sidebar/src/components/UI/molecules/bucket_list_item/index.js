@@ -1,33 +1,10 @@
 import React, { useState } from 'react';
 import ListAltIcon from '@material-ui/icons/ListAlt';
-import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import AbandonButton from '../../atoms/abandon_button/AbandonButton';
-import AbandonDialog from '../abandon_dialog/AbandonDialog';
-import Text from '../../atoms/text/Text';
-
-const BucketListItemWrapper = styled.div`
-  display: flex;
-  height: 50px;
-  align-items: center;
-  &:hover {
-    cursor: pointer;
-    background-color: #eeeeee;
-  }
-  .abandon-dialog {
-    width: 400px;
-  }
-  .list-icon {
-    margin-left: 10px;
-  }
-  border-bottom: 1px solid #eeeeee;
-`;
-
-const BucketTitleTextWrapper = styled.span`
-  padding-left: 25px;
-  flex: 6;
-  font-size: 18px;
-`;
+import { BucketListItemWrapper, BucketTitleTextWrapper } from './style';
+import AbandonButton from '../../atoms/abandon_button';
+import AbandonDialog from '../../organisms/abandon_dialog';
+import Text from '../../atoms/text';
 
 const BucketListItem = ({ bucket }) => {
   const [hidden, setHidden] = useState(true);
@@ -38,7 +15,7 @@ const BucketListItem = ({ bucket }) => {
     setHidden(!hidden);
   };
 
-  const handleClickOpen = () => {
+  const handleOpen = () => {
     setOpen(true);
   };
 
@@ -55,13 +32,12 @@ const BucketListItem = ({ bucket }) => {
     <BucketListItemWrapper
       onMouseOver={() => changeHidden(true)}
       onMouseLeave={() => changeHidden(false)}
-      onClick={handleClick}
     >
       <ListAltIcon className="list-icon" />
-      <BucketTitleTextWrapper>
+      <BucketTitleTextWrapper onClick={handleClick}>
         <Text value={bucket.title} fontSize="16px" />
       </BucketTitleTextWrapper>
-      {hidden ? null : <AbandonButton handleClickOpen={handleClickOpen} />}
+      {hidden ? null : <AbandonButton handleOpen={handleOpen} />}
       <AbandonDialog open={open} handleClose={handleClose} />
     </BucketListItemWrapper>
   );

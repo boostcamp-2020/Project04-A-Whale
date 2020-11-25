@@ -1,6 +1,6 @@
 import React from 'react';
 import List from '@material-ui/core/List';
-import BucketListItem from '../../molecules/bucket_list_item/BucketListItem';
+import BucketListItem from '../../molecules/bucket_list_item';
 
 const BucketList = ({ bucketList }) => {
   return (

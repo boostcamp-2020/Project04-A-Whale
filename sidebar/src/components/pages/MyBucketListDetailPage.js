@@ -1,8 +1,8 @@
 import React from 'react';
-import Menu from '../UI/organisms/header';
+import Header from '../UI/organisms/header';
 
 const MyBucketListDetailPage = () => {
-  return <Menu title="내 목표" />;
+  return <Header title="내 목표" isGoBack />;
 };
 
 export default MyBucketListDetailPage;
