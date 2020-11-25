@@ -3,18 +3,21 @@ import styled from 'styled-components';
 import BucketSearchBar from '../UI/molecules/BucketSearchBar';
 import BucketContents from '../UI/organisms/BucketContents';
 import DetailList from '../UI/organisms/DetailList';
+import Title from '../UI/molecules/Title';
 
 const BucketCreateTemplateWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 15px;
 `;
 
-const BucketCreateTemplate = () => {
+const BucketCreateTemplate = ({ details, AddHandler, RemoveHandler }) => {
   return (
     <BucketCreateTemplateWrapper>
+      <Title />
       <BucketSearchBar />
       <BucketContents />
-      <DetailList />
+      <DetailList details={details} AddHandler={AddHandler} RemoveHandler={RemoveHandler} />
     </BucketCreateTemplateWrapper>
   );
 };

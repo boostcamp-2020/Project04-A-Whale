@@ -5,6 +5,8 @@ import BucketInputText from '../molecules/BucketInputText';
 const BucketContentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  padding: 15px;
 `;
 
 const titleStyle = {
@@ -12,6 +14,7 @@ const titleStyle = {
 };
 
 const decriptionStyle = {
+  marginTop: '15px',
   width: '100%',
 };
 

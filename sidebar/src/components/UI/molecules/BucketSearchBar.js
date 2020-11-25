@@ -4,6 +4,7 @@ import InputText from '../atoms/InputText';
 const BucketSearchBar = ({ onChangeHandler }) => {
   const style = {
     color: 'inherit',
+    margin: '15px',
   };
   return (
     <InputText
