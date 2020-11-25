@@ -12,14 +12,14 @@ const BucketCreateTemplateWrapper = styled.div`
   padding: 15px;
 `;
 
-const BucketCreateTemplate = ({ title, description, onReset }) => {
+const BucketCreateTemplate = () => {
   return (
     <BucketCreateTemplateWrapper>
       <Title />
       <BucketSearchBar />
-      <BucketContents title={title} description={description} />
+      <BucketContents />
       <DetailList />
-      <Buttons onReset={onReset} />
+      <Buttons />
     </BucketCreateTemplateWrapper>
   );
 };

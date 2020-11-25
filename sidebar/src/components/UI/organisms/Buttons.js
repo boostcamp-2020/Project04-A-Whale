@@ -9,11 +9,11 @@ const ButtonsWrapper = styled.div`
   padding: 15px;
 `;
 
-const Buttons = ({ onReset }) => {
+const Buttons = () => {
   return (
     <ButtonsWrapper>
       <BucketCreateButton />
-      <ResetButton onReset={onReset} />
+      <ResetButton />
     </ButtonsWrapper>
   );
 };

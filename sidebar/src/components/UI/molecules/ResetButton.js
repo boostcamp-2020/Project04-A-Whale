@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import StyledButton from '../atoms/StyledButton';
 import { resetBucketAction } from '../../../modules/actions/createbucket';
 
-const ResetButton = ({ resetBucketActionConnect, onReset }) => {
+const ResetButton = ({ resetBucketActionConnect }) => {
   const style = {
     margin: '15px',
     minWidth: '120px',
@@ -14,7 +14,6 @@ const ResetButton = ({ resetBucketActionConnect, onReset }) => {
 
   const clickResetButton = () => {
     resetBucketActionConnect();
-    onReset();
   };
 
   return (

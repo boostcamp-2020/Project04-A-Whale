@@ -23,20 +23,16 @@ const decriptionStyle = {
 };
 
 const BucketContents = ({
+  storeTitle,
+  storeDescription,
   inputDescActionConnect,
   inputTitleActionConnect,
-  titleValue,
-  descriptionValue,
 }) => {
-  const [title, setTitle] = useState(titleValue);
-  const [description, setDescription] = useState(descriptionValue);
   const changeTitle = (e) => {
     inputTitleActionConnect(e.target.value);
-    setTitle(e.target.value);
   };
   const changeDesc = (e) => {
     inputDescActionConnect(e.target.value);
-    setDescription(e.target.value);
   };
 
   return (
@@ -45,19 +41,24 @@ const BucketContents = ({
         style={titleStyle}
         label="목표 Title 작성"
         changeInputText={changeTitle}
-        value={title}
+        value={storeTitle}
       />
       <BucketInputText
         style={decriptionStyle}
         label="목표 Description 작성"
         changeInputText={changeDesc}
-        value={description}
+        value={storeDescription}
       />
     </BucketContentsWrapper>
   );
 };
 
-export default connect(null, {
+const mapStateToProps = (state) => ({
+  storeTitle: state.createbucket.title,
+  storeDescription: state.createbucket.description,
+});
+
+export default connect(mapStateToProps, {
   inputDescActionConnect: inputDescAction,
   inputTitleActionConnect: inputTitleAction,
 })(BucketContents);
