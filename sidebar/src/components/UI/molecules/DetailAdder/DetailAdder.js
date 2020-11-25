@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { connect } from 'react-redux';
-import InputText from '../atoms/InputText';
-import StyledButton from '../atoms/StyledButton';
-import { addDetailAction } from '../../../modules/actions/createbucket';
+import InputText from '../../atoms/InputText/InputText';
+import StyledButton from '../../atoms/StyledButton/StyledButton';
+import { addDetailAction } from '../../../../modules/actions/createbucket';
 
 const DetailAdder = ({ addDetailActionConnect }) => {
   const style = {

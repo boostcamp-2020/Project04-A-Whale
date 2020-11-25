@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import DetailAdder from '../molecules/DetailAdder';
-import DetailListItem from '../molecules/DetailListItem';
-import { addDetailAction, removeDetailAction } from '../../../modules/actions/createbucket';
+import DetailAdder from '../../molecules/DetailAdder/DetailAdder';
+import DetailListItem from '../../molecules/DetailListItem/DetailListItem';
+import { addDetailAction, removeDetailAction } from '../../../../modules/actions/createbucket';
 
 const DetailList = ({ details }) => {
   // TODO : state로 바꿔야함

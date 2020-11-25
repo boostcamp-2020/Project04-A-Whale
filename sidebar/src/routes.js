@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import pathURI from './constants/path';
-import BucketCreatePage from './components/pages/BucketCreatePage';
+import BucketCreatePage from './components/pages/BucketCreatePage/BucketCreatePage';
 
 const routes = () => (
   <Switch>

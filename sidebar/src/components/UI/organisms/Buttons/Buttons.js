@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import BucketCreateButton from '../molecules/BucketCreateButton';
-import ResetButton from '../molecules/ResetButton';
+import BucketCreateButton from '../../molecules/BucketCreateButton/BucketCreateButton';
+import ResetButton from '../../molecules/ResetButton/ResetButton';
 
 const ButtonsWrapper = styled.div`
   display: flex;

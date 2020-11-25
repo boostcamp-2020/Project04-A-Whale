@@ -1,5 +1,5 @@
 import React from 'react';
-import Span from '../atoms/Span';
+import Span from '../../atoms/Span/Span';
 
 const Title = () => {
   const style = {

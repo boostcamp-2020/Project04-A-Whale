@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import InputText from '../atoms/InputText';
+import React from 'react';
+import InputText from '../../atoms/InputText/InputText';
 
 const BucketInputText = ({ style, label, changeInputText, value }) => {
   return (

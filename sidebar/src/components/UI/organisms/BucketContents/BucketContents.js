@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import BucketInputText from '../molecules/BucketInputText';
-import { inputDescAction, inputTitleAction } from '../../../modules/actions/createbucket';
+import BucketInputText from '../../molecules/BucketInputText/BucketInputText';
+import { inputDescAction, inputTitleAction } from '../../../../modules/actions/createbucket';
 
 const BucketContentsWrapper = styled.div`
   display: flex;

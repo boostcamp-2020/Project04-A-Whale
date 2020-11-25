@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import StyledButton from '../atoms/StyledButton';
-import { resetBucketAction } from '../../../modules/actions/createbucket';
+import StyledButton from '../../atoms/StyledButton/StyledButton';
+import { resetBucketAction } from '../../../../modules/actions/createbucket';
 
 const ResetButton = ({ resetBucketActionConnect }) => {
   const style = {
