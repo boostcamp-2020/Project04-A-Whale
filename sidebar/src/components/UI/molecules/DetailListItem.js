@@ -5,6 +5,7 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import Span from '../atoms/Span';
 import StyledButton from '../atoms/StyledButton';
+import DatePicker from '../atoms/DatePicker';
 import { removeDetailAction } from '../../../modules/actions/createbucket';
 
 const DetailListItemWrapper = styled.div`
@@ -12,20 +13,26 @@ const DetailListItemWrapper = styled.div`
   flex-direction: row;
   position: relative;
   vertical-align: middle;
-  border-width: 2px 0px 2px 0px;
+  border: 1.5px;
+  border-right: 0px;
+  border-left: 0px;
+  border-style: ridge;
   padding: 15px;
 `;
 
 const CalenderIcon = {
   position: 'absolute',
-  right: '7%',
+  right: '12%',
   padding: '1px',
+  height: '20px',
 };
 
 const RemoveIcon = {
   position: 'absolute',
-  right: '2%',
+  right: '4%',
   padding: '1px',
+  backgroundColor: 'white',
+  height: '20px',
 };
 
 const DetailListItem = ({ detail, removeDetailActionConnect }) => {

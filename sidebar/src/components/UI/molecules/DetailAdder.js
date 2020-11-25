@@ -11,6 +11,7 @@ const DetailAdder = ({ addDetailActionConnect }) => {
   const style = {
     color: 'inherit',
     width: '100%',
+    marginBottom: '10px',
   };
 
   const [state, setState] = useState('');
