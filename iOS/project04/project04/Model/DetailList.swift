@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DetailList: Decodable, Hashable {
+struct DetailList: Hashable {
     var title: String
     var dueDate: String
 }

@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DetailListViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, DetailList>! = nil
     private var collectionView: UICollectionView! = nil
+    private var sampleIndex = 0
     private var collectionViewModel: DetailListViewModelProtocol? {
         didSet {
             self.collectionViewModel?.listDidChange = { [weak self] _ in
@@ -24,13 +26,17 @@ class DetailListViewController: UIViewController {
         configureHierarchy()
         configureDataSource()
         
-        collectionViewModel = DetailListViewModel(list: [
-            DetailList(title: "1", dueDate: "2020/12/21"),
-            DetailList(title: "2", dueDate: "2020/12/10"),
-            DetailList(title: "3", dueDate: "2020/12/11")
-        ])
-
-        updateList()
+        let networkAgent = DetailAPIAgent()
+        let localAgent = DetailLocalAgent()
+        let repository = DetailRepository(network: networkAgent, local: localAgent)
+        let usecase = DetailListUseCase(repository: repository)
+        collectionViewModel = DetailListViewModel(usecase: usecase)
+        collectionViewModel?.listFetchAction()
+    }
+    
+    @IBAction func detailAppendAction(_ sender: UIBarButtonItem) {
+        collectionViewModel?.listAddAction(DetailList(title: "\(sampleIndex)", dueDate: "123"))
+        sampleIndex += 1
     }
 }
 
