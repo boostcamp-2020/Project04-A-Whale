@@ -11,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AbandonButton = () => {
+const AbandonButton = ({ handleClickOpen }) => {
   const classes = useStyles();
+
   return (
     <>
       <Button
@@ -20,6 +21,7 @@ const AbandonButton = () => {
         className={classes.button}
         startIcon={<DeleteIcon />}
         size="small"
+        onClick={handleClickOpen}
       >
         포기
       </Button>

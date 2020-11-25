@@ -1,19 +1,19 @@
 import React from 'react';
-import MyBucketList from '../templates/MyBucketList';
-import Menu from '../templates/Menu';
+import MyBucketList from '../templates/my_bucket_list/MyBucketList';
+import Menu from '../templates/menu/Menu';
 
 const MyBucketListPage = () => {
   const bucketList = [
-    '목표1',
-    '목표2',
-    '목표3',
-    '목표4',
-    '목표5',
-    '목표6',
-    '목표7',
-    '목표8',
-    '목표9',
-    '목표10',
+    { title: '목표1', id: 1 },
+    { title: '목표2', id: 2 },
+    { title: '목표3', id: 3 },
+    { title: '목표4', id: 4 },
+    { title: '목표5', id: 5 },
+    { title: '목표6', id: 6 },
+    { title: '목표7', id: 7 },
+    { title: '목표8', id: 8 },
+    { title: '목표9', id: 9 },
+    { title: '목표10', id: 10 },
   ];
 
   return (
