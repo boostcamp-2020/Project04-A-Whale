@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeInput } from '../../modules/achieve';
 import AchieveCreateLayout from '../templates/achieve_create/AchieveCreate';
 
-const achieveCreatePage = () => {
+const AchieveCreate = () => {
   const acheiveState = useSelector((state) => state.acheiveState, []);
   const dispatch = useDispatch();
   const onChangeHandler = (e) => {
@@ -22,4 +22,4 @@ const achieveCreatePage = () => {
   );
 };
 
-export default achieveCreatePage;
+export default AchieveCreate;

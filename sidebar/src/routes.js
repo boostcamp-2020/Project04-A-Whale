@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import pathURI from './constants/path';
 import AchieveCreate from './components/pages/AchieveCreate';
+import AchieveResult from './components/pages/AchieveResult';
 
 const routes = () => (
   <Switch>
@@ -9,7 +10,7 @@ const routes = () => (
     <Route exact path={pathURI.login} />
     <Route exact path={pathURI.register} />
     <Route exact path={pathURI.achieveCreate} component={AchieveCreate} />
-    <Route exact path={pathURI.achieveResult} />
+    <Route exact path={pathURI.achieveResult} component={AchieveResult} />
   </Switch>
 );
 
