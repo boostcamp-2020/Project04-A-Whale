@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Hamburger from '../UI/atoms/Hamburger/Hamburger';
-import WriteTextArea from '../UI/organisms/WritingTab/WritingTab';
+import Hamburger from '../../UI/atoms/hamburger/Hamburger';
+import WritingTab from '../../UI/organisms/writing_tab/WritingTab';
 
-const AchieveBucket = () => {
+const AchieveCreate = () => {
   return (
     <Layout>
       <TopFixed>
@@ -20,7 +20,7 @@ const AchieveBucket = () => {
           <p>from 2020.07.27</p>
         </div>
         <div className="writeImpression">
-          <WriteTextArea placeholder="목표 달성 소감을 남겨주세요." />
+          <WritingTab placeholder="목표 달성 소감을 남겨주세요." />
         </div>
       </Page>
     </Layout>
@@ -44,4 +44,4 @@ const Page = styled.div`
   margin-top: 50px;
 `;
 
-export default AchieveBucket;
+export default AchieveCreate;

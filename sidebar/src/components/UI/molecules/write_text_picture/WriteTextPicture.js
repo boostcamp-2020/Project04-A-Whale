@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const WriteTextPicture = ({ placeholder, text }) => {
+const WriteTextPicture = ({ placeholder, text, onChange }) => {
   return (
     <WriteText>
-      <TextArea rows="10" placeholder={placeholder}>
-        {text}
-      </TextArea>
+      <TextArea placeholder={placeholder} value={text} onChange={onChange} />
       <UploadPicture type="file" multiple />
     </WriteText>
   );
@@ -19,6 +17,7 @@ const WriteText = styled.div`
 const TextArea = styled.textarea`
   box-sizing: border-box;
   width: 100%;
+  height: 10rem;
   margin: 0;
 `;
 
