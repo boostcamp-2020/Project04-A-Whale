@@ -8,8 +8,8 @@
 import Foundation
 import RealmSwift
 
-class DetailLocalAgent: DetailListUseCase {
-    func fetch() -> [DetailList] {
+class DetailLocalAgent: LocalService {
+    func load() -> [DetailList] {
         do {
             let result = try Realm().objects(RealmDetailList.self)
             guard let realmList = result.first else {
@@ -35,10 +35,17 @@ class DetailLocalAgent: DetailListUseCase {
             let realm = try Realm()
             try Realm().write {
                 let result = realm.objects(RealmDetailList.self)
-                result.first?.detailList.append(
-                    RealmDetail(value: [element.title,
-                                        element.dueDate])
-                )
+                if !result.isEmpty {
+                    result.first?.detailList.append(
+                        RealmDetail(value: [element.title,
+                                            element.dueDate])
+                    )
+                } else {
+                    realm.add(RealmDetailList(value: ["detailList": [
+                                                        RealmDetail(value: [element.title,
+                                                                            element.dueDate])]
+                    ]))
+                }
             }
         } catch {
             print(error)
