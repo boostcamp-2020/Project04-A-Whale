@@ -13,7 +13,8 @@ protocol DetailListViewModelProtocol {
     func listDeleteAction(at index: Int)
     func listAddAction(_ newElement: DetailList)
     func listReviseAction(_ newElement: DetailList, at index: Int)
-    init(list: [DetailList])
+    func listFetchAction()
+    init(usecase: DetailListUseCase)
 }
 
 class DetailListViewModel: DetailListViewModelProtocol {
@@ -24,20 +25,30 @@ class DetailListViewModel: DetailListViewModelProtocol {
     }
     
     var listDidChange: ((DetailListViewModelProtocol) -> ())?
+    var usecase: DetailListUseCase
     
-    required init(list: [DetailList]) {
-        self.list = list
+    required init(usecase: DetailListUseCase) {
+        self.usecase = usecase
+    }
+    
+    func listFetchAction() {
+        usecase.fetch(completion: { [weak self] list in
+            self?.list = list
+        })
     }
     
     func listDeleteAction(at index: Int) {
         list?.remove(at: index)
+        usecase.remove(at: index)
     }
     
     func listAddAction(_ newElement: DetailList) {
         list?.append(newElement)
+        usecase.append(newElement)
     }
     
     func listReviseAction(_ newElement: DetailList, at index: Int) {
         list?[index] = newElement
+        usecase.revise(at: index, element: newElement)
     }
 }

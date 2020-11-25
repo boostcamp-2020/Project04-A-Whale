@@ -17,7 +17,7 @@ class BucketListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureCollectionView()
         bucketListViewModel = BucketListViewModel(with: [.todo : [], .done: []], handler: { [weak self](data) in
             var snapshot = Snapshot()
