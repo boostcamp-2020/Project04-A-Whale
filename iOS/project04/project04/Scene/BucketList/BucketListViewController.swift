@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BucketListViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Bucket.Section, Bucket>
@@ -16,6 +17,7 @@ class BucketListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureCollectionView()
         bucketListViewModel = BucketListViewModel(with: [.todo : [], .done: []], handler: { [weak self](data) in
             var snapshot = Snapshot()
@@ -100,12 +102,6 @@ extension BucketListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let bucket = dataSource?.itemIdentifier(for: indexPath)
         performSegue(withIdentifier: "DetailListSegue", sender: bucket)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        performSegue(withIdentifier: "DetailListSegue", sender: nil)
     }
 }
 
