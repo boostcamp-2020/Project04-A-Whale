@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Hamburger from '../../UI/atoms/hamburger/Hamburger';
 import WritingTab from '../../UI/organisms/writing_tab/WritingTab';
 
-const AchieveCreate = () => {
+const AchieveCreate = ({ head, bucket, description, date, text, onChange }) => {
   return (
     <Layout>
       <TopFixed>
@@ -12,15 +12,15 @@ const AchieveCreate = () => {
       </TopFixed>
       <Page>
         <div className="pageTitle">
-          <h1>목표달성 소감</h1>
+          <h1>{head}</h1>
         </div>
         <div className="bucketInfo">
-          <h2>#01 부스트캠프 수료</h2>
-          <p>멤버십을 훌륭하게 해내고 싶습니다. </p>
-          <p>from 2020.07.27</p>
+          <h2>#01 {bucket}</h2>
+          <p>{description}</p>
+          <p>from {date}</p>
         </div>
         <div className="writeImpression">
-          <WritingTab placeholder="목표 달성 소감을 남겨주세요." />
+          <WritingTab placeholder="목표 달성 소감을 남겨주세요." text={text} onChange={onChange} />
         </div>
       </Page>
     </Layout>

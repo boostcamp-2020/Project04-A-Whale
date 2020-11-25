@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import LabelContentTab from '../label_content_tab/LabelContentTab';
 import WriteTextPicture from '../../molecules/write_text_picture/WriteTextPicture';
 import PreviewTextPicture from '../../atoms/preview_text_picture/PreviewTextPicture';
 
-const WritingTab = ({ placeholder }) => {
-  const [text, setText] = useState('');
-
-  const onChangeHandler = (e) => {
-    console.log(e.target.value);
-    setText(e.target.value);
-  };
-
-  const form = (
-    <WriteTextPicture placeholder={placeholder} text={text} onChange={onChangeHandler} />
-  );
+const WritingTab = ({ placeholder, text, onChange }) => {
+  const form = <WriteTextPicture placeholder={placeholder} text={text} onChange={onChange} />;
   const markdown = <ReactMarkdown source={text} />;
   const preview = <PreviewTextPicture text={markdown} />;
   const tabs = [
