@@ -21,7 +21,7 @@ const DetailAdder = ({ addDetailActionConnect }) => {
   };
 
   const onClickHandler = () => {
-    addDetailActionConnect(state);
+    if (state.length > 0) addDetailActionConnect(state);
   };
 
   return (

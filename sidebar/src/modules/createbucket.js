@@ -11,7 +11,7 @@ import {
 const initialState = {
   title: '',
   description: '',
-  details: ['detail1', 'detail2'],
+  details: [],
 };
 
 const createbucket = handleActions(
