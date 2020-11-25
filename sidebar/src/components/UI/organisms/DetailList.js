@@ -1,26 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import DetailAdder from '../molecules/DetailAdder';
 import DetailListItem from '../molecules/DetailListItem';
+import { addDetailAction, removeDetailAction } from '../../../modules/actions/createbucket';
 
-const DetailList = ({ details, AddHandler, RemoveHandler }) => {
+const DetailList = ({ details }) => {
   // TODO : state로 바꿔야함
   const DetailListWrapper = styled.div`
     padding: 15px;
   `;
-
   const Details = (items) => {
     return items.map((item) => {
-      return <DetailListItem detail={item} RemoveHandler={RemoveHandler} />;
+      return <DetailListItem detail={item} />;
     });
   };
 
   return (
     <DetailListWrapper>
-      <DetailAdder callback={AddHandler} />
+      <DetailAdder />
       {Details(details)}
     </DetailListWrapper>
   );
 };
 
-export default DetailList;
+const mapStateToProps = (state) => ({ details: state.createbucket.details });
+
+export default connect(mapStateToProps, { addDetailAction, removeDetailAction })(DetailList);

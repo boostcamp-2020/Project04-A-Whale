@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
-const InputText = ({ style, variant, label, defaultValue, onChangeHandler, InputProps }) => {
+const InputText = ({ style, variant, label, value, defaultValue, onChangeHandler, InputProps }) => {
   const useStyles = makeStyles({
     root: style,
   });
@@ -13,6 +13,7 @@ const InputText = ({ style, variant, label, defaultValue, onChangeHandler, Input
       className={classes.root}
       variant={variant}
       label={label}
+      value={value}
       defaultValue={defaultValue}
       onChange={onChangeHandler}
       InputProps={InputProps}

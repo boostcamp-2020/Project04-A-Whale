@@ -2,20 +2,15 @@ import React, { useState } from 'react';
 import BucketCreateTemplate from '../templates/BucketCreateTemplate';
 
 const BucketCreatePage = () => {
-  const [details, setDetails] = useState(['detail1', 'detail2']);
+  const [title, setTitle] = useState('1');
+  const [description, setDescription] = useState('2');
 
-  const detailAddHandler = (v) => setDetails(details.concat(v));
-  const detailRemoveHandler = (v) => {
-    const idx = details.indexOf(v);
-    setDetails(details.filter((_, i) => i !== idx));
+  const onReset = () => {
+    setTitle('');
+    setDescription('');
   };
-  return (
-    <BucketCreateTemplate
-      details={details}
-      AddHandler={detailAddHandler}
-      RemoveHandler={detailRemoveHandler}
-    />
-  );
+
+  return <BucketCreateTemplate title={title} description={description} onReset={onReset} />;
 };
 
 export default BucketCreatePage;

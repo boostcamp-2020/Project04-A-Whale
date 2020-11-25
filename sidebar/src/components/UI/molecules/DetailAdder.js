@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { connect } from 'react-redux';
 import InputText from '../atoms/InputText';
 import StyledButton from '../atoms/StyledButton';
+import { addDetailAction } from '../../../modules/actions/createbucket';
 
-const DetailAdder = ({ callback }) => {
+const DetailAdder = ({ addDetailActionConnect }) => {
   const style = {
     color: 'inherit',
     witdh: '100%',
@@ -17,7 +19,7 @@ const DetailAdder = ({ callback }) => {
   };
 
   const onClickHandler = () => {
-    callback(state);
+    addDetailActionConnect(state);
   };
 
   return (
@@ -43,4 +45,6 @@ const DetailAdder = ({ callback }) => {
   );
 };
 
-export default DetailAdder;
+const mapStateToProps = (state) => ({ details: state.createbucket.details });
+
+export default connect(mapStateToProps, { addDetailActionConnect: addDetailAction })(DetailAdder);

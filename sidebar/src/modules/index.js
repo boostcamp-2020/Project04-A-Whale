@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
+import createbucket from './createbucket';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  createbucket,
+});
 
 export default rootReducer;

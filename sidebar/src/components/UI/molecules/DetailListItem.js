@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import Span from '../atoms/Span';
 import StyledButton from '../atoms/StyledButton';
+import { removeDetailAction } from '../../../modules/actions/createbucket';
 
 const DetailListItemWrapper = styled.div`
   display: flex;
@@ -24,11 +26,14 @@ const RemoveIcon = {
   padding: '1px',
 };
 
-const DetailListItem = ({ detail, calendarHandler, RemoveHandler }) => {
+const DetailListItem = ({ detail, removeDetailActionConnect }) => {
   const style = {
     color: 'inherit',
   };
-  const onClickRemover = () => RemoveHandler(detail);
+
+  const onClickHandler = () => {
+    removeDetailActionConnect(detail);
+  };
 
   const content = (
     <DetailListItemWrapper>
@@ -38,18 +43,21 @@ const DetailListItem = ({ detail, calendarHandler, RemoveHandler }) => {
         style={CalenderIcon}
         variant="add detail"
         content={<DateRangeIcon />}
-        onClickHandler={calendarHandler}
       />
       <StyledButton
         type="Icon"
         style={RemoveIcon}
         variant="add detail"
         content={<RemoveCircleIcon />}
-        onClickHandler={onClickRemover}
+        onClickHandler={onClickHandler}
       />
     </DetailListItemWrapper>
   );
   return <Span style={style} content={content} />;
 };
 
-export default DetailListItem;
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, { removeDetailActionConnect: removeDetailAction })(
+  DetailListItem
+);
