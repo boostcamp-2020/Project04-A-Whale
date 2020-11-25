@@ -18,6 +18,8 @@ const titleStyle = {
 const decriptionStyle = {
   marginTop: '15px',
   width: '100%',
+  rows: 4,
+  rowsMax: 10,
 };
 
 const BucketContents = ({

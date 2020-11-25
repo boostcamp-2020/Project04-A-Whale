@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { connect } from 'react-redux';
@@ -9,7 +10,7 @@ import { addDetailAction } from '../../../modules/actions/createbucket';
 const DetailAdder = ({ addDetailActionConnect }) => {
   const style = {
     color: 'inherit',
-    witdh: '100%',
+    width: '100%',
   };
 
   const [state, setState] = useState('');
@@ -23,25 +24,27 @@ const DetailAdder = ({ addDetailActionConnect }) => {
   };
 
   return (
-    <InputText
-      id="detailAddButton"
-      style={style}
-      variant="outlined"
-      label="Detail 추가 등록"
-      onChangeHandler={onChangeHandler}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <StyledButton
-              type="Icon"
-              variant="add detail"
-              content={<AddCircleIcon />}
-              onClickHandler={onClickHandler}
-            />
-          </InputAdornment>
-        ),
-      }}
-    />
+    <div>
+      <InputText
+        id="detailAddButton"
+        style={style}
+        variant="outlined"
+        label="Detail 추가 등록"
+        onChangeHandler={onChangeHandler}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <StyledButton
+                type="Icon"
+                variant="add detail"
+                content={<AddCircleIcon />}
+                onClickHandler={onClickHandler}
+              />
+            </InputAdornment>
+          ),
+        }}
+      />
+    </div>
   );
 };
 

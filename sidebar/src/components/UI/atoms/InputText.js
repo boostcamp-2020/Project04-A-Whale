@@ -18,7 +18,6 @@ const InputText = ({ style, variant, label, value, defaultValue, onChangeHandler
       onChange={onChangeHandler}
       InputProps={InputProps}
       multiline="true"
-      rowsMax={4}
     />
   );
 };

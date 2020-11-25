@@ -12,6 +12,8 @@ const DetailListItemWrapper = styled.div`
   flex-direction: row;
   position: relative;
   vertical-align: middle;
+  border-width: 2px 0px 2px 0px;
+  padding: 15px;
 `;
 
 const CalenderIcon = {

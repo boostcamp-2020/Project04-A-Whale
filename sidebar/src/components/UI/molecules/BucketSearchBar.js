@@ -6,6 +6,8 @@ const BucketSearchBar = ({ onChangeHandler }) => {
     color: 'inherit',
     margin: '15px',
   };
+
+  // TODO : onChangeHandler 검색기능 구현에서 추후 구현
   return (
     <InputText
       style={style}

@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import InputText from '../atoms/InputText';
 
-const BucketInputText = ({ style, label }) => {
-  return <InputText style={style} variant="outlined" label={label} />;
+const BucketInputText = ({ style, label, changeInputText, value }) => {
+  console.log('value', value);
+  return (
+    <InputText
+      style={style}
+      variant="outlined"
+      label={label}
+      value={value}
+      onChangeHandler={changeInputText}
+    />
+  );
 };
 
 export default BucketInputText;
