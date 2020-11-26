@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     }),
     color: '#555555',
   },
-  drawerHeader: {
+  header: {
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),

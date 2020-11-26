@@ -25,7 +25,10 @@ const BucketListItem = ({ bucket }) => {
   };
 
   const handleClick = () => {
-    history.push(`/detail/${bucket.id}`);
+    history.push({
+      pathname: `/detail/${bucket.id}`,
+      state: { bucket },
+    });
   };
 
   return (

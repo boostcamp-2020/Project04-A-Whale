@@ -10,7 +10,7 @@ const MyBucketList = ({ bucketList }) => {
 
   return (
     <main className={classes.root}>
-      <div className={classes.drawerHeader} />
+      <div className={classes.header} />
       <Text value="진행 N개 / 달성 M개" fontSize="20px" />
       <BucketList bucketList={bucketList} />
       <Link to="/bucket-list/new">

@@ -5,6 +5,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
     width: '48px',
     marginLeft: '-12px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 }));
 
