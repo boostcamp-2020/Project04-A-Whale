@@ -64,23 +64,54 @@
             </objects>
             <point key="canvasLocation" x="1798.5507246376812" y="103.79464285714285"/>
         </scene>
-        <!--Detail List View Controller-->
+        <!--세부 리스트-->
         <scene sceneID="0eY-c2-fQo">
             <objects>
                 <viewController id="K7m-xK-FEA" customClass="DetailListViewController" customModule="project04" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2sw-4W-CxN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ht5-Ur-CwE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YGT-r1-8GA">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="detailCell" id="EMh-q5-gOl">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CG0-x6-rxu">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="R4D-ie-rLg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ht5-Ur-CwE" firstAttribute="top" secondItem="2sw-4W-CxN" secondAttribute="top" id="DEY-tX-vSi"/>
+                            <constraint firstItem="R4D-ie-rLg" firstAttribute="trailing" secondItem="Ht5-Ur-CwE" secondAttribute="trailing" id="LLs-2c-5aV"/>
+                            <constraint firstAttribute="bottom" secondItem="Ht5-Ur-CwE" secondAttribute="bottom" id="N8w-rU-Lbg"/>
+                            <constraint firstItem="Ht5-Ur-CwE" firstAttribute="leading" secondItem="R4D-ie-rLg" secondAttribute="leading" id="W3h-pa-NY5"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hdE-Uf-849">
+                    <navigationItem key="navigationItem" title="세부 리스트" id="hdE-Uf-849">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="ApH-cE-gjE">
                             <connections>
                                 <action selector="detailAppendAction:" destination="K7m-xK-FEA" id="02h-Yf-AYT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="Ht5-Ur-CwE" id="6sZ-4f-myg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kit-ws-pTf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
