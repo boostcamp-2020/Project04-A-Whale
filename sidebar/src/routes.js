@@ -10,14 +10,13 @@ import AchieveResult from './components/pages/AchieveResult';
 
 const routes = () => (
   <Switch>
-    <Route exact path={pathURI.myBucketList} component={MyBucketListPage} />
-    <Route exact path={pathURI.myBucketListDetail} component={MyBucketListDetailPage} />
     <Route exact path={pathURI.login} />
     <Route exact path={pathURI.register} />
-   <Route exact path={pathURI.bucketcreate} component={BucketCreatePage} />
+    <Route exact path={pathURI.myBucketList} component={MyBucketListPage} />
+    <Route exact path={pathURI.myBucketListDetail} component={MyBucketListDetailPage} />
+    <Route exact path={pathURI.bucketcreate} component={BucketCreatePage} />
     <Route exact path={pathURI.achieveCreate} component={AchieveCreate} />
     <Route exact path={pathURI.achieveResult} component={AchieveResult} />
-
   </Switch>
 );
 
