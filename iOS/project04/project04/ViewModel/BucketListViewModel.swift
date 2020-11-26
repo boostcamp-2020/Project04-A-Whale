@@ -18,16 +18,22 @@ class BucketListViewModel {
         (self.buckets?[.todo]?.count ?? 0) + (self.buckets?[.done]?.count ?? 0)
     }
     
+    let useCase: BucketListUseCase
+    
     private var handler: ([Bucket.Section: [Bucket]]?) -> Void
     
-    init(with buckets: [Bucket.Section: [Bucket]], handler: @escaping ([Bucket.Section: [Bucket]]?) -> Void) {
-        self.buckets = buckets
+    init(useCase: BucketListUseCase, handler: @escaping ([Bucket.Section: [Bucket]]?) -> Void) {
         self.handler = handler
-        handler(buckets)
+        self.useCase = useCase
+        self.useCase.fetch { [weak self] list in
+            let buckets = [Bucket.Section.todo: list]
+            self?.buckets = buckets
+        }
     }
     
     func append(bucket: Bucket) {
         self.buckets?[.todo]?.append(bucket)
+        useCase.append(bucket)
     }
     
     func remove(bucket: Bucket) {

@@ -19,7 +19,13 @@ class BucketListViewController: UIViewController {
         super.viewDidLoad()
 
         configureCollectionView()
-        bucketListViewModel = BucketListViewModel(with: [.todo : [], .done: []], handler: { [weak self](data) in
+        
+        let network = BucketAPIAgent()
+        let local = BucketLocalAgent()
+        let repository = BucketListRepository(network: network, local: local)
+        let useCase = BucketListUseCase(repository: repository)
+        
+        bucketListViewModel = BucketListViewModel(useCase: useCase, handler: { [weak self](data) in
             var snapshot = Snapshot()
             snapshot.appendSections([.todo, .done])
             snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
