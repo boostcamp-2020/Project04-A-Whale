@@ -8,9 +8,9 @@
 import Foundation
 
 class DetailListUseCase: ListUseCase {
-    let repository: DetailRepository
+    let repository: DetailRepositoryProtocol
     
-    init(repository: DetailRepository) {
+    init(repository: DetailRepositoryProtocol) {
         self.repository = repository
     }
     
