@@ -45,6 +45,14 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: '100%',
   },
+  addButton: {
+    height: '40px',
+    marginTop: '7.5px',
+    marginLeft: '10px',
+  },
+  datePicker: {
+    marginLeft: '10px',
+  },
 }));
 
 const TitleWrapper = styled.div`
@@ -60,15 +68,13 @@ const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 8px;
-  float: right;
-  button: {
-    margin-left: 10px;
-  }
+  width: 100%;
+  justify-content: flex-end;
 `;
 
 const NewTodoWrapper = styled.div`
   display: flex;
-  align-items: center;
+  justify-content: space-between;
 `;
 
 export { useStyles, TitleWrapper, ButtonWrapper, NewTodoWrapper };

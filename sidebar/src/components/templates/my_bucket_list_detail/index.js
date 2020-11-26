@@ -1,3 +1,4 @@
+// import 'date-fns';
 import React, { useState } from 'react';
 import CreateIcon from '@material-ui/icons/Create';
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +14,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
+// import DateFnsUtils from '@date-io/date-fns';
+// import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { useStyles, TitleWrapper, ButtonWrapper, NewTodoWrapper } from './style';
 
 const MyBucketListDetail = ({ bucket }) => {
@@ -21,6 +24,11 @@ const MyBucketListDetail = ({ bucket }) => {
   const [desc, setDesc] = useState(bucket.description);
   const [edit, setEdit] = useState(false);
   const [checked, setChecked] = useState([0]);
+  // const [selectedDate, setSelectedDate] = useState(new Date());
+
+  // const handleDateChange = (date) => {
+  //   setSelectedDate(date);
+  // };
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -106,12 +114,21 @@ const MyBucketListDetail = ({ bucket }) => {
       )}
       <NewTodoWrapper>
         <TextField id="outlined-basic" margin="dense" variant="outlined" fullWidth />
-        <Button
-          style={{ marginLeft: '10px', height: '40px' }}
-          variant="contained"
-          color="default"
-          size="small"
-        >
+        {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            className={classes.datePicker}
+            disableToolbar
+            variant="inline"
+            format="MM/dd/yyyy"
+            margin="normal"
+            value={selectedDate}
+            onChange={handleDateChange}
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
+          />
+        </MuiPickersUtilsProvider> */}
+        <Button className={classes.addButton} variant="contained">
           등록
         </Button>
       </NewTodoWrapper>
