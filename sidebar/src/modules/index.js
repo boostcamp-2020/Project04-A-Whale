@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import todos from './todos';
+
+import createbucket from './createbucket';
 
 const rootReducer = combineReducers({
-  todos,
+  createbucket,
 });
 
 export default rootReducer;
