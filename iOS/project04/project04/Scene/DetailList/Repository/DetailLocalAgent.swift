@@ -9,15 +9,18 @@ import Foundation
 import RealmSwift
 
 class DetailLocalAgent: LocalService {
+    var bucket: RealmBucket?
+    
     func load() -> [Detail] {
         do {
-            let result = try Realm().objects(RealmDetailList.self)
-            guard let realmList = result.first else {
+            guard let realmBucket = bucket else {
                 return []
             }
-            
+            let result = try Realm().objects(RealmDetail.self)
+                .filter("bucket.id == \(realmBucket.id)")
+
             var list = [Detail]()
-            for element in realmList.detailList {
+            for element in result {
                 list.append(
                     Detail(title: element.title,
                                dueDate: element.dueDate)
@@ -34,18 +37,11 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try Realm().write {
-                let result = realm.objects(RealmDetailList.self)
-                if !result.isEmpty {
-                    result.first?.detailList.append(
-                        RealmDetail(value: [element.title,
-                                            element.dueDate])
-                    )
-                } else {
-                    realm.add(RealmDetailList(value: ["detailList": [
-                                                        RealmDetail(value: [element.title,
-                                                                            element.dueDate])]
-                    ]))
+                guard let realmBucket = self.bucket else {
+                    return
                 }
+                let realmDetail = RealmDetail(value: [realmBucket, element.title, element.dueDate])
+                realm.add(realmDetail)
             }
         } catch {
             print(error)
@@ -56,8 +52,11 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try realm.write {
-                let result = realm.objects(RealmDetailList.self)
-                result.first?.detailList.remove(at: index)
+                guard let realmBucket = bucket else {
+                    return
+                }
+                let result = realm.objects(RealmDetail.self).filter("bucket.id == \(realmBucket.id)")
+                realm.delete(result[index])
             }
         } catch {
             print(error)
@@ -68,9 +67,12 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try realm.write {
-                let result = realm.objects(RealmDetailList.self)
-                result.first?.detailList[index] = RealmDetail(value: [element.title,
-                                                                      element.dueDate])
+                guard let realmBucket = bucket else {
+                    return
+                }
+                let result = realm.objects(RealmDetail.self).filter("bucket.id == \(realmBucket.id)")
+                result[index].title = element.title
+                result[index].dueDate = element.dueDate
             }
         } catch {
             print(error)

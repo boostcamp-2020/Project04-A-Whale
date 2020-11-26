@@ -39,6 +39,19 @@ class BucketListViewController: UIViewController {
         self.bucketListViewModel?.append(bucket: Bucket(id: nil, title: "New Bucket\(bucketListViewModel?.count ?? 0)"))
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? DetailListViewController {
+            if let bucket = sender as? Bucket {
+                do {
+                    let realm = try Realm()
+                    let realmBucket = realm.objects(RealmBucket.self).filter { $0.id == bucket.id }
+                    destination.bucket = realmBucket.first
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
 }
 
 extension BucketListViewController: UICollectionViewDelegate {
