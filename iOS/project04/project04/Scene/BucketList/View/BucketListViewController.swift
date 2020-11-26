@@ -36,7 +36,7 @@ class BucketListViewController: UIViewController {
     }
     
     @IBAction func didTouchPlusButton(_ sender: UIBarButtonItem) {
-        self.bucketListViewModel?.append(bucket: Bucket(title: "New Bucket\(bucketListViewModel?.count ?? 0)"))
+        self.bucketListViewModel?.append(bucket: Bucket(id: nil, title: "New Bucket\(bucketListViewModel?.count ?? 0)"))
     }
     
 }

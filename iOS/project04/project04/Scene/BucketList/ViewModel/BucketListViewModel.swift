@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class BucketListViewModel {
     var buckets: [Bucket.Section: [Bucket]]? {
@@ -32,12 +33,27 @@ class BucketListViewModel {
     }
     
     func append(bucket: Bucket) {
-        self.buckets?[.todo]?.append(bucket)
-        useCase.append(bucket)
+        let newId = autoIncreaseIdValue()
+        let newBucket = Bucket(id: newId, title: bucket.title)
+        self.buckets?[.todo]?.append(newBucket)
+        useCase.append(newBucket)
     }
     
     func remove(bucket: Bucket) {
         self.buckets?[.todo]?.removeAll(where: { $0.title == bucket.title })
         self.buckets?[.done]?.append(bucket)
+    }
+    
+    func autoIncreaseIdValue() -> Int {
+        do {
+            let realm = try Realm()
+            guard let maxIdValue: Int = realm.objects(RealmBucket.self).max(ofProperty: "id") else {
+                return 0
+            }
+            return maxIdValue + 1
+        } catch {
+            print(error)
+        }
+        return 0
     }
 }

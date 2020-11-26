@@ -13,5 +13,6 @@ struct Bucket: Hashable {
         case done
     }
     
+    let id: Int?
     let title: String
 }

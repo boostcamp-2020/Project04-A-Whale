@@ -17,7 +17,7 @@ class BucketLocalAgent: LocalService {
             
             let buckets = realm.objects(RealmBucket.self)
             return buckets.map {
-                Bucket(title: $0.title)
+                Bucket(id: $0.id, title: $0.title)
             }
         } catch {
             print(error)
@@ -29,8 +29,7 @@ class BucketLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try Realm().write {
-                let bucket = RealmBucket()
-                bucket.title = element.title
+                let bucket = RealmBucket(value: [element.id ?? 0, element.title])
                 realm.add(bucket)
             }
         } catch {
