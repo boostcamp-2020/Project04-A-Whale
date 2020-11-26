@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import MyBucketListPage from './components/pages/MyBucketListPage';
 import MyBucketListDetailPage from './components/pages/MyBucketListDetailPage';
 import pathURI from './constants/path';
-import BucketCreatePage from './components/pages/BucketCreatePage/BucketCreatePage';
+import BucketCreatePage from './components/pages/BucketCreatePage';
 
 const routes = () => (
   <Switch>
