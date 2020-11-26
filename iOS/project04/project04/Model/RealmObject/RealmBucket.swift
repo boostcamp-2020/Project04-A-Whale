@@ -1,0 +1,13 @@
+//
+//  RealmBucket.swift
+//  project04
+//
+//  Created by jaejeon on 2020/11/26.
+//
+
+import Foundation
+import RealmSwift
+
+class RealmBucket: Object {
+    @objc dynamic var title: String = ""
+}

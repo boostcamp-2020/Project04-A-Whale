@@ -27,7 +27,7 @@ class BucketListRepository {
         }
     }
     
-    func appendDetailList(_ element: Bucket) {
+    func appendBucketList(_ element: Bucket) {
         network.request(from: BucketAPIAgent.RequestURL.append,
                         method: .GET,
                         body: element,
@@ -41,7 +41,7 @@ class BucketListRepository {
                         })
     }
     
-    func removeDetailList(at index: Int) {
+    func removeBucketList(at index: Int) {
         network.request(from: BucketAPIAgent.RequestURL.remove,
                         method: .GET,
                         body: nil,
@@ -55,7 +55,7 @@ class BucketListRepository {
                         })
     }
     
-    func reviseDetailList(at index: Int, element: Bucket) {
+    func reviseBucketList(at index: Int, element: Bucket) {
         network.request(from: BucketAPIAgent.RequestURL.revise,
                         method: .GET,
                         body: nil,

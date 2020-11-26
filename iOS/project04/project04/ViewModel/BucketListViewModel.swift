@@ -33,6 +33,7 @@ class BucketListViewModel {
     
     func append(bucket: Bucket) {
         self.buckets?[.todo]?.append(bucket)
+        useCase.append(bucket)
     }
     
     func remove(bucket: Bucket) {

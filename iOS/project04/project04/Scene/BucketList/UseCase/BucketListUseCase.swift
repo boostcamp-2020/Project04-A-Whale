@@ -23,15 +23,15 @@ class BucketListUseCase: ListUseCase {
     }
     
     func append(_ element: Bucket) {
-        repository.appendDetailList(element)
+        repository.appendBucketList(element)
     }
     
     func remove(at index: Int) {
-        repository.removeDetailList(at: index)
+        repository.removeBucketList(at: index)
     }
     
     func revise(at index: Int, element: Bucket) {
-        repository.reviseDetailList(at: index, element: element)
+        repository.reviseBucketList(at: index, element: element)
     }
     
     
