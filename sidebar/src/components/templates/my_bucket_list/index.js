@@ -13,7 +13,7 @@ const MyBucketList = ({ bucketList }) => {
       <div className={classes.header} />
       <Text value="진행 N개 / 달성 M개" fontSize="20px" />
       <BucketList bucketList={bucketList} />
-      <Link to="/bucket-list/new">
+      <Link to="/createbucket">
         <AddFabButton />
       </Link>
     </main>
