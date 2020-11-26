@@ -1,27 +1,26 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import SaveIcon from '@material-ui/icons/Save';
+import ReplyIcon from '@material-ui/icons/Reply';
 
 const useStyles = makeStyles((theme) => ({
-  saveButton: {
+  gobackButton: {
     margin: theme.spacing(1),
   },
 }));
 
-const SaveButton = () => {
+const GobackButton = ({ onClick }) => {
   const classes = useStyles();
   return (
     <Button
-      variant="contained"
       color="primary"
-      size="small"
-      className={classes.saveButton}
-      startIcon={<SaveIcon />}
+      className={classes.gobackButton}
+      startIcon={<ReplyIcon />}
+      onClick={onClick}
     >
-      Save
+      뒤로가기
     </Button>
   );
 };
 
-export default SaveButton;
+export default GobackButton;
