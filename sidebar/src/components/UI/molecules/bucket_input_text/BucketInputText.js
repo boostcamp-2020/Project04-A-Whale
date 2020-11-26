@@ -1,5 +1,5 @@
 import React from 'react';
-import InputText from '../../atoms/InputText/InputText';
+import InputText from '../../atoms/input_text/InputText';
 
 const BucketInputText = ({ style, label, changeInputText, value }) => {
   return (

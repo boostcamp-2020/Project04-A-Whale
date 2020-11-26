@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import DateRangeIcon from '@material-ui/icons/DateRange';
-import Span from '../../atoms/Span/Span';
-import StyledButton from '../../atoms/StyledButton/StyledButton';
+import Span from '../../atoms/span/Span';
+import StyledButton from '../../atoms/styled_button/StyledButton';
 import { removeDetailAction } from '../../../../modules/actions/createbucket';
 
 const DetailListItemWrapper = styled.div`

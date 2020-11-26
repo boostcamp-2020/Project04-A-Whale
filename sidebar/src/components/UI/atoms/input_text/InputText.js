@@ -17,7 +17,7 @@ const InputText = ({ style, variant, label, value, defaultValue, onChangeHandler
       defaultValue={defaultValue}
       onChange={onChangeHandler}
       InputProps={InputProps}
-      multiline="true"
+      multiline
     />
   );
 };
