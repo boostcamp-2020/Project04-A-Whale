@@ -16,7 +16,7 @@ class DetailListViewController: UIViewController {
         didSet {
             self.collectionViewModel?.listDidChange = { [weak self] _ in
                 var snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>()
-                let sections: [Detail.Section] = [.done]
+                let sections: [Detail.Section] = [.todo]
                 snapshot.appendSections(sections)
                 snapshot.appendItems(self?.collectionViewModel?.list ?? [])
                 self?.dataSource.apply(snapshot, animatingDifferences: false)
