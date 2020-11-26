@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8259AAF9256B9C19006698FC /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259AAF8256B9C19006698FC /* Bucket.swift */; };
 		8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259AAFC256B9D49006698FC /* BucketListViewModel.swift */; };
+		82A7290E256F41DD00BD5797 /* BucketListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */; };
 		B20CB3CD1814FA9193815C42 /* Pods_project04.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549A8B673E411EE0B839D8C7 /* Pods_project04.framework */; };
 		C11AC460256B7F8B00E45667 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C11AC45F256B7F8B00E45667 /* .swiftlint.yml */; };
 		C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1655C94256B7ED10067E3C5 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		549A8B673E411EE0B839D8C7 /* Pods_project04.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project04.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8259AAF8256B9C19006698FC /* Bucket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		8259AAFC256B9D49006698FC /* BucketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListViewModel.swift; sourceTree = "<group>"; };
+		82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListUseCase.swift; sourceTree = "<group>"; };
 		C11AC45F256B7F8B00E45667 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1655C91256B7ED10067E3C5 /* project04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project04.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1655C94256B7ED10067E3C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,14 @@
 				549A8B673E411EE0B839D8C7 /* Pods_project04.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		82A7290C256F41C100BD5797 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */,
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		C1655C88256B7ED10067E3C5 = {
@@ -256,6 +266,7 @@
 		C1900D78256B84840071E8C7 /* BucketList */ = {
 			isa = PBXGroup;
 			children = (
+				82A7290C256F41C100BD5797 /* UseCase */,
 				C1754ED7256E11DF0037C805 /* View */,
 			);
 			path = BucketList;
@@ -445,6 +456,7 @@
 				8259AAF9256B9C19006698FC /* Bucket.swift in Sources */,
 				C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */,
 				C1754EDC256E13650037C805 /* DetailRepository.swift in Sources */,
+				82A7290E256F41DD00BD5797 /* BucketListUseCase.swift in Sources */,
 				C1900D8C256B910F0071E8C7 /* DetailListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
