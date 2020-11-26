@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 class RealmDetail: Object {
+    @objc dynamic var bucket: RealmBucket?
     @objc dynamic var title: String = ""
     @objc dynamic var dueDate: String = ""
 }

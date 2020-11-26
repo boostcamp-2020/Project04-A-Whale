@@ -11,7 +11,7 @@ import RealmSwift
 class DetailListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Detail.Section, Detail>! = nil
-    private var sampleIndex = 0
+    var bucket: RealmBucket?
     private var collectionViewModel: DetailListViewModelProtocol? {
         didSet {
             self.collectionViewModel?.listDidChange = { [weak self] _ in
@@ -27,6 +27,7 @@ class DetailListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = bucket?.title
         configureHierarchy()
         configureDataSource()
         configureViewModel()
@@ -35,6 +36,7 @@ class DetailListViewController: UIViewController {
     func configureViewModel() {
         let networkAgent = DetailAPIAgent()
         let localAgent = DetailLocalAgent()
+        localAgent.bucket = self.bucket
         let repository = DetailRepository(network: networkAgent, local: localAgent)
         let usecase = DetailListUseCase(repository: repository)
         collectionViewModel = DetailListViewModel(usecase: usecase)
@@ -42,8 +44,7 @@ class DetailListViewController: UIViewController {
     }
     
     @IBAction func detailAppendAction(_ sender: UIBarButtonItem) {
-        collectionViewModel?.listAddAction(Detail(title: "\(sampleIndex)", dueDate: "123"))
-        sampleIndex += 1
+        collectionViewModel?.listAddAction(Detail(title: "1", dueDate: "\(Date())"))
     }
 }
 
