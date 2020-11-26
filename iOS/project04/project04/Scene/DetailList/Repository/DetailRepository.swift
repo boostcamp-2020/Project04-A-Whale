@@ -7,16 +7,26 @@
 
 import Foundation
 
-class DetailRepository {
+protocol DetailRepositoryProtocol {
+    var network: DetailAPIAgent { get }
+    var local: DetailLocalAgent { get }
+    init(network: DetailAPIAgent, local: DetailLocalAgent)
+    func fetchDetailList(completion: @escaping ([Detail]) -> Void)
+    func appendDetailList(_ element: Detail)
+    func removeDetailList(at index: Int)
+    func reviseDetailList(at index: Int, element: Detail)
+}
+
+class DetailRepository: DetailRepositoryProtocol {
     var network: DetailAPIAgent
     var local: DetailLocalAgent
     
-    init(network: DetailAPIAgent, local: DetailLocalAgent) {
+    required init(network: DetailAPIAgent, local: DetailLocalAgent) {
         self.network = network
         self.local = local
     }
     
-    func fetchDetailList(completion: @escaping ([DetailList]) -> Void) {
+    func fetchDetailList(completion: @escaping ([Detail]) -> Void) {
         network.request(from: DetailAPIAgent.RequestURL.fetch,
                         method: .GET,
                         body: nil, completion: { [weak self] result in
@@ -34,7 +44,7 @@ class DetailRepository {
                         })
     }
     
-    func appendDetailList(_ element: DetailList) {
+    func appendDetailList(_ element: Detail) {
         network.request(from: DetailAPIAgent.RequestURL.append,
                         method: .GET,
                         body: element,
@@ -62,7 +72,7 @@ class DetailRepository {
                         })
     }
     
-    func reviseDetailList(at index: Int, element: DetailList) {
+    func reviseDetailList(at index: Int, element: Detail) {
         network.request(from: DetailAPIAgent.RequestURL.revise,
                         method: .GET,
                         body: nil,

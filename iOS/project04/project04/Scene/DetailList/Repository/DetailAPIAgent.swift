@@ -17,7 +17,7 @@ class DetailAPIAgent: NetworkService {
     
     func request(from urlString: String,
                  method: HTTPMethod,
-                 body: DetailList?,
+                 body: Detail?,
                  completion: @escaping (Result<Data, NetworkError>) -> Void) {
         completion(.failure(.URLError))
     }

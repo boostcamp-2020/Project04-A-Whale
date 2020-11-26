@@ -9,17 +9,17 @@ import Foundation
 import RealmSwift
 
 class DetailLocalAgent: LocalService {
-    func load() -> [DetailList] {
+    func load() -> [Detail] {
         do {
             let result = try Realm().objects(RealmDetailList.self)
             guard let realmList = result.first else {
                 return []
             }
             
-            var list = [DetailList]()
+            var list = [Detail]()
             for element in realmList.detailList {
                 list.append(
-                    DetailList(title: element.title,
+                    Detail(title: element.title,
                                dueDate: element.dueDate)
                 )
             }
@@ -30,7 +30,7 @@ class DetailLocalAgent: LocalService {
         }
     }
     
-    func append(_ element: DetailList) {
+    func append(_ element: Detail) {
         do {
             let realm = try Realm()
             try Realm().write {
@@ -64,7 +64,7 @@ class DetailLocalAgent: LocalService {
         }
     }
     
-    func revise(at index: Int, element: DetailList) {
+    func revise(at index: Int, element: Detail) {
         do {
             let realm = try Realm()
             try realm.write {

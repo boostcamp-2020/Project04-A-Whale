@@ -34,7 +34,7 @@
 		C175D19B256CCF3C001144F0 /* RealmDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D19A256CCF3C001144F0 /* RealmDetailList.swift */; };
 		C175D1A4256CD242001144F0 /* project04Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D1A3256CD242001144F0 /* project04Tests.swift */; };
 		C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */; };
-		C1900D88256B8E220071E8C7 /* DetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D87256B8E220071E8C7 /* DetailList.swift */; };
+		C1900D88256B8E220071E8C7 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D87256B8E220071E8C7 /* Detail.swift */; };
 		C1900D8C256B910F0071E8C7 /* DetailListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,7 +81,7 @@
 		C175D1A3256CD242001144F0 /* project04Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = project04Tests.swift; sourceTree = "<group>"; };
 		C175D1A5256CD242001144F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListViewController.swift; sourceTree = "<group>"; };
-		C1900D87256B8E220071E8C7 /* DetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailList.swift; path = project04/Model/DetailList.swift; sourceTree = SOURCE_ROOT; };
+		C1900D87256B8E220071E8C7 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Detail.swift; path = project04/Model/Detail.swift; sourceTree = SOURCE_ROOT; };
 		C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailListViewModel.swift; path = project04/ViewModel/DetailListViewModel.swift; sourceTree = SOURCE_ROOT; };
 		EA43E93461629E8CD0B41E3B /* Pods-project04.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project04.debug.xcconfig"; path = "Target Support Files/Pods-project04/Pods-project04.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				C175D199256CCF0E001144F0 /* RealmObject */,
-				C1900D87256B8E220071E8C7 /* DetailList.swift */,
+				C1900D87256B8E220071E8C7 /* Detail.swift */,
 				8259AAF8256B9C19006698FC /* Bucket.swift */,
 			);
 			path = Model;
@@ -466,7 +466,7 @@
 				82A7291B256F448100BD5797 /* BucketAPIAgent.swift in Sources */,
 				C175D190256CC028001144F0 /* DetailListUseCase.swift in Sources */,
 				C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */,
-				C1900D88256B8E220071E8C7 /* DetailList.swift in Sources */,
+				C1900D88256B8E220071E8C7 /* Detail.swift in Sources */,
 				C175D197256CC31C001144F0 /* DetailLocalAgent.swift in Sources */,
 				C1754EE3256E17F20037C805 /* LocalService.swift in Sources */,
 				8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */,
