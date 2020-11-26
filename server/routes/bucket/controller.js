@@ -10,7 +10,7 @@ exports.presets = async (req, res, next) => {
   try {
     const { keyword } = req.query;
     const presets = await bucketServices.getPresets(keyword);
-
+    console.log({ presets });
     res.status(OK).json({
       message: '버킷 프리셋 불러오기 성공',
       data: presets,
