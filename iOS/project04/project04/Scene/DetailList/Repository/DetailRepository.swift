@@ -16,7 +16,7 @@ class DetailRepository {
         self.local = local
     }
     
-    func fetchDetailList(completion: @escaping ([DetailList]) -> Void) {
+    func fetchDetailList(completion: @escaping ([Detail]) -> Void) {
         network.request(from: DetailAPIAgent.RequestURL.fetch,
                         method: .GET,
                         body: nil, completion: { [weak self] result in
@@ -34,7 +34,7 @@ class DetailRepository {
                         })
     }
     
-    func appendDetailList(_ element: DetailList) {
+    func appendDetailList(_ element: Detail) {
         network.request(from: DetailAPIAgent.RequestURL.append,
                         method: .GET,
                         body: element,
@@ -62,7 +62,7 @@ class DetailRepository {
                         })
     }
     
-    func reviseDetailList(at index: Int, element: DetailList) {
+    func reviseDetailList(at index: Int, element: Detail) {
         network.request(from: DetailAPIAgent.RequestURL.revise,
                         method: .GET,
                         body: nil,

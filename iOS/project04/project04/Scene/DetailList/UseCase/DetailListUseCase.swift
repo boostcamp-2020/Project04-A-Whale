@@ -14,13 +14,13 @@ class DetailListUseCase: ListUseCase {
         self.repository = repository
     }
     
-    func fetch(completion: @escaping ([DetailList]) -> Void) {
+    func fetch(completion: @escaping ([Detail]) -> Void) {
         repository.fetchDetailList(completion: { list in
             completion(list)
         })
     }
 
-    func append(_ element: DetailList) {
+    func append(_ element: Detail) {
         repository.appendDetailList(element)
     }
 
@@ -28,7 +28,7 @@ class DetailListUseCase: ListUseCase {
         repository.removeDetailList(at: index)
     }
 
-    func revise(at index: Int, element: DetailList) {
+    func revise(at index: Int, element: Detail) {
         repository.reviseDetailList(at: index, element: element)
     }
     
