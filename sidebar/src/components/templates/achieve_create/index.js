@@ -2,7 +2,7 @@ import React from 'react';
 
 import useStyles from './style';
 
-import WritingTab from '../../UI/organisms/writing_tab/WritingTab';
+import WritingTab from '../../UI/organisms/writing_tab';
 
 const AchieveCreate = ({ bucketState, acheiveState, acheiveChangeHandler }) => {
   const classes = useStyles();

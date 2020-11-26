@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from './style';
-import LineBarAreaComposedChart from '../../UI/organisms/line_bar_area_composed_chart/LineBarAreaComposedChart';
+import LineBarAreaComposedChart from '../../UI/organisms/line_bar_area_composed_chart';
 
 const AchieveResult = ({ bucket, description, date }) => {
   const classes = useStyles();

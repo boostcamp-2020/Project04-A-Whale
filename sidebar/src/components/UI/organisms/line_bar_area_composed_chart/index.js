@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const data = [
@@ -41,9 +41,14 @@ const data = [
 ];
 
 const LineBarAreaComposedChart = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const resizeHandler = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  window.addEventListener('resize', resizeHandler);
   return (
     <ComposedChart
-      width={500}
+      width={(windowWidth * 80) / 100}
       height={400}
       data={data}
       margin={{
@@ -51,6 +56,11 @@ const LineBarAreaComposedChart = () => {
         right: 20,
         bottom: 20,
         left: 20,
+      }}
+      style={{
+        margin: '0 auto',
+        border: '1px solid #eee',
+        'border-radius': '10px',
       }}
     >
       <CartesianGrid stroke="#f5f5f5" />
