@@ -1,5 +1,5 @@
 import React from 'react';
-import StyledButton from '../../atoms/StyledButton/StyledButton';
+import StyledButton from '../../atoms/styled_button/StyledButton';
 
 const BucketCreateButton = ({ onClickHander }) => {
   const style = {
