@@ -1,17 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
-
-import Hamburger from '../../UI/atoms/hamburger/Hamburger';
+import useStyles from './style';
 import LineBarAreaComposedChart from '../../UI/organisms/line_bar_area_composed_chart/LineBarAreaComposedChart';
 
 const AchieveResult = ({ bucket, description, date }) => {
+  const classes = useStyles();
   return (
-    <Layout>
-      <TopFixed>
-        <Hamburger />
-      </TopFixed>
-      <Page>
+    <div className={classes.root}>
+      <div className={classes.header} />
+      <div className={classes.page}>
         <div className="bucketInfo">
+          <div>〈목표 달성!〉</div>
           <h1>#01 {bucket}</h1>
           <p>{description}</p>
           <p>from {date}</p>
@@ -19,26 +17,9 @@ const AchieveResult = ({ bucket, description, date }) => {
         <div className="graph">
           <LineBarAreaComposedChart />
         </div>
-      </Page>
-    </Layout>
+      </div>
+    </div>
   );
 };
-
-const Layout = styled.div`
-  position: relative;
-`;
-
-const TopFixed = styled.div`
-  position: fixed;
-  top: 0px;
-  left: 0px;
-`;
-
-const Page = styled.div`
-  width: 80vw;
-  max-width: calc(100% - 140px);
-  margin: 0 auto;
-  margin-top: 50px;
-`;
 
 export default AchieveResult;
