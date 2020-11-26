@@ -82,7 +82,7 @@
 		C175D1A5256CD242001144F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListViewController.swift; sourceTree = "<group>"; };
 		C1900D87256B8E220071E8C7 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Detail.swift; path = project04/Model/Detail.swift; sourceTree = SOURCE_ROOT; };
-		C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailListViewModel.swift; path = project04/ViewModel/DetailListViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailListViewModel.swift; path = project04/Scene/DetailList/ViewModel/DetailListViewModel.swift; sourceTree = SOURCE_ROOT; };
 		EA43E93461629E8CD0B41E3B /* Pods-project04.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project04.debug.xcconfig"; path = "Target Support Files/Pods-project04/Pods-project04.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +140,22 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		82E35108256F76E0000BFC6A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82E35109256F76F2000BFC6A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8259AAFC256B9D49006698FC /* BucketListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C1655C88256B7ED10067E3C5 = {
 			isa = PBXGroup;
 			children = (
@@ -167,7 +183,6 @@
 				C11AC45F256B7F8B00E45667 /* .swiftlint.yml */,
 				C1900D79256B84C70071E8C7 /* App */,
 				C1900D77256B83970071E8C7 /* Scene */,
-				C1900D75256B828D0071E8C7 /* ViewModel */,
 				C1900D74256B82840071E8C7 /* Model */,
 				C1754EE1256E17D40037C805 /* Util */,
 			);
@@ -264,15 +279,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C1900D75256B828D0071E8C7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */,
-				8259AAFC256B9D49006698FC /* BucketListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		C1900D77256B83970071E8C7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +291,7 @@
 		C1900D78256B84840071E8C7 /* BucketList */ = {
 			isa = PBXGroup;
 			children = (
+				82E35109256F76F2000BFC6A /* ViewModel */,
 				82A7290C256F41C100BD5797 /* UseCase */,
 				82A72911256F434400BD5797 /* Repository */,
 				C1754ED7256E11DF0037C805 /* View */,
@@ -307,6 +314,7 @@
 		C1900D7C256B85D50071E8C7 /* DetailList */ = {
 			isa = PBXGroup;
 			children = (
+				82E35108256F76E0000BFC6A /* ViewModel */,
 				C175D18E256CC006001144F0 /* UseCase */,
 				C1754ED8256E12870037C805 /* Repository */,
 				C1754ED4256E11350037C805 /* View */,
