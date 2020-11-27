@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { changeInput } from '../../modules/achieve';
-import AchieveCreateLayout from '../templates/achieve_create/AchieveCreate';
+import AchieveCreateLayout from '../templates/achieve_create';
+import Header from '../UI/organisms/header';
 
 const bucketState = {
   bucket: '부스트캠프 수료',
@@ -17,12 +18,15 @@ const AchieveCreate = ({ history }) => {
     dispatch(changeInput(e.target.value));
   };
   return (
-    <AchieveCreateLayout
-      history={history}
-      bucketState={bucketState}
-      acheiveState={acheiveState}
-      acheiveChangeHandler={acheiveChangeHandler}
-    />
+    <>
+      <Header title="목표 달성 소감" isGoBack />
+      <AchieveCreateLayout
+        history={history}
+        bucketState={bucketState}
+        acheiveState={acheiveState}
+        acheiveChangeHandler={acheiveChangeHandler}
+      />
+    </>
   );
 };
 

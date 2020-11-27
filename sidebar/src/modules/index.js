@@ -5,7 +5,6 @@ import acheiveState from './achieve';
 const rootReducer = combineReducers({
   createbucket,
   acheiveState,
-
 });
 
 export default rootReducer;

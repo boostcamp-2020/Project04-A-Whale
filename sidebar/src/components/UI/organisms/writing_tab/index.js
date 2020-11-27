@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import LabelContentTab from '../label_content_tab/LabelContentTab';
-import WriteTextPicture from '../../molecules/write_text_picture/WriteTextPicture';
-import PreviewTextPicture from '../../atoms/preview_text_picture/PreviewTextPicture';
+import LabelContentTab from '../label_content_tab';
+import WriteTextPicture from '../../molecules/write_text_picture';
+import PreviewTextPicture from '../../atoms/preview_text_picture';
 
 const WritingTab = ({ placeholder, text, onChange }) => {
   const form = <WriteTextPicture placeholder={placeholder} text={text} onChange={onChange} />;
-  const markdown = text ? <ReactMarkdown source={text} /> : '아직 작성하지 않았습니다.';
+  const markdown = text ? <ReactMarkdown source={text} /> : '글을 작성해주세요...';
   const preview = <PreviewTextPicture text={markdown} />;
   const tabs = [
     {
