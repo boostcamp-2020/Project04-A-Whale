@@ -9,3 +9,8 @@ exports.create = async (title, description, userNo) => {
   const newBucket = await db.create(title, description, userNo);
   return newBucket;
 };
+
+exports.getBuckets = async (userNo) => {
+  const buckets = await db.selectBuckets(userNo);
+  return buckets;
+};

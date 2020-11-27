@@ -30,3 +30,9 @@ exports.create = async (title, description, userNo) => {
 
   return results;
 };
+
+exports.selectBuckets = async (userNo) => {
+  const results = await Bucket.findAll({ raw: true, where: { userNo } });
+
+  return results;
+};
