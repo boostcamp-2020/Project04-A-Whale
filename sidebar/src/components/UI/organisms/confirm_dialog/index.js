@@ -2,11 +2,17 @@ import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import AbandonDialogButtons from '../../molecules/abandon_dialog_buttons';
+import ConfirmDialogButtons from '../../molecules/confirm_dialog_buttons';
 import useStyles from './style';
 
-const AbandonDialog = ({ open, handleClose }) => {
+const ConfirmDialog = ({ open, handleClose, status }) => {
   const classes = useStyles();
+
+  const getText = () => {
+    if (status === 'G') return '정말 되돌리시겠습니까?';
+    if (status === 'O') return '정말 포기하시겠습니까?';
+    return null;
+  };
 
   return (
     <Dialog
@@ -16,11 +22,11 @@ const AbandonDialog = ({ open, handleClose }) => {
       aria-describedby="alert-dialog-description"
     >
       <DialogContent className={classes.dialogContent}>
-        <DialogContentText id="alert-dialog-description">정말 포기하시겠습니까?</DialogContentText>
+        <DialogContentText id="alert-dialog-description">{getText()}</DialogContentText>
       </DialogContent>
-      <AbandonDialogButtons handleClose={handleClose} />
+      <ConfirmDialogButtons handleClose={handleClose} />
     </Dialog>
   );
 };
 
-export default AbandonDialog;
+export default ConfirmDialog;

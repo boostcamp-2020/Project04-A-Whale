@@ -2,7 +2,7 @@ import React from 'react';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 
-const AbandonDialogButtons = ({ handleClose }) => {
+const ConfirmDialogButtons = ({ handleClose }) => {
   return (
     <DialogActions>
       <Button onClick={handleClose} color="primary">
@@ -15,4 +15,4 @@ const AbandonDialogButtons = ({ handleClose }) => {
   );
 };
 
-export default AbandonDialogButtons;
+export default ConfirmDialogButtons;
