@@ -1,4 +1,4 @@
-const { OK, CREATED } = require('../../config/statusCode').statusCode;
+const { OK, CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCode;
 const bucketServices = require('../../services/bucket');
 const detailServices = require('../../services/detail');
 
@@ -60,6 +60,29 @@ exports.getList = async (req, res, next) => {
       message: '버킷 목록 조회 성공',
       data: buckets,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    PATCH /api/bucket/status/:bucketNo
+    * 버킷 상태 변경 API
+*/
+exports.updateStatus = async (req, res, next) => {
+  try {
+    const { bucketNo } = req.params;
+    const { status } = req.body;
+    const result = await bucketServices.updateStatus(bucketNo, status);
+    if (result === 1) {
+      res.status(OK).json({
+        message: '버킷 상태 변경 성공',
+      });
+    } else {
+      res.status(BAD_REQUEST).json({
+        message: '버킷 상태 변경 실패',
+      });
+    }
   } catch (error) {
     next(error);
   }
