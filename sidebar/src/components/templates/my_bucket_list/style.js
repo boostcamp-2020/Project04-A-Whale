@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
+  spinner: {
+    position: 'fixed',
+    left: '50%',
+    top: '50%',
+  },
 }));
 
 export default useStyles;
