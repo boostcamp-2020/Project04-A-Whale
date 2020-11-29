@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
     "immer": "^8.0.0",
@@ -24,6 +25,8 @@
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
   },
@@ -72,5 +75,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.1.2",
     "redux-devtools": "^3.7.0"
-  }
+  },
+    "proxy": "http://localhost:8000"
 }
