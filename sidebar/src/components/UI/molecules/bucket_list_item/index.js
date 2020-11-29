@@ -32,8 +32,8 @@ const BucketListItem = ({ bucket }) => {
   };
 
   const getButton = () => {
-    if (bucket.status === 'G') return <HoverButton handleOpen={handleOpen} text="되돌리기" />;
-    if (bucket.status === 'O') return <HoverButton handleOpen={handleOpen} text="포기" />;
+    if (bucket.bucketStatus === 'G') return <HoverButton handleOpen={handleOpen} text="되돌리기" />;
+    if (bucket.bucketStatus === 'O') return <HoverButton handleOpen={handleOpen} text="포기" />;
     return null;
   };
 
@@ -47,7 +47,7 @@ const BucketListItem = ({ bucket }) => {
         <Text value={bucket.title} fontSize="16px" />
       </BucketTitleTextWrapper>
       {hidden ? null : getButton()}
-      <ConfirmDialog open={open} handleClose={handleClose} status={bucket.status} />
+      <ConfirmDialog open={open} handleClose={handleClose} status={bucket.bucketStatus} />
     </BucketListItemWrapper>
   );
 };
