@@ -6,7 +6,14 @@ import Header from '../UI/organisms/header';
 
 const MyBucketListPage = ({ getBuckets, buckets, loadingBuckets }) => {
   useEffect(() => {
-    getBuckets();
+    const fn = async () => {
+      try {
+        await getBuckets();
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fn();
   }, [getBuckets]);
 
   return (
@@ -18,9 +25,9 @@ const MyBucketListPage = ({ getBuckets, buckets, loadingBuckets }) => {
 };
 
 export default connect(
-  ({ buckets }) => ({
+  ({ buckets, loading }) => ({
     buckets: buckets.buckets,
-    loadingBuckets: buckets.loading.GET_BUCKETS,
+    loadingBuckets: loading['buckets/GET_BUCKETS'],
   }),
   {
     getBuckets,
