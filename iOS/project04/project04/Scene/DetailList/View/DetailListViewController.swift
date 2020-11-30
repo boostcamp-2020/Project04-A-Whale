@@ -12,6 +12,7 @@ class DetailListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Detail.Section, Detail>! = nil
     var bucket: RealmBucket?
+    var coordinator: DetailAddCoordinator?
     var collectionViewModel: DetailListViewModelProtocol? {
         didSet {
             self.collectionViewModel?.listDidChange = { [weak self] _ in
@@ -44,7 +45,8 @@ class DetailListViewController: UIViewController {
     }
     
     @IBAction func detailAppendAction(_ sender: UIBarButtonItem) {
-        collectionViewModel?.listAddAction(Detail(title: "1", dueDate: "\(Date())"))
+        coordinator?.presentDetailListAdd(navigationController)
+//        collectionViewModel?.listAddAction(Detail(title: "1", dueDate: "\(Date())"))
     }
 }
 

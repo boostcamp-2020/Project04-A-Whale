@@ -15,7 +15,7 @@ protocol DetailListPushCoordinator {
 final class BucketCoordinator: NavigationCoordinator {
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
@@ -31,6 +31,7 @@ extension BucketCoordinator: DetailListPushCoordinator {
     func pushToDetailList(bucket: RealmBucket?) {
         let viewController = UIStoryboard(name: "DetailList", bundle: nil).instantiateViewController(identifier: "DetailListViewController") as DetailListViewController
         viewController.bucket = bucket
+        viewController.coordinator = DetailAddCoordinator(navigationController)
         configureDetailListViewModel(viewController)
         navigationController.pushViewController(viewController, animated: true)
     }
