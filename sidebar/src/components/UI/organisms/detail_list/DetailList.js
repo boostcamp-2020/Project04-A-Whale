@@ -13,7 +13,7 @@ const DetailList = ({ details }) => {
   // TODO : state로 바꿔야함
   const Details = (items) => {
     return items.map((item) => {
-      return <DetailListItem detail={item} />;
+      return <DetailListItem detail={item.title} />;
     });
   };
 
