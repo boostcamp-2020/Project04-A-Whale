@@ -16,6 +16,11 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.DATEONLY,
         allowNull: false,
       },
+      status: {
+        type: DataTypes.CHAR(1),
+        allowNull: false,
+        comment: "'O':open, 'A':achieve,",
+      },
     },
     {
       tableName: 'detail',
