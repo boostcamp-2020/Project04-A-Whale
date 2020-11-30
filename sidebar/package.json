@@ -10,9 +10,11 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "aws-sdk": "^2.799.0",
     "axios": "^0.21.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
     "immer": "^8.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -28,6 +30,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.1",
+    "uuid": "^8.3.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
