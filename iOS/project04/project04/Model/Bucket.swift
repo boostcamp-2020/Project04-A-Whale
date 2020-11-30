@@ -15,4 +15,5 @@ struct Bucket: Hashable {
     
     let id: Int?
     let title: String
+    let status: String
 }

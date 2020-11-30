@@ -17,13 +17,27 @@ class BucketLocalAgent: LocalService {
             
             let buckets = realm.objects(RealmBucket.self)
             return buckets.map {
-                Bucket(id: $0.id, title: $0.title)
+                Bucket(id: $0.id, title: $0.title, status: $0.status)
             }
         } catch {
             print(error)
             return []
         }
     }
+    
+    func load() -> [Bucket.Section: [Bucket]] {
+        do {
+            let realm = try Realm()
+            
+            let buckets = realm.objects(RealmBucket.self).map({ Bucket(id: $0.id, title: $0.title, status: $0.status) })
+            return [.todo: buckets.filter({ $0.status == "O" }),
+                    .done: buckets.filter({ $0.status == "A"})]
+        } catch {
+            print(error)
+            return [:]
+        }
+    }
+    
     
     func append(_ element: Bucket) {
         do {
@@ -38,7 +52,15 @@ class BucketLocalAgent: LocalService {
     }
     
     func remove(at index: Int) {
-        
+        do {
+            let realm = try Realm()
+            try realm.write {
+                let result = realm.objects(RealmBucket.self)
+                result[index].status = "A"
+            }
+        } catch {
+            print(error)
+        }
     }
     
     func revise(at index: Int, element: Bucket) {

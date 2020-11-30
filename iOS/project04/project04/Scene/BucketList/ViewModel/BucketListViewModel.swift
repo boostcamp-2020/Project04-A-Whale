@@ -26,22 +26,24 @@ class BucketListViewModel {
     init(useCase: BucketListUseCase, handler: @escaping ([Bucket.Section: [Bucket]]?) -> Void) {
         self.handler = handler
         self.useCase = useCase
-        self.useCase.fetch { [weak self] list in
-            let buckets = [Bucket.Section.todo: list]
+        self.useCase.fetch { [weak self] buckets in
             self?.buckets = buckets
         }
     }
     
     func append(bucket: Bucket) {
         let newId = autoIncreaseIdValue()
-        let newBucket = Bucket(id: newId, title: bucket.title)
+        let newBucket = Bucket(id: newId, title: bucket.title, status: "")
         self.buckets?[.todo]?.append(newBucket)
         useCase.append(newBucket)
     }
     
-    func remove(bucket: Bucket) {
-        self.buckets?[.todo]?.removeAll(where: { $0.title == bucket.title })
+    func remove(at index: Int) {
+//        self.buckets?[.todo]?.removeAll(where: { $0.title == bucket.title })
+//        self.buckets?[.done]?.append(bucket)
+        guard let bucket = self.buckets?[.todo]?.remove(at: index) else { return }
         self.buckets?[.done]?.append(bucket)
+        useCase.remove(at: index)
     }
     
     func autoIncreaseIdValue() -> Int {

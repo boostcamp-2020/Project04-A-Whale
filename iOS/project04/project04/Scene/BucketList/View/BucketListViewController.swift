@@ -36,7 +36,7 @@ class BucketListViewController: UIViewController {
     }
     
     @IBAction func didTouchPlusButton(_ sender: UIBarButtonItem) {
-        self.bucketListViewModel?.append(bucket: Bucket(id: nil, title: "New Bucket\(bucketListViewModel?.count ?? 0)"))
+        self.bucketListViewModel?.append(bucket: Bucket(id: nil, title: "New Bucket\(bucketListViewModel?.count ?? 0)", status: "O"))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -92,7 +92,7 @@ extension BucketListViewController: UICollectionViewDelegate {
             }
 
             let doneAction = UIContextualAction(style: .destructive, title: "Done") { (action, _, completion) in
-                self?.bucketListViewModel?.remove(bucket: item)
+                self?.bucketListViewModel?.remove(at: indexPath.row)
                 completion(true)
             }
 
