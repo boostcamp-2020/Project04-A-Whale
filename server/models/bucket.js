@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(200),
         allowNull: false,
       },
-      bucketStatus: {
+      status: {
         type: DataTypes.CHAR(1),
         allowNull: false,
         comment: "'O':open, 'A':achieve, 'G':give up",
