@@ -13,6 +13,7 @@ class BucketListViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Bucket.Section, Bucket>
     var dataSource: DataSource?
     var bucketListViewModel: BucketListViewModel?
+    var coordinator: DetailListPushCoordinator?
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -120,7 +121,13 @@ extension BucketListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let bucket = dataSource?.itemIdentifier(for: indexPath)
-        performSegue(withIdentifier: "DetailListSegue", sender: bucket)
+        do {
+            let realm = try Realm()
+            let realmBucket = realm.objects(RealmBucket.self).filter { $0.id == bucket?.id }
+            coordinator?.pushToDetailList(bucket: realmBucket.first)
+        } catch {
+            print(error)
+        }
     }
 }
 
