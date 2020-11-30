@@ -5,6 +5,6 @@ const achieveRouter = require('./achieve');
 
 router.use('/user', userRouter);
 router.use('/bucket', bucketRouter);
-router.use('/achieve', achieveRouter);
+router.use('/achieves', achieveRouter);
 
 module.exports = router;
