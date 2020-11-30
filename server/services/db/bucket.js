@@ -38,7 +38,7 @@ exports.selectBuckets = async (userNo) => {
 };
 
 exports.updateStatus = async (bucketNo, status) => {
-  const results = await Bucket.update({ bucketStatus: status }, { where: { no: bucketNo } });
+  const results = await Bucket.update({ status }, { where: { no: bucketNo } });
 
   return results[0];
 };
