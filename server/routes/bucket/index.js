@@ -2,8 +2,8 @@ const router = require('express').Router();
 const controller = require('./controller');
 
 router.get('/presets', controller.presets);
-router.get('/list', controller.getList);
+router.get('/', controller.getBuckets);
 router.post('/', controller.create);
-router.patch('/status/:bucketNo', controller.updateStatus);
+router.patch('/:bucketNo/status', controller.updateBucketStatus);
 
 module.exports = router;

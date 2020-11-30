@@ -3,7 +3,7 @@ const bucketServices = require('../../services/bucket');
 const detailServices = require('../../services/detail');
 
 /*
-    GET /api/bucket/presets
+    GET /api/buckets/presets
     * 버킷 프리셋 검색 API
 */
 exports.presets = async (req, res, next) => {
@@ -21,7 +21,7 @@ exports.presets = async (req, res, next) => {
 };
 
 /*
-    POST /api/bucket/create
+    POST /api/buckets
     * 버킷 생성 API
 */
 exports.create = async (req, res, next) => {
@@ -46,10 +46,10 @@ exports.create = async (req, res, next) => {
 };
 
 /*
-    GET /api/bucket/list
+    GET /api/buckets
     * 버킷 목록 조회 API
 */
-exports.getList = async (req, res, next) => {
+exports.getBuckets = async (req, res, next) => {
   try {
     // TODO: 로그인 기능 구현후 주석 해제
     // const { userNo } = req.user;
@@ -66,10 +66,10 @@ exports.getList = async (req, res, next) => {
 };
 
 /*
-    PATCH /api/bucket/status/:bucketNo
+    PATCH /api/buckets/:bucketNo/status
     * 버킷 상태 변경 API
 */
-exports.updateStatus = async (req, res, next) => {
+exports.updateBucketStatus = async (req, res, next) => {
   try {
     const { bucketNo } = req.params;
     const { status } = req.body;
