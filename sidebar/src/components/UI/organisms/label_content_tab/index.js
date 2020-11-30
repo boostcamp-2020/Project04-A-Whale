@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LabelContentTab = ({ tabs }) => {
+const LabelContentTab = ({ tabs, onSubmitClick }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
@@ -25,7 +25,7 @@ const LabelContentTab = ({ tabs }) => {
   let tabPanelList = null;
   if (tabs) {
     tabList = createTabList(tabs);
-    tabPanelList = createTabPanelList({ tabs, value });
+    tabPanelList = createTabPanelList({ tabs, value, onSubmitClick });
   }
 
   return (

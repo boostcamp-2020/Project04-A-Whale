@@ -45,7 +45,11 @@ const LineBarAreaComposedChart = () => {
   const resizeHandler = () => {
     setWindowWidth(window.innerWidth);
   };
-  window.addEventListener('resize', resizeHandler);
+
+  useEffect(() => {
+    window.addEventListener('resize', resizeHandler);
+  }, []);
+
   return (
     <ComposedChart
       width={(windowWidth * 80) / 100}
@@ -60,7 +64,7 @@ const LineBarAreaComposedChart = () => {
       style={{
         margin: '0 auto',
         border: '1px solid #eee',
-        'border-radius': '10px',
+        borderRadius: '10px',
       }}
     >
       <CartesianGrid stroke="#f5f5f5" />

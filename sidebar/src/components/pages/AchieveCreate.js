@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import { changeInput } from '../../modules/achieve';
+import { reset, changeInput, setAchieve } from '../../modules/achieve';
 import AchieveCreateLayout from '../templates/achieve_create';
 import Header from '../UI/organisms/header';
 
@@ -11,20 +12,40 @@ const bucketState = {
   date: '2020.07.27',
 };
 
-const AchieveCreate = ({ history }) => {
+const AchieveCreate = ({ match }) => {
+  const { bucketNo } = match.params;
   const acheiveState = useSelector((state) => state.acheiveState, []);
   const dispatch = useDispatch();
-  const acheiveChangeHandler = (e) => {
+  const history = useHistory();
+
+  const acheiveChangeHandler = useCallback((e) => {
     dispatch(changeInput(e.target.value));
-  };
+  }, []);
+  const setAchieveHandler = useCallback(async () => {
+    if (acheiveState.input) {
+      dispatch(setAchieve({ description: acheiveState.input, bucketNo }));
+    } else {
+      alert('글을 입력해주세요.');
+    }
+  }, [acheiveState]);
+
+  // todo useEffect: bucketState 불러오기
+  useEffect(() => {
+    console.log(acheiveState);
+    if (acheiveState.success) {
+      dispatch(reset());
+      history.push(`/achieves/${bucketNo}/result`);
+    }
+  }, [acheiveState]);
+
   return (
     <>
       <Header title="목표 달성 소감" isGoBack />
       <AchieveCreateLayout
-        history={history}
         bucketState={bucketState}
         acheiveState={acheiveState}
         acheiveChangeHandler={acheiveChangeHandler}
+        setAchieveHandler={setAchieveHandler}
       />
     </>
   );

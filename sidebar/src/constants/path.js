@@ -4,8 +4,8 @@ const pathURI = {
   login: '/login',
   register: '/register',
   bucketcreate: '/createbucket',
-  achieveCreate: '/achieve/:no/create',
-  achieveResult: '/achieve/:no/result',
+  achieveCreate: '/achieves/:bucketNo/create',
+  achieveResult: '/achieves/:bucketNo/result',
 };
 
 export default pathURI;
