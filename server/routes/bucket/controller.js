@@ -34,7 +34,7 @@ exports.create = async (req, res, next) => {
       )
       .then((data) => JSON.parse(JSON.stringify(data)));
 
-    res.status(OK).json({ newDetails });
+    res.status(OK).json({ message: '버킷 추가 성공' });
   } catch (error) {
     next(error);
   }
