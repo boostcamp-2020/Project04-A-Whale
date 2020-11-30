@@ -17,7 +17,7 @@ class BucketLocalAgent: LocalService {
             
             let buckets = realm.objects(RealmBucket.self)
             return buckets.map {
-                Bucket(id: $0.id, title: $0.title)
+                Bucket(id: $0.id, title: $0.title, status: $0.status)
             }
         } catch {
             print(error)
@@ -38,7 +38,15 @@ class BucketLocalAgent: LocalService {
     }
     
     func remove(at index: Int) {
-        
+        do {
+            let realm = try Realm()
+            try realm.write {
+                let result = realm.objects(RealmBucket.self)
+                result[index].status = "A"
+            }
+        } catch {
+            print(error)
+        }
     }
     
     func revise(at index: Int, element: Bucket) {
