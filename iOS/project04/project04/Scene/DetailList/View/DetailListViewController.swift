@@ -12,7 +12,7 @@ class DetailListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Detail.Section, Detail>! = nil
     var bucket: RealmBucket?
-    private var collectionViewModel: DetailListViewModelProtocol? {
+    var collectionViewModel: DetailListViewModelProtocol? {
         didSet {
             self.collectionViewModel?.listDidChange = { [weak self] _ in
                 var snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>()
@@ -30,7 +30,7 @@ class DetailListViewController: UIViewController {
         title = bucket?.title
         configureHierarchy()
         configureDataSource()
-        configureViewModel()
+        collectionViewModel?.listFetchAction()
     }
     
     func configureViewModel() {
