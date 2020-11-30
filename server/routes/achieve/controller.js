@@ -33,7 +33,7 @@ exports.updateAchieve = async (req, res, next) => {
   try {
     await achieveServices.updateAchieve({ no, description });
     res.status(OK).json({
-      message: '수정 성공',
+      message: '소감 수정 성공',
     });
   } catch (error) {
     res.status(BAD_REQUEST).json({
