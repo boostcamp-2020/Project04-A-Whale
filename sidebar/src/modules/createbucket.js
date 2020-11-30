@@ -7,7 +7,12 @@ import {
   REMOVE_DETAIL,
   RESET_BUCKET,
   LOAD_PRESET,
+  CREATE_BUCKET,
 } from './actions/actionTypes';
+import * as api from '../lib/api';
+import createRequestThunk from '../lib/createRequestThunk';
+
+export const createBucket = createRequestThunk(CREATE_BUCKET, api.createBucket);
 
 const initialState = {
   title: '',
@@ -21,7 +26,7 @@ const createbucket = handleActions(
     [INPUT_DESC]: (state, { payload: input }) => ({ ...state, description: input }),
     [ADD_DETAIL]: (state, { payload: input }) =>
       produce(state, (draft) => {
-        draft.details.push(input);
+        draft.details.push({ title: input, status: 'O', dueDate: '2020-12-25' });
       }),
     [REMOVE_DETAIL]: (state, { payload: input }) =>
       produce(state, (draft) => {
@@ -29,9 +34,13 @@ const createbucket = handleActions(
         draft.details.splice(idx, 1);
       }),
     [LOAD_PRESET]: (state, { payload: input }) => {
-      const { title, description, details } = input;
-      return { title: title, description: description, details: details };
+      console.log(input);
+      const { bucketTitle, bucketDescription, bucketDetails } = input;
+      return { title: bucketTitle, description: bucketDescription, details: bucketDetails };
     },
+    [CREATE_BUCKET]: (state, action) => ({
+      ...state,
+    }),
     [RESET_BUCKET]: (state, action) => initialState,
   },
   initialState
