@@ -25,20 +25,6 @@ class BucketLocalAgent: LocalService {
         }
     }
     
-    func load() -> [Bucket.Section: [Bucket]] {
-        do {
-            let realm = try Realm()
-            
-            let buckets = realm.objects(RealmBucket.self).map({ Bucket(id: $0.id, title: $0.title, status: $0.status) })
-            return [.todo: buckets.filter({ $0.status == "O" }),
-                    .done: buckets.filter({ $0.status == "A"})]
-        } catch {
-            print(error)
-            return [:]
-        }
-    }
-    
-    
     func append(_ element: Bucket) {
         do {
             let realm = try Realm()

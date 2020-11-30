@@ -27,17 +27,6 @@ class BucketListRepository {
         }
     }
     
-    func fetchBucketList(completion: @escaping ([Bucket.Section: [Bucket]]) -> Void) {
-        network.request(from: BucketAPIAgent.RequestURL.fetch, method: .GET, body: nil) { [weak self] result in
-            switch result {
-            case .success(_):
-                break
-            case .failure(_):
-                completion(self?.local.load() ?? [:])
-            }
-        }
-    }
-    
     func appendBucketList(_ element: Bucket) {
         network.request(from: BucketAPIAgent.RequestURL.append,
                         method: .GET,

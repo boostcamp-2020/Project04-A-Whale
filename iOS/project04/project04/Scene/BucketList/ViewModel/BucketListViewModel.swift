@@ -26,7 +26,9 @@ class BucketListViewModel {
     init(useCase: BucketListUseCase, handler: @escaping ([Bucket.Section: [Bucket]]?) -> Void) {
         self.handler = handler
         self.useCase = useCase
-        self.useCase.fetch { [weak self] buckets in
+        self.useCase.fetch { [weak self] list in
+            let buckets: [Bucket.Section: [Bucket]] = [.todo: list.filter({ $0.status == "O" }),
+                           .done: list.filter({ $0.status == "A" })]
             self?.buckets = buckets
         }
     }
@@ -39,11 +41,10 @@ class BucketListViewModel {
     }
     
     func remove(at index: Int) {
-//        self.buckets?[.todo]?.removeAll(where: { $0.title == bucket.title })
-//        self.buckets?[.done]?.append(bucket)
-        guard let bucket = self.buckets?[.todo]?.remove(at: index) else { return }
+        guard let bucket = self.buckets?[.todo]?.remove(at: index),
+              let bucketID = bucket.id else { return }
         self.buckets?[.done]?.append(bucket)
-        useCase.remove(at: index)
+        useCase.remove(at: bucketID)
     }
     
     func autoIncreaseIdValue() -> Int {

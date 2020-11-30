@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BucketListUseCase {
+class BucketListUseCase: ListUseCase {
     typealias Item = Bucket
     
     let repository: BucketListRepository
@@ -16,7 +16,7 @@ class BucketListUseCase {
         self.repository = repository
     }
     
-    func fetch(completion: @escaping ([Bucket.Section: [Bucket]]) -> Void) {
+    func fetch(completion: @escaping ([Bucket]) -> Void) {
         repository.fetchBucketList { (list) in
             completion(list)
         }
