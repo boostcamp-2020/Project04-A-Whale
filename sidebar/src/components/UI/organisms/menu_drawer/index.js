@@ -22,8 +22,8 @@ const menuItems = [
   { title: '팔로우', icon: <PeopleIcon />, path: '/follow' },
   { title: '통계', icon: <EqualizerIcon />, path: '/statistics' },
   { title: '피드', icon: <FeedbackIcon />, path: '/feed' },
-  { title: '설정', icon: <SettingsIcon />, path: '/settings' },
-  { title: '로그아웃', icon: <ExitToAppIcon />, path: '/logout' },
+  { title: '설정', icon: <SettingsIcon />, path: '/achieve/1/create' },
+  { title: '로그아웃', icon: <ExitToAppIcon />, path: '/achieve/1/result' },
 ];
 
 const MenuDrawer = ({ open, toggleDrawer }) => {
