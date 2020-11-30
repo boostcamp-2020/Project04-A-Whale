@@ -29,12 +29,10 @@ exports.create = async (req, res, next) => {
     const newDetails = await detailServices
       .bulkCreate(
         details.map((detail) => {
-          return { detail, bucketNo };
+          return { ...detail, bucketNo };
         })
       )
       .then((data) => JSON.parse(JSON.stringify(data)));
-
-    console.log(newDetails);
 
     res.status(OK).json({ newDetails });
   } catch (error) {
