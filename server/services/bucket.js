@@ -1,4 +1,5 @@
 const db = require('./db/bucket');
+const adb = require('./db/achieve');
 
 exports.getPresets = async (filter) => {
   const buckets = await db.getPresets(filter);
@@ -10,7 +11,7 @@ exports.create = async (title, description, userNo) => {
   return newBucket;
 };
 
-const initialBucket = () => {
+const initialBuckets = () => {
   const result = {};
   result.openBuckets = [];
   result.achieveBuckets = [];
@@ -19,7 +20,7 @@ const initialBucket = () => {
 };
 
 const bucketsByStatus = (buckets) => {
-  const result = initialBucket();
+  const result = initialBuckets();
 
   buckets.forEach((bucket) => {
     if (bucket.status === 'O') result.openBuckets.push(bucket);
@@ -36,5 +37,33 @@ exports.getBuckets = async (userNo) => {
 
 exports.updateStatus = async (bucketNo, status) => {
   const result = await db.updateStatus(bucketNo, status);
+  return result;
+};
+
+const initialDetails = () => {
+  const result = {};
+  result.openDetails = [];
+  result.achieveDetails = [];
+  result.achieveComment = null;
+  return result;
+};
+
+const detailsByStatus = (details) => {
+  const result = initialDetails();
+
+  details.forEach((detail) => {
+    if (detail.status === 'O') result.openDetails.push(detail);
+    if (detail.status === 'A') result.achieveDetails.push(detail);
+  });
+  return result;
+};
+
+exports.getDetails = async (bucketNo) => {
+  const details = await db.selectBucketDetails(bucketNo);
+  const achieve = await adb.selectAchieve(bucketNo);
+  const result = detailsByStatus(details);
+  if (achieve) {
+    result.achieveComment = achieve.description;
+  }
   return result;
 };
