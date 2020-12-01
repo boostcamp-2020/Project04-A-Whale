@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const createBucket = (title, description, details, ref) =>
-  axios.post('http://localhost:8000/api/buckets', {
+  axios.post('/api/buckets', {
     title,
     description,
     details,
@@ -9,7 +9,15 @@ export const createBucket = (title, description, details, ref) =>
   });
 
 export const getPresets = (keyword) =>
-  axios.get(`http://localhost:8000/api/buckets/presets?keyword=${keyword}`);
+  axios.get(`/api/buckets/presets?keyword=${keyword}`);
 
 export const getDetails = (bucketNo) =>
-  axios.get(`http://localhost:8000/api/buckets/${bucketNo}/details`);
+  axios.get(`/api/buckets/${bucketNo}/details`);
+
+export const getBuckets = () => axios.get('/api/buckets');
+
+export const updateBucketStatus = ({ bucketNo, status }) => {
+  return axios.patch(`/api/buckets/${bucketNo}/status`, {
+    status,
+  });
+};
