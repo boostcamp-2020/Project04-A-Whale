@@ -11,6 +11,8 @@ import RealmSwift
 protocol BucketListViewModelProtocol {
     var buckets: [Bucket.Section: [Bucket]]? { get set }
     var count: Int { get }
+    var handler: (([Bucket.Section: [Bucket]]?) -> Void)? { get set }
+    func fetch() ->Void
     func append(bucket: Bucket) -> Void
     func remove(at index: Int) -> Void
     func autoIncreaseIdValue() -> Int
@@ -19,7 +21,7 @@ protocol BucketListViewModelProtocol {
 class BucketListViewModel: BucketListViewModelProtocol {
     var buckets: [Bucket.Section: [Bucket]]? {
         didSet {
-            handler(buckets)
+            handler?(buckets)
         }
     }
     
@@ -27,13 +29,14 @@ class BucketListViewModel: BucketListViewModelProtocol {
         (self.buckets?[.todo]?.count ?? 0) + (self.buckets?[.done]?.count ?? 0)
     }
     
-    let useCase: BucketListUseCase
+    let useCase: BucketListUseCase    
+    var handler: (([Bucket.Section: [Bucket]]?) -> Void)?
     
-    private var handler: ([Bucket.Section: [Bucket]]?) -> Void
-    
-    init(useCase: BucketListUseCase, handler: @escaping ([Bucket.Section: [Bucket]]?) -> Void) {
-        self.handler = handler
+    init(useCase: BucketListUseCase) {
         self.useCase = useCase
+    }
+    
+    func fetch() {
         self.useCase.fetch { [weak self] list in
             let buckets: [Bucket.Section: [Bucket]] = [.todo: list.filter({ $0.status == "O" }),
                            .done: list.filter({ $0.status == "A" })]

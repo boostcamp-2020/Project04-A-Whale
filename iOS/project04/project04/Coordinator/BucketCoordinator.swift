@@ -20,8 +20,16 @@ final class BucketCoordinator: NavigationCoordinator {
     }
     
     func pushViewController() {
-        let viewController = UIStoryboard(name: "BucketList", bundle: nil).instantiateViewController(identifier: "BucketListViewController") as BucketListViewController
-        viewController.coordinator = self
+//        let viewController = UIStoryboard(name: "BucketList", bundle: nil).instantiateViewController(identifier: "BucketListViewController") as BucketListViewController
+        let network = BucketAPIAgent()
+        let local = BucketLocalAgent()
+        let repository = BucketListRepository(network: network, local: local)
+        let useCase = BucketListUseCase(repository: repository)
+        let bucketListViewModel = BucketListViewModel(useCase: useCase)
+        
+        let viewController = UIStoryboard(name: "BucketList", bundle: nil).instantiateViewController(identifier: "BucketListViewController") { (coder) -> BucketListViewController? in
+            return BucketListViewController(coder: coder, coordinator: self, viewModel: bucketListViewModel)
+        }
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.pushViewController(viewController, animated: false)
     }
