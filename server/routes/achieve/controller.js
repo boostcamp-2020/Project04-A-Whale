@@ -2,7 +2,7 @@ const { OK, CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCo
 const achieveServices = require('../../services/achieve');
 
 /*
-    POST /api/achieve
+    POST /api/achieves
     * 목표 달성 소감 추가 API
 */
 exports.setAchieve = async (req, res, next) => {
@@ -23,7 +23,7 @@ exports.setAchieve = async (req, res, next) => {
 };
 
 /*
-    PUT /api/achieve/:achieveNo
+    PUT /api/achieves/:no
     * 목표 달성 소감 수정 API
 */
 exports.updateAchieve = async (req, res, next) => {
