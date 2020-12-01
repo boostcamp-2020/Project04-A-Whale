@@ -12,7 +12,7 @@ class BucketListViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Bucket.Section, Bucket>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Bucket.Section, Bucket>
     var dataSource: DataSource?
-    var bucketListViewModel: BucketListViewModel?
+    var bucketListViewModel: BucketListViewModelProtocol?
     var coordinator: DetailListPushCoordinator?
     @IBOutlet weak var collectionView: UICollectionView!
     
