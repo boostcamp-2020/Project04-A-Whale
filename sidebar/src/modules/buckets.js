@@ -19,24 +19,28 @@ const initialState = {
   },
 };
 
-const getUpdateBuckets = ({ buckets }, { bucketNo, status }) => {
-  const openIdx = buckets.openBuckets.findIndex((bucket) => {
-    return bucket.no === bucketNo;
-  });
+const findOpenIdx = (buckets, bucketNo) => {
+  return buckets.openBuckets.findIndex((bucket) => bucket.no === bucketNo);
+};
+
+const findGiveUpIdx = (buckets, bucketNo) => {
+  return buckets.openBuckets.findIndex((bucket) => bucket.no === bucketNo);
+};
+
+const getUpdateStatusBuckets = ({ buckets }, { bucketNo, status }) => {
+  const openIdx = findOpenIdx(buckets, bucketNo);
 
   if (openIdx > -1 && status === 'G') {
-    buckets.openBuckets[openIdx].status = 'G';
+    buckets.openBuckets[openIdx].status = status;
     buckets.giveUpBuckets.push(buckets.openBuckets[openIdx]);
     buckets.openBuckets.splice(openIdx, 1);
     return buckets;
   }
 
-  const giveUpIdx = buckets.giveUpBuckets.findIndex((bucket) => {
-    return bucket.no === bucketNo;
-  });
+  const giveUpIdx = findGiveUpIdx(buckets, bucketNo);
 
   if (giveUpIdx > -1 && status === 'O') {
-    buckets.giveUpBuckets[giveUpIdx].status = 'O';
+    buckets.giveUpBuckets[giveUpIdx].status = status;
     buckets.openBuckets.push(buckets.giveUpBuckets[giveUpIdx]);
     buckets.giveUpBuckets.splice(giveUpIdx, 1);
     return buckets;
@@ -52,7 +56,7 @@ const buckets = handleActions(
     }),
     [UPDATE_BUCKET_STATUS_SUCCESS]: (state, action) => ({
       ...state,
-      buckets: getUpdateBuckets(state, action.params),
+      buckets: getUpdateStatusBuckets(state, action.params),
     }),
   },
   initialState

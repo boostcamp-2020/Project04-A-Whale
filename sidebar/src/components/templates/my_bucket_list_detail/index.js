@@ -32,8 +32,9 @@ const MyBucketListDetail = ({ bucket, details }) => {
     setChecked(newChecked);
   };
 
-  const handleCheckboxChange = (event) => {
-    console.log(event.target.value);
+  const handleCheckboxChange = ({ target }) => {
+    const selectedDetail = target.value;
+    console.log(selectedDetail);
   };
 
   return (

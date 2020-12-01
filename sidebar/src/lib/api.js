@@ -18,8 +18,14 @@ export const getPresets = (keyword) => axios.get(`/api/buckets/presets?keyword=$
 export const getDetails = (bucketNo) => axios.get(`/api/buckets/${bucketNo}/details`);
 
 export const updateBucketStatus = ({ bucketNo, status }) =>
-  axios.patch(`/api/buckets/${bucketNo}/status`, {
+  axios.patch(`/api/buckets/${bucketNo}`, {
     status,
+  });
+
+export const updateBucketInfo = ({ bucketNo, title, description }) =>
+  axios.patch(`/api/buckets/${bucketNo}`, {
+    title,
+    description,
   });
 
 // achieves

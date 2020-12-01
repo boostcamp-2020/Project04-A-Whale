@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import BlockIcon from '@material-ui/icons/Block';
 import CreateIcon from '@material-ui/icons/Create';
+import * as api from '../../../../lib/api';
 import { useStyles, TitleWrapper, ButtonWrapper } from './style';
 
 const DetailHeader = ({ bucket }) => {
@@ -13,16 +14,15 @@ const DetailHeader = ({ bucket }) => {
   const [title, setTitle] = useState(bucket.title);
   const [desc, setDesc] = useState(bucket.description);
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
+  const handleTitleChange = ({ target }) => setTitle(target.value);
+  const handleDescChange = ({ target }) => setDesc(target.value);
 
-  const handleDescChange = (event) => {
-    setDesc(event.target.value);
-  };
+  const handleClick = () => setEdit(true);
+  const handleCancel = () => setEdit(false);
 
-  const handleClick = () => {
-    setEdit(true);
+  const handleSave = () => {
+    api.updateBucketInfo({ bucketNo: bucket.no, title, description: desc });
+    setEdit(false);
   };
 
   return (
@@ -32,7 +32,7 @@ const DetailHeader = ({ bucket }) => {
           <TextField
             className={classes.textField}
             value={title}
-            placeholder="title"
+            placeholder="Title"
             fullWidth
             InputProps={{
               classes: {
@@ -58,12 +58,18 @@ const DetailHeader = ({ bucket }) => {
             <Button
               style={{ marginRight: '10px' }}
               variant="contained"
-              color="secondary"
+              color="default"
               startIcon={<BlockIcon />}
+              onClick={handleCancel}
             >
               취소
             </Button>
-            <Button variant="contained" color="primary" startIcon={<SaveIcon />}>
+            <Button
+              variant="contained"
+              color="default"
+              startIcon={<SaveIcon />}
+              onClick={handleSave}
+            >
               저장
             </Button>
           </ButtonWrapper>
