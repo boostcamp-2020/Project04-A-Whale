@@ -73,14 +73,18 @@ exports.updateBucketStatus = async (req, res, next) => {
   try {
     const { bucketNo } = req.params;
     const { status } = req.body;
-    const result = await bucketServices.updateStatus(bucketNo, status);
+
+    const result = await bucketServices.updateBucketStatus(bucketNo, status);
+
     if (result === 1) {
       res.status(OK).json({
         message: '버킷 상태 변경 성공',
+        data: true,
       });
     } else {
       res.status(BAD_REQUEST).json({
         message: '버킷 상태 변경 실패',
+        data: false,
       });
     }
   } catch (error) {
