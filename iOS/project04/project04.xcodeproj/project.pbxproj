@@ -28,6 +28,9 @@
 		C1754EF1256E1A570037C805 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EF0256E1A570037C805 /* NetworkError.swift */; };
 		C1754EF5256E1B8B0037C805 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EF4256E1B8B0037C805 /* HTTPMethod.swift */; };
 		C1754F07256E4AC00037C805 /* ListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754F06256E4AC00037C805 /* ListUseCase.swift */; };
+		C175AA7825752C57009D8103 /* DetailListAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175AA7725752C57009D8103 /* DetailListAddViewController.swift */; };
+		C175AA7C25752C7D009D8103 /* DetailListAdd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C175AA7B25752C7D009D8103 /* DetailListAdd.storyboard */; };
+		C175AA8025752F72009D8103 /* DetailAddCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175AA7F25752F72009D8103 /* DetailAddCoordinator.swift */; };
 		C175D190256CC028001144F0 /* DetailListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D18F256CC028001144F0 /* DetailListUseCase.swift */; };
 		C175D194256CC2EC001144F0 /* DetailAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D193256CC2EC001144F0 /* DetailAPIAgent.swift */; };
 		C175D197256CC31C001144F0 /* DetailLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D196256CC31C001144F0 /* DetailLocalAgent.swift */; };
@@ -78,6 +81,9 @@
 		C1754EF0256E1A570037C805 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		C1754EF4256E1B8B0037C805 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		C1754F06256E4AC00037C805 /* ListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUseCase.swift; sourceTree = "<group>"; };
+		C175AA7725752C57009D8103 /* DetailListAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListAddViewController.swift; sourceTree = "<group>"; };
+		C175AA7B25752C7D009D8103 /* DetailListAdd.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailListAdd.storyboard; sourceTree = "<group>"; };
+		C175AA7F25752F72009D8103 /* DetailAddCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddCoordinator.swift; sourceTree = "<group>"; };
 		C175D18F256CC028001144F0 /* DetailListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListUseCase.swift; sourceTree = "<group>"; };
 		C175D193256CC2EC001144F0 /* DetailAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPIAgent.swift; sourceTree = "<group>"; };
 		C175D196256CC31C001144F0 /* DetailLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocalAgent.swift; sourceTree = "<group>"; };
@@ -205,6 +211,8 @@
 			children = (
 				C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */,
 				C1E6C4112574D31300BD4B4B /* DetailList.storyboard */,
+				C175AA7725752C57009D8103 /* DetailListAddViewController.swift */,
+				C175AA7B25752C7D009D8103 /* DetailListAdd.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -340,6 +348,7 @@
 			children = (
 				C1E6C4162574D45900BD4B4B /* MainTabBarController.swift */,
 				C1E6C41A2574D4BE00BD4B4B /* BucketCoordinator.swift */,
+				C175AA7F25752F72009D8103 /* DetailAddCoordinator.swift */,
 				C1E6C41E2574E83200BD4B4B /* NavigationCoordinator.swift */,
 			);
 			path = Coordinator;
@@ -432,6 +441,7 @@
 				C1E6C40E2574D27900BD4B4B /* BucketList.storyboard in Resources */,
 				C1E6C4122574D31300BD4B4B /* DetailList.storyboard in Resources */,
 				C1655C9E256B7ED30067E3C5 /* Assets.xcassets in Resources */,
+				C175AA7C25752C7D009D8103 /* DetailListAdd.storyboard in Resources */,
 				C1655C9C256B7ED10067E3C5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +503,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1655C99256B7ED10067E3C5 /* BucketListViewController.swift in Sources */,
+				C175AA8025752F72009D8103 /* DetailAddCoordinator.swift in Sources */,
+				C175AA7825752C57009D8103 /* DetailListAddViewController.swift in Sources */,
 				82A72917256F43E100BD5797 /* BucketLocalAgent.swift in Sources */,
 				C1E6C4172574D45900BD4B4B /* MainTabBarController.swift in Sources */,
 				C1754F07256E4AC00037C805 /* ListUseCase.swift in Sources */,

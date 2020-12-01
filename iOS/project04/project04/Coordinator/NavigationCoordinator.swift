@@ -10,5 +10,5 @@ import UIKit
 
 protocol NavigationCoordinator {
     var navigationController: UINavigationController { get set }
-    func pushViewController()
+    init(_ navigationController: UINavigationController)
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="du0-2n-SY7">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Detail List Add View Controller-->
+        <scene sceneID="bGW-38-mkV">
+            <objects>
+                <viewController storyboardIdentifier="DetailListAddViewController" modalPresentationStyle="overFullScreen" id="du0-2n-SY7" customClass="DetailListAddViewController" customModule="project04" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zh4-qb-4tc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGV-TC-1mb">
+                                <rect key="frame" x="0.0" y="836" width="414" height="60"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PDm-eO-kYM">
+                                        <rect key="frame" x="18" y="8" width="378" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="PDm-eO-kYM" secondAttribute="trailing" constant="18" id="Fv1-AQ-UTC"/>
+                                    <constraint firstItem="PDm-eO-kYM" firstAttribute="top" secondItem="eGV-TC-1mb" secondAttribute="top" constant="8" id="MUI-Pe-QFa"/>
+                                    <constraint firstAttribute="height" priority="999" constant="60" id="QHc-7N-i2v"/>
+                                    <constraint firstItem="PDm-eO-kYM" firstAttribute="leading" secondItem="eGV-TC-1mb" secondAttribute="leading" constant="18" id="i32-Rb-teG"/>
+                                    <constraint firstAttribute="bottom" secondItem="PDm-eO-kYM" secondAttribute="bottom" constant="8" id="kL1-fC-Ovl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2gG-md-Aaf"/>
+                        <color key="backgroundColor" red="0.84087484137055835" green="0.84087484137055835" blue="0.84087484137055835" alpha="0.65041738013698636" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="eGV-TC-1mb" firstAttribute="trailing" secondItem="2gG-md-Aaf" secondAttribute="trailing" id="3cH-kh-Jtf"/>
+                            <constraint firstAttribute="bottom" secondItem="eGV-TC-1mb" secondAttribute="bottom" id="NlH-ac-tUN"/>
+                            <constraint firstItem="eGV-TC-1mb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2gG-md-Aaf" secondAttribute="top" id="a2h-mp-CN1"/>
+                            <constraint firstItem="eGV-TC-1mb" firstAttribute="leading" secondItem="2gG-md-Aaf" secondAttribute="leading" id="j6u-uy-NHr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="heightConstraint" destination="QHc-7N-i2v" id="qQK-Yx-hZe"/>
+                        <outlet property="textView" destination="PDm-eO-kYM" id="e5U-EB-SGl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wxA-4o-nH1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="259.4202898550725" y="132.58928571428572"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

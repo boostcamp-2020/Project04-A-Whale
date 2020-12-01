@@ -12,7 +12,8 @@ class DetailListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Detail.Section, Detail>! = nil
     var bucket: RealmBucket?
-    private var collectionViewModel: DetailListViewModelProtocol? {
+    var coordinator: DetailAddCoordinator?
+    var collectionViewModel: DetailListViewModelProtocol? {
         didSet {
             self.collectionViewModel?.listDidChange = { [weak self] _ in
                 var snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>()
@@ -30,7 +31,7 @@ class DetailListViewController: UIViewController {
         title = bucket?.title
         configureHierarchy()
         configureDataSource()
-        configureViewModel()
+        collectionViewModel?.listFetchAction()
     }
     
     func configureViewModel() {
@@ -44,7 +45,8 @@ class DetailListViewController: UIViewController {
     }
     
     @IBAction func detailAppendAction(_ sender: UIBarButtonItem) {
-        collectionViewModel?.listAddAction(Detail(title: "1", dueDate: "\(Date())"))
+        coordinator?.presentDetailListAdd(navigationController)
+//        collectionViewModel?.listAddAction(Detail(title: "1", dueDate: "\(Date())"))
     }
 }
 
