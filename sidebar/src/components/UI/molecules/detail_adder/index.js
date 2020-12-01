@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { connect } from 'react-redux';
-import InputText from '../../atoms/input_text/InputText';
-import StyledButton from '../../atoms/styled_button/StyledButton';
+import InputText from '../../atoms/input_text';
+import StyledButton from '../../atoms/styled_button';
 import { addDetailAction } from '../../../../modules/actions/createbucket';
 
 const DetailAdder = ({ addDetailActionConnect }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import InputText from '../../atoms/input_text/InputText';
+import InputText from '../../atoms/input_text';
 
 const BucketSearchBar = ({ onChangeHandler }) => {
   const style = {

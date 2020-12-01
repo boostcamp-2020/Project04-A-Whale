@@ -6,6 +6,7 @@
     "@date-io/date-fns": "^2.10.6",
     "@material-ui/core": "^4.11.1",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/pickers": "^3.2.10",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -76,5 +77,5 @@
     "prettier": "^2.1.2",
     "redux-devtools": "^3.7.0"
   },
-    "proxy": "http://localhost:8000"
+  "proxy": "http://localhost:8000"
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import Span from '../../atoms/span/Span';
+import Span from '../../atoms/span';
 import { loadPresetAction } from '../../../../modules/actions/createbucket';
 import { getDetails } from '../../../../lib/api';
 

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import SearchResultItem from '../../molecules/search_result_item/searchResultItem';
-import Span from '../../atoms/span/Span';
+import SearchResultItem from '../../molecules/search_result_item';
+import Span from '../../atoms/span';
 import { getPresets } from '../../../../lib/api';
 
 const BucketSearchWrapper = styled.div`
