@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol DetailListViewModelProtocol {
     var list: [Detail] { get }
@@ -44,12 +45,27 @@ class DetailListViewModel: DetailListViewModelProtocol {
     }
     
     func listAddAction(_ newElement: Detail) {
-        list.append(newElement)
-        usecase.append(newElement)
+        var item = newElement
+        item.no = autoIncreaseIdValue()
+        list.append(item)
+        usecase.append(item)
     }
     
     func listReviseAction(_ newElement: Detail, at index: Int) {
         list[index] = newElement
         usecase.revise(at: index, element: newElement)
+    }
+    
+    func autoIncreaseIdValue() -> Int {
+        do {
+            let realm = try Realm()
+            guard let maxIdValue: Int = realm.objects(RealmDetail.self).max(ofProperty: "no") else {
+                return 0
+            }
+            return maxIdValue + 1
+        } catch {
+            print(error)
+        }
+        return 0
     }
 }

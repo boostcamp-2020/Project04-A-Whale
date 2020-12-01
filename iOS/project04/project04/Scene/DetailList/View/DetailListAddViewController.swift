@@ -69,7 +69,15 @@ class DetailListAddViewController: UIViewController {
         
         let title = textView.text
         let dueDate = datePicker.toString()
-        viewModel?.listAddAction(Detail(title: title ?? "", dueDate: dueDate ?? ""))
+        let currentTime = Date().toStringKST(dateFormat: "yyyy-MM-dd HH:mm:ss")
+        viewModel?.listAddAction(Detail(no: detail?.bucketNo ?? 0,
+                                        title: title ?? "",
+                                        status: "O",
+                                        dueDate: dueDate ?? "",
+                                        createdAt: currentTime,
+                                        updatedAt: currentTime,
+                                        deletedAt: nil,
+                                        bucketNo: 0))
         dismiss(animated: false, completion: nil)
     }
 }
