@@ -63,7 +63,11 @@ extension BucketCoordinator: DetailListPushCoordinator {
 
 extension BucketCoordinator: BucketListAddCoordinator {
     func pushToBucketListAdd() {
-        let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController") as BucketListAddViewController
+        let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController", creator: { (coder) -> BucketListAddViewController? in
+            let usecase = BucketListAddUseCase()
+            let viewModel = BucketListAddViewModel(usecase: usecase)
+            return BucketListAddViewController(coder: coder, viewModel: viewModel)
+        }) as BucketListAddViewController
         navigationController.pushViewController(viewController, animated: true)
     }
 }

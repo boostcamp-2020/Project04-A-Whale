@@ -43,9 +43,13 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L64-Wm-JKl">
-                                                <rect key="frame" x="8" y="156" width="398" height="581"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="세부 목표를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agU-WD-rUi">
+                                                <rect key="frame" x="8" y="114" width="398" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L64-Wm-JKl">
+                                                <rect key="frame" x="0.0" y="148" width="414" height="654"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CRu-pg-hkE">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -64,22 +68,21 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="세부 목표를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agU-WD-rUi">
-                                                <rect key="frame" x="8" y="114" width="398" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="L64-Wm-JKl" firstAttribute="top" secondItem="agU-WD-rUi" secondAttribute="bottom" id="2Pp-Xk-hTg"/>
+                                            <constraint firstAttribute="trailing" secondItem="L64-Wm-JKl" secondAttribute="trailing" id="8gB-X2-B3j"/>
                                             <constraint firstItem="bxd-7G-qzC" firstAttribute="leading" secondItem="f8y-rG-ngA" secondAttribute="leading" constant="8" id="9Qg-ZH-3pw"/>
                                             <constraint firstItem="agU-WD-rUi" firstAttribute="leading" secondItem="f8y-rG-ngA" secondAttribute="leading" constant="8" id="CvP-Z5-n6p"/>
                                             <constraint firstItem="P4M-kS-HXx" firstAttribute="leading" secondItem="f8y-rG-ngA" secondAttribute="leading" constant="8" id="FMC-hB-t6f"/>
                                             <constraint firstItem="bxd-7G-qzC" firstAttribute="top" secondItem="f8y-rG-ngA" secondAttribute="top" constant="8" id="NYT-pX-bx8"/>
                                             <constraint firstAttribute="trailing" secondItem="agU-WD-rUi" secondAttribute="trailing" constant="8" id="Ua8-hj-Eog"/>
                                             <constraint firstAttribute="trailing" secondItem="bxd-7G-qzC" secondAttribute="trailing" constant="8" id="XZU-0D-zO7"/>
+                                            <constraint firstItem="L64-Wm-JKl" firstAttribute="leading" secondItem="f8y-rG-ngA" secondAttribute="leading" id="b9y-Lh-fcA"/>
                                             <constraint firstItem="agU-WD-rUi" firstAttribute="top" secondItem="P4M-kS-HXx" secondAttribute="bottom" constant="4" id="mY9-Hs-u9J"/>
                                             <constraint firstAttribute="trailing" secondItem="P4M-kS-HXx" secondAttribute="trailing" constant="8" id="s7E-Ft-bKU"/>
+                                            <constraint firstAttribute="bottom" secondItem="L64-Wm-JKl" secondAttribute="bottom" id="vU8-mt-exF"/>
                                             <constraint firstItem="P4M-kS-HXx" firstAttribute="top" secondItem="bxd-7G-qzC" secondAttribute="bottom" constant="4" id="xsg-x5-anK"/>
                                         </constraints>
                                     </view>
@@ -109,6 +112,7 @@
                         <barButtonItem key="rightBarButtonItem" title="작성" id="SNl-pz-Fge"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="L64-Wm-JKl" id="KTc-IN-OOI"/>
                         <outlet property="scrollView" destination="tjC-Ah-cdD" id="h8e-1c-jsF"/>
                     </connections>
                 </viewController>
