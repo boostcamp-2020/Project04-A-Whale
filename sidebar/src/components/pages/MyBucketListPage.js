@@ -16,8 +16,6 @@ const MyBucketListPage = () => {
     dispatch(getBuckets());
   }, [dispatch]);
 
-  useEffect(() => {}, [buckets]);
-
   return (
     <>
       <Header title="내 목표" />
