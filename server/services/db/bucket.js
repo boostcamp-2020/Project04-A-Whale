@@ -37,8 +37,14 @@ exports.selectBuckets = async (userNo) => {
   return results;
 };
 
-exports.updateBucketStatus = async (bucketNo, status) => {
-  const results = await Bucket.update({ status }, { where: { no: bucketNo } });
+exports.updateBucketStatus = async (no, status) => {
+  const results = await Bucket.update({ status }, { where: { no } });
+
+  return results[0];
+};
+
+exports.updateBucketTitleDesc = async (no, title, description) => {
+  const results = await Bucket.update({ title, description }, { where: { no } });
 
   return results[0];
 };

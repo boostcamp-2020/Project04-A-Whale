@@ -40,6 +40,11 @@ exports.updateBucketStatus = async (bucketNo, status) => {
   return result;
 };
 
+exports.updateBucketTitleDesc = async (bucketNo, title, description) => {
+  const result = await db.updateBucketTitleDesc(bucketNo, title, description);
+  return result;
+};
+
 const initialDetails = () => {
   const result = {};
   result.openDetails = [];
