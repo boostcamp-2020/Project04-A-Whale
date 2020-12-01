@@ -20,7 +20,6 @@ final class BucketCoordinator: NavigationCoordinator {
     }
     
     func pushViewController() {
-//        let viewController = UIStoryboard(name: "BucketList", bundle: nil).instantiateViewController(identifier: "BucketListViewController") as BucketListViewController
         let network = BucketAPIAgent()
         let local = BucketLocalAgent()
         let repository = BucketListRepository(network: network, local: local)
@@ -49,7 +48,7 @@ extension BucketCoordinator: DetailListPushCoordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func configureDetailListViewModel(bucket: RealmBucket?) -> DetailListViewModel {
+    private func configureDetailListViewModel(bucket: RealmBucket?) -> DetailListViewModel {
         let networkAgent = DetailAPIAgent()
         let localAgent = DetailLocalAgent()
         localAgent.bucket = bucket

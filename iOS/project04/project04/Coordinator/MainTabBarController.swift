@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-    let bucketList = BucketCoordinator(UINavigationController())
+    private let bucketList = BucketCoordinator(UINavigationController())
     
     override func viewDidLoad() {
         super.viewDidLoad()

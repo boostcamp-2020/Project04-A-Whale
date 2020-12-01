@@ -19,14 +19,7 @@ class DetailLocalAgent: LocalService {
             let result = try Realm().objects(RealmDetail.self)
                 .filter("bucket.id == \(realmBucket.id)")
 
-            var list = [Detail]()
-            for element in result {
-                list.append(
-                    Detail(title: element.title,
-                               dueDate: element.dueDate)
-                )
-            }
-            return list
+            return result.map { Detail(title: $0.title, dueDate: $0.dueDate) }
         } catch {
             print(error)
             return []

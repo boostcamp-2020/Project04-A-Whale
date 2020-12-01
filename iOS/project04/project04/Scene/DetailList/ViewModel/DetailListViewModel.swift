@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailListViewModelProtocol {
-    var list: [Detail]? { get }
+    var list: [Detail] { get }
     var usecase: DetailListUseCase { get }
     var listDidChange: ((DetailListViewModelProtocol) -> ())? { get set }
     func listDeleteAction(at index: Int)
@@ -19,7 +19,7 @@ protocol DetailListViewModelProtocol {
 }
 
 class DetailListViewModel: DetailListViewModelProtocol {
-    var list: [Detail]? {
+    var list: [Detail] = [] {
         didSet {
             self.listDidChange?(self)
         }
@@ -39,17 +39,17 @@ class DetailListViewModel: DetailListViewModelProtocol {
     }
     
     func listDeleteAction(at index: Int) {
-        list?.remove(at: index)
+        list.remove(at: index)
         usecase.remove(at: index)
     }
     
     func listAddAction(_ newElement: Detail) {
-        list?.append(newElement)
+        list.append(newElement)
         usecase.append(newElement)
     }
     
     func listReviseAction(_ newElement: Detail, at index: Int) {
-        list?[index] = newElement
+        list[index] = newElement
         usecase.revise(at: index, element: newElement)
     }
 }

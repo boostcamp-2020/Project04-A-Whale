@@ -53,9 +53,8 @@ class DetailListViewController: UIViewController {
 }
 
 extension DetailListViewController: UICollectionViewDelegate {
-    func createLayout() -> UICollectionViewLayout {
+    private func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        
         
         config.trailingSwipeActionsConfigurationProvider = { (indexPath) -> UISwipeActionsConfiguration in
             let deleteAction = UIContextualAction(style: .destructive,
@@ -70,11 +69,11 @@ extension DetailListViewController: UICollectionViewDelegate {
         return UICollectionViewCompositionalLayout.list(using: config)
     }
     
-    func configureHierarchy() {
+    private func configureHierarchy() {
         collectionView.collectionViewLayout = createLayout()
     }
     
-    func configureDataSource() {
+    private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Detail> {
             (cell, indexPath, item) in
             var content = cell.defaultContentConfiguration()
