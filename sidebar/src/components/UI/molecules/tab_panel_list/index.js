@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
-
-import SaveButton from '../../atoms/save_button/SaveButton';
-import TabPanel from '../../atoms/tab_panel/TabPanel';
+import SaveButton from '../../atoms/save_button';
+import TabPanel from '../../atoms/tab_panel';
 
 const useStyles = makeStyles(() => ({
   tabpanel: {

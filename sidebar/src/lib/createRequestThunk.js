@@ -8,23 +8,12 @@ export default function createRequestThunk(type, request) {
     dispatch(startLoading(type));
     try {
       const response = await request(params);
-      console.log(response);
-      switch (response.status) {
-        case 200:
-          dispatch({
-            type: SUCCESS,
-            payload: response.data.data,
-          });
-          break;
-        case 201:
-          dispatch({
-            type: SUCCESS,
-            payload: { success: true, ...response.data },
-          });
-          break;
-        default:
-          break;
-      }
+
+      dispatch({
+        type: SUCCESS,
+        params,
+        payload: response.data,
+      });
       dispatch(finishLoading(type));
     } catch (e) {
       dispatch({

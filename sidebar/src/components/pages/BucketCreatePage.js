@@ -1,5 +1,5 @@
 import React from 'react';
-import BucketCreateTemplate from '../templates/bucket_create_template/BucketCreateTemplate';
+import BucketCreateTemplate from '../templates/bucket_create_template';
 import Header from '../UI/organisms/header';
 
 const BucketCreatePage = () => {

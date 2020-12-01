@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 
-import createTabList from '../../molecules/tab_list/TabList';
-import createTabPanelList from '../../molecules/tab_panel_list/TabPanelList';
+import createTabList from '../../molecules/tab_list';
+import createTabPanelList from '../../molecules/tab_panel_list';
 
 const useStyles = makeStyles((theme) => ({
   root: {
