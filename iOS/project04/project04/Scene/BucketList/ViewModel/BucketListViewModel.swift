@@ -8,7 +8,15 @@
 import Foundation
 import RealmSwift
 
-class BucketListViewModel {
+protocol BucketListViewModelProtocol {
+    var buckets: [Bucket.Section: [Bucket]]? { get set }
+    var count: Int { get }
+    func append(bucket: Bucket) -> Void
+    func remove(at index: Int) -> Void
+    func autoIncreaseIdValue() -> Int
+}
+
+class BucketListViewModel: BucketListViewModelProtocol {
     var buckets: [Bucket.Section: [Bucket]]? {
         didSet {
             handler(buckets)
