@@ -10,7 +10,8 @@ import UIKit
 class DetailListAddViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    var contentSize: CGFloat = 37
+    @IBOutlet weak var roundView: RoundView!
+    private var contentSize: CGFloat = 37
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,8 @@ class DetailListAddViewController: UIViewController {
             object: nil
         )
         
+        roundView.layer.borderColor = UIColor.systemGray4.cgColor
+        textView.inputAccessoryView = nil
         textView.delegate = self
     }
     
@@ -37,7 +40,11 @@ class DetailListAddViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            self?.view.endEditing(true)
+        }, completion: { [weak self] success in
+            self?.dismiss(animated: false, completion: nil)
+        })
     }
 
     @objc func keyboardWillShow(_ notification:NSNotification) {
@@ -50,13 +57,12 @@ class DetailListAddViewController: UIViewController {
     }
     
     @objc func keyboardWillHide(_ notification:NSNotification) {
-        dismiss(animated: false, completion: nil)
+        self.view.frame.origin.y = 0
     }
 }
 
 extension DetailListAddViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        print(textView.contentSize.height)
         if contentSize < textView.contentSize.height {
             contentSize = textView.contentSize.height
             textViewContentSizeChange(value: 20)
