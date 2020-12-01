@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import StyledButton from '../../atoms/styled_button/StyledButton';
+import StyledButton from '../../atoms/styled_button';
 import { createBucket } from '../../../../lib/api';
 
 const BucketCreateButton = ({ storeTitle, storeDescription, storeDetails }) => {
@@ -16,10 +16,9 @@ const BucketCreateButton = ({ storeTitle, storeDescription, storeDetails }) => {
   };
 
   const disabled = storeTitle.length * storeDetails.length === 0;
-  console.log('disabled:', disabled);
 
   const onClickHandler = async () => {
-    const res = await createBucket(storeTitle, storeDescription, storeDetails);
+    await createBucket(storeTitle, storeDescription, storeDetails);
     history.push({ pathname: '/' });
   };
 
