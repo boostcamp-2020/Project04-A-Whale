@@ -6,22 +6,17 @@ import BucketList from '../../UI/organisms/bucket_list';
 import AddFabButton from '../../UI/atoms/add_fab_button';
 import useStyles from './style';
 
-const MyBucketList = ({ loadingBuckets, buckets }) => {
+const MyBucketList = ({ buckets }) => {
   const classes = useStyles();
 
   return (
     <main className={classes.root}>
       <div className={classes.header} />
-      {loadingBuckets && <CircularProgress className={classes.spinner} />}
-      {!loadingBuckets && buckets && (
-        <>
-          <Text
-            value={`진행 ${buckets.openCount}개 | 달성 ${buckets.achieveCount}개 | 포기 ${buckets.giveUpCount}개`}
-            fontSize="20px"
-          />
-          <BucketList loadingBuckets={loadingBuckets} buckets={buckets} />
-        </>
-      )}
+      <Text
+        value={`진행 ${buckets.openBuckets.length}개 | 달성 ${buckets.achieveBuckets.length}개 | 포기 ${buckets.giveUpBuckets.length}개`}
+        fontSize="20px"
+      />
+      <BucketList buckets={buckets} />
       <Link to="/createbucket">
         <AddFabButton />
       </Link>

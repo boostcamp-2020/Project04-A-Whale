@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import { useHistory } from 'react-router-dom';
 import { BucketListItemWrapper, BucketTitleTextWrapper } from './style';
-import AbandonButton from '../../atoms/abandon_button';
-import AbandonDialog from '../../organisms/abandon_dialog';
+import HoverButton from '../../atoms/hover_button';
+import ConfirmDialog from '../../organisms/confirm_dialog';
 import Text from '../../atoms/text';
 
 const BucketListItem = ({ bucket }) => {
@@ -31,6 +31,12 @@ const BucketListItem = ({ bucket }) => {
     });
   };
 
+  const getButton = () => {
+    if (bucket.status === 'G') return <HoverButton handleOpen={handleOpen} text="되돌리기" />;
+    if (bucket.status === 'O') return <HoverButton handleOpen={handleOpen} text="포기" />;
+    return null;
+  };
+
   return (
     <BucketListItemWrapper
       onMouseOver={() => changeHidden(true)}
@@ -40,8 +46,8 @@ const BucketListItem = ({ bucket }) => {
       <BucketTitleTextWrapper onClick={handleClick}>
         <Text value={bucket.title} fontSize="16px" />
       </BucketTitleTextWrapper>
-      {hidden ? null : <AbandonButton handleOpen={handleOpen} />}
-      <AbandonDialog open={open} handleClose={handleClose} />
+      {hidden ? null : getButton()}
+      <ConfirmDialog open={open} handleClose={handleClose} bucket={bucket} />
     </BucketListItemWrapper>
   );
 };
