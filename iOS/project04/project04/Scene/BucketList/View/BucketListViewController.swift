@@ -12,7 +12,7 @@ class BucketListViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Bucket.Section, Bucket>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Bucket.Section, Bucket>
     var dataSource: DataSource?
-    var coordinator: DetailListPushCoordinator
+    var coordinator: DetailListPushCoordinator & BucketListAddCoordinator
     @IBOutlet weak var collectionView: UICollectionView!
     var bucketListViewModel: BucketListViewModelProtocol {
         didSet {
@@ -27,7 +27,7 @@ class BucketListViewController: UIViewController {
         }
     }
     
-    init?(coder: NSCoder, coordinator: DetailListPushCoordinator, viewModel: BucketListViewModelProtocol) {
+    init?(coder: NSCoder, coordinator: DetailListPushCoordinator & BucketListAddCoordinator, viewModel: BucketListViewModelProtocol) {
         self.coordinator = coordinator
         self.bucketListViewModel = viewModel
         super.init(coder: coder)
@@ -53,7 +53,8 @@ class BucketListViewController: UIViewController {
     }
     
     @IBAction func didTouchPlusButton(_ sender: UIBarButtonItem) {
-        self.bucketListViewModel.append(bucket: Bucket(id: nil, title: "New Bucket\(bucketListViewModel.count)", status: "O"))
+//        self.bucketListViewModel.append(bucket: Bucket(id: nil, title: "New Bucket\(bucketListViewModel.count)", status: "O"))
+        coordinator.pushToBucketListAdd()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

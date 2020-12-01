@@ -8,16 +8,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bucket List Add View Controller-->
+        <!--목표 생성-->
         <scene sceneID="LMb-uC-cfm">
             <objects>
-                <viewController id="COJ-IJ-1mu" customClass="BucketListAddViewController" customModule="project04" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BucketListAddViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="COJ-IJ-1mu" customClass="BucketListAddViewController" customModule="project04" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p2p-Cr-jQU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Nc0-ms-3RO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" title="목표 생성" largeTitleDisplayMode="always" id="CwW-yD-RX9">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="SNl-pz-Fge"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJ7-nC-jlT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -25,6 +28,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

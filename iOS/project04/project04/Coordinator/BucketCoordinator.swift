@@ -12,6 +12,10 @@ protocol DetailListPushCoordinator {
     func pushToDetailList(bucket: RealmBucket?)
 }
 
+protocol BucketListAddCoordinator {
+    func pushToBucketListAdd()
+}
+
 final class BucketCoordinator: NavigationCoordinator {
     var navigationController: UINavigationController
     
@@ -54,5 +58,12 @@ extension BucketCoordinator: DetailListPushCoordinator {
         let repository = DetailRepository(network: networkAgent, local: localAgent)
         let usecase = DetailListUseCase(repository: repository)
         return DetailListViewModel(usecase: usecase)
+    }
+}
+
+extension BucketCoordinator: BucketListAddCoordinator {
+    func pushToBucketListAdd() {
+        let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController") as BucketListAddViewController
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
