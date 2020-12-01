@@ -48,7 +48,7 @@ class DetailListViewController: UIViewController {
     }
     
     @IBAction func detailAppendAction(_ sender: UIBarButtonItem) {
-        coordinator?.presentDetailListAdd(navigationController)
+        coordinator?.presentDetailListAdd(navigationController, viewModel: collectionViewModel)
     }
 }
 

@@ -11,7 +11,20 @@ class DetailListAddViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var roundView: RoundView!
+    @IBOutlet weak var datePicker: UIDatePicker!
     private var contentSize: CGFloat = 37
+    private var viewModel: DetailListViewModelProtocol?
+    private var detail: Detail?
+    
+    init?(coder: NSCoder, viewModel: DetailListViewModelProtocol?, detail: Detail? = nil) {
+        self.viewModel = viewModel
+        self.detail = detail
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +71,19 @@ class DetailListAddViewController: UIViewController {
     
     @objc func keyboardWillHide(_ notification:NSNotification) {
         self.view.frame.origin.y = 0
+    }
+    
+    @IBAction func submitButton(_ sender: RoundButton) {
+        if textView.text == "" {
+            let alert = defaultAlertViewController(title: "추가 불가", message: "제목이 입력되지 않았습니다.")
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let title = textView.text
+        let dueDate = datePicker.toString()
+        viewModel?.listAddAction(Detail(title: title ?? "", dueDate: dueDate ?? ""))
+        dismiss(animated: false, completion: nil)
     }
 }
 
