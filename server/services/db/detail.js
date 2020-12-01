@@ -5,3 +5,15 @@ exports.bulkCreate = async (details) => {
 
   return results;
 };
+
+exports.updateDetailStatus = async (detailNo, status) => {
+  const results = await Detail.update({ status }, { where: { no: detailNo } });
+
+  return results[0];
+};
+
+exports.selectDetails = async (bucketNo) => {
+  const results = await Detail.findAll({ raw: true, where: { bucketNo } });
+
+  return results;
+};
