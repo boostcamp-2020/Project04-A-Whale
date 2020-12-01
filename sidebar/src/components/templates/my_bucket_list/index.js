@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Text from '../../UI/atoms/text';
 import BucketList from '../../UI/organisms/bucket_list';
 import AddFabButton from '../../UI/atoms/add_fab_button';

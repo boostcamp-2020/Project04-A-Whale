@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const createTabPanelList = ({ tabs, value }) => {
+const createTabPanelList = ({ tabs, value, onSubmitClick }) => {
   const classes = useStyles();
   return tabs.map((tab, index) => {
     return (
@@ -25,7 +25,7 @@ const createTabPanelList = ({ tabs, value }) => {
           <Box p={3}>
             {tab.content}
             <DivAlignRight>
-              <SaveButton />
+              <SaveButton onSubmitClick={onSubmitClick} />
             </DivAlignRight>
           </Box>
         </Paper>

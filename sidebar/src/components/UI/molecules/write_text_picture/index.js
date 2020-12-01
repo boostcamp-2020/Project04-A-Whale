@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const WriteTextPicture = ({ placeholder, text, onChange }) => {
+const WriteTextPicture = ({ placeholder, text, onTextChange }) => {
   return (
     <WriteText>
-      <TextArea placeholder={placeholder} value={text} onChange={onChange} />
+      <TextArea placeholder={placeholder} value={text} onChange={onTextChange} />
       <UploadPicture type="file" multiple />
     </WriteText>
   );

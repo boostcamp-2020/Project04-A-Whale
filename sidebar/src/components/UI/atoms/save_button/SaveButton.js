@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SaveButton = () => {
+const SaveButton = ({ onSubmitClick }) => {
   const classes = useStyles();
   return (
     <Button
@@ -18,6 +18,7 @@ const SaveButton = () => {
       size="small"
       className={classes.saveButton}
       startIcon={<SaveIcon />}
+      onClick={onSubmitClick}
     >
       Save
     </Button>
