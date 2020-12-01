@@ -38,7 +38,7 @@ final class BucketCoordinator: NavigationCoordinator {
 
 extension BucketCoordinator: DetailListPushCoordinator {
     func pushToDetailList(bucket: RealmBucket?) {
-        let viewModel = configureDetailListViewModel()
+        let viewModel = configureDetailListViewModel(bucket: bucket)
         let coordinator = DetailAddCoordinator(navigationController)
         let viewController = UIStoryboard(name: "DetailList", bundle: nil).instantiateViewController(identifier: "DetailListViewController", creator: { coder in
             return DetailListViewController(coder: coder,
@@ -49,9 +49,10 @@ extension BucketCoordinator: DetailListPushCoordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func configureDetailListViewModel() -> DetailListViewModel {
+    func configureDetailListViewModel(bucket: RealmBucket?) -> DetailListViewModel {
         let networkAgent = DetailAPIAgent()
         let localAgent = DetailLocalAgent()
+        localAgent.bucket = bucket
         let repository = DetailRepository(network: networkAgent, local: localAgent)
         let usecase = DetailListUseCase(repository: repository)
         return DetailListViewModel(usecase: usecase)

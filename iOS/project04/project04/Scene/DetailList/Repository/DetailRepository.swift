@@ -8,9 +8,6 @@
 import Foundation
 
 protocol DetailRepositoryProtocol {
-    var network: DetailAPIAgent { get }
-    var local: DetailLocalAgent { get }
-    init(network: DetailAPIAgent, local: DetailLocalAgent)
     func fetchDetailList(completion: @escaping ([Detail]) -> Void)
     func appendDetailList(_ element: Detail)
     func removeDetailList(at index: Int)
@@ -18,8 +15,8 @@ protocol DetailRepositoryProtocol {
 }
 
 class DetailRepository: DetailRepositoryProtocol {
-    var network: DetailAPIAgent
-    var local: DetailLocalAgent
+    private var network: DetailAPIAgent
+    private var local: DetailLocalAgent
     
     required init(network: DetailAPIAgent, local: DetailLocalAgent) {
         self.network = network
