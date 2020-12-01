@@ -25,6 +25,20 @@ class DetailListViewController: UIViewController {
         }
     }
     
+    init?(coder: NSCoder,
+          bucket: RealmBucket?,
+          viewModel: DetailListViewModelProtocol,
+          coordinator: DetailAddCoordinator) {
+        super.init(coder: coder)
+        self.bucket = bucket
+        self.collectionViewModel = viewModel
+        self.coordinator = coordinator
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
