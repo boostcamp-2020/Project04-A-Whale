@@ -1,8 +1,8 @@
 const { Achieve } = require('../../models');
 
-exports.selectAchieve = async (achieveNo) => {
+exports.selectAchieve = async (no) => {
   const result = await Achieve.findOne({
-    where: { achieveNo },
+    where: { no },
     raw: true,
   });
 
