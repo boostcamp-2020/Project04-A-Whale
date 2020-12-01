@@ -34,9 +34,9 @@ const AchieveCreate = ({ match }) => {
 
   // todo useEffect: bucketState 불러오기
   useEffect(() => {
-    if (acheiveState.success) {
+    if (acheiveState.message) {
       dispatch(reset());
-      history.push(`/achieves/${bucketNo}/result`);
+      history.replace(`/achieves/${bucketNo}/result`);
     }
   }, [acheiveState]);
 
