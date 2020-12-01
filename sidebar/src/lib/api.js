@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const getBuckets = () => axios.get('/api/bucket/list');
+export const getBuckets = () => axios.get('/api/buckets');
 
-export const updateBucketStatus = (bucketNo, status) => {
-  axios.patch(`/api/bucket/status/${bucketNo}`, {
+export const updateBucketStatus = ({ bucketNo, status }) => {
+  return axios.patch(`/api/buckets/${bucketNo}/status`, {
     status,
   });
 };

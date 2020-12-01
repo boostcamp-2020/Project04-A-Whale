@@ -8,9 +8,11 @@ export default function createRequestThunk(type, request) {
     dispatch(startLoading(type));
     try {
       const response = await request(params);
+
       dispatch({
         type: SUCCESS,
-        payload: response.data.data,
+        params,
+        payload: response.data,
       });
       dispatch(finishLoading(type));
     } catch (e) {
