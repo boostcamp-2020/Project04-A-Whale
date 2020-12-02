@@ -46,7 +46,7 @@ class DetailLocalAgent: LocalService {
                     element.createdAt,
                     element.updatedAt,
                     element.deletedAt as Any,
-                    element.bucketNo
+                    bucketNo
                 ])
                 realm.add(realmDetail)
             }

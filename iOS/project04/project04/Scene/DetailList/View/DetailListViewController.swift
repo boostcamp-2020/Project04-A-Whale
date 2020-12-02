@@ -31,18 +31,27 @@ class DetailListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = bucket?.title
         configureHierarchy()
         configureDataSource()
         
         collectionViewModel?.listDidChange = { [weak self] _ in
             var snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>()
-            let sections: [Detail.Section] = [.todo]
+            let sections: [Detail.Section] = [.graph, .feel, .todo, .done]
             snapshot.appendSections(sections)
-            snapshot.appendItems(self?.collectionViewModel?.list ?? [])
+            snapshot.appendItems([], toSection: .graph)
+            snapshot.appendItems([], toSection: .feel)
+            snapshot.appendItems(self?.collectionViewModel?.list[.todo] ?? [], toSection: .todo)
+            snapshot.appendItems(self?.collectionViewModel?.list[.done] ?? [], toSection: .done)
             self?.dataSource.apply(snapshot, animatingDifferences: false)
         }
+        
+        collectionView.register(UINib(nibName: "DetailSectionHeaderView", bundle: nil),
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: DetailSectionHeaderView.description())
+        collectionView.register(UINib(nibName: "DetailSectionImpressionHeaderView", bundle: nil),
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: DetailSectionImpressionHeaderView.description())
         
         collectionViewModel?.listFetchAction()
     }
@@ -55,7 +64,7 @@ class DetailListViewController: UIViewController {
 extension DetailListViewController: UICollectionViewDelegate {
     private func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        
+        config.headerMode = .supplementary
         config.trailingSwipeActionsConfigurationProvider = { (indexPath) -> UISwipeActionsConfiguration in
             let deleteAction = UIContextualAction(style: .destructive,
                                                   title: "Delete",
@@ -86,6 +95,26 @@ extension DetailListViewController: UICollectionViewDelegate {
         dataSource = UICollectionViewDiffableDataSource<Detail.Section, Detail>(collectionView: collectionView) {
             (collectionView, indexPath, item) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+        }
+        
+        dataSource.supplementaryViewProvider = { [weak self]
+            (collectionView, kind, indexPath) -> UICollectionReusableView? in
+            if kind == UICollectionView.elementKindSectionHeader {
+                if indexPath.section > 1 {
+                    guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailSectionHeaderView.description(), for: indexPath) as? DetailSectionHeaderView else {
+                        return nil
+                    }
+                    let sectionIdentifier = self?.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
+                    headerView.titleLabel.text = sectionIdentifier?.rawValue
+                    return headerView
+                } else {
+                    guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailSectionImpressionHeaderView.description(), for: indexPath) as? DetailSectionImpressionHeaderView else {
+                        return nil
+                    }
+                    return headerView
+                }
+            }
+            return nil
         }
     }
 }
