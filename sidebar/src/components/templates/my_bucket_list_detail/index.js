@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,14 +11,24 @@ import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
+import { updateDetailStatus } from '../../../modules/details';
 import DetailHeader from '../../UI/organisms/detail_header';
 import DetailRegister from '../../UI/organisms/detail_register';
 import { useStyles, DetailTextWrapper } from './style';
 
 const MyBucketListDetail = ({ bucket, details }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { openDetails, achieveDetails, achieveComment } = details;
   const [checked, setChecked] = useState([...achieveDetails]);
+
+  const statusChange = (detail) => {
+    const params = {};
+    params.detailNo = detail.no;
+    if (detail.status === 'A') params.status = 'O';
+    if (detail.status === 'O') params.status = 'A';
+    dispatch(updateDetailStatus(params));
+  };
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -30,11 +41,7 @@ const MyBucketListDetail = ({ bucket, details }) => {
     }
 
     setChecked(newChecked);
-  };
-
-  const handleCheckboxChange = ({ target }) => {
-    const selectedDetail = target.value;
-    console.log(selectedDetail);
+    statusChange(value);
   };
 
   return (
@@ -77,10 +84,9 @@ const MyBucketListDetail = ({ bucket, details }) => {
                   edge="start"
                   color="default"
                   tabIndex={-1}
-                  onChange={handleCheckboxChange}
                   checked={checked.indexOf(detail) !== -1}
                   disableRipple
-                  value={detail}
+                  value={JSON.stringify(detail)}
                 />
               </ListItemIcon>
               <DetailTextWrapper>
@@ -108,10 +114,9 @@ const MyBucketListDetail = ({ bucket, details }) => {
                   edge="start"
                   color="default"
                   tabIndex={-1}
-                  onChange={handleCheckboxChange}
                   checked={checked.indexOf(detail) !== -1}
                   disableRipple
-                  value={detail}
+                  value={JSON.stringify(detail)}
                 />
               </ListItemIcon>
               <DetailTextWrapper>

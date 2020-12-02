@@ -19,32 +19,29 @@ const initialState = {
   },
 };
 
-const findOpenIdx = (buckets, bucketNo) => {
-  return buckets.openBuckets.findIndex((bucket) => bucket.no === bucketNo);
+const insertBucket = (array, bucket) => {
+  const index = array.findIndex((data) => bucket.no < data.no);
+  if (index === -1) array.push(bucket);
+  else array.splice(index, 0, bucket);
 };
 
-const findGiveUpIdx = (buckets, bucketNo) => {
-  return buckets.openBuckets.findIndex((bucket) => bucket.no === bucketNo);
+const updateStatusBucket = (addArray, removeArray, idx, status) => {
+  removeArray[idx].status = status;
+  insertBucket(addArray, removeArray[idx]);
+  removeArray.splice(idx, 1);
 };
 
 const getUpdateStatusBuckets = ({ buckets }, { bucketNo, status }) => {
-  const openIdx = findOpenIdx(buckets, bucketNo);
+  const openIdx = buckets.openBuckets.findIndex((bucket) => bucket.no === bucketNo);
 
   if (openIdx > -1 && status === 'G') {
-    buckets.openBuckets[openIdx].status = status;
-    buckets.giveUpBuckets.push(buckets.openBuckets[openIdx]);
-    buckets.openBuckets.splice(openIdx, 1);
+    updateStatusBucket(buckets.giveUpBuckets, buckets.openBuckets, openIdx, status);
     return buckets;
   }
 
-  const giveUpIdx = findGiveUpIdx(buckets, bucketNo);
+  const giveUpIdx = buckets.giveUpBuckets.findIndex((bucket) => bucket.no === bucketNo);
 
-  if (giveUpIdx > -1 && status === 'O') {
-    buckets.giveUpBuckets[giveUpIdx].status = status;
-    buckets.openBuckets.push(buckets.giveUpBuckets[giveUpIdx]);
-    buckets.giveUpBuckets.splice(giveUpIdx, 1);
-    return buckets;
-  }
+  updateStatusBucket(buckets.openBuckets, buckets.giveUpBuckets, giveUpIdx, status);
   return buckets;
 };
 
