@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
@@ -7,7 +8,10 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import Span from '../../atoms/span/Span';
 import StyledButton from '../../atoms/styled_button/StyledButton';
 import InputText from '../../atoms/input_text';
-import { removeDetailAction } from '../../../../modules/actions/createbucket';
+import {
+  removeDetailAction,
+  updateDetailDueAction,
+} from '../../../../modules/actions/createbucket';
 
 const DetailListItemWrapper = styled.div`
   display: flex;
@@ -41,23 +45,30 @@ const DetailListItem = ({ detail, removeDetailActionConnect }) => {
   const style = {
     color: 'inherit',
   };
+  const history = useHistory();
+  useEffect(() => {
+    history.replace('/');
+  });
 
   const onClickHandler = () => {
     removeDetailActionConnect(detail);
   };
 
   const dateChangeHandler = (e) => {
-    console.log(e.target.value);
+    updateDetailDueAction({
+      title: detail.title,
+      dueDate: e.target.value,
+    });
   };
 
   const content = (
     <DetailListItemWrapper>
-      <Span content={detail} />
+      <Span content={detail.title} />
       <InputText
         style={DatePicker}
         type="date"
         onChangeHandler={dateChangeHandler}
-        defaultValue="2020-12-25"
+        defaultValue={detail.dueDate}
         InputLabelProps={{
           shrink: true,
         }}
