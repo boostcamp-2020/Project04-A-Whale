@@ -10,7 +10,6 @@ const region = 'kr-standard';
 const accessKeyId = process.env.API_ACCESS_KEY;
 const secretAccessKey = process.env.API_SECRET_KEY;
 const bucketName = process.env.API_BUCKET_NAME;
-const fileKey = `${uuidv4()}`;
 
 const S3 = new AWS.S3({
   endpoint,
@@ -28,7 +27,7 @@ exports.upload = multer({
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: 'public-read',
     key: (req, file, cb) => {
-      cb(null, fileKey);
+      cb(null, `${uuidv4()}`);
     },
   }),
   limits: { fileSize: 5 * 1024 * 1024 }, // 용량 제한
