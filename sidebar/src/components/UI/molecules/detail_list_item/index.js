@@ -28,7 +28,7 @@ const DetailListItemWrapper = styled.div`
 
 const DatePicker = {
   position: 'absolute',
-  right: '12%',
+  right: '18%',
   padding: '1px',
   margin: '-5px',
 };
