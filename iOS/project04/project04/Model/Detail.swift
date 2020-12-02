@@ -10,6 +10,9 @@ import Foundation
 struct Detail: Hashable {
     enum Section: String {
         case todo
+        case graph
+        case feel
+        case done
     }
     
     var no: Int
