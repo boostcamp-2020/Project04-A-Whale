@@ -27,3 +27,9 @@ exports.deleteDetail = async (no) => {
 
   return results;
 };
+
+exports.createDetail = async (bucketNo, title, dueDate) => {
+  const results = await Detail.create({ bucketNo, status: 'O', title, dueDate });
+
+  return results.dataValues;
+};

@@ -70,3 +70,22 @@ exports.deleteDetail = async (req, res, next) => {
     next(error);
   }
 };
+
+/*
+    POST /api/details
+    * 버킷 상세 추가 API
+*/
+exports.createDetail = async (req, res, next) => {
+  try {
+    const { bucketNo, title, dueDate } = req.body;
+
+    const detail = await detailServices.createDetail(bucketNo, title, dueDate);
+
+    res.status(OK).json({
+      message: '버킷 상세 추가 성공',
+      data: { detail },
+    });
+  } catch (error) {
+    next(error);
+  }
+};

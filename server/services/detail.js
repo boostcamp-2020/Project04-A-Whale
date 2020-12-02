@@ -43,3 +43,8 @@ exports.deleteDetail = async (no) => {
   const result = await db.deleteDetail(no);
   return result;
 };
+
+exports.createDetail = async (bucketNo, title, dueDate) => {
+  const result = await db.createDetail(bucketNo, title, dueDate);
+  return result;
+};
