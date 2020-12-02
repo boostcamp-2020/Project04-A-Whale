@@ -20,7 +20,7 @@ exports.getDetails = async (req, res, next) => {
 };
 
 /*
-    PATCH /api/details/status/:detailNo
+    PATCH /api/details/:detailNo
     * 버킷 상세 상태 변경 API
 */
 exports.updateDetailStatus = async (req, res, next) => {

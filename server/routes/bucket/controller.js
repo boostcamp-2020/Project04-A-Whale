@@ -93,21 +93,3 @@ exports.updateBucket = async (req, res, next) => {
     next(error);
   }
 };
-
-/*
-    GET /api/buckets/:bucketNo/details
-    * 버킷 상세 목록 조회 API
-*/
-exports.getDetails = async (req, res, next) => {
-  try {
-    const { bucketNo } = req.params;
-    const details = await bucketServices.getDetails(bucketNo);
-
-    res.status(OK).json({
-      message: '버킷 상세 목록 조회 성공',
-      data: details,
-    });
-  } catch (error) {
-    next(error);
-  }
-};

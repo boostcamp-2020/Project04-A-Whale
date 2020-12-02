@@ -13,7 +13,11 @@ exports.updateDetailStatus = async (detailNo, status) => {
 };
 
 exports.selectDetails = async (bucketNo) => {
-  const results = await Detail.findAll({ raw: true, where: { bucketNo } });
+  const results = await Detail.findAll({
+    raw: true,
+    where: { bucketNo },
+    order: [['dueDate', 'ASC']],
+  });
 
   return results;
 };
