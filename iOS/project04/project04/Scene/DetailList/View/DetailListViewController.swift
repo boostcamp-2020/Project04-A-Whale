@@ -13,16 +13,20 @@ class DetailListViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Detail.Section, Detail>! = nil
     var bucket: RealmBucket?
     var coordinator: DetailAddCoordinator?
-    var collectionViewModel: DetailListViewModelProtocol? {
-        didSet {
-            self.collectionViewModel?.listDidChange = { [weak self] _ in
-                var snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>()
-                let sections: [Detail.Section] = [.todo]
-                snapshot.appendSections(sections)
-                snapshot.appendItems(self?.collectionViewModel?.list ?? [])
-                self?.dataSource.apply(snapshot, animatingDifferences: false)
-            }
-        }
+    var collectionViewModel: DetailListViewModelProtocol?
+
+    init?(coder: NSCoder,
+          bucket: RealmBucket?,
+          viewModel: DetailListViewModelProtocol,
+          coordinator: DetailAddCoordinator) {
+        self.bucket = bucket
+        self.collectionViewModel = viewModel
+        self.coordinator = coordinator
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -31,22 +35,20 @@ class DetailListViewController: UIViewController {
         title = bucket?.title
         configureHierarchy()
         configureDataSource()
-        collectionViewModel?.listFetchAction()
-    }
-    
-    func configureViewModel() {
-        let networkAgent = DetailAPIAgent()
-        let localAgent = DetailLocalAgent()
-        localAgent.bucket = self.bucket
-        let repository = DetailRepository(network: networkAgent, local: localAgent)
-        let usecase = DetailListUseCase(repository: repository)
-        collectionViewModel = DetailListViewModel(usecase: usecase)
+        
+        collectionViewModel?.listDidChange = { [weak self] _ in
+            var snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>()
+            let sections: [Detail.Section] = [.todo]
+            snapshot.appendSections(sections)
+            snapshot.appendItems(self?.collectionViewModel?.list ?? [])
+            self?.dataSource.apply(snapshot, animatingDifferences: false)
+        }
+        
         collectionViewModel?.listFetchAction()
     }
     
     @IBAction func detailAppendAction(_ sender: UIBarButtonItem) {
-        coordinator?.presentDetailListAdd(navigationController)
-//        collectionViewModel?.listAddAction(Detail(title: "1", dueDate: "\(Date())"))
+        coordinator?.presentDetailListAdd(navigationController, viewModel: collectionViewModel)
     }
 }
 

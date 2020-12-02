@@ -30,6 +30,7 @@ final class BucketCoordinator: NavigationCoordinator {
         let viewController = UIStoryboard(name: "BucketList", bundle: nil).instantiateViewController(identifier: "BucketListViewController") { (coder) -> BucketListViewController? in
             return BucketListViewController(coder: coder, coordinator: self, viewModel: bucketListViewModel)
         }
+        
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.pushViewController(viewController, animated: false)
     }
@@ -37,19 +38,23 @@ final class BucketCoordinator: NavigationCoordinator {
 
 extension BucketCoordinator: DetailListPushCoordinator {
     func pushToDetailList(bucket: RealmBucket?) {
-        let viewController = UIStoryboard(name: "DetailList", bundle: nil).instantiateViewController(identifier: "DetailListViewController") as DetailListViewController
-        viewController.bucket = bucket
-        viewController.coordinator = DetailAddCoordinator(navigationController)
-        configureDetailListViewModel(viewController)
+        let viewModel = configureDetailListViewModel(bucket: bucket)
+        let coordinator = DetailAddCoordinator(navigationController)
+        let viewController = UIStoryboard(name: "DetailList", bundle: nil).instantiateViewController(identifier: "DetailListViewController", creator: { coder in
+            return DetailListViewController(coder: coder,
+                                            bucket: bucket,
+                                            viewModel: viewModel,
+                                            coordinator: coordinator)
+        })
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func configureDetailListViewModel(_ viewController: DetailListViewController) {
+    func configureDetailListViewModel(bucket: RealmBucket?) -> DetailListViewModel {
         let networkAgent = DetailAPIAgent()
         let localAgent = DetailLocalAgent()
-        localAgent.bucket = viewController.bucket
+        localAgent.bucket = bucket
         let repository = DetailRepository(network: networkAgent, local: localAgent)
         let usecase = DetailListUseCase(repository: repository)
-        viewController.collectionViewModel = DetailListViewModel(usecase: usecase)
+        return DetailListViewModel(usecase: usecase)
     }
 }

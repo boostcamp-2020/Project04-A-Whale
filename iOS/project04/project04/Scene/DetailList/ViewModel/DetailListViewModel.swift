@@ -9,6 +9,7 @@ import Foundation
 
 protocol DetailListViewModelProtocol {
     var list: [Detail]? { get }
+    var usecase: DetailListUseCase { get }
     var listDidChange: ((DetailListViewModelProtocol) -> ())? { get set }
     func listDeleteAction(at index: Int)
     func listAddAction(_ newElement: Detail)

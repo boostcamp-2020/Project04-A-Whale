@@ -14,10 +14,9 @@ class BucketListViewController: UIViewController {
     var dataSource: DataSource?
     var coordinator: DetailListPushCoordinator
     @IBOutlet weak var collectionView: UICollectionView!
-    
     var bucketListViewModel: BucketListViewModelProtocol {
         didSet {
-            bucketListViewModel.handler = { [weak self](data) in
+            bucketListViewModel.handler = { [weak self] (data) in
                 var snapshot = Snapshot()
                 snapshot.appendSections([.todo, .done])
                 snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
@@ -144,4 +143,3 @@ extension BucketListViewController: UICollectionViewDelegate {
         }
     }
 }
-
