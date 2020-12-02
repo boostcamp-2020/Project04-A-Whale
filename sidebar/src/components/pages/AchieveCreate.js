@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { reset, changeInput, setAchieve } from '../../modules/achieve';
+import { reset, changeInput, addInput, setAchieve } from '../../modules/achieve';
 import AchieveCreateLayout from '../templates/achieve_create';
 import Header from '../UI/organisms/header';
 
@@ -21,6 +21,9 @@ const AchieveCreate = ({ match }) => {
   const acheiveChangeHandler = useCallback((e) => {
     dispatch(changeInput(e.target.value));
   }, []);
+  const acheiveAddHandler = useCallback((input) => {
+    dispatch(addInput(input));
+  }, []);
   const setAchieveHandler = useCallback(async () => {
     if (acheiveState.input) {
       dispatch(setAchieve({ description: acheiveState.input, bucketNo }));
@@ -31,10 +34,9 @@ const AchieveCreate = ({ match }) => {
 
   // todo useEffect: bucketState 불러오기
   useEffect(() => {
-    console.log(acheiveState);
-    if (acheiveState.success) {
+    if (acheiveState.message) {
       dispatch(reset());
-      history.push(`/achieves/${bucketNo}/result`);
+      history.replace(`/achieves/${bucketNo}/result`);
     }
   }, [acheiveState]);
 
@@ -45,6 +47,7 @@ const AchieveCreate = ({ match }) => {
         bucketState={bucketState}
         acheiveState={acheiveState}
         acheiveChangeHandler={acheiveChangeHandler}
+        acheiveAddHandler={acheiveAddHandler}
         setAchieveHandler={setAchieveHandler}
       />
     </>
