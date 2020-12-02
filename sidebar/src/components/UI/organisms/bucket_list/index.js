@@ -9,9 +9,8 @@ const BucketList = ({ buckets }) => {
   const classes = useStyles();
   const { openBuckets, achieveBuckets, giveUpBuckets } = buckets;
 
-  const getBucketListItem = (buckets) => {
-    return buckets.map((bucket) => <BucketListItem key={bucket.no} bucket={bucket} />);
-  };
+  const getBucketListItem = (buckets) =>
+    buckets.map((bucket) => <BucketListItem key={bucket.no} bucket={bucket} />);
 
   return (
     <>

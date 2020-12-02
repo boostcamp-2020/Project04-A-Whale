@@ -34,7 +34,7 @@ const RemoveIcon = {
   height: '20px',
 };
 
-const DetailListItem = ({ detail, removeDetailActionConnect }) => {
+const CreateDetailListItem = ({ detail, removeDetailActionConnect }) => {
   const style = {
     color: 'inherit',
   };
@@ -67,5 +67,5 @@ const DetailListItem = ({ detail, removeDetailActionConnect }) => {
 const mapStateToProps = () => ({});
 
 export default connect(mapStateToProps, { removeDetailActionConnect: removeDetailAction })(
-  DetailListItem
+  CreateDetailListItem
 );

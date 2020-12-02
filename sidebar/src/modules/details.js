@@ -49,6 +49,16 @@ const getUpdateStatusDetails = ({ details }, { no, status }) => {
   return details;
 };
 
+const getDeleteDetail = ({ details }, { no }) => {
+  const openIdx = details.openDetails.findIndex((detail) => detail.no === no);
+  const achieveIdx = details.achieveDetails.findIndex((detail) => detail.no === no);
+
+  if (openIdx > -1) details.openDetails.splice(openIdx, 1);
+  else details.achieveDetails.splice(achieveIdx, 1);
+
+  return details;
+};
+
 const details = handleActions(
   {
     [GET_DETAILS_SUCCESS]: (state, action) => ({
@@ -58,6 +68,10 @@ const details = handleActions(
     [UPDATE_DETAIL_STATUS_SUCCESS]: (state, action) => ({
       ...state,
       buckets: getUpdateStatusDetails(state, action.params),
+    }),
+    [DELETE_DETAIL_SUCCESS]: (state, action) => ({
+      ...state,
+      buckets: getDeleteDetail(state, action.params),
     }),
   },
   initialState
