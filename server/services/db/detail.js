@@ -6,8 +6,8 @@ exports.bulkCreate = async (details) => {
   return results;
 };
 
-exports.updateDetailStatus = async (detailNo, status) => {
-  const results = await Detail.update({ status }, { where: { no: detailNo } });
+exports.updateDetailStatus = async (no, status) => {
+  const results = await Detail.update({ status }, { where: { no } });
 
   return results[0];
 };
@@ -18,6 +18,12 @@ exports.selectDetails = async (bucketNo) => {
     where: { bucketNo },
     order: [['dueDate', 'ASC']],
   });
+
+  return results;
+};
+
+exports.deleteDetail = async (no) => {
+  const results = await Detail.destroy({ where: { no } });
 
   return results;
 };

@@ -35,13 +35,13 @@ exports.getBuckets = async (userNo) => {
   return bucketsByStatus(buckets);
 };
 
-exports.updateBucketStatus = async (bucketNo, status) => {
-  const result = await db.updateBucketStatus(bucketNo, status);
+exports.updateBucketStatus = async (no, status) => {
+  const result = await db.updateBucketStatus(no, status);
   return result;
 };
 
-exports.updateBucketTitleDesc = async (bucketNo, title, description) => {
-  const result = await db.updateBucketTitleDesc(bucketNo, title, description);
+exports.updateBucketTitleDesc = async (no, title, description) => {
+  const result = await db.updateBucketTitleDesc(no, title, description);
   return result;
 };
 

@@ -6,8 +6,8 @@ exports.bulkCreate = async (details) => {
   return newBucket;
 };
 
-exports.updateDetailStatus = async (detailNo, status) => {
-  const result = await db.updateDetailStatus(detailNo, status);
+exports.updateDetailStatus = async (no, status) => {
+  const result = await db.updateDetailStatus(no, status);
   return result;
 };
 
@@ -36,5 +36,10 @@ exports.getDetails = async (bucketNo) => {
   if (achieve) {
     result.achieveComment = achieve.description;
   }
+  return result;
+};
+
+exports.deleteDetail = async (no) => {
+  const result = await db.deleteDetail(no);
   return result;
 };

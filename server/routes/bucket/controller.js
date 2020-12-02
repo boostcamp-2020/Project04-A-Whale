@@ -66,17 +66,17 @@ exports.getBuckets = async (req, res, next) => {
 };
 
 /*
-    PATCH /api/buckets/:bucketNo
+    PATCH /api/buckets/:no
     * 버킷 수정 API
 */
 exports.updateBucket = async (req, res, next) => {
   try {
-    const { bucketNo } = req.params;
+    const { no } = req.params;
     const { status, title, description } = req.body;
     let result;
 
-    if (status) result = await bucketServices.updateBucketStatus(bucketNo, status);
-    else result = await bucketServices.updateBucketTitleDesc(bucketNo, title, description);
+    if (status) result = await bucketServices.updateBucketStatus(no, status);
+    else result = await bucketServices.updateBucketTitleDesc(no, title, description);
 
     if (result === 1) {
       res.status(OK).json({

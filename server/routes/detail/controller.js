@@ -20,15 +20,15 @@ exports.getDetails = async (req, res, next) => {
 };
 
 /*
-    PATCH /api/details/:detailNo
+    PATCH /api/details/:no
     * 버킷 상세 상태 변경 API
 */
 exports.updateDetailStatus = async (req, res, next) => {
   try {
-    const { detailNo } = req.params;
+    const { no } = req.params;
     const { status } = req.body;
 
-    const result = await detailServices.updateDetailStatus(detailNo, status);
+    const result = await detailServices.updateDetailStatus(no, status);
 
     if (result === 1) {
       res.status(OK).json({
@@ -38,6 +38,31 @@ exports.updateDetailStatus = async (req, res, next) => {
     } else {
       res.status(BAD_REQUEST).json({
         message: '버킷 상세 상태 변경 실패',
+        data: false,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    DELETE /api/details/:no
+    * 버킷 상세 삭제 API
+*/
+exports.deleteDetail = async (req, res, next) => {
+  try {
+    const { no } = req.params;
+    const result = await detailServices.deleteDetail(no);
+
+    if (result === 1) {
+      res.status(OK).json({
+        message: '버킷 상세 삭제 성공',
+        data: true,
+      });
+    } else {
+      res.status(BAD_REQUEST).json({
+        message: '버킷 상세 삭제 실패',
         data: false,
       });
     }
