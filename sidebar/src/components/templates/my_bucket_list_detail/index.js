@@ -16,7 +16,7 @@ const MyBucketListDetail = ({ bucket, details }) => {
       {achieveComment ? (
         <ReadOnlyInput label="달성 소감🎉" value={achieveComment} />
       ) : (
-        <DetailRegister />
+        <DetailRegister bucket={bucket} />
       )}
       <DetailList details={details} />
     </main>

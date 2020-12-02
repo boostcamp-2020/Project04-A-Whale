@@ -42,6 +42,13 @@ export const updateDetailInfo = ({ no, title, dueDate }) =>
 
 export const deleteDetail = ({ no }) => axios.delete(`/api/details/${no}`);
 
+export const createDetail = ({ bucketNo, title, dueDate }) =>
+  axios.post(`/api/details`, {
+    bucketNo,
+    title,
+    dueDate,
+  });
+
 // achieves
 export const setAchieves = ({ bucketNo, description }) => {
   return axios.post('/api/achieves', {
