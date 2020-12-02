@@ -31,7 +31,7 @@ const createbucket = handleActions(
       }),
     [UPDATE_DETAILDUE]: (state, { payload: input }) =>
       produce(state, (draft) => {
-        const idx = draft.details.find((element) => element.title === input.title);
+        const idx = state.details.findIndex((element) => element.title === input.title);
         draft.details[idx].dueDate = input.dueDate;
       }),
     [REMOVE_DETAIL]: (state, { payload: input }) =>

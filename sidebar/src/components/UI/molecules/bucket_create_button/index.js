@@ -18,7 +18,7 @@ const BucketCreateButton = ({ storeTitle, storeDescription, storeDetails }) => {
   const disabled = storeTitle.length * storeDetails.length === 0;
   console.log('disabled:', disabled);
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     const res = await createBucket(storeTitle, storeDescription, storeDetails);
     history.replace('/');
   };

@@ -41,21 +41,17 @@ const RemoveIcon = {
   height: '20px',
 };
 
-const DetailListItem = ({ detail, removeDetailActionConnect }) => {
+const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActionConnect }) => {
   const style = {
     color: 'inherit',
   };
-  const history = useHistory();
-  useEffect(() => {
-    history.replace('/');
-  });
 
   const onClickHandler = () => {
     removeDetailActionConnect(detail);
   };
 
   const dateChangeHandler = (e) => {
-    updateDetailDueAction({
+    updateDetailDueActionConnect({
       title: detail.title,
       dueDate: e.target.value,
     });
@@ -87,6 +83,7 @@ const DetailListItem = ({ detail, removeDetailActionConnect }) => {
 
 const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps, { removeDetailActionConnect: removeDetailAction })(
-  DetailListItem
-);
+export default connect(mapStateToProps, {
+  removeDetailActionConnect: removeDetailAction,
+  updateDetailDueActionConnect: updateDetailDueAction,
+})(DetailListItem);
