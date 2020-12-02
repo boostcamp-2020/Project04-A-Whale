@@ -100,7 +100,7 @@ extension DetailListViewController: UICollectionViewDelegate {
         dataSource.supplementaryViewProvider = { [weak self]
             (collectionView, kind, indexPath) -> UICollectionReusableView? in
             if kind == UICollectionView.elementKindSectionHeader {
-                if indexPath.section > 1 {
+                if indexPath.section > 1 || indexPath.section == 0 {
                     guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailSectionHeaderView.description(), for: indexPath) as? DetailSectionHeaderView else {
                         return nil
                     }

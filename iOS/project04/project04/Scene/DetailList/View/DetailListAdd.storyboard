@@ -104,7 +104,7 @@
                         <constraints>
                             <constraint firstItem="eGV-TC-1mb" firstAttribute="trailing" secondItem="2gG-md-Aaf" secondAttribute="trailing" id="3cH-kh-Jtf"/>
                             <constraint firstAttribute="bottom" secondItem="eGV-TC-1mb" secondAttribute="bottom" id="NlH-ac-tUN"/>
-                            <constraint firstItem="eGV-TC-1mb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2gG-md-Aaf" secondAttribute="top" constant="300" id="a2h-mp-CN1"/>
+                            <constraint firstItem="eGV-TC-1mb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2gG-md-Aaf" secondAttribute="top" constant="500" id="a2h-mp-CN1"/>
                             <constraint firstItem="eGV-TC-1mb" firstAttribute="leading" secondItem="2gG-md-Aaf" secondAttribute="leading" id="j6u-uy-NHr"/>
                         </constraints>
                     </view>
