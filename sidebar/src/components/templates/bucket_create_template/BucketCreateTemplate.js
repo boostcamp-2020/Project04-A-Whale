@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 import BucketSearch from '../../UI/organisms/bucket_search/bucketSearch';
-import BucketContents from '../../UI/organisms/bucket_contents/BucketContents';
-import DetailList from '../../UI/organisms/detail_list/DetailList';
+import BucketContents from '../../UI/organisms/bucket_contents';
+import DetailList from '../../UI/organisms/detail_list';
 import Buttons from '../../UI/organisms/buttons/Buttons';
 
 const BucketCreateTemplateWrapper = styled.div`
