@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import DetailAdder from '../../molecules/detail_adder';
-import DetailListItem from '../../molecules/detail_list_item';
+import DetailListItem from '../../molecules/create_detail_list_item';
 import { addDetailAction, removeDetailAction } from '../../../../modules/actions/createbucket';
 
 const DetailListWrapper = styled.div`

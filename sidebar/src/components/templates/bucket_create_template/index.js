@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 import BucketSearch from '../../UI/organisms/bucket_search';
 import BucketContents from '../../UI/organisms/bucket_contents';
-import DetailList from '../../UI/organisms/detail_list';
+import DetailList from '../../UI/organisms/create_detail_list';
 import Buttons from '../../UI/organisms/buttons';
 
 const BucketCreateTemplateWrapper = styled.div`
