@@ -8,8 +8,12 @@ const GET_DETAILS_SUCCESS = 'details/GET_DETAILS_SUCCESS';
 const UPDATE_DETAIL_STATUS = 'details/UPDATE_DETAIL_STATUS';
 const UPDATE_DETAIL_STATUS_SUCCESS = 'details/UPDATE_DETAIL_STATUS_SUCCESS';
 
+const DELETE_DETAIL = 'details/DELETE_DETAIL';
+const DELETE_DETAIL_SUCCESS = 'details/DELETE_DETAIL_SUCCESS';
+
 export const getDetails = createRequestThunk(GET_DETAILS, api.getDetails);
 export const updateDetailStatus = createRequestThunk(UPDATE_DETAIL_STATUS, api.updateDetailStatus);
+export const deleteDetail = createRequestThunk(DELETE_DETAIL, api.deleteDetail);
 
 const initialState = {
   details: {
@@ -31,15 +35,15 @@ const updateStatusDetail = (addArray, removeArray, idx, status) => {
   removeArray.splice(idx, 1);
 };
 
-const getUpdateStatusDetails = ({ details }, { detailNo, status }) => {
-  const openIdx = details.openDetails.findIndex((detail) => detail.no === detailNo);
+const getUpdateStatusDetails = ({ details }, { no, status }) => {
+  const openIdx = details.openDetails.findIndex((detail) => detail.no === no);
 
   if (openIdx > -1 && status === 'A') {
     updateStatusDetail(details.achieveDetails, details.openDetails, openIdx, status);
     return details;
   }
 
-  const achieveIdx = details.achieveDetails.findIndex((detail) => detail.no === detailNo);
+  const achieveIdx = details.achieveDetails.findIndex((detail) => detail.no === no);
 
   updateStatusDetail(details.openDetails, details.achieveDetails, achieveIdx, status);
   return details;

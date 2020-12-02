@@ -24,7 +24,7 @@ const MyBucketListDetail = ({ bucket, details }) => {
 
   const statusChange = (detail) => {
     const params = {};
-    params.detailNo = detail.no;
+    params.no = detail.no;
     if (detail.status === 'A') params.status = 'O';
     if (detail.status === 'O') params.status = 'A';
     dispatch(updateDetailStatus(params));

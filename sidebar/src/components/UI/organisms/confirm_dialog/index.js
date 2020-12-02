@@ -20,7 +20,7 @@ const ConfirmDialog = ({ open, handleClose, bucket }) => {
   const handleClick = () => {
     handleClose();
     const params = {};
-    params.bucketNo = bucket.no;
+    params.no = bucket.no;
     if (bucket.status === 'O') params.status = 'G';
     if (bucket.status === 'G') params.status = 'O';
     dispatch(updateBucketStatus(params));

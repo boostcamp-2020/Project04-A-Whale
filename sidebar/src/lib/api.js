@@ -15,13 +15,13 @@ export const createBucket = (title, description, details, ref) =>
 
 export const getPresets = (keyword) => axios.get(`/api/buckets/presets?keyword=${keyword}`);
 
-export const updateBucketStatus = ({ bucketNo, status }) =>
-  axios.patch(`/api/buckets/${bucketNo}`, {
+export const updateBucketStatus = ({ no, status }) =>
+  axios.patch(`/api/buckets/${no}`, {
     status,
   });
 
-export const updateBucketInfo = ({ bucketNo, title, description }) =>
-  axios.patch(`/api/buckets/${bucketNo}`, {
+export const updateBucketInfo = ({ no, title, description }) =>
+  axios.patch(`/api/buckets/${no}`, {
     title,
     description,
   });
@@ -29,15 +29,18 @@ export const updateBucketInfo = ({ bucketNo, title, description }) =>
 // details
 export const getDetails = (bucketNo) => axios.get(`/api/details/${bucketNo}`);
 
-export const updateDetailStatus = ({ detailNo, status }) =>
-  axios.patch(`/api/details/${detailNo}`, {
+export const updateDetailStatus = ({ no, status }) =>
+  axios.patch(`/api/details/${no}`, {
     status,
   });
 
-export const updateDetailInfo = ({ detailNo, detail }) =>
-  axios.patch(`/api/buckets/${detailNo}`, {
-    detail,
+export const updateDetailInfo = ({ no, title, dueDate }) =>
+  axios.patch(`/api/details/${no}`, {
+    title,
+    dueDate,
   });
+
+export const deleteDetail = ({ no }) => axios.delete(`/api/details/${no}`);
 
 // achieves
 export const setAchieves = ({ bucketNo, description }) => {

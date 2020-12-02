@@ -1,27 +1,39 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import BlockIcon from '@material-ui/icons/Block';
 import CreateIcon from '@material-ui/icons/Create';
-import * as api from '../../../../lib/api';
+import { updateBucketInfo } from '../../../../modules/buckets';
 import { useStyles, TitleWrapper, ButtonWrapper } from './style';
 
 const DetailHeader = ({ bucket }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
   const [title, setTitle] = useState(bucket.title);
-  const [desc, setDesc] = useState(bucket.description);
+  const [description, setDescription] = useState(bucket.description);
+  const [prevTitle, setPrevTitle] = useState('');
+  const [prevDescription, setPrevDescription] = useState('');
 
   const handleTitleChange = ({ target }) => setTitle(target.value);
-  const handleDescChange = ({ target }) => setDesc(target.value);
+  const handleDescChange = ({ target }) => setDescription(target.value);
 
-  const handleClick = () => setEdit(true);
-  const handleCancel = () => setEdit(false);
+  const handleClick = () => {
+    setPrevTitle(title);
+    setPrevDescription(description);
+    setEdit(true);
+  };
+  const handleCancel = () => {
+    setTitle(prevTitle);
+    setDescription(prevDescription);
+    setEdit(false);
+  };
 
   const handleSave = () => {
-    api.updateBucketInfo({ bucketNo: bucket.no, title, description: desc });
+    dispatch(updateBucketInfo({ no: bucket.no, title, description }));
     setEdit(false);
   };
 
@@ -43,7 +55,7 @@ const DetailHeader = ({ bucket }) => {
           />
           <TextField
             className={classes.textField}
-            value={desc}
+            value={description}
             placeholder="Description"
             fullWidth
             multiline
@@ -83,7 +95,7 @@ const DetailHeader = ({ bucket }) => {
             <CreateIcon onClick={handleClick} />
           </TitleWrapper>
           <Typography className={classes.description} variant="h5">
-            {desc}
+            {description}
           </Typography>
         </>
       )}
