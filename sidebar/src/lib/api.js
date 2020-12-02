@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : '/';
+axios.defaults.baseURL =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://101.101.210.76:8000';
 
 // buckets
 export const getBuckets = () => axios.get('/api/buckets');
@@ -23,15 +24,22 @@ export const updateBucketStatus = ({ bucketNo, status }) =>
   });
 
 // achieves
-export const setAchieves = ({ bucketNo, description }) => {
-  return axios.post('/api/achieves', {
+export const setAchieves = ({ bucketNo, description }) =>
+  axios.post('/api/achieves', {
     bucketNo,
     description,
   });
-};
 
-export const updateAchieves = ({ achieveNo, description }) => {
-  return axios.put(`/api/achieves/${achieveNo}`, {
+export const updateAchieves = ({ achieveNo, description }) =>
+  axios.put(`/api/achieves/${achieveNo}`, {
     description,
   });
+
+export const setObjectStorage = (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const config = {
+    header: { 'content-type': 'multipart/form-data' },
+  };
+  return axios.post(`/api/objects/`, formData, config);
 };
