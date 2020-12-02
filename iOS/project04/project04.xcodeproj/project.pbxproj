@@ -13,6 +13,8 @@
 		8261DB802575F8C40027F6F8 /* BucketListAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DB7F2575F8C40027F6F8 /* BucketListAddViewController.swift */; };
 		8261DB8A25761A420027F6F8 /* BucketListAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DB8925761A420027F6F8 /* BucketListAddViewModel.swift */; };
 		8261DB8E25761B7F0027F6F8 /* BucketListAddUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DB8D25761B7F0027F6F8 /* BucketListAddUseCase.swift */; };
+		8261DB92257723D20027F6F8 /* BucketListAddHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DB91257723D20027F6F8 /* BucketListAddHeaderView.swift */; };
+		8261DB98257767080027F6F8 /* BucketListAddHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8261DB97257767080027F6F8 /* BucketListAddHeaderView.xib */; };
 		82A7290E256F41DD00BD5797 /* BucketListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */; };
 		82A72913256F437200BD5797 /* BucketListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A72912256F437100BD5797 /* BucketListRepository.swift */; };
 		82A72917256F43E100BD5797 /* BucketLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A72916256F43E100BD5797 /* BucketLocalAgent.swift */; };
@@ -78,6 +80,8 @@
 		8261DB7F2575F8C40027F6F8 /* BucketListAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddViewController.swift; sourceTree = "<group>"; };
 		8261DB8925761A420027F6F8 /* BucketListAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddViewModel.swift; sourceTree = "<group>"; };
 		8261DB8D25761B7F0027F6F8 /* BucketListAddUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddUseCase.swift; sourceTree = "<group>"; };
+		8261DB91257723D20027F6F8 /* BucketListAddHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddHeaderView.swift; sourceTree = "<group>"; };
+		8261DB97257767080027F6F8 /* BucketListAddHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BucketListAddHeaderView.xib; sourceTree = "<group>"; };
 		82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListUseCase.swift; sourceTree = "<group>"; };
 		82A72912256F437100BD5797 /* BucketListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListRepository.swift; sourceTree = "<group>"; };
 		82A72916256F43E100BD5797 /* BucketLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketLocalAgent.swift; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 				C1E6C40D2574D27900BD4B4B /* BucketList.storyboard */,
 				8261DB7B2575F89F0027F6F8 /* BucketListAdd.storyboard */,
 				8261DB7F2575F8C40027F6F8 /* BucketListAddViewController.swift */,
+				8261DB91257723D20027F6F8 /* BucketListAddHeaderView.swift */,
+				8261DB97257767080027F6F8 /* BucketListAddHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -506,6 +512,7 @@
 				C160DBB125776DB800290EAE /* DetailSectionImpressionHeaderView.xib in Resources */,
 				C1E6C4122574D31300BD4B4B /* DetailList.storyboard in Resources */,
 				C1655C9E256B7ED30067E3C5 /* Assets.xcassets in Resources */,
+				8261DB98257767080027F6F8 /* BucketListAddHeaderView.xib in Resources */,
 				C160DBAA25775FA400290EAE /* DetailSectionHeaderView.xib in Resources */,
 				C175AA7C25752C7D009D8103 /* DetailListAdd.storyboard in Resources */,
 			);
@@ -589,6 +596,7 @@
 				C1BFAD05257613F500BDEF93 /* RoundView.swift in Sources */,
 				C175D194256CC2EC001144F0 /* DetailAPIAgent.swift in Sources */,
 				C15F33612577BC9E0032EACF /* extension+String.swift in Sources */,
+				8261DB92257723D20027F6F8 /* BucketListAddHeaderView.swift in Sources */,
 				C1655C97256B7ED10067E3C5 /* SceneDelegate.swift in Sources */,
 				C175D19B256CCF3C001144F0 /* RealmDetailList.swift in Sources */,
 				C1E6C41F2574E83200BD4B4B /* NavigationCoordinator.swift in Sources */,

@@ -8,7 +8,11 @@
 import UIKit
 import RealmSwift
 
-class BucketListViewController: UIViewController {
+protocol BucketListAddDelegate {
+    var bucketListViewModel: BucketListViewModelProtocol { get set }
+}
+
+class BucketListViewController: UIViewController, BucketListAddDelegate {
     typealias DataSource = UICollectionViewDiffableDataSource<Bucket.Section, Bucket>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Bucket.Section, Bucket>
     var dataSource: DataSource?
@@ -53,8 +57,7 @@ class BucketListViewController: UIViewController {
     }
     
     @IBAction func didTouchPlusButton(_ sender: UIBarButtonItem) {
-//        self.bucketListViewModel.append(bucket: Bucket(id: nil, title: "New Bucket\(bucketListViewModel.count)", status: "O"))
-        coordinator.pushToBucketListAdd()
+        coordinator.pushToBucketListAdd(from: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -30,7 +30,7 @@ class BucketListAddViewModel: BucketListAddViewModelProtocol {
     }
     
     func fetch(with: String) {
-        self.details = (0...10).map({ Detail(title: "\($0)", dueDate: "\($0)") })
+        self.details = []
     }
     
     func append(detail: Detail) {

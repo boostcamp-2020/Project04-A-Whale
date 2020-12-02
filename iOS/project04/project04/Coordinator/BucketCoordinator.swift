@@ -13,7 +13,7 @@ protocol DetailListPushCoordinator {
 }
 
 protocol BucketListAddCoordinator {
-    func pushToBucketListAdd()
+    func pushToBucketListAdd(from deletage: BucketListAddDelegate)
 }
 
 final class BucketCoordinator: NavigationCoordinator {
@@ -62,11 +62,11 @@ extension BucketCoordinator: DetailListPushCoordinator {
 }
 
 extension BucketCoordinator: BucketListAddCoordinator {
-    func pushToBucketListAdd() {
+    func pushToBucketListAdd(from delegate: BucketListAddDelegate) {
         let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController", creator: { (coder) -> BucketListAddViewController? in
             let usecase = BucketListAddUseCase()
             let viewModel = BucketListAddViewModel(usecase: usecase)
-            return BucketListAddViewController(coder: coder, viewModel: viewModel)
+            return BucketListAddViewController(coder: coder, viewModel: viewModel, delegate: delegate)
         }) as BucketListAddViewController
         navigationController.pushViewController(viewController, animated: true)
     }

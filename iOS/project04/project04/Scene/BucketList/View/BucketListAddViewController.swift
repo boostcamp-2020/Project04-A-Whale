@@ -9,13 +9,14 @@ import UIKit
 
 class BucketListAddViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var collectionView: UICollectionView!
+    var sectionHeader: BucketListAddHeaderView?
     
     typealias DataSource = UICollectionViewDiffableDataSource<Detail.Section, Detail>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>
     
     var dataSource: DataSource?
+    var delegate: BucketListAddDelegate?
     var bucketListAddViewModel: BucketListAddViewModelProtocol {
         didSet {
             bucketListAddViewModel.handler = { [weak self] data in
@@ -23,13 +24,14 @@ class BucketListAddViewController: UIViewController {
                 snapshot.appendSections([.todo])
                 snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
 
-                self?.dataSource?.apply(snapshot)
+                self?.dataSource?.apply(snapshot,animatingDifferences: false)
             }
         }
     }
     
-    init?(coder: NSCoder, viewModel: BucketListAddViewModelProtocol) {
+    init?(coder: NSCoder, viewModel: BucketListAddViewModelProtocol, delegate: BucketListAddDelegate) {
         self.bucketListAddViewModel = viewModel
+        self.delegate = delegate
         super.init(coder: coder)
     }
     
@@ -37,9 +39,17 @@ class BucketListAddViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @IBAction func didToucAddButton(_ sender: UIBarButtonItem) {
+        guard let title = sectionHeader?.titleTextField.text else { return }
+        if !title.isEmpty {
+            let bucket = Bucket(id: nil, title: title, status: "O")
+            delegate?.bucketListViewModel.append(bucket: bucket)
+        }
+        navigationController?.popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerForKeyboardNotifications()
         configureCollectionView()
         bucketListAddViewModel.handler = { [weak self] data in
             var snapshot = Snapshot()
@@ -51,25 +61,6 @@ class BucketListAddViewController: UIViewController {
 
         bucketListAddViewModel.fetch(with: "")
     }
-    
-    func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardFrame.height, right: 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    @objc func keyboardWillHide(_ notification: Notification) {
-        let contentInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
 }
 
 extension BucketListAddViewController: UICollectionViewDelegate {
@@ -80,14 +71,31 @@ extension BucketListAddViewController: UICollectionViewDelegate {
     private func configureDataSource(collectionView: UICollectionView,
                              cellProvider: @escaping (UICollectionView, IndexPath, Detail) -> UICollectionViewListCell?) {
         dataSource = DataSource(collectionView: collectionView, cellProvider: cellProvider)
+        dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+            guard kind == UICollectionView.elementKindSectionHeader else {
+                return nil
+            }
+            let view = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: BucketListAddHeaderView.reuseIdentifier,
+                for: indexPath) as? BucketListAddHeaderView
+            view?.configureTextViewPlaceholder()
+            view?.descriptionTextView.delegate = view
+            self.sectionHeader = view
+            return view
+        }
     }
     
     private func configureCollectionView() {
         configureDataSource(collectionView: collectionView,
                             cellProvider: cellProvider(collectionView:indexPath:detail:))
-        let configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        configuration.headerMode = .supplementary
         collectionView.collectionViewLayout = createLayout(using: configuration)
         collectionView.delegate = self
+        
+        let nib = UINib(nibName: "BucketListAddHeaderView", bundle: nil)
+        collectionView.register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BucketListAddHeaderView.reuseIdentifier)
     }
     
     private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, Detail> {
@@ -109,4 +117,5 @@ extension BucketListAddViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
+    
 }
