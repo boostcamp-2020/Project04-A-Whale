@@ -33,9 +33,9 @@ exports.updateAchieve = async ({ description, no }) => {
   return result;
 };
 
-exports.deleteAchieve = async (achieveNo) => {
+exports.deleteAchieve = async (no) => {
   const result = await Achieve.destroy({
-    where: { achieveNo },
+    where: { no },
     raw: true,
   });
 
