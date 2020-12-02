@@ -39,7 +39,7 @@ class BucketListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureCollectionView()
         bucketListViewModel.handler = { [weak self](data) in
             var snapshot = Snapshot()

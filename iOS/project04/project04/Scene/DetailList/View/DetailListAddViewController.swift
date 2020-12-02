@@ -59,19 +59,6 @@ class DetailListAddViewController: UIViewController {
             self?.dismiss(animated: false, completion: nil)
         })
     }
-
-    @objc func keyboardWillShow(_ notification:NSNotification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            
-            self.view.frame.origin.y = -keyboardHeight
-        }
-    }
-    
-    @objc func keyboardWillHide(_ notification:NSNotification) {
-        self.view.frame.origin.y = 0
-    }
     
     @IBAction func submitButton(_ sender: RoundButton) {
         if textView.text == "" {
@@ -82,7 +69,15 @@ class DetailListAddViewController: UIViewController {
         
         let title = textView.text
         let dueDate = datePicker.toString()
-        viewModel?.listAddAction(Detail(title: title ?? "", dueDate: dueDate ?? ""))
+        let currentTime = Date().toStringKST(dateFormat: "yyyy-MM-dd HH:mm:ss")
+        viewModel?.listAddAction(Detail(no: detail?.bucketNo ?? 0,
+                                        title: title ?? "",
+                                        status: "O",
+                                        dueDate: dueDate ?? "",
+                                        createdAt: currentTime,
+                                        updatedAt: currentTime,
+                                        deletedAt: nil,
+                                        bucketNo: 0))
         dismiss(animated: false, completion: nil)
     }
 }
@@ -98,8 +93,23 @@ extension DetailListAddViewController: UITextViewDelegate {
             textViewContentSizeChange(value: -20)
         }
     }
+}
+
+extension DetailListAddViewController {
+    @objc private func keyboardWillShow(_ notification:NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            
+            self.view.frame.origin.y = -keyboardHeight
+        }
+    }
     
-    func textViewContentSizeChange(value: CGFloat) {
+    @objc private func keyboardWillHide(_ notification:NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    private func textViewContentSizeChange(value: CGFloat) {
         heightConstraint.constant = heightConstraint.constant + value
     }
 }

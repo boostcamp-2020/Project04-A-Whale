@@ -16,11 +16,16 @@
 		82A7291F256F4BCB00BD5797 /* RealmBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7291E256F4BCB00BD5797 /* RealmBucket.swift */; };
 		B20CB3CD1814FA9193815C42 /* Pods_project04.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549A8B673E411EE0B839D8C7 /* Pods_project04.framework */; };
 		C11AC460256B7F8B00E45667 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C11AC45F256B7F8B00E45667 /* .swiftlint.yml */; };
+		C160DBA925775FA400290EAE /* DetailSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160DBA725775FA400290EAE /* DetailSectionHeaderView.swift */; };
+		C160DBAA25775FA400290EAE /* DetailSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C160DBA825775FA400290EAE /* DetailSectionHeaderView.xib */; };
+		C160DBB025776DB800290EAE /* DetailSectionImpressionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160DBAE25776DB800290EAE /* DetailSectionImpressionHeaderView.swift */; };
+		C160DBB125776DB800290EAE /* DetailSectionImpressionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C160DBAF25776DB800290EAE /* DetailSectionImpressionHeaderView.xib */; };
 		C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1655C94256B7ED10067E3C5 /* AppDelegate.swift */; };
 		C1655C97256B7ED10067E3C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1655C96256B7ED10067E3C5 /* SceneDelegate.swift */; };
 		C1655C99256B7ED10067E3C5 /* BucketListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1655C98256B7ED10067E3C5 /* BucketListViewController.swift */; };
 		C1655C9E256B7ED30067E3C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1655C9D256B7ED30067E3C5 /* Assets.xcassets */; };
 		C1655CA1256B7ED30067E3C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1655C9F256B7ED30067E3C5 /* LaunchScreen.storyboard */; };
+		C168BF612576873700A1A338 /* extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C168BF602576873700A1A338 /* extension+Date.swift */; };
 		C1754EDC256E13650037C805 /* DetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EDB256E13650037C805 /* DetailRepository.swift */; };
 		C1754EE3256E17F20037C805 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EE2256E17F20037C805 /* LocalService.swift */; };
 		C1754EEC256E197C0037C805 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EEB256E197C0037C805 /* NetworkService.swift */; };
@@ -70,6 +75,10 @@
 		82A7291A256F448100BD5797 /* BucketAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketAPIAgent.swift; sourceTree = "<group>"; };
 		82A7291E256F4BCB00BD5797 /* RealmBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBucket.swift; sourceTree = "<group>"; };
 		C11AC45F256B7F8B00E45667 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C160DBA725775FA400290EAE /* DetailSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionHeaderView.swift; sourceTree = "<group>"; };
+		C160DBA825775FA400290EAE /* DetailSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSectionHeaderView.xib; sourceTree = "<group>"; };
+		C160DBAE25776DB800290EAE /* DetailSectionImpressionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionImpressionHeaderView.swift; sourceTree = "<group>"; };
+		C160DBAF25776DB800290EAE /* DetailSectionImpressionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSectionImpressionHeaderView.xib; sourceTree = "<group>"; };
 		C1655C91256B7ED10067E3C5 /* project04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project04.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1655C94256B7ED10067E3C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1655C96256B7ED10067E3C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +86,7 @@
 		C1655C9D256B7ED30067E3C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1655CA0256B7ED30067E3C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1655CA2256B7ED30067E3C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C168BF602576873700A1A338 /* extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+Date.swift"; sourceTree = "<group>"; };
 		C1754EDB256E13650037C805 /* DetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRepository.swift; sourceTree = "<group>"; };
 		C1754EE2256E17F20037C805 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		C1754EEB256E197C0037C805 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -178,6 +188,17 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		C160DBAD25776C0000290EAE /* SectionHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				C160DBA725775FA400290EAE /* DetailSectionHeaderView.swift */,
+				C160DBA825775FA400290EAE /* DetailSectionHeaderView.xib */,
+				C160DBAE25776DB800290EAE /* DetailSectionImpressionHeaderView.swift */,
+				C160DBAF25776DB800290EAE /* DetailSectionImpressionHeaderView.xib */,
+			);
+			path = SectionHeaderView;
+			sourceTree = "<group>";
+		};
 		C1655C88256B7ED10067E3C5 = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +236,7 @@
 		C1754ED4256E11350037C805 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C160DBAD25776C0000290EAE /* SectionHeaderView */,
 				C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */,
 				C1E6C4112574D31300BD4B4B /* DetailList.storyboard */,
 				C175AA7725752C57009D8103 /* DetailListAddViewController.swift */,
@@ -364,6 +386,7 @@
 			children = (
 				C1BFAD0F257631F400BDEF93 /* DefaultAlertViewController.swift */,
 				C1BFAD152576340800BDEF93 /* extension+UIDatePicker.swift */,
+				C168BF602576873700A1A338 /* extension+Date.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -464,8 +487,10 @@
 				C11AC460256B7F8B00E45667 /* .swiftlint.yml in Resources */,
 				C1655CA1256B7ED30067E3C5 /* LaunchScreen.storyboard in Resources */,
 				C1E6C40E2574D27900BD4B4B /* BucketList.storyboard in Resources */,
+				C160DBB125776DB800290EAE /* DetailSectionImpressionHeaderView.xib in Resources */,
 				C1E6C4122574D31300BD4B4B /* DetailList.storyboard in Resources */,
 				C1655C9E256B7ED30067E3C5 /* Assets.xcassets in Resources */,
+				C160DBAA25775FA400290EAE /* DetailSectionHeaderView.xib in Resources */,
 				C175AA7C25752C7D009D8103 /* DetailListAdd.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,6 +556,7 @@
 				C175AA7825752C57009D8103 /* DetailListAddViewController.swift in Sources */,
 				82A72917256F43E100BD5797 /* BucketLocalAgent.swift in Sources */,
 				C1E6C4172574D45900BD4B4B /* MainTabBarController.swift in Sources */,
+				C168BF612576873700A1A338 /* extension+Date.swift in Sources */,
 				C1754F07256E4AC00037C805 /* ListUseCase.swift in Sources */,
 				C1BFAD0B25761BF300BDEF93 /* RoundButton.swift in Sources */,
 				C1754EF1256E1A570037C805 /* NetworkError.swift in Sources */,
@@ -541,12 +567,14 @@
 				C1900D88256B8E220071E8C7 /* Detail.swift in Sources */,
 				C175D197256CC31C001144F0 /* DetailLocalAgent.swift in Sources */,
 				C1754EE3256E17F20037C805 /* LocalService.swift in Sources */,
+				C160DBA925775FA400290EAE /* DetailSectionHeaderView.swift in Sources */,
 				8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */,
 				C1BFAD05257613F500BDEF93 /* RoundView.swift in Sources */,
 				C175D194256CC2EC001144F0 /* DetailAPIAgent.swift in Sources */,
 				C1655C97256B7ED10067E3C5 /* SceneDelegate.swift in Sources */,
 				C175D19B256CCF3C001144F0 /* RealmDetailList.swift in Sources */,
 				C1E6C41F2574E83200BD4B4B /* NavigationCoordinator.swift in Sources */,
+				C160DBB025776DB800290EAE /* DetailSectionImpressionHeaderView.swift in Sources */,
 				C1754EEC256E197C0037C805 /* NetworkService.swift in Sources */,
 				C1754EF5256E1B8B0037C805 /* HTTPMethod.swift in Sources */,
 				C1BFAD10257631F400BDEF93 /* DefaultAlertViewController.swift in Sources */,
