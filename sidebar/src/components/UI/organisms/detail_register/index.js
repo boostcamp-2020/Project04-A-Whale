@@ -35,6 +35,7 @@ const DetailRegister = ({ bucket }) => {
         margin="dense"
         variant="outlined"
         fullWidth
+        value={title}
         onChange={handleChange}
       />
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
