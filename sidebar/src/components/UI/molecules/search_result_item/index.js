@@ -36,13 +36,13 @@ const SearchResultItem = ({ bucket, loadPresetActionConnect }) => {
   const onClickHandler = async () => {
     const { data } = await getDetails(no);
     const { openDetails, achieveDetails } = data.data;
-    console.log(openDetails, achieveDetails);
     const details = openDetails.concat(achieveDetails);
-    console.log(details);
     loadPresetActionConnect({
       bucketTitle: title,
       bucketDescription: description,
-      bucketDetails: details,
+      bucketDetails: details.map((detail) => {
+        return { title: detail.title, status: detail.status, dueDate: detail.dueDate };
+      }),
     });
   };
 
