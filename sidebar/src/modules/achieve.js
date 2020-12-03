@@ -15,7 +15,7 @@ const UPDATE_ACHIEVE_SUCCESS = 'achieves/UPDATE_ACHIEVE_SUCCESS';
 export const reset = createAction(RESET);
 export const changeInput = createAction(CHANGE_INPUT, (input) => input);
 export const addInput = createAction(ADD_INPUT, (input) => input);
-export const setAchieve = createRequestThunk(SET_ACHIEVE, api.setAchieves, '/');
+export const setAchieve = createRequestThunk(SET_ACHIEVE, api.setAchieves);
 export const updateAchieve = createRequestThunk(UPDATE_ACHIEVE, api.updateAchieves);
 
 const initialState = {
