@@ -1,8 +1,8 @@
 const { Achieve } = require('../../models');
 
-exports.selectAchieve = async (bucketNo) => {
+exports.selectAchieve = async (no) => {
   const result = await Achieve.findOne({
-    where: { bucketNo },
+    where: { no },
     raw: true,
   });
 
@@ -19,13 +19,13 @@ exports.insertAchieve = async ({ description, bucketNo }) => {
   return result;
 };
 
-exports.updateAchieve = async ({ description, bucketNo }) => {
+exports.updateAchieve = async ({ description, no }) => {
   const result = await Achieve.update(
     {
       description,
     },
     {
-      where: { bucketNo },
+      where: { no },
       raw: true,
     }
   );
@@ -33,9 +33,9 @@ exports.updateAchieve = async ({ description, bucketNo }) => {
   return result;
 };
 
-exports.deleteAchieve = async (bucketNo) => {
+exports.deleteAchieve = async (no) => {
   const result = await Achieve.destroy({
-    where: { bucketNo },
+    where: { no },
     raw: true,
   });
 

@@ -34,12 +34,12 @@ exports.create = async (req, res, next) => {
     const newDetails = await detailServices
       .bulkCreate(
         details.map((detail) => {
-          return { detail, bucketNo };
+          return { ...detail, bucketNo };
         })
       )
       .then((data) => JSON.parse(JSON.stringify(data)));
 
-    res.status(CREATED).json({ newDetails });
+    res.status(OK).json({ message: '버킷 추가 성공' });
   } catch (error) {
     next(error);
   }

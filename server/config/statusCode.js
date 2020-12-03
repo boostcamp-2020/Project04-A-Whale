@@ -1,7 +1,7 @@
 exports.statusCode = {
   OK: 200,
   CREATED: 201,
-  NOCONTENT: 204,
+  NO_CONTENT: 204,
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,

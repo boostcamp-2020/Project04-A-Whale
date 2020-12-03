@@ -27,7 +27,7 @@ exports.updateAchieve = async (data) => {
 /*
  * 삭제
  */
-exports.deleteAchieve = async (bucketNo) => {
-  const result = await db.deleteAchieve(bucketNo);
+exports.deleteAchieve = async (achieveNo) => {
+  const result = await db.deleteAchieve(achieveNo);
   return result;
 };

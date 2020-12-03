@@ -3,8 +3,9 @@ module.exports = function (sequelize, DataTypes) {
     'follow',
     {
       no: {
+        autoIncrement: true,
         type: DataTypes.BIGINT,
-        allowNull: false,
+        allowNull: true,
         primaryKey: true,
       },
     },
