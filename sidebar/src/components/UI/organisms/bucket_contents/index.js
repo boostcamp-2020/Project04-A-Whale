@@ -48,6 +48,7 @@ const BucketContents = ({
         label="목표 Description 작성"
         changeInputText={changeDesc}
         value={storeDescription}
+        isMultiline
       />
     </BucketContentsWrapper>
   );

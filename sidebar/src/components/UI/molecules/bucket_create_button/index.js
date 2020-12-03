@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import StyledButton from '../../atoms/styled_button';
 import { createBucket } from '../../../../lib/api';
+import { resetBucketAction } from '../../../../modules/actions/createbucket';
 
-const BucketCreateButton = ({ storeTitle, storeDescription, storeDetails }) => {
+const BucketCreateButton = ({
+  storeTitle,
+  storeDescription,
+  storeDetails,
+  resetBucketActionConnect,
+}) => {
   const history = useHistory();
   const style = {
     margin: '15px',
@@ -19,7 +25,8 @@ const BucketCreateButton = ({ storeTitle, storeDescription, storeDetails }) => {
 
   const onClickHandler = async () => {
     await createBucket(storeTitle, storeDescription, storeDetails);
-    history.push({ pathname: '/' });
+    resetBucketActionConnect();
+    history.replace('/');
   };
 
   return (
@@ -40,4 +47,6 @@ const mapStateToProps = (state) => ({
   storeDetails: state.createbucket.details,
 });
 
-export default connect(mapStateToProps, null)(BucketCreateButton);
+export default connect(mapStateToProps, {
+  resetBucketActionConnect: resetBucketAction,
+})(BucketCreateButton);
