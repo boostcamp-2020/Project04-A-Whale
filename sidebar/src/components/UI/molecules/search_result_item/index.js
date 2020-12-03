@@ -11,9 +11,14 @@ const SearchResultItemWrapper = styled.div`
 `;
 
 const TitleStyle = {
-  fontWeight: 'bold',
   fontSize: '16px',
-  marginLeft: '7px',
+  display: 'inline-block',
+};
+
+const TitleStyleBold = {
+  fontWeight: 'bolder',
+  fontSize: '18px',
+  display: 'inline-block',
 };
 
 const DesignerStyle = {
@@ -30,25 +35,40 @@ const RefNumStyle = {
   verticalAlign: 'center',
 };
 
-const SearchResultItem = ({ bucket, loadPresetActionConnect }) => {
+const SearchResultItem = ({ bucket, boldWord, loadPresetActionConnect }) => {
   const { no, title, description, refCount, nickname } = bucket;
+
+  const partialBoldText = (text, boldWord) => {
+    const left = text.indexOf(boldWord[0]);
+    const right = left + boldWord.length - 1;
+    const pre = left === 0 ? '' : text.substr(0, left);
+    const mid = boldWord;
+    const next = right === text.length - 1 ? '' : text.substr(right + 1);
+    return [pre, mid, next].map((text, i) => {
+      if (i === 1) {
+        console.log(text, i);
+        return <Span style={TitleStyleBold} content={text} />;
+      }
+      return <Span style={TitleStyle} content={text} />;
+    });
+  };
 
   const onClickHandler = async () => {
     const { data } = await getDetails(no);
     const { openDetails, achieveDetails } = data.data;
-    console.log(openDetails, achieveDetails);
     const details = openDetails.concat(achieveDetails);
-    console.log(details);
     loadPresetActionConnect({
       bucketTitle: title,
       bucketDescription: description,
-      bucketDetails: details,
+      bucketDetails: details.map((detail) => {
+        return { title: detail.title, status: detail.status, dueDate: detail.dueDate };
+      }),
     });
   };
 
   return (
     <SearchResultItemWrapper onClick={onClickHandler}>
-      <Span name="bucketTitle" style={TitleStyle} content={title} />
+      {partialBoldText(title, boldWord)}
       <Span name="bucketDesigner" style={DesignerStyle} content={`@${nickname}`} />
       <Span name="bucketRefNum" style={RefNumStyle} content={`(${refCount}건)`} />
     </SearchResultItemWrapper>
