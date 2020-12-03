@@ -15,6 +15,7 @@ const BucketSearchWrapper = styled.div`
 const BucketSearch = () => {
   const [loading, setLoading] = useState(false);
   const [presets, setPresets] = useState([]);
+  const [boldWord, setBoldWord] = useState('');
   let timer = null;
 
   const onChangeHandler = async (e) => {
@@ -24,9 +25,9 @@ const BucketSearch = () => {
     timer = setTimeout(async () => {
       const response = await getPresets(keyword);
       const { data } = response.data;
-      console.log(data);
       setPresets(data);
       setLoading(false);
+      setBoldWord(e.target.value);
     }, 2000);
   };
 
@@ -49,7 +50,7 @@ const BucketSearch = () => {
         style={{ width: 300 }}
         renderOption={(option) => {
           if (loading) return <Span content="loading" />;
-          return <SearchResultItem bucket={option} />;
+          return <SearchResultItem bucket={option} boldWord={boldWord} />;
         }}
         renderInput={(params) => (
           <TextField {...params} label="목표 검색" variant="outlined" onChange={onChangeHandler} />
