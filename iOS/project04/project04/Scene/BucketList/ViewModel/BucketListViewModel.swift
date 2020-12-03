@@ -46,7 +46,7 @@ class BucketListViewModel: BucketListViewModelProtocol {
     
     func append(bucket: Bucket) {
         let newId = autoIncreaseIdValue()
-        let newBucket = Bucket(id: newId, title: bucket.title, status: "")
+        let newBucket = Bucket(id: newId, title: bucket.title, status: bucket.status)
         self.buckets?[.todo]?.append(newBucket)
         useCase.append(newBucket)
     }
