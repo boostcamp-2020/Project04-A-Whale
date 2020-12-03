@@ -9,10 +9,15 @@ import UIKit
 
 class DetailSectionHeaderView: UICollectionReusableView {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var successButton: UIButton!
+    
+    var successHandler: (() -> ())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
+    @IBAction func successAction(_ sender: Any) {
+        successHandler?()
+    }
 }

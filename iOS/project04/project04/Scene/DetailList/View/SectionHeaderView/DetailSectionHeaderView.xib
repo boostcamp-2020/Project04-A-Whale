@@ -10,26 +10,36 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="DetailSectionHeaderView" customModule="project04" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="488" height="213"/>
+            <rect key="frame" x="0.0" y="0.0" width="497" height="138"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l44-kQ-zeb">
-                    <rect key="frame" x="25" y="44" width="42" height="125"/>
+                    <rect key="frame" x="25" y="44" width="42" height="50"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idM-EO-ql4">
+                    <rect key="frame" x="395" y="54" width="82" height="30"/>
+                    <state key="normal" title="목표 달성하기"/>
+                    <connections>
+                        <action selector="successAction:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="iy8-4E-97f"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <constraints>
                 <constraint firstItem="l44-kQ-zeb" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" id="0Sq-Jj-PNf"/>
+                <constraint firstItem="idM-EO-ql4" firstAttribute="centerY" secondItem="l44-kQ-zeb" secondAttribute="centerY" id="DQ6-xC-DNs"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="l44-kQ-zeb" secondAttribute="bottom" constant="10" id="PWR-8d-AT3"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="idM-EO-ql4" secondAttribute="trailing" constant="20" id="VP3-0f-GrM"/>
                 <constraint firstItem="l44-kQ-zeb" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="25" id="mqj-Sa-Be7"/>
             </constraints>
             <connections>
+                <outlet property="successButton" destination="idM-EO-ql4" id="Fcz-Jt-N9R"/>
                 <outlet property="titleLabel" destination="l44-kQ-zeb" id="tpC-qp-k8Y"/>
             </connections>
-            <point key="canvasLocation" x="52.173913043478265" y="152.34375"/>
+            <point key="canvasLocation" x="58.695652173913047" y="127.23214285714285"/>
         </collectionReusableView>
     </objects>
 </document>
