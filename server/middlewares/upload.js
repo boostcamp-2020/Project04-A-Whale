@@ -3,8 +3,6 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 const AWS = require('aws-sdk');
 
-const { CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCode;
-
 const endpoint = 'https://kr.object.ncloudstorage.com';
 const region = 'kr-standard';
 const accessKeyId = process.env.API_ACCESS_KEY;
@@ -32,20 +30,3 @@ exports.upload = multer({
   }),
   limits: { fileSize: 5 * 1024 * 1024 }, // 용량 제한
 });
-
-/*
-    POST /api/objects
-    * 이미지 파일 업로드 API
-*/
-exports.setObject = (req, res, next) => {
-  try {
-    res.status(CREATED).json({
-      message: '이미지 파일 업로드 성공',
-      url: req.file.location,
-    });
-  } catch (error) {
-    res.status(BAD_REQUEST).json({
-      message: '이미지 파일 업로드 실패',
-    });
-  }
-};
