@@ -42,8 +42,9 @@ const DetailHeader = ({ bucket }) => {
       {edit ? (
         <>
           <TextField
-            className={classes.textField}
             value={title}
+            label="Title"
+            variant="outlined"
             placeholder="Title"
             fullWidth
             InputProps={{
@@ -56,6 +57,8 @@ const DetailHeader = ({ bucket }) => {
           <TextField
             className={classes.textField}
             value={description}
+            label="Description"
+            variant="outlined"
             placeholder="Description"
             fullWidth
             multiline

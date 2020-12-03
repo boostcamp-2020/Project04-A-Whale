@@ -1,6 +1,6 @@
 const pathURI = {
   myBucketList: '/',
-  myBucketListDetail: '/detail/:id',
+  myBucketListDetail: '/detail/:bucketNo',
   login: '/login',
   register: '/register',
   bucketcreate: '/createbucket',
