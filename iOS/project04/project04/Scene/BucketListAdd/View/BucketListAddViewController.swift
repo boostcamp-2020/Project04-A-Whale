@@ -17,6 +17,7 @@ class BucketListAddViewController: UIViewController {
     
     var dataSource: DataSource?
     var delegate: BucketListAddDelegate?
+    var coordinator: BucketListSearchCoordinator
     var bucketListAddViewModel: BucketListAddViewModelProtocol {
         didSet {
             bucketListAddViewModel.handler = { [weak self] data in
@@ -29,9 +30,10 @@ class BucketListAddViewController: UIViewController {
         }
     }
     
-    init?(coder: NSCoder, viewModel: BucketListAddViewModelProtocol, delegate: BucketListAddDelegate) {
+    init?(coder: NSCoder, viewModel: BucketListAddViewModelProtocol, delegate: BucketListAddDelegate, coordinator: BucketListSearchCoordinator) {
         self.bucketListAddViewModel = viewModel
         self.delegate = delegate
+        self.coordinator = coordinator
         super.init(coder: coder)
     }
     
@@ -61,6 +63,10 @@ class BucketListAddViewController: UIViewController {
 
         bucketListAddViewModel.fetch(with: "")
     }
+    
+    @objc func didTouchSearchButton(sender: UIButton) {
+        coordinator.presentBucketListSearch()
+    }
 }
 
 extension BucketListAddViewController: UICollectionViewDelegate {
@@ -81,6 +87,7 @@ extension BucketListAddViewController: UICollectionViewDelegate {
                 for: indexPath) as? BucketListAddHeaderView
             view?.configureTextViewPlaceholder()
             view?.descriptionTextView.delegate = view
+            view?.searchButton.addTarget(self, action: #selector(self.didTouchSearchButton), for: .touchUpInside)
             self.sectionHeader = view
             return view
         }
