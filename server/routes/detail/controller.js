@@ -1,5 +1,6 @@
 const { OK, CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCode;
 const detailServices = require('../../services/detail');
+const bucketServices = require('../../services/bucket');
 
 /*
     GET /api/details/:bucketNo
@@ -8,11 +9,12 @@ const detailServices = require('../../services/detail');
 exports.getDetails = async (req, res, next) => {
   try {
     const { bucketNo } = req.params;
+    const bucket = await bucketServices.getBucket(bucketNo);
     const details = await detailServices.getDetails(bucketNo);
 
     res.status(OK).json({
       message: '버킷 상세 목록 조회 성공',
-      data: details,
+      data: { bucket, details },
     });
   } catch (error) {
     next(error);
