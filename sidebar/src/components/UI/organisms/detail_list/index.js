@@ -1,30 +1,60 @@
-import React from 'react';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import DetailAdder from '../../molecules/detail_adder';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
 import DetailListItem from '../../molecules/detail_list_item';
-import { addDetailAction, removeDetailAction } from '../../../../modules/actions/createbucket';
-
-const DetailListWrapper = styled.div`
-  padding: 15px;
-`;
+import { updateDetailStatus } from '../../../../modules/details';
+import useStyles from './style';
 
 const DetailList = ({ details }) => {
-  // TODO : state로 바꿔야함
-  const Details = (items) => {
-    return items.map((item) => {
-      return <DetailListItem detail={item.title} />;
-    });
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const { openDetails, achieveDetails } = details;
+  const [checked, setChecked] = useState([...achieveDetails]);
+
+  const statusChange = (detail) => {
+    const params = {};
+    params.no = detail.no;
+    if (detail.status === 'A') params.status = 'O';
+    if (detail.status === 'O') params.status = 'A';
+    dispatch(updateDetailStatus(params));
   };
 
+  const handleToggle = (value) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    setChecked(newChecked);
+    statusChange(value);
+  };
+
+  const getDetailListItem = (details) =>
+    details.map((detail) => (
+      <DetailListItem
+        key={detail.no}
+        detail={detail}
+        handleToggle={handleToggle}
+        checked={checked}
+      />
+    ));
+
   return (
-    <DetailListWrapper>
-      <DetailAdder />
-      {Details(details)}
-    </DetailListWrapper>
+    <>
+      <Typography className={classes.text}>진행 중인 상세 목표</Typography>
+      <Divider />
+      <List className={classes.list}>{getDetailListItem(openDetails)}</List>
+      <Typography className={classes.text}>달성된 상세 목표</Typography>
+      <Divider />
+      <List className={classes.list}>{getDetailListItem(achieveDetails)}</List>
+    </>
   );
 };
 
-const mapStateToProps = (state) => ({ details: state.createbucket.details });
-
-export default connect(mapStateToProps, { addDetailAction, removeDetailAction })(DetailList);
+export default DetailList;

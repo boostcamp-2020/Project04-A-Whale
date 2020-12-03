@@ -1,71 +1,46 @@
 import React from 'react';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import Span from '../../atoms/span';
-import StyledButton from '../../atoms/styled_button';
-import { removeDetailAction } from '../../../../modules/actions/createbucket';
+import { useDispatch } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import RemoveIcon from '@material-ui/icons/Remove';
+import { deleteDetail } from '../../../../modules/details';
+import DetailTextWrapper from './style';
 
-const DetailListItemWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  vertical-align: middle;
-  border: 1.5px;
-  border-right: 0px;
-  border-left: 0px;
-  border-style: ridge;
-  padding: 15px;
-`;
+const DetailListItem = ({ detail, handleToggle, checked }) => {
+  const dispatch = useDispatch();
 
-const CalenderIcon = {
-  position: 'absolute',
-  right: '12%',
-  padding: '1px',
-  height: '20px',
-};
-
-const RemoveIcon = {
-  position: 'absolute',
-  right: '4%',
-  padding: '1px',
-  backgroundColor: 'white',
-  height: '20px',
-};
-
-const DetailListItem = ({ detail, removeDetailActionConnect }) => {
-  const style = {
-    color: 'inherit',
+  const handleRemove = () => {
+    dispatch(deleteDetail({ no: detail.no }));
   };
 
-  const onClickHandler = () => {
-    removeDetailActionConnect(detail);
-  };
-
-  const content = (
-    <DetailListItemWrapper>
-      <Span content={detail} />
-      <StyledButton
-        type="Icon"
-        style={CalenderIcon}
-        variant="add detail"
-        content={<DateRangeIcon />}
-      />
-      <StyledButton
-        type="Icon"
-        style={RemoveIcon}
-        variant="add detail"
-        content={<RemoveCircleIcon />}
-        onClickHandler={onClickHandler}
-      />
-    </DetailListItemWrapper>
+  return (
+    <ListItem role={undefined} dense button onClick={handleToggle(detail)}>
+      <ListItemIcon>
+        <Checkbox
+          edge="start"
+          color="default"
+          tabIndex={-1}
+          checked={checked.indexOf(detail) !== -1}
+          disableRipple
+          value={JSON.stringify(detail)}
+        />
+      </ListItemIcon>
+      <DetailTextWrapper>
+        <ListItemText primary={<Typography type="body2">{detail.title}</Typography>} />
+        <ListItemText secondary={detail.dueDate} />
+      </DetailTextWrapper>
+      <ListItemSecondaryAction>
+        <IconButton edge="end" aria-label="remove" onClick={handleRemove}>
+          <RemoveIcon />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
   );
-  return <Span style={style} content={content} />;
 };
 
-const mapStateToProps = () => ({});
-
-export default connect(mapStateToProps, { removeDetailActionConnect: removeDetailAction })(
-  DetailListItem
-);
+export default DetailListItem;

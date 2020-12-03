@@ -9,29 +9,20 @@ const BucketList = ({ buckets }) => {
   const classes = useStyles();
   const { openBuckets, achieveBuckets, giveUpBuckets } = buckets;
 
+  const getBucketListItem = (buckets) =>
+    buckets.map((bucket) => <BucketListItem key={bucket.no} bucket={bucket} />);
+
   return (
     <>
       <Typography className={classes.text}>진행 중인 목표</Typography>
       <Divider />
-      <List>
-        {openBuckets.map((bucket) => (
-          <BucketListItem key={bucket.no} bucket={bucket} />
-        ))}
-      </List>
+      <List>{getBucketListItem(openBuckets)}</List>
       <Typography className={classes.text}>달성된 목표</Typography>
       <Divider />
-      <List>
-        {achieveBuckets.map((bucket) => (
-          <BucketListItem key={bucket.no} bucket={bucket} />
-        ))}
-      </List>
+      <List>{getBucketListItem(achieveBuckets)}</List>
       <Typography className={classes.text}>포기한 목표</Typography>
       <Divider />
-      <List>
-        {giveUpBuckets.map((bucket) => (
-          <BucketListItem key={bucket.no} bucket={bucket} />
-        ))}
-      </List>
+      <List>{getBucketListItem(giveUpBuckets)}</List>
     </>
   );
 };
