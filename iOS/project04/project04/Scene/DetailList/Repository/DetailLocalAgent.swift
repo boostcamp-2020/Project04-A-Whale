@@ -71,12 +71,14 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try realm.write {
-                let result = realm.objects(RealmDetail.self).filter("bucketNo == \(bucketNo)")
-                result[index].title = element.title
-                result[index].status = element.status
-                result[index].dueDate = element.dueDate
-                result[index].updatedAt = element.updatedAt
-                result[index].deletedAt = element.deletedAt
+                let result = realm.objects(RealmDetail.self)
+                    .filter("bucketNo == \(bucketNo) && #no == \(element.no)").first
+                
+                result?.title = element.title
+                result?.status = element.status
+                result?.dueDate = element.dueDate
+                result?.updatedAt = element.updatedAt
+                result?.deletedAt = element.deletedAt
             }
         } catch {
             print(error)

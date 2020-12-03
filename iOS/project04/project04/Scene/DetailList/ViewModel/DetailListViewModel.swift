@@ -12,6 +12,7 @@ protocol DetailListViewModelProtocol {
     var list: [Detail.Section: [Detail]] { get }
     var usecase: DetailListUseCase { get }
     var listDidChange: ((DetailListViewModelProtocol) -> ())? { get set }
+    var todoListCountCheck: ((DetailListViewModelProtocol) -> ())? { get set}
     func listDeleteAction(at index: Int)
     func listAddAction(_ newElement: Detail)
     func listReviseAction(_ newElement: Detail, at index: Int)
@@ -25,10 +26,12 @@ class DetailListViewModel: DetailListViewModelProtocol {
     var list: [Detail.Section: [Detail]] = [:] {
         didSet {
             self.listDidChange?(self)
+            self.todoListCountCheck?(self)
         }
     }
     
     var listDidChange: ((DetailListViewModelProtocol) -> ())?
+    var todoListCountCheck: ((DetailListViewModelProtocol) -> ())?
     var usecase: DetailListUseCase
     
     required init(usecase: DetailListUseCase) {
