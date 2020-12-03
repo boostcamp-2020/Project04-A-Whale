@@ -36,7 +36,7 @@ const createbucket = handleActions(
       }),
     [REMOVE_DETAIL]: (state, { payload: input }) =>
       produce(state, (draft) => {
-        const idx = draft.details.indexOf(input);
+        const idx = state.details.findIndex((element) => element.title === input);
         draft.details.splice(idx, 1);
       }),
     [LOAD_PRESET]: (state, { payload: input }) => {

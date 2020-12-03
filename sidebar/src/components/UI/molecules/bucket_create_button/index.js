@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import StyledButton from '../../atoms/styled_button/StyledButton';
+import StyledButton from '../../atoms/styled_button';
 import { createBucket } from '../../../../lib/api';
-import {
-  resetBucketAction
-} from '../../../../modules/actions/createbucket';
+import { resetBucketAction } from '../../../../modules/actions/createbucket';
 
-const BucketCreateButton = ({ storeTitle, storeDescription, storeDetails, resetBucketActionConnect }) => {
+const BucketCreateButton = ({
+  storeTitle,
+  storeDescription,
+  storeDetails,
+  resetBucketActionConnect,
+}) => {
   const history = useHistory();
   const style = {
     margin: '15px',

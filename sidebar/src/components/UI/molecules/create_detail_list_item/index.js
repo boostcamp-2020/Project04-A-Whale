@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
-import Span from '../../atoms/span/Span';
-import StyledButton from '../../atoms/styled_button/StyledButton';
+import Span from '../../atoms/span';
+import StyledButton from '../../atoms/styled_button';
 import InputText from '../../atoms/input_text';
 import {
   removeDetailAction,
@@ -44,7 +44,7 @@ const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActi
   };
 
   const onClickHandler = () => {
-    removeDetailActionConnect(detail);
+    removeDetailActionConnect(detail.title);
   };
 
   const dateChangeHandler = (e) => {
