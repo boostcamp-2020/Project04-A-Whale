@@ -21,6 +21,8 @@
 		C160DBAA25775FA400290EAE /* DetailSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C160DBA825775FA400290EAE /* DetailSectionHeaderView.xib */; };
 		C160DBB025776DB800290EAE /* DetailSectionImpressionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160DBAE25776DB800290EAE /* DetailSectionImpressionHeaderView.swift */; };
 		C160DBB125776DB800290EAE /* DetailSectionImpressionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C160DBAF25776DB800290EAE /* DetailSectionImpressionHeaderView.xib */; };
+		C164DF962578AAD20046B902 /* DetailSectionHeaderTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164DF942578AAD20046B902 /* DetailSectionHeaderTodoView.swift */; };
+		C164DF972578AAD20046B902 /* DetailSectionHeaderTodoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C164DF952578AAD20046B902 /* DetailSectionHeaderTodoView.xib */; };
 		C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1655C94256B7ED10067E3C5 /* AppDelegate.swift */; };
 		C1655C97256B7ED10067E3C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1655C96256B7ED10067E3C5 /* SceneDelegate.swift */; };
 		C1655C99256B7ED10067E3C5 /* BucketListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1655C98256B7ED10067E3C5 /* BucketListViewController.swift */; };
@@ -81,6 +83,8 @@
 		C160DBA825775FA400290EAE /* DetailSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSectionHeaderView.xib; sourceTree = "<group>"; };
 		C160DBAE25776DB800290EAE /* DetailSectionImpressionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionImpressionHeaderView.swift; sourceTree = "<group>"; };
 		C160DBAF25776DB800290EAE /* DetailSectionImpressionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSectionImpressionHeaderView.xib; sourceTree = "<group>"; };
+		C164DF942578AAD20046B902 /* DetailSectionHeaderTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionHeaderTodoView.swift; sourceTree = "<group>"; };
+		C164DF952578AAD20046B902 /* DetailSectionHeaderTodoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSectionHeaderTodoView.xib; sourceTree = "<group>"; };
 		C1655C91256B7ED10067E3C5 /* project04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project04.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1655C94256B7ED10067E3C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1655C96256B7ED10067E3C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 				C160DBA825775FA400290EAE /* DetailSectionHeaderView.xib */,
 				C160DBAE25776DB800290EAE /* DetailSectionImpressionHeaderView.swift */,
 				C160DBAF25776DB800290EAE /* DetailSectionImpressionHeaderView.xib */,
+				C164DF942578AAD20046B902 /* DetailSectionHeaderTodoView.swift */,
+				C164DF952578AAD20046B902 /* DetailSectionHeaderTodoView.xib */,
 			);
 			path = SectionHeaderView;
 			sourceTree = "<group>";
@@ -495,6 +501,7 @@
 				C1655C9E256B7ED30067E3C5 /* Assets.xcassets in Resources */,
 				C160DBAA25775FA400290EAE /* DetailSectionHeaderView.xib in Resources */,
 				C175AA7C25752C7D009D8103 /* DetailListAdd.storyboard in Resources */,
+				C164DF972578AAD20046B902 /* DetailSectionHeaderTodoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +574,7 @@
 				C1E6C41B2574D4BE00BD4B4B /* BucketCoordinator.swift in Sources */,
 				C175D190256CC028001144F0 /* DetailListUseCase.swift in Sources */,
 				C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */,
+				C164DF962578AAD20046B902 /* DetailSectionHeaderTodoView.swift in Sources */,
 				C1900D88256B8E220071E8C7 /* Detail.swift in Sources */,
 				C175D197256CC31C001144F0 /* DetailLocalAgent.swift in Sources */,
 				C1754EE3256E17F20037C805 /* LocalService.swift in Sources */,
