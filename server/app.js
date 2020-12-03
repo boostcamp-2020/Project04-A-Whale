@@ -5,9 +5,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const passport = require('passport');
 
 const models = require('./models');
-
+const passportConfig = require('./passport');
 const apiRouter = require('./routes');
 
 const app = express();
@@ -28,6 +29,9 @@ models.sequelize
     console.log('DB연결 실패');
     process.exit();
   });
+
+app.use(passport.initialize());
+passportConfig();
 
 app.use('/api', cors(), apiRouter);
 

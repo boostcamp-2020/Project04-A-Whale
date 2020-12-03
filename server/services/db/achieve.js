@@ -13,7 +13,6 @@ exports.insertAchieve = async ({ description, bucketNo }) => {
   const result = await Achieve.create({
     description,
     bucketNo,
-    raw: true,
   });
 
   return result;
@@ -26,7 +25,6 @@ exports.updateAchieve = async ({ description, no }) => {
     },
     {
       where: { no },
-      raw: true,
     }
   );
 
@@ -36,7 +34,6 @@ exports.updateAchieve = async ({ description, no }) => {
 exports.deleteAchieve = async (no) => {
   const result = await Achieve.destroy({
     where: { no },
-    raw: true,
   });
 
   return result;
