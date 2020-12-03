@@ -66,45 +66,29 @@ exports.getBuckets = async (req, res, next) => {
 };
 
 /*
-    PATCH /api/buckets/:bucketNo/status
-    * 버킷 상태 변경 API
+    PATCH /api/buckets/:no
+    * 버킷 수정 API
 */
-exports.updateBucketStatus = async (req, res, next) => {
+exports.updateBucket = async (req, res, next) => {
   try {
-    const { bucketNo } = req.params;
-    const { status } = req.body;
+    const { no } = req.params;
+    const { status, title, description } = req.body;
+    let result;
 
-    const result = await bucketServices.updateBucketStatus(bucketNo, status);
+    if (status) result = await bucketServices.updateBucketStatus(no, status);
+    else result = await bucketServices.updateBucketTitleDesc(no, title, description);
 
     if (result === 1) {
       res.status(OK).json({
-        message: '버킷 상태 변경 성공',
+        message: '버킷 수정 성공',
         data: true,
       });
     } else {
       res.status(BAD_REQUEST).json({
-        message: '버킷 상태 변경 실패',
+        message: '버킷 수정 실패',
         data: false,
       });
     }
-  } catch (error) {
-    next(error);
-  }
-};
-
-/*
-    GET /api/buckets/:bucketNo/details
-    * 버킷 상세 목록 조회 API
-*/
-exports.getDetails = async (req, res, next) => {
-  try {
-    const { bucketNo } = req.params;
-    const details = await bucketServices.getDetails(bucketNo);
-
-    res.status(OK).json({
-      message: '버킷 상세 목록 조회 성공',
-      data: details,
-    });
   } catch (error) {
     next(error);
   }
