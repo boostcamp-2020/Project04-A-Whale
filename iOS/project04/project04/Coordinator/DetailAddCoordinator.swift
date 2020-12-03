@@ -15,9 +15,12 @@ class DetailAddCoordinator: NavigationCoordinator {
         self.navigationController = navigationController
     }
     
-    func presentDetailListAdd(_ navigationController: UINavigationController?, viewModel: DetailListViewModelProtocol?) {
+    func presentDetailListAdd(_ navigationController: UINavigationController?, viewModel: DetailListViewModelProtocol?, detail: Detail? = nil, index: Int? = nil) {
         let viewController = UIStoryboard(name: "DetailListAdd", bundle: nil).instantiateViewController(identifier: "DetailListAddViewController", creator: { coder in
-            return DetailListAddViewController(coder: coder, viewModel: viewModel)
+            return DetailListAddViewController(coder: coder,
+                                               viewModel: viewModel,
+                                               detail: detail,
+                                               index: index)
         })
         navigationController?.present(viewController, animated: false)
     }

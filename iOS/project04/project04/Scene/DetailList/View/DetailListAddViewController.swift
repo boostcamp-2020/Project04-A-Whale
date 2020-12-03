@@ -15,10 +15,12 @@ class DetailListAddViewController: UIViewController {
     private var contentSize: CGFloat = 37
     private var viewModel: DetailListViewModelProtocol?
     private var detail: Detail?
+    private var index: Int?
     
-    init?(coder: NSCoder, viewModel: DetailListViewModelProtocol?, detail: Detail? = nil) {
+    init?(coder: NSCoder, viewModel: DetailListViewModelProtocol?, detail: Detail? = nil, index: Int? = nil) {
         self.viewModel = viewModel
         self.detail = detail
+        self.index = index
         super.init(coder: coder)
     }
     
@@ -43,8 +45,9 @@ class DetailListAddViewController: UIViewController {
         )
         
         roundView.layer.borderColor = UIColor.systemGray4.cgColor
-        textView.inputAccessoryView = nil
         textView.delegate = self
+        
+        checkReviseMode()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,14 +73,22 @@ class DetailListAddViewController: UIViewController {
         let title = textView.text
         let dueDate = datePicker.toString()
         let currentTime = Date().toStringKST(dateFormat: "yyyy-MM-dd HH:mm:ss")
-        viewModel?.listAddAction(Detail(no: detail?.bucketNo ?? 0,
-                                        title: title ?? "",
-                                        status: "O",
-                                        dueDate: dueDate ?? "",
-                                        createdAt: currentTime,
-                                        updatedAt: currentTime,
-                                        deletedAt: nil,
-                                        bucketNo: 0))
+        
+        if detail == nil {
+            viewModel?.listAddAction(Detail(no: 0,
+                                            title: title ?? "",
+                                            status: "O",
+                                            dueDate: dueDate ?? "",
+                                            createdAt: currentTime,
+                                            updatedAt: currentTime,
+                                            deletedAt: nil,
+                                            bucketNo: 0))
+        } else {
+            detail?.title = title ?? ""
+            detail?.dueDate = dueDate ?? ""
+            guard let item = detail else { return }
+            viewModel?.listReviseAction(item, at: index ?? 0)
+        }
         dismiss(animated: false, completion: nil)
     }
 }
@@ -111,5 +122,14 @@ extension DetailListAddViewController {
     
     private func textViewContentSizeChange(value: CGFloat) {
         heightConstraint.constant = heightConstraint.constant + value
+    }
+    
+    private func checkReviseMode() {
+        guard let item = detail else {
+            return
+        }
+        
+        textView.text = item.title
+        datePicker.setDate(item.dueDate.toDate() ?? Date(), animated: false)
     }
 }

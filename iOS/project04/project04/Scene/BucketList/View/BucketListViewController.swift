@@ -121,6 +121,7 @@ extension BucketListViewController: UICollectionViewDelegate {
             var content = cell.defaultContentConfiguration()
             content.text = bucket.title
             cell.contentConfiguration = content
+            cell.backgroundConfiguration?.backgroundColor = .systemBackground
         }
     }
     
