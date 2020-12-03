@@ -9,6 +9,15 @@ exports.selectAchieve = async (no) => {
   return result;
 };
 
+exports.selectBucketAchieve = async (bucketNo) => {
+  const result = await Achieve.findOne({
+    where: { bucketNo },
+    raw: true,
+  });
+
+  return result;
+};
+
 exports.insertAchieve = async ({ description, bucketNo }) => {
   const result = await Achieve.create({
     description,

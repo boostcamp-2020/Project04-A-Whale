@@ -31,7 +31,7 @@ const detailsByStatus = (details) => {
 
 exports.getDetails = async (bucketNo) => {
   const details = await db.selectDetails(bucketNo);
-  const achieve = await adb.selectAchieve(bucketNo);
+  const achieve = await adb.selectBucketAchieve(bucketNo);
   const result = detailsByStatus(details);
   if (achieve) {
     result.achieveComment = achieve.description;
