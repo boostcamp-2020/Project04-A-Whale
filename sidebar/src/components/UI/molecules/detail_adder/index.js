@@ -20,7 +20,6 @@ const DetailAdder = ({ addDetailActionConnect }) => {
   };
 
   const onClickHandler = () => {
-    console.log(state);
     if (state.length > 0) addDetailActionConnect(state);
   };
 

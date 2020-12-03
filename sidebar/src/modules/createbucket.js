@@ -8,6 +8,7 @@ import {
   RESET_BUCKET,
   LOAD_PRESET,
   CREATE_BUCKET,
+  UPDATE_DETAILDUE,
 } from './actions/actionTypes';
 import * as api from '../lib/api';
 import createRequestThunk from '../lib/createRequestThunk';
@@ -27,6 +28,11 @@ const createbucket = handleActions(
     [ADD_DETAIL]: (state, { payload: input }) =>
       produce(state, (draft) => {
         draft.details.push({ title: input, status: 'O', dueDate: '2020-12-25' });
+      }),
+    [UPDATE_DETAILDUE]: (state, { payload: input }) =>
+      produce(state, (draft) => {
+        const idx = state.details.findIndex((element) => element.title === input.title);
+        draft.details[idx].dueDate = input.dueDate;
       }),
     [REMOVE_DETAIL]: (state, { payload: input }) =>
       produce(state, (draft) => {

@@ -2,10 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import Span from '../../atoms/span';
-import StyledButton from '../../atoms/styled_button';
-import { removeDetailAction } from '../../../../modules/actions/createbucket';
+import Span from '../../atoms/span/Span';
+import StyledButton from '../../atoms/styled_button/StyledButton';
+import InputText from '../../atoms/input_text';
+import {
+  removeDetailAction,
+  updateDetailDueAction,
+} from '../../../../modules/actions/createbucket';
 
 const DetailListItemWrapper = styled.div`
   display: flex;
@@ -17,13 +20,14 @@ const DetailListItemWrapper = styled.div`
   border-left: 0px;
   border-style: ridge;
   padding: 15px;
+  font-size: 14px;
 `;
 
-const CalenderIcon = {
+const DatePicker = {
   position: 'absolute',
-  right: '12%',
+  right: '18%',
   padding: '1px',
-  height: '20px',
+  margin: '-5px',
 };
 
 const RemoveIcon = {
@@ -34,7 +38,7 @@ const RemoveIcon = {
   height: '20px',
 };
 
-const CreateDetailListItem = ({ detail, removeDetailActionConnect }) => {
+const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActionConnect }) => {
   const style = {
     color: 'inherit',
   };
@@ -43,14 +47,24 @@ const CreateDetailListItem = ({ detail, removeDetailActionConnect }) => {
     removeDetailActionConnect(detail);
   };
 
+  const dateChangeHandler = (e) => {
+    updateDetailDueActionConnect({
+      title: detail.title,
+      dueDate: e.target.value,
+    });
+  };
+
   const content = (
     <DetailListItemWrapper>
-      <Span content={detail} />
-      <StyledButton
-        type="Icon"
-        style={CalenderIcon}
-        variant="add detail"
-        content={<DateRangeIcon />}
+      <Span content={detail.title} />
+      <InputText
+        style={DatePicker}
+        type="date"
+        onChangeHandler={dateChangeHandler}
+        defaultValue={detail.dueDate}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
       <StyledButton
         type="Icon"
@@ -66,6 +80,7 @@ const CreateDetailListItem = ({ detail, removeDetailActionConnect }) => {
 
 const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps, { removeDetailActionConnect: removeDetailAction })(
-  CreateDetailListItem
-);
+export default connect(mapStateToProps, {
+  removeDetailActionConnect: removeDetailAction,
+  updateDetailDueActionConnect: updateDetailDueAction,
+})(DetailListItem);

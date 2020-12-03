@@ -1,7 +1,7 @@
 import React from 'react';
 import InputText from '../../atoms/input_text';
 
-const BucketInputText = ({ style, label, changeInputText, value }) => {
+const BucketInputText = ({ style, label, changeInputText, value, isMultiline }) => {
   return (
     <InputText
       style={style}
@@ -9,6 +9,7 @@ const BucketInputText = ({ style, label, changeInputText, value }) => {
       label={label}
       value={value}
       onChangeHandler={changeInputText}
+      isMultiline={isMultiline}
     />
   );
 };
