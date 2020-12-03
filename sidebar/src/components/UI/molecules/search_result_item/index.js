@@ -34,73 +34,11 @@ const SearchResultItem = ({ bucket, loadPresetActionConnect }) => {
   const { no, title, description, refCount, nickname } = bucket;
 
   const onClickHandler = async () => {
-    console.log('clicked!');
-    // const { details } = await getDetails(no);
-    const { details } = {
-      message: '버킷 상세 목록 조회 성공',
-      details: [
-        {
-          no: 1,
-          title: '세부목표1',
-          status: 'O',
-          dueDate: '2020-12-25',
-          createdAt: '2020-11-26 21:10:27',
-          updatedAt: '2020-11-26 21:10:27',
-          deletedAt: null,
-          bucketNo: 1,
-        },
-        {
-          no: 2,
-          title: '세부목표2',
-          status: 'O',
-          dueDate: '2020-12-25',
-          createdAt: '2020-11-26 21:10:27',
-          updatedAt: '2020-11-26 21:10:27',
-          deletedAt: null,
-          bucketNo: 1,
-        },
-        {
-          no: 3,
-          title: '세부목표3',
-          status: 'O',
-          dueDate: '2020-12-25',
-          createdAt: '2020-11-26 21:10:27',
-          updatedAt: '2020-11-26 21:10:27',
-          deletedAt: null,
-          bucketNo: 1,
-        },
-        {
-          no: 6,
-          title: '세부목표6',
-          status: 'O',
-          dueDate: '2020-11-29',
-          createdAt: '2020-11-27 00:38:38',
-          updatedAt: '2020-11-30 00:38:39',
-          deletedAt: null,
-          bucketNo: 1,
-        },
-        {
-          no: 4,
-          title: '세부목표4',
-          status: 'A',
-          dueDate: '2020-11-27',
-          createdAt: '2020-11-27 00:36:29',
-          updatedAt: '2020-11-27 00:36:31',
-          deletedAt: null,
-          bucketNo: 1,
-        },
-        {
-          no: 5,
-          title: '세부목표5',
-          status: 'A',
-          dueDate: '2020-11-28',
-          createdAt: '2020-11-27 00:36:46',
-          updatedAt: '2020-11-29 00:36:47',
-          deletedAt: null,
-          bucketNo: 1,
-        },
-      ],
-    };
+    const { data } = await getDetails(no);
+    const { openDetails, achieveDetails } = data.data;
+    console.log(openDetails, achieveDetails);
+    const details = openDetails.concat(achieveDetails);
+    console.log(details);
     loadPresetActionConnect({
       bucketTitle: title,
       bucketDescription: description,
