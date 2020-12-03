@@ -35,11 +35,11 @@ export const updateAchieves = ({ achieveNo, description }) =>
     description,
   });
 
-export const setObjectStorage = (file) => {
+export const uploadObjectStorage = (file) => {
   const formData = new FormData();
   formData.append('file', file);
   const config = {
     header: { 'content-type': 'multipart/form-data' },
   };
-  return axios.post(`/api/objects/`, formData, config);
+  return axios.post(`/api/upload/`, formData, config);
 };
