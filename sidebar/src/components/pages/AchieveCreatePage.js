@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { reset, changeInput, addInput, setAchieve } from '../../modules/achieve';
+import { reset, changeInput, setAchieve } from '../../modules/achieve';
 import AchieveCreateLayout from '../templates/achieve_create';
 import Header from '../UI/organisms/header';
 
@@ -12,27 +12,20 @@ const bucketState = {
   date: '2020.07.27',
 };
 
-const AchieveCreate = ({ match }) => {
+const AchieveCreatePage = ({ match }) => {
   const { bucketNo } = match.params;
   const acheiveState = useSelector((state) => state.acheiveState, []);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const acheiveChangeHandler = useCallback((e) => {
-    dispatch(changeInput(e.target.value));
+  const changeAchieve = useCallback((text) => {
+    dispatch(changeInput(text));
   }, []);
-  const acheiveAddHandler = useCallback((input) => {
-    dispatch(addInput(input));
-  }, []);
-  const setAchieveHandler = useCallback(async () => {
-    if (acheiveState.input) {
-      dispatch(setAchieve({ description: acheiveState.input, bucketNo }));
-    } else {
-      alert('글을 입력해주세요.');
-    }
-  }, [acheiveState]);
 
-  // todo useEffect: bucketState 불러오기
+  const submitAchieve = useCallback((text) => {
+    dispatch(setAchieve({ description: text, bucketNo }));
+  }, []);
+
   useEffect(() => {
     if (acheiveState.message) {
       dispatch(reset());
@@ -46,12 +39,11 @@ const AchieveCreate = ({ match }) => {
       <AchieveCreateLayout
         bucketState={bucketState}
         acheiveState={acheiveState}
-        acheiveChangeHandler={acheiveChangeHandler}
-        acheiveAddHandler={acheiveAddHandler}
-        setAchieveHandler={setAchieveHandler}
+        changeAchieve={changeAchieve}
+        submitAchieve={submitAchieve}
       />
     </>
   );
 };
 
-export default AchieveCreate;
+export default AchieveCreatePage;

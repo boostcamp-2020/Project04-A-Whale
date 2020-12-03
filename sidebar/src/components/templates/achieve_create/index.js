@@ -4,13 +4,7 @@ import useStyles from './style';
 
 import WritingTab from '../../UI/organisms/writing_tab';
 
-const AchieveCreate = ({
-  bucketState,
-  acheiveState,
-  acheiveChangeHandler,
-  acheiveAddHandler,
-  setAchieveHandler,
-}) => {
+const AchieveCreate = ({ bucketState, acheiveState, changeAchieve, submitAchieve }) => {
   const classes = useStyles();
 
   return (
@@ -27,9 +21,8 @@ const AchieveCreate = ({
           <WritingTab
             placeholder="목표 달성 소감을 남겨주세요."
             text={acheiveState.input}
-            onTextChange={acheiveChangeHandler}
-            addText={acheiveAddHandler}
-            onSubmitClick={setAchieveHandler}
+            changeText={changeAchieve}
+            submitText={submitAchieve}
           />
         </div>
       </div>

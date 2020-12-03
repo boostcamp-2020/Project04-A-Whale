@@ -14,25 +14,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LabelContentTab = ({ tabs, onSubmitClick }) => {
+const LabelContentTab = ({ tabs, text, submitText }) => {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [tabIndex, setTabIndex] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleChange = (event, newIndex) => {
+    setTabIndex(newIndex);
   };
   let tabList = null;
   let tabPanelList = null;
   if (tabs) {
     tabList = createTabList(tabs);
-    tabPanelList = createTabPanelList({ tabs, value, onSubmitClick });
+    tabPanelList = createTabPanelList({ tabs, tabIndex, text, submitText });
   }
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs
-          value={value}
+          value={tabIndex}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
