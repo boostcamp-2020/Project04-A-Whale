@@ -15,14 +15,14 @@ const useStyles = makeStyles(() => ({
     },
   },
   textField: {
-    padding: '8px',
+    marginTop: '10px',
   },
   titleResize: {
     fontSize: '30px',
     color: '#555555',
   },
   descResize: {
-    fontSize: '20px',
+    fontSize: '18px',
     color: '#555555',
   },
 }));

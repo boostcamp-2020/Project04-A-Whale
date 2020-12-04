@@ -1,22 +1,21 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetails } from '../../modules/details';
 import Spinner from '../UI/atoms/spinner';
 import Header from '../UI/organisms/header';
 import MyBucketListDetail from '../templates/my_bucket_list_detail';
 
-const MyBucketListDetailPage = () => {
-  const location = useLocation();
-  const { bucket } = location.state;
+const MyBucketListDetailPage = ({ match }) => {
+  const { bucketNo } = match.params;
   const dispatch = useDispatch();
-  const { details, loadingDetails } = useSelector(({ details, loading }) => ({
+  const { bucket, details, loadingDetails } = useSelector(({ details, loading }) => ({
+    bucket: details.bucket,
     details: details.details,
     loadingDetails: loading['details/GET_DETAILS'],
   }));
 
   useEffect(() => {
-    dispatch(getDetails(bucket.no));
+    dispatch(getDetails(bucketNo));
   }, [dispatch]);
 
   return (

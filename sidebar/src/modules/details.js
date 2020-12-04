@@ -20,6 +20,7 @@ export const deleteDetail = createRequestThunk(DELETE_DETAIL, api.deleteDetail);
 export const createDetail = createRequestThunk(CREATE_DETAIL, api.createDetail);
 
 const initialState = {
+  bucket: {},
   details: {
     openDetails: [],
     achieveDetails: [],
@@ -73,8 +74,8 @@ const getNewDetails = ({ details }, { detail }) => {
 const details = handleActions(
   {
     [GET_DETAILS_SUCCESS]: (state, action) => ({
-      ...state,
-      details: action.payload.data,
+      bucket: action.payload.data.bucket,
+      details: action.payload.data.details,
     }),
     [UPDATE_DETAIL_STATUS_SUCCESS]: (state, action) => ({
       ...state,
