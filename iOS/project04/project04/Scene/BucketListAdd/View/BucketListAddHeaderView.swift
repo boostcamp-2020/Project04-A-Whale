@@ -15,6 +15,8 @@ class BucketListAddHeaderView: UICollectionReusableView {
     
     @IBOutlet weak var descriptionTextView: UITextView!
         
+    @IBOutlet weak var searchButton: UIButton!
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -65,6 +65,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="descriptionTextView" destination="nub-Do-bxg" id="K08-pF-8Kd"/>
+                <outlet property="searchButton" destination="VOi-cf-qUj" id="eLa-Ur-Ant"/>
                 <outlet property="titleTextField" destination="Dl2-83-Ckj" id="SrM-dW-Mk9"/>
             </connections>
             <point key="canvasLocation" x="313.768115942029" y="-136.27232142857142"/>

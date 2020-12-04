@@ -17,7 +17,7 @@ class BucketLocalAgent: LocalService {
             
             let buckets = realm.objects(RealmBucket.self)
             return buckets.map {
-                Bucket(id: $0.id, title: $0.title, status: $0.status)
+                Bucket(id: $0.id, title: $0.title, description: $0.subTitle, status: $0.status)
             }
         } catch {
             print(error)
