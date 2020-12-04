@@ -55,7 +55,7 @@ const SearchResultItem = ({ bucket, boldWord, loadPresetActionConnect }) => {
 
   const onClickHandler = async () => {
     const { data } = await getDetails(no);
-    const { openDetails, achieveDetails } = data.data;
+    const { openDetails, achieveDetails } = data.data.details;
     const details = openDetails.concat(achieveDetails);
     loadPresetActionConnect({
       bucketTitle: title,
