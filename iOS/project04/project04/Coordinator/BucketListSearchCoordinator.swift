@@ -15,10 +15,13 @@ class BucketListSearchCoordinator: NavigationCoordinator {
         self.navigationController = navigationController
     }
     
-    func presentBucketListSearch() {
+    func pushToBucketListSearch() {
         let viewController = UIStoryboard(name: "BucketListSearch", bundle: nil).instantiateViewController(identifier: "BucketListSearchViewController", creator: { coder in
-            return BucketListSearchViewController(coder: coder)
+            let repository = BucketListSearchRepository()
+            let usecase = BucketListSearchUseCase(repository: repository)
+            let viewModel = BucketListSearchViewModel(usecase: usecase)
+            return BucketListSearchViewController(coder: coder, viewModel: viewModel)
         })
-        navigationController.present(viewController, animated: true)
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

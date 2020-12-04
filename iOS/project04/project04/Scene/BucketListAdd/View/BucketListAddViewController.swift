@@ -65,7 +65,7 @@ class BucketListAddViewController: UIViewController {
     }
     
     @objc func didTouchSearchButton(sender: UIButton) {
-        coordinator.presentBucketListSearch()
+        coordinator.pushToBucketListSearch()
     }
 }
 

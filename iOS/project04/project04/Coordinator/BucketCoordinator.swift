@@ -68,7 +68,7 @@ extension BucketCoordinator: BucketListAddCoordinator {
             let viewModel = BucketListAddViewModel(usecase: usecase)
             let coordinator = BucketListSearchCoordinator(self.navigationController)
             return BucketListAddViewController(coder: coder, viewModel: viewModel, delegate: delegate, coordinator: coordinator)
-        }) as BucketListAddViewController
+        })
         navigationController.pushViewController(viewController, animated: true)
     }
 }
