@@ -45,12 +45,12 @@ class DetailRepository: DetailRepositoryProtocol {
         network.request(from: DetailAPIAgent.RequestURL.append,
                         method: .GET,
                         body: element,
-                        completion: { result in
+                        completion: { [weak self] result in
                             switch result {
                             case .success(_):
                                 break
                             case .failure(_):
-                                self.local.append(element)
+                                self?.local.append(element)
                             }
                         })
     }
@@ -59,12 +59,12 @@ class DetailRepository: DetailRepositoryProtocol {
         network.request(from: DetailAPIAgent.RequestURL.remove,
                         method: .GET,
                         body: nil,
-                        completion: { result in
+                        completion: { [weak self] result in
                             switch result {
                             case .success(_):
                                 break
                             case .failure(_):
-                                self.local.remove(at: index)
+                                self?.local.remove(at: index)
                             }
                         })
     }
@@ -73,12 +73,12 @@ class DetailRepository: DetailRepositoryProtocol {
         network.request(from: DetailAPIAgent.RequestURL.revise,
                         method: .GET,
                         body: nil,
-                        completion: { result in
+                        completion: { [weak self] result in
                             switch result {
                             case .success(_):
                                 break
                             case .failure(_):
-                                self.local.revise(at: index, element: element)
+                                self?.local.revise(at: index, element: element)
                             }
                         })
     }
