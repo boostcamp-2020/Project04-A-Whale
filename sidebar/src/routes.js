@@ -5,8 +5,8 @@ import MyBucketListDetailPage from './components/pages/MyBucketListDetailPage';
 import pathURI from './constants/path';
 
 import BucketCreatePage from './components/pages/BucketCreatePage';
-import AchieveCreate from './components/pages/AchieveCreate';
-import AchieveResult from './components/pages/AchieveResult';
+import AchieveCreate from './components/pages/AchieveCreatePage';
+import AchieveResult from './components/pages/AchieveResultPage';
 
 const routes = () => (
   <Switch>
