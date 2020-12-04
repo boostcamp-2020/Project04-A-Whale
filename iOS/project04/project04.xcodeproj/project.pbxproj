@@ -38,6 +38,7 @@
 		C1655C9E256B7ED30067E3C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1655C9D256B7ED30067E3C5 /* Assets.xcassets */; };
 		C1655CA1256B7ED30067E3C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1655C9F256B7ED30067E3C5 /* LaunchScreen.storyboard */; };
 		C168BF612576873700A1A338 /* extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C168BF602576873700A1A338 /* extension+Date.swift */; };
+		C16BEFB52579CF2000108265 /* extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BEFB42579CF2000108265 /* extension+UIColor.swift */; };
 		C1754EDC256E13650037C805 /* DetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EDB256E13650037C805 /* DetailRepository.swift */; };
 		C1754EE3256E17F20037C805 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EE2256E17F20037C805 /* LocalService.swift */; };
 		C1754EEC256E197C0037C805 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EEB256E197C0037C805 /* NetworkService.swift */; };
@@ -111,6 +112,7 @@
 		C1655CA0256B7ED30067E3C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1655CA2256B7ED30067E3C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C168BF602576873700A1A338 /* extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+Date.swift"; sourceTree = "<group>"; };
+		C16BEFB42579CF2000108265 /* extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIColor.swift"; sourceTree = "<group>"; };
 		C1754EDB256E13650037C805 /* DetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRepository.swift; sourceTree = "<group>"; };
 		C1754EE2256E17F20037C805 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		C1754EEB256E197C0037C805 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				C1BFAD152576340800BDEF93 /* extension+UIDatePicker.swift */,
 				C168BF602576873700A1A338 /* extension+Date.swift */,
 				C15F33602577BC9E0032EACF /* extension+String.swift */,
+				C16BEFB42579CF2000108265 /* extension+UIColor.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				C1754EDC256E13650037C805 /* DetailRepository.swift in Sources */,
 				8261DB8A25761A420027F6F8 /* BucketListAddViewModel.swift in Sources */,
 				82A7290E256F41DD00BD5797 /* BucketListUseCase.swift in Sources */,
+				C16BEFB52579CF2000108265 /* extension+UIColor.swift in Sources */,
 				82A7291F256F4BCB00BD5797 /* RealmBucket.swift in Sources */,
 				C1900D8C256B910F0071E8C7 /* DetailListViewModel.swift in Sources */,
 				8261DB802575F8C40027F6F8 /* BucketListAddViewController.swift in Sources */,

@@ -50,6 +50,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="올해는 꼭!" largeTitleDisplayMode="always" id="Q7P-zt-yhr">
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="XWm-ZF-uZO">
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="didTouchPlusButton:" destination="BOR-i1-Tgp" id="6xl-mc-XVz"/>
                             </connections>
@@ -71,6 +72,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ne6-Lq-zdt">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -84,6 +88,9 @@
     </scenes>
     <resources>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

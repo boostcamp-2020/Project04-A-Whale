@@ -44,6 +44,7 @@ class BucketListViewController: UIViewController, BucketListAddDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.tintColor = .black
         configureCollectionView()
         bucketListViewModel.handler = { [weak self](data) in
             var snapshot = Snapshot()
@@ -124,7 +125,10 @@ extension BucketListViewController: UICollectionViewDelegate {
         return UICollectionView.CellRegistration<UICollectionViewListCell, Bucket> { (cell, _, bucket) in
             var content = cell.defaultContentConfiguration()
             content.text = bucket.title
+            content.image = UIImage(systemName: "note.text")
+            cell.accessories = [.disclosureIndicator()]
             cell.contentConfiguration = content
+            cell.tintColor = .black
             cell.backgroundConfiguration?.backgroundColor = .systemBackground
         }
     }
