@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="DetailSectionGraphView" customModule="project04" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="339" height="293"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="달성률" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7r-zG-LMr">
+                    <rect key="frame" x="20" y="44" width="44.5" height="56.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBr-ls-z4Y" customClass="RoundView" customModule="project04" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="110.5" width="339" height="182.5"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29L-zW-gYV" customClass="PieView" customModule="project04" customModuleProvider="target">
+                            <rect key="frame" x="15" y="15" width="152.5" height="152.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="29L-zW-gYV" secondAttribute="height" multiplier="1:1" id="Vme-Tn-VWR"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvp-RC-ZhA" customClass="RoundView" customModule="project04" customModuleProvider="target">
+                            <rect key="frame" x="221" y="57.5" width="30" height="30"/>
+                            <color key="backgroundColor" name="graphColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="rvp-RC-ZhA" secondAttribute="height" multiplier="1:1" id="3aY-y9-7GM"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="LWi-md-pfs">
+                            <rect key="frame" x="259" y="63.5" width="39" height="55"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="달성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ze4-HR-xrd">
+                                    <rect key="frame" x="0.0" y="0.0" width="39" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="미달성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUq-88-1Z7">
+                                    <rect key="frame" x="0.0" y="37" width="39" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLM-Xz-bCC" customClass="RoundView" customModule="project04" customModuleProvider="target">
+                            <rect key="frame" x="221" y="94.5" width="30" height="30"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="ze4-HR-xrd" firstAttribute="leading" secondItem="rvp-RC-ZhA" secondAttribute="trailing" constant="8" symbolic="YES" id="8to-un-RGx"/>
+                        <constraint firstItem="LLM-Xz-bCC" firstAttribute="height" secondItem="rvp-RC-ZhA" secondAttribute="height" id="AyZ-0a-dfv"/>
+                        <constraint firstItem="pUq-88-1Z7" firstAttribute="leading" secondItem="LLM-Xz-bCC" secondAttribute="trailing" constant="8" symbolic="YES" id="Ep0-gv-iWp"/>
+                        <constraint firstItem="LLM-Xz-bCC" firstAttribute="centerY" secondItem="pUq-88-1Z7" secondAttribute="centerY" id="FdW-uv-XX2"/>
+                        <constraint firstItem="29L-zW-gYV" firstAttribute="width" secondItem="OBr-ls-z4Y" secondAttribute="width" multiplier="0.45" id="MTC-c1-5pf"/>
+                        <constraint firstItem="rvp-RC-ZhA" firstAttribute="centerY" secondItem="ze4-HR-xrd" secondAttribute="centerY" id="MVY-e3-f37"/>
+                        <constraint firstItem="29L-zW-gYV" firstAttribute="top" secondItem="OBr-ls-z4Y" secondAttribute="top" priority="999" constant="15" id="SkW-ih-uJ4"/>
+                        <constraint firstItem="LWi-md-pfs" firstAttribute="centerY" secondItem="OBr-ls-z4Y" secondAttribute="centerY" id="g5Z-Hh-zcg"/>
+                        <constraint firstItem="rvp-RC-ZhA" firstAttribute="width" secondItem="OBr-ls-z4Y" secondAttribute="width" multiplier="0.0884956" id="gtH-n4-9KQ"/>
+                        <constraint firstAttribute="trailing" secondItem="LWi-md-pfs" secondAttribute="trailing" constant="41" id="h5p-60-HCg"/>
+                        <constraint firstItem="29L-zW-gYV" firstAttribute="leading" secondItem="OBr-ls-z4Y" secondAttribute="leading" constant="15" id="jZU-kx-51t"/>
+                        <constraint firstItem="LLM-Xz-bCC" firstAttribute="width" secondItem="rvp-RC-ZhA" secondAttribute="width" id="qZD-9h-Ywm"/>
+                        <constraint firstAttribute="bottom" secondItem="29L-zW-gYV" secondAttribute="bottom" priority="999" constant="15" id="qys-pA-vB7"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <constraints>
+                <constraint firstItem="O7r-zG-LMr" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" id="622-ve-t5Y"/>
+                <constraint firstItem="OBr-ls-z4Y" firstAttribute="trailing" secondItem="VXr-Tz-HHm" secondAttribute="trailing" id="TZp-8p-c8z"/>
+                <constraint firstItem="OBr-ls-z4Y" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="b7S-Yx-xV3"/>
+                <constraint firstItem="O7r-zG-LMr" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="20" id="e9I-kf-Nob"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="OBr-ls-z4Y" secondAttribute="bottom" id="ipV-XE-Ucd"/>
+                <constraint firstItem="OBr-ls-z4Y" firstAttribute="top" secondItem="O7r-zG-LMr" secondAttribute="bottom" constant="10" id="n2Q-n1-0Ja"/>
+            </constraints>
+            <connections>
+                <outlet property="graphView" destination="29L-zW-gYV" id="b9P-NJ-7kR"/>
+            </connections>
+            <point key="canvasLocation" x="151.44927536231884" y="189.17410714285714"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <namedColor name="graphColor">
+            <color red="0.33025187249999999" green="0.72214382889999995" blue="0.6548936367" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
