@@ -23,15 +23,15 @@ module.exports = function (sequelize, DataTypes) {
       },
       profileUrl: {
         type: DataTypes.STRING(300),
-        allowNull: false,
+        allowNull: true,
       },
       description: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       rank: {
         type: DataTypes.STRING(50),
-        allowNull: false,
+        allowNull: true,
       },
     },
     {

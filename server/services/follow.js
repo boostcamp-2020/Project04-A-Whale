@@ -14,13 +14,7 @@ exports.getFollowCounts = async (userNo) => {
  */
 exports.getFollowingList = async (userNo) => {
   const followingList = await db.selectFollowingList(userNo);
-  const filtered = followingList.map((following) => {
-    const tmp = { ...following };
-    delete tmp.createdAt;
-    delete tmp.updatedAt;
-    return tmp;
-  });
-  return filtered;
+  return followingList;
 };
 
 /*

@@ -8,7 +8,7 @@ module.exports = {
     host: DB_HOST,
     port: DB_PORT,
     dialect: DB_DIALECT,
-    timezone: '+09:00',
+    timezone: 'Asia/Seoul',
     dialectOptions: {
       charset: 'utf8mb4',
       dateStrings: true,
@@ -22,7 +22,7 @@ module.exports = {
     host: DB_HOST,
     port: DB_PORT,
     dialect: DB_DIALECT,
-    timezone: '+09:00',
+    timezone: 'Asia/Seoul',
     dialectOptions: {
       charset: 'utf8mb4',
       dateStrings: true,
@@ -36,7 +36,7 @@ module.exports = {
     host: DB_HOST,
     port: DB_PORT,
     dialect: DB_DIALECT,
-    timezone: '+09:00',
+    timezone: 'Asia/Seoul',
     dialectOptions: {
       charset: 'utf8mb4',
       dateStrings: true,
