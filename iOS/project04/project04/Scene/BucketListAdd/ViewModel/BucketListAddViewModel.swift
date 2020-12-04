@@ -9,19 +9,27 @@ import Foundation
 
 protocol BucketListAddViewModelProtocol {
     var bucket: Bucket? { get set }
-    var handler: (([Detail.Section: [Detail]]) -> Void)? { get set }
+    var didChangeBucket: ((Bucket) -> Void)? { get set }
+    var didChangeDetails: (([Detail.Section: [Detail]]) -> Void)? { get set }
     func fetch(with: String) -> Void
     func append(detail: Detail) -> Void
 }
 
 class BucketListAddViewModel: BucketListAddViewModelProtocol {
-    var bucket: Bucket?
-    var details: [Detail] = [] {
+    var bucket: Bucket? {
         didSet {
-            handler?([.todo: details])
+            guard let bucket = self.bucket else { return }
+            didChangeBucket?(bucket)
         }
     }
-    var handler: (([Detail.Section : [Detail]]) -> Void)?
+    var details: [Detail] = [] {
+        didSet {
+            didChangeDetails?([.todo: details])
+        }
+    }
+    
+    var didChangeBucket: ((Bucket) -> Void)?
+    var didChangeDetails: (([Detail.Section : [Detail]]) -> Void)?
     
     let usecase: BucketListAddUseCase
     

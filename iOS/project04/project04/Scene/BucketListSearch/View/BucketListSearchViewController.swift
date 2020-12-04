@@ -9,7 +9,6 @@ import UIKit
 
 class BucketListSearchViewController: UITableViewController {
     var searchController = UISearchController(searchResultsController: nil)
-    
     var viewModel: BucketListSearchViewModelProtocol {
         didSet {
             viewModel.handler = {
@@ -17,9 +16,11 @@ class BucketListSearchViewController: UITableViewController {
             }
         }
     }
+    var didSelectRowHandler: (Bucket) -> Void
     
-    init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol) {
+    init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol, didSelectRowHandler: @escaping (Bucket) -> Void) {
         self.viewModel = viewModel
+        self.didSelectRowHandler = didSelectRowHandler
         viewModel.fetch()
         super.init(coder: coder)
     }
@@ -76,10 +77,18 @@ extension BucketListSearchViewController {
             item = viewModel.buckets[indexPath.row]
         }
         cell.textLabel?.text = item.title
+        cell.detailTextLabel?.text = item.description
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let item: Bucket
+        if isFiltering() {
+            item = viewModel.filteredBuckets[indexPath.row]
+        } else {
+            item = viewModel.buckets[indexPath.row]
+        }
+        didSelectRowHandler(item)
+        navigationController?.popViewController(animated: true)
     }
 }

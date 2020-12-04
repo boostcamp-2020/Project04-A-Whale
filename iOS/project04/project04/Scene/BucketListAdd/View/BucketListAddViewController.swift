@@ -16,16 +16,20 @@ class BucketListAddViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>
     
     var dataSource: DataSource?
-    var delegate: BucketListAddDelegate?
+    var delegate: BucketListAddDelegate
     var coordinator: BucketListSearchCoordinator
     var bucketListAddViewModel: BucketListAddViewModelProtocol {
         didSet {
-            bucketListAddViewModel.handler = { [weak self] data in
+            bucketListAddViewModel.didChangeDetails = { [weak self] data in
                 var snapshot = Snapshot()
                 snapshot.appendSections([.todo])
                 snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
 
                 self?.dataSource?.apply(snapshot,animatingDifferences: false)
+            }
+            bucketListAddViewModel.didChangeBucket = {[weak self] bucket in
+                self?.sectionHeader?.titleTextField.text = bucket.title
+                self?.sectionHeader?.descriptionTextView.text = bucket.description
             }
         }
     }
@@ -42,10 +46,11 @@ class BucketListAddViewController: UIViewController {
     }
     
     @IBAction func didToucAddButton(_ sender: UIBarButtonItem) {
-        guard let title = sectionHeader?.titleTextField.text else { return }
+        guard let title = sectionHeader?.titleTextField.text,
+              let description = sectionHeader?.descriptionTextView.text else { return }
         if !title.isEmpty {
-            let bucket = Bucket(id: nil, title: title, status: "O")
-            delegate?.bucketListViewModel.append(bucket: bucket)
+            let bucket = Bucket(id: nil, title: title, description: description, status: "O")
+            delegate.bucketListViewModel.append(bucket: bucket)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -53,19 +58,24 @@ class BucketListAddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        bucketListAddViewModel.handler = { [weak self] data in
+        bucketListAddViewModel.didChangeDetails = { [weak self] data in
             var snapshot = Snapshot()
             snapshot.appendSections([.todo])
             snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
 
             self?.dataSource?.apply(snapshot)
         }
+        bucketListAddViewModel.didChangeBucket = { [weak self] bucket in 
+            self?.sectionHeader?.titleTextField.text = bucket.title
+        }
 
         bucketListAddViewModel.fetch(with: "")
     }
     
     @objc func didTouchSearchButton(sender: UIButton) {
-        coordinator.pushToBucketListSearch()
+        coordinator.pushToBucketListSearch { (bucket) in
+            self.bucketListAddViewModel.bucket = bucket
+        }
     }
 }
 

@@ -13,7 +13,7 @@ protocol SearchRepositoryProtocol {
 }
 
 class BucketListSearchRepository: SearchRepositoryProtocol {
-    let buckets = (1...100).map({ Bucket(id: nil, title: "목표 \($0)", status: "O") })
+    let buckets = (1...100).map({ Bucket(id: nil, title: "목표 \($0)",description: "목표 \($0) 설명", status: "O") })
     func fetch(completion: @escaping ([Bucket]) -> Void) {
         completion(buckets)
     }
