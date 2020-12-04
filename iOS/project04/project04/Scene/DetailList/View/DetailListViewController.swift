@@ -214,7 +214,7 @@ extension DetailListViewController {
         }
         
         headerView??.graphView.removeSublayers()
-        guard let color = UIColor.init(named: "graphColor") else {
+        guard let color = UIColor.init(named: "GraphColor") else {
             return
         }
         headerView??.graphView.animateChart(colors: [color, .darkGray],
