@@ -53,30 +53,7 @@ exports.updateBucketTitleDesc = async (no, title, description) => {
   return result;
 };
 
-const initialDetails = () => {
-  const result = {};
-  result.openDetails = [];
-  result.achieveDetails = [];
-  result.achieveComment = null;
-  return result;
-};
-
-const detailsByStatus = (details) => {
-  const result = initialDetails();
-
-  details.forEach((detail) => {
-    if (detail.status === 'O') result.openDetails.push(detail);
-    if (detail.status === 'A') result.achieveDetails.push(detail);
-  });
-  return result;
-};
-
-exports.getDetails = async (bucketNo) => {
-  const details = await db.selectBucketDetails(bucketNo);
-  const achieve = await adb.selectAchieve(bucketNo);
-  const result = detailsByStatus(details);
-  if (achieve) {
-    result.achieveComment = achieve.description;
-  }
+exports.getBucket = async (no) => {
+  const result = await db.selectBucket(no);
   return result;
 };
