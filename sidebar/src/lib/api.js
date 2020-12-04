@@ -3,6 +3,8 @@ import axios from 'axios';
 axios.defaults.baseURL =
   process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://101.101.210.76:8000';
 
+// axios.interceptors.response.use(({ data }) => data);
+
 // buckets
 export const getBuckets = () => axios.get('/api/buckets');
 
@@ -62,11 +64,11 @@ export const updateAchieves = ({ achieveNo, description }) =>
     description,
   });
 
-export const setObjectStorage = (file) => {
+export const uploadObjectStorage = (file) => {
   const formData = new FormData();
   formData.append('file', file);
   const config = {
     header: { 'content-type': 'multipart/form-data' },
   };
-  return axios.post(`/api/objects/`, formData, config);
+  return axios.post(`/api/upload/`, formData, config);
 };

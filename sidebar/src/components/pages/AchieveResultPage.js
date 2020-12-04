@@ -2,7 +2,7 @@ import React from 'react';
 import AchieveResultLayout from '../templates/achieve_result';
 import Header from '../UI/organisms/header';
 
-const AchieveResult = () => {
+const AchieveResultPage = () => {
   return (
     <>
       <Header title="목표 달성 소감" isGoBack />
@@ -15,4 +15,4 @@ const AchieveResult = () => {
   );
 };
 
-export default AchieveResult;
+export default AchieveResultPage;

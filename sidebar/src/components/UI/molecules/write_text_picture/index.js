@@ -1,10 +1,15 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { WriteText, TextArea, UploadPicture } from './style';
-import { setObjectStorage } from '../../../../lib/api';
+import { uploadObjectStorage } from '../../../../lib/api';
 
-const WriteTextPicture = ({ placeholder, text, onTextChange, addText }) => {
+const WriteTextPicture = ({ placeholder, text, changeText }) => {
+  const [localText, setLocalText] = useState(text);
   const [dragging, setDragging] = useState(false);
   const textarea = useRef();
+
+  const localTextChangeHandler = useCallback((e) => {
+    setLocalText(e.target.value);
+  }, []);
 
   const dragInHandler = useCallback(() => {
     setDragging(true);
@@ -14,13 +19,17 @@ const WriteTextPicture = ({ placeholder, text, onTextChange, addText }) => {
     setDragging(false);
   }, []);
 
-  const uploadImage = useCallback(async (file) => {
-    const fileType = file.type.split('/');
-    if (fileType[0] !== 'image') return alert('이미지 파일이 아닙니다.');
-    const result = await setObjectStorage(file);
-    addText(`\n![${file.name}](${result.data.url})`);
-    return null;
-  }, []);
+  const uploadImage = useCallback(
+    async (file) => {
+      const fileType = file.type.split('/');
+      if (fileType[0] !== 'image') return alert('이미지 파일이 아닙니다.');
+      const result = await uploadObjectStorage(file);
+      // addText(`\n![${file.name}](${result.data.url})`);
+      setLocalText(`${localText}![${file.name}](${result.data.url})\n`);
+      return null;
+    },
+    [localText]
+  );
 
   const dropImageHandler = useCallback(async (e) => {
     e.stopPropagation();
@@ -35,6 +44,10 @@ const WriteTextPicture = ({ placeholder, text, onTextChange, addText }) => {
     e.target.value = null;
   }, []);
 
+  useEffect(() => {
+    changeText(localText);
+  }, [localText]);
+
   return (
     <WriteText
       onDragEnter={dragInHandler}
@@ -42,7 +55,12 @@ const WriteTextPicture = ({ placeholder, text, onTextChange, addText }) => {
       onDrop={dropImageHandler}
       style={dragging ? { boxShadow: '0 0 3px 3px #ddddff' } : {}}
     >
-      <TextArea placeholder={placeholder} value={text} ref={textarea} onChange={onTextChange} />
+      <TextArea
+        placeholder={placeholder}
+        value={localText}
+        ref={textarea}
+        onChange={localTextChangeHandler}
+      />
       <UploadPicture type="file" onChange={uploadImageHandler} />
     </WriteText>
   );
