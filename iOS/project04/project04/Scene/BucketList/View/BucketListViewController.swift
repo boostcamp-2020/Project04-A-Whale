@@ -26,7 +26,7 @@ class BucketListViewController: UIViewController, BucketListAddDelegate {
                 snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
                 snapshot.appendItems(data?[.done] ?? [], toSection: .done)
 
-                self?.dataSource?.apply(snapshot)
+                self?.dataSource?.apply(snapshot, animatingDifferences: false)
             }
         }
     }
@@ -43,7 +43,6 @@ class BucketListViewController: UIViewController, BucketListAddDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationController?.navigationBar.tintColor = .black
         configureCollectionView()
         bucketListViewModel.handler = { [weak self](data) in
@@ -52,7 +51,7 @@ class BucketListViewController: UIViewController, BucketListAddDelegate {
             snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
             snapshot.appendItems(data?[.done] ?? [], toSection: .done)
 
-            self?.dataSource?.apply(snapshot)
+            self?.dataSource?.apply(snapshot, animatingDifferences: false)
         }
         bucketListViewModel.fetch()
     }

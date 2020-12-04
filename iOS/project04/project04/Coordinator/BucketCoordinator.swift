@@ -66,8 +66,9 @@ extension BucketCoordinator: BucketListAddCoordinator {
         let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController", creator: { (coder) -> BucketListAddViewController? in
             let usecase = BucketListAddUseCase()
             let viewModel = BucketListAddViewModel(usecase: usecase)
-            return BucketListAddViewController(coder: coder, viewModel: viewModel, delegate: delegate)
-        }) as BucketListAddViewController
+            let coordinator = BucketListSearchCoordinator(self.navigationController)
+            return BucketListAddViewController(coder: coder, viewModel: viewModel, delegate: delegate, coordinator: coordinator)
+        })
         navigationController.pushViewController(viewController, animated: true)
     }
 }
