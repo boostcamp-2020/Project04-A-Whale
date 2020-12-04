@@ -18,6 +18,9 @@ final class MainTabBarController: UITabBarController {
     
     private func setupViewControllers() {
         bucketList.pushViewController()
+        let bucketIcon = UITabBarItem(title: "bucket", image: UIImage(named: "bucketList_icon"), selectedImage: nil)
+        bucketList.navigationController.tabBarItem = bucketIcon
+        tabBar.tintColor = .black
         viewControllers = [bucketList.navigationController]
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BOR-i1-Tgp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eFr-l8-QCv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--버킷 리스트-->
+        <!--올해는 꼭!-->
         <scene sceneID="Yxs-GF-apX">
             <objects>
                 <viewController storyboardIdentifier="BucketListViewController" id="BOR-i1-Tgp" customClass="BucketListViewController" customModule="project04" customModuleProvider="target" sceneMemberID="viewController">
@@ -48,8 +48,9 @@
                             <constraint firstAttribute="trailing" secondItem="Phn-4f-ViY" secondAttribute="trailing" id="nyi-RJ-WXK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="버킷 리스트" largeTitleDisplayMode="always" id="Q7P-zt-yhr">
+                    <navigationItem key="navigationItem" title="올해는 꼭!" largeTitleDisplayMode="always" id="Q7P-zt-yhr">
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="XWm-ZF-uZO">
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="didTouchPlusButton:" destination="BOR-i1-Tgp" id="6xl-mc-XVz"/>
                             </connections>
@@ -61,11 +62,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGX-Dr-gs2" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="3618.840579710145" y="103.79464285714285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mlr-v2-Yvp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eFr-l8-QCv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ne6-Lq-zdt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BOR-i1-Tgp" kind="relationship" relationship="rootViewController" id="ycD-qg-6d1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fv5-78-sEO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="2708.6956521739135" y="103.79464285714285"/>
         </scene>
     </scenes>
     <resources>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -92,7 +92,6 @@ extension DetailListViewController {
             var content = cell.defaultContentConfiguration()
             content.text = "due Date: \(item.dueDate)\ntitle: \(item.title)"
             cell.contentConfiguration = content
-            cell.accessories = [.disclosureIndicator()]
             cell.backgroundConfiguration?.backgroundColor = .systemBackground
         }
         
@@ -215,7 +214,10 @@ extension DetailListViewController {
         }
         
         headerView??.graphView.removeSublayers()
-        headerView??.graphView.animateChart(colors: [.systemGreen, .darkGray],
+        guard let color = UIColor.init(named: "graphColor") else {
+            return
+        }
+        headerView??.graphView.animateChart(colors: [color, .darkGray],
                                             values: values,
                                             duration: 1)
     }
