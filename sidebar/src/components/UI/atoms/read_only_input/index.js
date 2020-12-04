@@ -1,29 +1,14 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
+import ReactMarkdown from 'react-markdown';
 import useStyles from './style';
 
-const ReadOnlyInput = ({ label, value }) => {
+const ReadOnlyInput = ({ value }) => {
   const classes = useStyles();
 
   return (
-    <TextField
-      id="outlined-read-only-input"
-      label={label}
-      defaultValue={value}
-      className={classes.root}
-      InputProps={{
-        readOnly: true,
-      }}
-      InputLabelProps={{
-        classes: {
-          root: classes.labelRoot,
-        },
-      }}
-      variant="outlined"
-      fullWidth
-      margin="normal"
-      multiline
-    />
+    <div className={classes.root}>
+      <ReactMarkdown source={value} />
+    </div>
   );
 };
 
