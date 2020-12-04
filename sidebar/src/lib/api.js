@@ -3,6 +3,8 @@ import axios from 'axios';
 axios.defaults.baseURL =
   process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://101.101.210.76:8000';
 
+axios.interceptors.response.use(({ data }) => data);
+
 // buckets
 export const getBuckets = () => axios.get('/api/buckets');
 
