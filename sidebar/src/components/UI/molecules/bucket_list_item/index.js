@@ -5,6 +5,7 @@ import { BucketListItemWrapper, BucketTitleTextWrapper } from './style';
 import HoverButton from '../../atoms/hover_button';
 import ConfirmDialog from '../../organisms/confirm_dialog';
 import Text from '../../atoms/text';
+import { OPEN, GIVEUP } from '../../../../constants/status';
 
 const BucketListItem = ({ bucket }) => {
   const [hidden, setHidden] = useState(true);
@@ -29,8 +30,8 @@ const BucketListItem = ({ bucket }) => {
   };
 
   const getButton = () => {
-    if (bucket.status === 'G') return <HoverButton handleOpen={handleOpen} text="되돌리기" />;
-    if (bucket.status === 'O') return <HoverButton handleOpen={handleOpen} text="포기" />;
+    if (bucket.status === GIVEUP) return <HoverButton handleOpen={handleOpen} text="되돌리기" />;
+    if (bucket.status === OPEN) return <HoverButton handleOpen={handleOpen} text="포기" />;
     return null;
   };
 

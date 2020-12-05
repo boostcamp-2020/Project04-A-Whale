@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import * as api from '../lib/api';
 import createRequestThunk from '../lib/createRequestThunk';
+import { ACHIEVE } from '../constants/status';
 
 const GET_DETAILS = 'details/GET_DETAILS';
 const GET_DETAILS_SUCCESS = 'details/GET_DETAILS_SUCCESS';
@@ -46,7 +47,7 @@ const updateStatusDetail = (addArray, removeArray, idx, status) => {
 const getUpdateStatusDetails = ({ details }, { no, status }) => {
   const openIdx = details.openDetails.findIndex((detail) => detail.no === no);
 
-  if (openIdx > -1 && status === 'A') {
+  if (openIdx > -1 && status === ACHIEVE) {
     updateStatusDetail(details.achieveDetails, details.openDetails, openIdx, status);
     return details;
   }

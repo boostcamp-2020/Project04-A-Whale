@@ -5,11 +5,6 @@ const useStyles = makeStyles(() => ({
   datePicker: {
     marginLeft: '10px',
   },
-  addButton: {
-    height: '40px',
-    marginTop: '7.5px',
-    marginLeft: '10px',
-  },
 }));
 
 const NewTodoWrapper = styled.div`

@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import * as api from '../lib/api';
 import createRequestThunk from '../lib/createRequestThunk';
+import { GIVEUP } from '../constants/status';
 
 const GET_BUCKETS = 'buckets/GET_BUCKETS';
 const GET_BUCKETS_SUCCESS = 'buckets/GET_BUCKETS_SUCCESS';
@@ -37,7 +38,7 @@ const updateStatusBucket = (addArray, removeArray, idx, status) => {
 const getUpdateStatusBuckets = ({ buckets }, { no, status }) => {
   const openIdx = buckets.openBuckets.findIndex((bucket) => bucket.no === no);
 
-  if (openIdx > -1 && status === 'G') {
+  if (openIdx > -1 && status === GIVEUP) {
     updateStatusBucket(buckets.giveUpBuckets, buckets.openBuckets, openIdx, status);
     return buckets;
   }

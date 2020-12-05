@@ -6,6 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import DetailListItem from '../../molecules/detail_list_item';
 import { updateDetailStatus } from '../../../../modules/details';
 import useStyles from './style';
+import { ACHIEVE, OPEN } from '../../../../constants/status';
 
 const DetailList = ({ details }) => {
   const classes = useStyles();
@@ -16,8 +17,8 @@ const DetailList = ({ details }) => {
   const statusChange = (detail) => {
     const params = {};
     params.no = detail.no;
-    if (detail.status === 'A') params.status = 'O';
-    if (detail.status === 'O') params.status = 'A';
+    if (detail.status === ACHIEVE) params.status = OPEN;
+    if (detail.status === OPEN) params.status = ACHIEVE;
     dispatch(updateDetailStatus(params));
   };
 

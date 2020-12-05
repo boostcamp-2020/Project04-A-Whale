@@ -4,7 +4,8 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { createDetail } from '../../../../modules/details';
 import { useStyles, NewTodoWrapper } from './style';
 
@@ -43,7 +44,7 @@ const DetailRegister = ({ bucket }) => {
           className={classes.datePicker}
           disableToolbar
           variant="inline"
-          format="MM/dd/yyyy"
+          format="yyyy-MM-dd"
           margin="normal"
           value={selectedDate}
           onChange={handleDateChange}
@@ -52,9 +53,9 @@ const DetailRegister = ({ bucket }) => {
           }}
         />
       </MuiPickersUtilsProvider>
-      <Button className={classes.addButton} variant="contained" onClick={handleSave}>
-        등록
-      </Button>
+      <IconButton edge="end" aria-label="add" onClick={handleSave}>
+        <AddCircleIcon fontSize="large" />
+      </IconButton>
     </NewTodoWrapper>
   );
 };

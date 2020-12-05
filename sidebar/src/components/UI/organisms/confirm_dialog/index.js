@@ -6,14 +6,15 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import { updateBucketStatus } from '../../../../modules/buckets';
 import ConfirmDialogButtons from '../../molecules/confirm_dialog_buttons';
 import useStyles from './style';
+import { OPEN, GIVEUP } from '../../../../constants/status';
 
 const ConfirmDialog = ({ open, handleClose, bucket }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const getText = () => {
-    if (bucket.status === 'G') return '정말 되돌리시겠습니까?';
-    if (bucket.status === 'O') return '정말 포기하시겠습니까?';
+    if (bucket.status === GIVEUP) return '정말 되돌리시겠습니까?';
+    if (bucket.status === OPEN) return '정말 포기하시겠습니까?';
     return null;
   };
 
@@ -21,8 +22,8 @@ const ConfirmDialog = ({ open, handleClose, bucket }) => {
     handleClose();
     const params = {};
     params.no = bucket.no;
-    if (bucket.status === 'O') params.status = 'G';
-    if (bucket.status === 'G') params.status = 'O';
+    if (bucket.status === OPEN) params.status = GIVEUP;
+    if (bucket.status === GIVEUP) params.status = OPEN;
     dispatch(updateBucketStatus(params));
   };
 
