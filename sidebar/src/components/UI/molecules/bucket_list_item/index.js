@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ListAltIcon from '@material-ui/icons/ListAlt';
 import { useHistory } from 'react-router-dom';
 import { BucketListItemWrapper, BucketTitleTextWrapper } from './style';
 import HoverButton from '../../atoms/hover_button';
@@ -35,12 +34,18 @@ const BucketListItem = ({ bucket }) => {
     return null;
   };
 
+  const getIcon = () => {
+    if (bucket.status === GIVEUP) return <div className="list-icon">🔒</div>;
+    if (bucket.status === OPEN) return <div className="list-icon">⏳</div>;
+    return <div className="list-icon">🎉</div>;
+  };
+
   return (
     <BucketListItemWrapper
       onMouseOver={() => changeHidden(true)}
       onMouseLeave={() => changeHidden(false)}
     >
-      <ListAltIcon className="list-icon" />
+      {getIcon()}
       <BucketTitleTextWrapper onClick={handleClick}>
         <Text value={bucket.title} fontSize="16px" />
       </BucketTitleTextWrapper>
