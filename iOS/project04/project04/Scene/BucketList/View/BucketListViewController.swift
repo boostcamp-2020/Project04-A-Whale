@@ -100,16 +100,7 @@ extension BucketListViewController: UICollectionViewDelegate {
             }
             return nil
         }
-//        configuration.trailingSwipeActionsConfigurationProvider = { [weak self] (indexPath) in
-//            guard indexPath.section == 0 else { return nil }
-//
-//            let doneAction = UIContextualAction(style: .destructive, title: "Done") { (action, _, completion) in
-//                self?.bucketListViewModel.revise(at: indexPath.row)
-//                completion(true)
-//            }
-//
-//            return UISwipeActionsConfiguration(actions: [doneAction])
-//        }
+        
         collectionView.collectionViewLayout = createLayout(using: configuration)
         collectionView.delegate = self
     }
@@ -118,6 +109,7 @@ extension BucketListViewController: UICollectionViewDelegate {
         return UICollectionView.CellRegistration<UICollectionViewListCell, RealmBucket> { (cell, _, bucket) in
             var content = cell.defaultContentConfiguration()
             content.text = bucket.title
+            content.secondaryText = bucket.subTitle
             content.image = UIImage(systemName: "note.text")
             cell.accessories = [.disclosureIndicator()]
             cell.contentConfiguration = content

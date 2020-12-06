@@ -97,7 +97,8 @@ extension DetailListViewController {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> {
             (cell, indexPath, item) in
             var content = cell.defaultContentConfiguration()
-            content.text = "due Date: \(item.dueDate)\ntitle: \(item.title)"
+            content.text = "목표: \(item.title)"
+            content.secondaryText = "만료일: \(item.dueDate)"
             cell.contentConfiguration = content
             cell.backgroundConfiguration?.backgroundColor = .systemBackground
         }
