@@ -8,6 +8,10 @@
 import Foundation
 
 class BucketListAddUseCase: ListUseCase {
+    func revise(element: RealmDetail, title: String, dueDate: String) {
+        
+    }
+    
     typealias Item = RealmDetail
 
     func fetch(completion: @escaping ([RealmDetail]) -> Void) {

@@ -13,6 +13,6 @@ protocol ListUseCase {
     func fetch(completion: @escaping ([Item]) -> Void)
     func append(_ element: Item)
     func remove(at index: Int)
-    func revise(at index: Int, element: Item)
+    func revise(element: Item, title: String, dueDate: String)
     func reviseStatus(element: Item)
 }

@@ -28,8 +28,8 @@ class DetailListUseCase: ListUseCase {
         repository.removeDetailList(at: index)
     }
 
-    func revise(at index: Int, element: RealmDetail) {
-        repository.reviseDetailList(at: index, element: element)
+    func revise(element: RealmDetail, title: String, dueDate: String) {
+        repository.reviseDetailList(element: element, title: title, dueDate: dueDate)
     }
     
     func reviseStatus(element: RealmDetail) {

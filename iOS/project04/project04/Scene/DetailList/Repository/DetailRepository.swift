@@ -11,7 +11,7 @@ protocol DetailRepositoryProtocol {
     func fetchDetailList(completion: @escaping ([RealmDetail]) -> Void)
     func appendDetailList(_ element: RealmDetail)
     func removeDetailList(at index: Int)
-    func reviseDetailList(at index: Int, element: RealmDetail)
+    func reviseDetailList(element: RealmDetail, title: String, dueDate: String)
     func reviseDetailListStatus(element: RealmDetail)
 }
 
@@ -70,7 +70,7 @@ class DetailRepository: DetailRepositoryProtocol {
                         })
     }
     
-    func reviseDetailList(at index: Int, element: RealmDetail) {
+    func reviseDetailList(element: RealmDetail, title: String, dueDate: String) {
         network.request(from: DetailAPIAgent.RequestURL.revise,
                         method: .GET,
                         body: nil,
@@ -79,7 +79,7 @@ class DetailRepository: DetailRepositoryProtocol {
                             case .success(_):
                                 break
                             case .failure(_):
-                                self?.local.revise(at: index, element: element)
+                                self?.local.revise(element: element, title: title, dueDate: dueDate)
                             }
                         })
     }

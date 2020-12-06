@@ -9,7 +9,6 @@ import Foundation
 import RealmSwift
 
 class DetailLocalAgent: LocalService {
-    
     var bucketNo: Int
     
     init(bucketNumber: Int) {
@@ -44,26 +43,20 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try realm.write {
-                let result = realm.objects(RealmDetail.self).filter("bucketNo == \(bucketNo)")
-                realm.delete(result[index])
+                let result = realm.objects(RealmDetail.self).filter("bucketNo == \(bucketNo) && #no == \(index)")
+                realm.delete(result)
             }
         } catch {
             print(error)
         }
     }
     
-    func revise(at index: Int, element: RealmDetail) {
+    func revise(element: RealmDetail, title: String, dueDate: String) {
         do {
-            let realm = try Realm()
-            try realm.write {
-                let result = realm.objects(RealmDetail.self)
-                    .filter("bucketNo == \(bucketNo) && #no == \(element.no)").first
-                
-                result?.title = element.title
-                result?.status = element.status
-                result?.dueDate = element.dueDate
-                result?.updatedAt = element.updatedAt
-                result?.deletedAt = element.deletedAt
+            try Realm().write {
+                element.title = title
+                element.dueDate = dueDate
+                element.updatedAt = Date().toStringKST(dateFormat: "yyyy-MM-dd HH:mm:ss")
             }
         } catch {
             print(error)
@@ -78,5 +71,9 @@ class DetailLocalAgent: LocalService {
         } catch {
             print(error)
         }
+    }
+    
+    func revise(at index: Int, element: RealmDetail) {
+         
     }
 }

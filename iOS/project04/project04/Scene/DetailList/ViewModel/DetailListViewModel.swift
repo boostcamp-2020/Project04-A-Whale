@@ -14,7 +14,7 @@ protocol DetailListViewModelProtocol {
     var listDidChange: ((DetailListViewModelProtocol) -> ())? { get set }
     func listDeleteAction(at index: Int)
     func listAddAction(_ newElement: RealmDetail)
-    func listReviseAction(_ newElement: RealmDetail, at index: Int)
+    func listReviseAction(_ element: RealmDetail, title: String, dueDate: String)
     func listStatusReviseAction(at index: Int)
     func listFetchAction()
     init(usecase: DetailListUseCase)
@@ -43,7 +43,7 @@ class DetailListViewModel: DetailListViewModelProtocol {
     }
     
     func listDeleteAction(at index: Int) {
-        list[.todo]?.remove(at: index)
+        list[.todo]?.removeAll(where: { $0.no == index })
         usecase.remove(at: index)
     }
     
@@ -54,9 +54,9 @@ class DetailListViewModel: DetailListViewModelProtocol {
         usecase.append(item)
     }
     
-    func listReviseAction(_ newElement: RealmDetail, at index: Int) {
-        list[.todo]?[index] = newElement
-        usecase.revise(at: index, element: newElement)
+    func listReviseAction(_ element: RealmDetail, title: String, dueDate: String) {
+        usecase.revise(element: element, title: title, dueDate: dueDate)
+        listDidChange?(self)
     }
     
     func autoIncreaseIdValue() -> Int {

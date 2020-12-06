@@ -74,7 +74,7 @@ class DetailListAddViewController: UIViewController {
         let dueDate = datePicker.toString()
         let currentTime = Date().toStringKST(dateFormat: "yyyy-MM-dd HH:mm:ss")
         
-        if detail == nil {
+        guard let detail = detail else {
             viewModel?.listAddAction(RealmDetail(value:
                                                     [0,
                                                      title ?? "",
@@ -85,12 +85,11 @@ class DetailListAddViewController: UIViewController {
                                                      nil,
                                                      0]
             ))
-        } else {
-            detail?.title = title ?? ""
-            detail?.dueDate = dueDate ?? ""
-            guard let item = detail else { return }
-            viewModel?.listReviseAction(item, at: index ?? 0)
+            dismiss(animated: false, completion: nil)
+            return
         }
+        
+        viewModel?.listReviseAction(detail, title: title ?? "", dueDate: dueDate ?? "")
         dismiss(animated: false, completion: nil)
     }
 }

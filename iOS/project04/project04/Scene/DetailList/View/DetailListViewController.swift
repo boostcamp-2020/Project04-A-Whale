@@ -72,7 +72,8 @@ extension DetailListViewController {
             let deleteAction = UIContextualAction(style: .destructive,
                                                   title: "Delete",
                                                   handler: { [weak self] _, _, _ in
-                                                    self?.collectionViewModel?.listDeleteAction(at: indexPath.item)
+                                                    let detail = self?.dataSource?.itemIdentifier(for: indexPath)
+                                                    self?.collectionViewModel?.listDeleteAction(at: detail?.no ?? 0)
                                                   })
             
             let doneAction = UIContextualAction(style: .normal,

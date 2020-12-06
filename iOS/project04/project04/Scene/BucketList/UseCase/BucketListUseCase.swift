@@ -8,6 +8,7 @@
 import Foundation
 
 class BucketListUseCase: ListUseCase {
+    
     typealias Item = RealmBucket
     
     let repository: BucketListRepository
@@ -38,4 +39,7 @@ class BucketListUseCase: ListUseCase {
         repository.reviseBucketListStatus(element: element)
     }
    
+    func revise(element: RealmBucket, title: String, dueDate: String) {
+        
+    }
 }
