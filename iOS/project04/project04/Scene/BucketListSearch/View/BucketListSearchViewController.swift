@@ -16,9 +16,9 @@ class BucketListSearchViewController: UITableViewController {
             }
         }
     }
-    var didSelectRowHandler: (Bucket) -> Void
+    var didSelectRowHandler: (RealmBucket) -> Void
     
-    init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol, didSelectRowHandler: @escaping (Bucket) -> Void) {
+    init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol, didSelectRowHandler: @escaping (RealmBucket) -> Void) {
         self.viewModel = viewModel
         self.didSelectRowHandler = didSelectRowHandler
         viewModel.fetch()
@@ -70,19 +70,19 @@ extension BucketListSearchViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let item: Bucket
+        let item: RealmBucket
         if isFiltering() {
             item = viewModel.filteredBuckets[indexPath.row]
         } else {
             item = viewModel.buckets[indexPath.row]
         }
         cell.textLabel?.text = item.title
-        cell.detailTextLabel?.text = item.description
+        cell.detailTextLabel?.text = item.subTitle
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item: Bucket
+        let item: RealmBucket
         if isFiltering() {
             item = viewModel.filteredBuckets[indexPath.row]
         } else {

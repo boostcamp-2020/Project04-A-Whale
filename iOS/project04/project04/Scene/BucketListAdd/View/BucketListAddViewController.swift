@@ -29,7 +29,7 @@ class BucketListAddViewController: UIViewController {
             }
             bucketListAddViewModel.didChangeBucket = {[weak self] bucket in
                 self?.sectionHeader?.titleTextField.text = bucket.title
-                self?.sectionHeader?.descriptionTextView.text = bucket.description
+                self?.sectionHeader?.descriptionTextView.text = bucket.subTitle
             }
         }
     }
@@ -49,7 +49,7 @@ class BucketListAddViewController: UIViewController {
         guard let title = sectionHeader?.titleTextField.text,
               let description = sectionHeader?.descriptionTextView.text else { return }
         if !title.isEmpty {
-            let bucket = Bucket(id: nil, title: title, description: description, status: "O")
+            let bucket = RealmBucket(value: [-1, title, description, "O"])
             delegate.bucketListViewModel.append(bucket: bucket)
         }
         navigationController?.popViewController(animated: true)

@@ -13,8 +13,8 @@ protocol BucketListAddDelegate {
 }
 
 class BucketListViewController: UIViewController, BucketListAddDelegate {
-    typealias DataSource = UICollectionViewDiffableDataSource<Bucket.Section, Bucket>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Bucket.Section, Bucket>
+    typealias DataSource = UICollectionViewDiffableDataSource<RealmBucket.Section, RealmBucket>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<RealmBucket.Section, RealmBucket>
     var dataSource: DataSource?
     var coordinator: DetailListPushCoordinator & BucketListAddCoordinator
     @IBOutlet weak var collectionView: UICollectionView!
@@ -62,14 +62,8 @@ class BucketListViewController: UIViewController, BucketListAddDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailListViewController {
-            if let bucket = sender as? Bucket {
-                do {
-                    let realm = try Realm()
-                    let realmBucket = realm.objects(RealmBucket.self).filter { $0.id == bucket.id }
-                    destination.bucket = realmBucket.first
-                } catch {
-                    print(error)
-                }
+            if let bucket = sender as? RealmBucket {
+                destination.bucket = bucket
             }
         }
     }
@@ -81,7 +75,7 @@ extension BucketListViewController: UICollectionViewDelegate {
     }
 
     private func configureDataSource(collectionView: UICollectionView,
-                             cellProvider: @escaping (UICollectionView, IndexPath, Bucket) -> UICollectionViewListCell?) {
+                             cellProvider: @escaping (UICollectionView, IndexPath, RealmBucket) -> UICollectionViewListCell?) {
         dataSource = DataSource(collectionView: collectionView, cellProvider: cellProvider)
     }
     
@@ -120,8 +114,8 @@ extension BucketListViewController: UICollectionViewDelegate {
         collectionView.delegate = self
     }
     
-    private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, Bucket> {
-        return UICollectionView.CellRegistration<UICollectionViewListCell, Bucket> { (cell, _, bucket) in
+    private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmBucket> {
+        return UICollectionView.CellRegistration<UICollectionViewListCell, RealmBucket> { (cell, _, bucket) in
             var content = cell.defaultContentConfiguration()
             content.text = bucket.title
             content.image = UIImage(systemName: "note.text")
@@ -134,7 +128,7 @@ extension BucketListViewController: UICollectionViewDelegate {
     
     private func cellProvider(collectionView: UICollectionView,
                               indexPath: IndexPath,
-                              bucket: Bucket) -> UICollectionViewListCell? {
+                              bucket: RealmBucket) -> UICollectionViewListCell? {
         let cell = collectionView.dequeueConfiguredReusableCell(using: configureCell(), for: indexPath, item: bucket)
         
         return cell

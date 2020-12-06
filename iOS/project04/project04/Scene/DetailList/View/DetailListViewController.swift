@@ -192,6 +192,14 @@ extension DetailListViewController {
             // todo 추가 불가능하게
             // 소감 작성 완료 시 리로드 해줘야함 (소감 섹션, 그래프 섹션 추가)
             // bucket으로 돌아갈 때, todo에서 done으로 바뀌어야함
+            
+            do {
+                try Realm().write {
+                    self?.bucket?.status = "A"
+                }
+            } catch {
+                print(error)
+            }
         })
         let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
         alert.addAction(successAction)
