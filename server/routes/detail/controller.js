@@ -23,23 +23,25 @@ exports.getDetails = async (req, res, next) => {
 
 /*
     PATCH /api/details/:no
-    * 버킷 상세 상태 변경 API
+    * 버킷 상세 수정 API
 */
-exports.updateDetailStatus = async (req, res, next) => {
+exports.updateDetail = async (req, res, next) => {
   try {
     const { no } = req.params;
-    const { status } = req.body;
+    const { status, title, dueDate } = req.body;
+    let result;
 
-    const result = await detailServices.updateDetailStatus(no, status);
+    if (status) result = await detailServices.updateDetailStatus(no, status);
+    else result = await detailServices.updateBucketTitleDueDate(no, title, dueDate);
 
     if (result === 1) {
       res.status(OK).json({
-        message: '버킷 상세 상태 변경 성공',
+        message: '버킷 상세 수정 성공',
         data: true,
       });
     } else {
       res.status(BAD_REQUEST).json({
-        message: '버킷 상세 상태 변경 실패',
+        message: '버킷 상세 수정 실패',
         data: false,
       });
     }
@@ -83,7 +85,7 @@ exports.createDetail = async (req, res, next) => {
 
     const detail = await detailServices.createDetail(bucketNo, title, dueDate);
 
-    res.status(OK).json({
+    res.status(CREATED).json({
       message: '버킷 상세 추가 성공',
       data: { detail },
     });

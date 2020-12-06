@@ -12,6 +12,12 @@ exports.updateDetailStatus = async (no, status) => {
   return results[0];
 };
 
+exports.updateBucketTitleDueDate = async (no, title, dueDate) => {
+  const results = await Detail.update({ title, dueDate }, { where: { no } });
+
+  return results[0];
+};
+
 exports.selectDetails = async (bucketNo) => {
   const results = await Detail.findAll({
     raw: true,

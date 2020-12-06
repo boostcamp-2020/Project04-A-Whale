@@ -11,6 +11,11 @@ exports.updateDetailStatus = async (no, status) => {
   return result;
 };
 
+exports.updateBucketTitleDueDate = async (no, title, dueDate) => {
+  const result = await db.updateBucketTitleDueDate(no, title, dueDate);
+  return result;
+};
+
 const initialDetails = () => {
   const result = {};
   result.openDetails = [];
