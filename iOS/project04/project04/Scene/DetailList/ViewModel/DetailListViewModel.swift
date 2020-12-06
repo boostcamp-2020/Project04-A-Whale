@@ -78,14 +78,6 @@ class DetailListViewModel: DetailListViewModelProtocol {
         }
         list[.done]?.append(detail)
         
-        do {
-            try Realm().write {
-                detail.status = "A"
-            }
-        } catch {
-            print(error)
-        }
-        
-        usecase.revise(at: index, element: detail)
+        usecase.reviseStatus(element: detail)
     }
 }

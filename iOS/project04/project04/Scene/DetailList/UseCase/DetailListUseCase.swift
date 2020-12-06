@@ -32,5 +32,7 @@ class DetailListUseCase: ListUseCase {
         repository.reviseDetailList(at: index, element: element)
     }
     
-    
+    func reviseStatus(element: RealmDetail) {
+        repository.reviseDetailListStatus(element: element)
+    }
 }

@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 class DetailLocalAgent: LocalService {
+    
     var bucketNo: Int
     
     init(bucketNumber: Int) {
@@ -31,6 +32,7 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try Realm().write {
+                element.bucketNo = bucketNo
                 realm.add(element)
             }
         } catch {
@@ -62,6 +64,16 @@ class DetailLocalAgent: LocalService {
                 result?.dueDate = element.dueDate
                 result?.updatedAt = element.updatedAt
                 result?.deletedAt = element.deletedAt
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func reviseStatus(element: RealmDetail) {
+        do {
+            try Realm().write {
+                element.status = "A"
             }
         } catch {
             print(error)
