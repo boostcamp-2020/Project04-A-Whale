@@ -16,7 +16,7 @@ class BucketListAddViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<RealmDetail.Section, RealmDetail>
     
     var dataSource: DataSource?
-    var delegate: BucketListAddDelegate
+    var delegate: BucketListObserverDelegate
     var coordinator: BucketListSearchCoordinator
     var bucketListAddViewModel: BucketListAddViewModelProtocol {
         didSet {
@@ -34,7 +34,7 @@ class BucketListAddViewController: UIViewController {
         }
     }
     
-    init?(coder: NSCoder, viewModel: BucketListAddViewModelProtocol, delegate: BucketListAddDelegate, coordinator: BucketListSearchCoordinator) {
+    init?(coder: NSCoder, viewModel: BucketListAddViewModelProtocol, delegate: BucketListObserverDelegate, coordinator: BucketListSearchCoordinator) {
         self.bucketListAddViewModel = viewModel
         self.delegate = delegate
         self.coordinator = coordinator
