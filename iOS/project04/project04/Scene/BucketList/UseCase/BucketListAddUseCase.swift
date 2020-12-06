@@ -27,4 +27,7 @@ class BucketListAddUseCase: ListUseCase {
         
     }
     
+    func reviseStatus(element: RealmDetail) {
+        
+    }
 }

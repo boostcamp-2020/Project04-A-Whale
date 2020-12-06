@@ -50,4 +50,13 @@ class BucketLocalAgent: LocalService {
         
     }
 
+    func reviseStatus(element: RealmBucket) {
+        do {
+            try Realm().write {
+                element.status = "A"
+            }
+        } catch {
+            print(error)
+        }
+    }
 }

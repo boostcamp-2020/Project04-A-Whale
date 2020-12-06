@@ -34,6 +34,8 @@ class BucketListUseCase: ListUseCase {
         repository.reviseBucketList(at: index, element: element)
     }
     
-    
+    func reviseStatus(element: RealmBucket) {
+        repository.reviseBucketListStatus(element: element)
+    }
    
 }

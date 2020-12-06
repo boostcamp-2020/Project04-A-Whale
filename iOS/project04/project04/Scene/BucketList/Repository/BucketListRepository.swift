@@ -69,4 +69,17 @@ class BucketListRepository {
                         })
     }
     
+    func reviseBucketListStatus(element: RealmBucket) {
+        network.request(from: BucketAPIAgent.RequestURL.revise,
+                        method: .GET,
+                        body: nil,
+                        completion: { result in
+                            switch result {
+                            case .success(_):
+                                break
+                            case .failure(_):
+                                self.local.reviseStatus(element: element)
+                            }
+                        })
+    }
 }

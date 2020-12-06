@@ -8,11 +8,11 @@
 import UIKit
 import RealmSwift
 
-protocol BucketListAddDelegate {
+protocol BucketListObserverDelegate {
     var bucketListViewModel: BucketListViewModelProtocol { get set }
 }
 
-class BucketListViewController: UIViewController, BucketListAddDelegate {
+class BucketListViewController: UIViewController, BucketListObserverDelegate {
     typealias DataSource = UICollectionViewDiffableDataSource<RealmBucket.Section, RealmBucket>
     typealias Snapshot = NSDiffableDataSourceSnapshot<RealmBucket.Section, RealmBucket>
     var dataSource: DataSource?
@@ -100,16 +100,16 @@ extension BucketListViewController: UICollectionViewDelegate {
             }
             return nil
         }
-        configuration.trailingSwipeActionsConfigurationProvider = { [weak self] (indexPath) in
-            guard indexPath.section == 0 else { return nil }
-
-            let doneAction = UIContextualAction(style: .destructive, title: "Done") { (action, _, completion) in
-                self?.bucketListViewModel.remove(at: indexPath.row)
-                completion(true)
-            }
-
-            return UISwipeActionsConfiguration(actions: [doneAction])
-        }
+//        configuration.trailingSwipeActionsConfigurationProvider = { [weak self] (indexPath) in
+//            guard indexPath.section == 0 else { return nil }
+//
+//            let doneAction = UIContextualAction(style: .destructive, title: "Done") { (action, _, completion) in
+//                self?.bucketListViewModel.revise(at: indexPath.row)
+//                completion(true)
+//            }
+//
+//            return UISwipeActionsConfiguration(actions: [doneAction])
+//        }
         collectionView.collectionViewLayout = createLayout(using: configuration)
         collectionView.delegate = self
     }
@@ -135,13 +135,10 @@ extension BucketListViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let bucket = dataSource?.itemIdentifier(for: indexPath)
-        do {
-            let realm = try Realm()
-            let realmBucket = realm.objects(RealmBucket.self).filter { $0.id == bucket?.id }
-            coordinator.pushToDetailList(bucket: realmBucket.first)
-        } catch {
-            print(error)
-        }
+        var section: RealmBucket.Section?
+        
+        indexPath.section == 0 ? (section = .todo) : (section = .done)
+        let bucket = bucketListViewModel.buckets?[section ?? .todo]?[indexPath.item]
+        coordinator.pushToDetailList(bucket: bucket, index: indexPath.item, delegate: self)
     }
 }
