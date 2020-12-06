@@ -5,7 +5,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import ConfirmDialogButtons from '../confirm_dialog_buttons';
 import useStyles from './style';
 
-const ConfirmDialog = ({ open, handleClose, handleClick, text }) => {
+const ConfirmDialog = ({ open, handleClose, handleClick, text, subText }) => {
   const classes = useStyles();
 
   return (
@@ -17,6 +17,9 @@ const ConfirmDialog = ({ open, handleClose, handleClick, text }) => {
     >
       <DialogContent className={classes.dialogContent}>
         <DialogContentText id="alert-dialog-description">{text}</DialogContentText>
+        {subText ? (
+          <DialogContentText className={classes.subText}>({subText})</DialogContentText>
+        ) : null}
       </DialogContent>
       <ConfirmDialogButtons handleClick={handleClick} handleClose={handleClose} />
     </Dialog>

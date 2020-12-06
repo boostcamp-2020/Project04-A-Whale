@@ -115,7 +115,8 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
         open={open}
         handleClose={handleClose}
         handleClick={handleAchieve}
-        text={`달성을 완료하시겠습니까? \n(완료하시면 다시 되돌릴 수 없습니다)`}
+        text="달성을 완료하시겠습니까?"
+        subText="완료하시면 다시 되돌릴 수 없습니다"
       />
     </>
   );
