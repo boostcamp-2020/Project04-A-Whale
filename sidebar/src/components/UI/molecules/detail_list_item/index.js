@@ -19,7 +19,7 @@ import { deleteDetail, updateDetailInfo } from '../../../../modules/details';
 import getFormatData from '../../../../lib/date';
 import { useStyles, DetailTextWrapper, InputWrapper } from './style';
 
-const DetailListItem = ({ detail, handleToggle, checked }) => {
+const DetailListItem = ({ detail, handleToggle, checked, isAchieve }) => {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
   const [open, setOpen] = useState(false);
@@ -88,29 +88,33 @@ const DetailListItem = ({ detail, handleToggle, checked }) => {
         </>
       ) : (
         <ListItem role={undefined} dense button onClick={handleToggle(detail)}>
-          <ListItemIcon>
-            <Checkbox
-              edge="start"
-              color="default"
-              tabIndex={-1}
-              checked={checked.indexOf(detail) !== -1}
-              disableRipple
-              // todo: 수정 요망
-              value={JSON.stringify(detail)}
-            />
-          </ListItemIcon>
+          {isAchieve ? null : (
+            <ListItemIcon>
+              <Checkbox
+                edge="start"
+                color="default"
+                tabIndex={-1}
+                checked={checked.indexOf(detail) !== -1}
+                disableRipple
+                // todo: 수정 요망
+                value={JSON.stringify(detail)}
+              />
+            </ListItemIcon>
+          )}
           <DetailTextWrapper>
             <ListItemText primary={<Typography type="body2">{title}</Typography>} />
             <ListItemText secondary={selectedDate} />
           </DetailTextWrapper>
-          <ListItemSecondaryAction>
-            <IconButton edge="end" aria-label="modify" onClick={handleModify}>
-              <CreateIcon />
-            </IconButton>
-            <IconButton edge="end" aria-label="remove" onClick={handleOpen}>
-              <RemoveIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
+          {isAchieve ? null : (
+            <ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="modify" onClick={handleModify}>
+                <CreateIcon />
+              </IconButton>
+              <IconButton edge="end" aria-label="remove" onClick={handleOpen}>
+                <RemoveIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          )}
         </ListItem>
       )}
       <ConfirmDialog

@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
+  text: {
+    paddingTop: theme.spacing(3),
+  },
 }));
 
 export default useStyles;

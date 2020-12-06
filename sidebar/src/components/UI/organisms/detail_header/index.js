@@ -8,7 +8,7 @@ import CancelSaveButton from '../../molecules/cancle_save_button';
 import { updateBucketInfo } from '../../../../modules/buckets';
 import { useStyles, TitleWrapper } from './style';
 
-const DetailHeader = ({ bucket, achieveDisable }) => {
+const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
@@ -76,10 +76,18 @@ const DetailHeader = ({ bucket, achieveDisable }) => {
             <Typography className={classes.title} variant="h4">
               {title}
             </Typography>
-            <CreateIcon onClick={handleClick} />
-            <Button className={classes.achieveButton} variant="outlined" disabled={achieveDisable}>
-              달성 완료🎉
-            </Button>
+            {isAchieve ? null : (
+              <>
+                <CreateIcon onClick={handleClick} />
+                <Button
+                  className={classes.achieveButton}
+                  variant="outlined"
+                  disabled={achieveDisable}
+                >
+                  달성 완료🎉
+                </Button>
+              </>
+            )}
           </TitleWrapper>
           <Typography className={classes.description} variant="h5">
             {description}
