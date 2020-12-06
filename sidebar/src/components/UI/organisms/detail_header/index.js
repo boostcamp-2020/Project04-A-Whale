@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import CreateIcon from '@material-ui/icons/Create';
 import Button from '@material-ui/core/Button';
 import CancelSaveButton from '../../molecules/cancle_save_button';
-import { updateBucketInfo } from '../../../../modules/buckets';
+import { updateBucketInfo, updateBucketStatus } from '../../../../modules/buckets';
+import ConfirmDialog from '../../molecules/confirm_dialog';
 import { useStyles, TitleWrapper } from './style';
+import { ACHIEVE } from '../../../../constants/status';
 
 const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
   const classes = useStyles();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
+  const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(bucket.title);
   const [description, setDescription] = useState(bucket.description);
   const [prevTitle, setPrevTitle] = useState('');
@@ -19,6 +24,9 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
 
   const handleTitleChange = ({ target }) => setTitle(target.value);
   const handleDescChange = ({ target }) => setDescription(target.value);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleClick = () => {
     setPrevTitle(title);
@@ -34,6 +42,14 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
   const handleSave = () => {
     dispatch(updateBucketInfo({ no: bucket.no, title, description }));
     setEdit(false);
+  };
+
+  const handleAchieve = () => {
+    const params = {};
+    params.no = bucket.no;
+    params.status = ACHIEVE;
+    dispatch(updateBucketStatus(params));
+    history.push(`/achieves/${bucket.no}/create`);
   };
 
   return (
@@ -83,6 +99,7 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
                   className={classes.achieveButton}
                   variant="outlined"
                   disabled={achieveDisable}
+                  onClick={handleOpen}
                 >
                   달성 완료🎉
                 </Button>
@@ -94,6 +111,12 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
           </Typography>
         </>
       )}
+      <ConfirmDialog
+        open={open}
+        handleClose={handleClose}
+        handleClick={handleAchieve}
+        text={`달성을 완료하시겠습니까? \n(완료하시면 다시 되돌릴 수 없습니다)`}
+      />
     </>
   );
 };
