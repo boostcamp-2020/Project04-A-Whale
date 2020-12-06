@@ -10,9 +10,9 @@ import Foundation
 protocol BucketListAddViewModelProtocol {
     var bucket: Bucket? { get set }
     var didChangeBucket: ((Bucket) -> Void)? { get set }
-    var didChangeDetails: (([Detail.Section: [Detail]]) -> Void)? { get set }
+    var didChangeDetails: (([RealmDetail.Section: [RealmDetail]]) -> Void)? { get set }
     func fetch(with: String) -> Void
-    func append(detail: Detail) -> Void
+    func append(detail: RealmDetail) -> Void
 }
 
 class BucketListAddViewModel: BucketListAddViewModelProtocol {
@@ -22,14 +22,14 @@ class BucketListAddViewModel: BucketListAddViewModelProtocol {
             didChangeBucket?(bucket)
         }
     }
-    var details: [Detail] = [] {
+    var details: [RealmDetail] = [] {
         didSet {
             didChangeDetails?([.todo: details])
         }
     }
     
     var didChangeBucket: ((Bucket) -> Void)?
-    var didChangeDetails: (([Detail.Section : [Detail]]) -> Void)?
+    var didChangeDetails: (([RealmDetail.Section : [RealmDetail]]) -> Void)?
     
     let usecase: BucketListAddUseCase
     
@@ -41,7 +41,7 @@ class BucketListAddViewModel: BucketListAddViewModelProtocol {
         self.details = []
     }
     
-    func append(detail: Detail) {
+    func append(detail: RealmDetail) {
         
     }
     

@@ -10,7 +10,7 @@ import RealmSwift
 
 class DetailListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Detail.Section, Detail>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<RealmDetail.Section, RealmDetail>! = nil
     var bucket: RealmBucket?
     var coordinator: DetailAddCoordinator?
     var collectionViewModel: DetailListViewModelProtocol?
@@ -87,7 +87,7 @@ extension DetailListViewController {
     }
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Detail> {
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> {
             (cell, indexPath, item) in
             var content = cell.defaultContentConfiguration()
             content.text = "due Date: \(item.dueDate)\ntitle: \(item.title)"
@@ -95,7 +95,7 @@ extension DetailListViewController {
             cell.backgroundConfiguration?.backgroundColor = .systemBackground
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Detail.Section, Detail>(collectionView: collectionView) {
+        dataSource = UICollectionViewDiffableDataSource<RealmDetail.Section, RealmDetail>(collectionView: collectionView) {
             (collectionView, indexPath, item) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
         }
@@ -110,7 +110,7 @@ extension DetailListViewController {
             
             if kind == UICollectionView.elementKindSectionHeader {
                 switch sectionIdentifier {
-                case Detail.Section.done.rawValue:
+                case RealmDetail.Section.done.rawValue:
                     guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailSectionHeaderView.description(), for: indexPath) as? DetailSectionHeaderView else {
                         return nil
                     }
@@ -120,18 +120,18 @@ extension DetailListViewController {
                         self?.configureSuccessHandler()
                     }
                     return headerView
-                case Detail.Section.feel.rawValue:
+                case RealmDetail.Section.feel.rawValue:
                     guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailSectionImpressionHeaderView.description(), for: indexPath) as? DetailSectionImpressionHeaderView else {
                         return nil
                     }
                     return headerView
-                case Detail.Section.todo.rawValue:
+                case RealmDetail.Section.todo.rawValue:
                     guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailSectionHeaderTodoView.description(), for: indexPath) as? DetailSectionHeaderTodoView else {
                         return nil
                     }
                     headerView.titleLabel.text = sectionIdentifier
                     return headerView
-                case Detail.Section.graph.rawValue:
+                case RealmDetail.Section.graph.rawValue:
                     guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailSectionGraphView.description(), for: indexPath) as? DetailSectionGraphView else {
                         return nil
                     }
@@ -162,8 +162,8 @@ extension DetailListViewController {
     }
     
     private func updateList() {
-        var snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>()
-        var sections: [Detail.Section] = [.todo, .done]
+        var snapshot = NSDiffableDataSourceSnapshot<RealmDetail.Section, RealmDetail>()
+        var sections: [RealmDetail.Section] = [.todo, .done]
         
         if bucket?.status == "A" {
             sections.insert(.feel, at: 0)

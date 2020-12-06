@@ -8,10 +8,10 @@
 import Foundation
 
 protocol DetailRepositoryProtocol {
-    func fetchDetailList(completion: @escaping ([Detail]) -> Void)
-    func appendDetailList(_ element: Detail)
+    func fetchDetailList(completion: @escaping ([RealmDetail]) -> Void)
+    func appendDetailList(_ element: RealmDetail)
     func removeDetailList(at index: Int)
-    func reviseDetailList(at index: Int, element: Detail)
+    func reviseDetailList(at index: Int, element: RealmDetail)
 }
 
 class DetailRepository: DetailRepositoryProtocol {
@@ -23,7 +23,7 @@ class DetailRepository: DetailRepositoryProtocol {
         self.local = local
     }
     
-    func fetchDetailList(completion: @escaping ([Detail]) -> Void) {
+    func fetchDetailList(completion: @escaping ([RealmDetail]) -> Void) {
         network.request(from: DetailAPIAgent.RequestURL.fetch,
                         method: .GET,
                         body: nil, completion: { [weak self] result in
@@ -41,7 +41,7 @@ class DetailRepository: DetailRepositoryProtocol {
                         })
     }
     
-    func appendDetailList(_ element: Detail) {
+    func appendDetailList(_ element: RealmDetail) {
         network.request(from: DetailAPIAgent.RequestURL.append,
                         method: .GET,
                         body: element,
@@ -69,7 +69,7 @@ class DetailRepository: DetailRepositoryProtocol {
                         })
     }
     
-    func reviseDetailList(at index: Int, element: Detail) {
+    func reviseDetailList(at index: Int, element: RealmDetail) {
         network.request(from: DetailAPIAgent.RequestURL.revise,
                         method: .GET,
                         body: nil,

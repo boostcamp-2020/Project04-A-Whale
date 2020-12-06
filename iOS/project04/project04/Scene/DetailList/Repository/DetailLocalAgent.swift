@@ -15,40 +15,23 @@ class DetailLocalAgent: LocalService {
         self.bucketNo = bucketNumber
     }
     
-    func load() -> [Detail] {
+    func load() -> [RealmDetail] {
         do {
             let result = try Realm().objects(RealmDetail.self)
                 .filter("bucketNo == \(bucketNo)")
 
-            return result.map { Detail(no: $0.no,
-                                       title: $0.title,
-                                       status: $0.status,
-                                       dueDate: $0.dueDate,
-                                       createdAt: $0.createdAt,
-                                       updatedAt: $0.updatedAt,
-                                       deletedAt: $0.deletedAt,
-                                       bucketNo: $0.bucketNo) }
+            return result.map { $0 }
         } catch {
             print(error)
             return []
         }
     }
     
-    func append(_ element: Detail) {
+    func append(_ element: RealmDetail) {
         do {
             let realm = try Realm()
             try Realm().write {
-                let realmDetail = RealmDetail(value: [
-                    element.no,
-                    element.title,
-                    element.status,
-                    element.dueDate,
-                    element.createdAt,
-                    element.updatedAt,
-                    element.deletedAt as Any,
-                    bucketNo
-                ])
-                realm.add(realmDetail)
+                realm.add(element)
             }
         } catch {
             print(error)
@@ -67,7 +50,7 @@ class DetailLocalAgent: LocalService {
         }
     }
     
-    func revise(at index: Int, element: Detail) {
+    func revise(at index: Int, element: RealmDetail) {
         do {
             let realm = try Realm()
             try realm.write {

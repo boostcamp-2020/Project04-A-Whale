@@ -60,7 +60,6 @@
 		C175D19B256CCF3C001144F0 /* RealmDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D19A256CCF3C001144F0 /* RealmDetailList.swift */; };
 		C175D1A4256CD242001144F0 /* project04Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D1A3256CD242001144F0 /* project04Tests.swift */; };
 		C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */; };
-		C1900D88256B8E220071E8C7 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D87256B8E220071E8C7 /* Detail.swift */; };
 		C1900D8C256B910F0071E8C7 /* DetailListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */; };
 		C1BFAD05257613F500BDEF93 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFAD04257613F500BDEF93 /* RoundView.swift */; };
 		C1BFAD0B25761BF300BDEF93 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFAD0A25761BF300BDEF93 /* RoundButton.swift */; };
@@ -142,7 +141,6 @@
 		C175D1A3256CD242001144F0 /* project04Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = project04Tests.swift; sourceTree = "<group>"; };
 		C175D1A5256CD242001144F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListViewController.swift; sourceTree = "<group>"; };
-		C1900D87256B8E220071E8C7 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Detail.swift; path = project04/Model/Detail.swift; sourceTree = SOURCE_ROOT; };
 		C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailListViewModel.swift; path = project04/Scene/DetailList/ViewModel/DetailListViewModel.swift; sourceTree = SOURCE_ROOT; };
 		C1BFAD04257613F500BDEF93 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		C1BFAD0A25761BF300BDEF93 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -439,7 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				C175D199256CCF0E001144F0 /* RealmObject */,
-				C1900D87256B8E220071E8C7 /* Detail.swift */,
 				8259AAF8256B9C19006698FC /* Bucket.swift */,
 			);
 			path = Model;
@@ -696,7 +693,6 @@
 				8261DB8E25761B7F0027F6F8 /* BucketListAddUseCase.swift in Sources */,
 				C16019BB25792DCC00506430 /* PieView.swift in Sources */,
 				C164DF962578AAD20046B902 /* DetailSectionHeaderTodoView.swift in Sources */,
-				C1900D88256B8E220071E8C7 /* Detail.swift in Sources */,
 				C175D197256CC31C001144F0 /* DetailLocalAgent.swift in Sources */,
 				C1754EE3256E17F20037C805 /* LocalService.swift in Sources */,
 				C160DBA925775FA400290EAE /* DetailSectionHeaderView.swift in Sources */,

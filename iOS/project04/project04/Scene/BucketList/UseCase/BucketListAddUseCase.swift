@@ -8,13 +8,13 @@
 import Foundation
 
 class BucketListAddUseCase: ListUseCase {
-    typealias Item = Detail
+    typealias Item = RealmDetail
 
-    func fetch(completion: @escaping ([Detail]) -> Void) {
+    func fetch(completion: @escaping ([RealmDetail]) -> Void) {
         
     }
     
-    func append(_ element: Detail) {
+    func append(_ element: RealmDetail) {
         
     }
     
@@ -23,7 +23,7 @@ class BucketListAddUseCase: ListUseCase {
     
     }
     
-    func revise(at index: Int, element: Detail) {
+    func revise(at index: Int, element: RealmDetail) {
         
     }
     
