@@ -8,7 +8,7 @@ import { updateDetailStatus } from '../../../../modules/details';
 import useStyles from './style';
 import { ACHIEVE, OPEN } from '../../../../constants/status';
 
-const DetailList = ({ details }) => {
+const DetailList = ({ details, handleAchieveButton }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { openDetails, achieveDetails } = details;
@@ -26,12 +26,14 @@ const DetailList = ({ details }) => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
+    if (currentIndex === -1) newChecked.push(value);
+    else newChecked.splice(currentIndex, 1);
 
+    if (newChecked.length === details.openDetails.length + details.achieveDetails.length) {
+      handleAchieveButton(false);
+    } else {
+      handleAchieveButton(true);
+    }
     setChecked(newChecked);
     statusChange(value);
   };

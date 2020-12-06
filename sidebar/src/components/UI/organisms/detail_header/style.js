@@ -25,6 +25,9 @@ const useStyles = makeStyles(() => ({
     fontSize: '18px',
     color: '#555555',
   },
+  achieveButton: {
+    marginLeft: '10px',
+  },
 }));
 
 const TitleWrapper = styled.div`
