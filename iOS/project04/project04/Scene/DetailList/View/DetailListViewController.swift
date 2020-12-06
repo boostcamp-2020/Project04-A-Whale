@@ -14,14 +14,20 @@ class DetailListViewController: UIViewController {
     var bucket: RealmBucket?
     var coordinator: DetailAddCoordinator?
     var collectionViewModel: DetailListViewModelProtocol?
+    var delegate: BucketListObserverDelegate
+    var index: Int
 
     init?(coder: NSCoder,
           bucket: RealmBucket?,
           viewModel: DetailListViewModelProtocol,
-          coordinator: DetailAddCoordinator) {
+          coordinator: DetailAddCoordinator,
+          index: Int,
+          delegate: BucketListObserverDelegate) {
         self.bucket = bucket
         self.collectionViewModel = viewModel
         self.coordinator = coordinator
+        self.index = index
+        self.delegate = delegate
         super.init(coder: coder)
     }
     
@@ -192,14 +198,7 @@ extension DetailListViewController {
             // todo 추가 불가능하게
             // 소감 작성 완료 시 리로드 해줘야함 (소감 섹션, 그래프 섹션 추가)
             // bucket으로 돌아갈 때, todo에서 done으로 바뀌어야함
-            
-            do {
-                try Realm().write {
-                    self?.bucket?.status = "A"
-                }
-            } catch {
-                print(error)
-            }
+            self?.delegate.bucketListViewModel.reviseStatus(index: self?.index ?? 0)
         })
         let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
         alert.addAction(successAction)
