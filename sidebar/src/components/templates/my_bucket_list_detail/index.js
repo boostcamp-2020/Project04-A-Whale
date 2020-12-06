@@ -2,7 +2,7 @@ import React from 'react';
 import DetailHeader from '../../UI/organisms/detail_header';
 import DetailRegister from '../../UI/organisms/detail_register';
 import DetailList from '../../UI/organisms/detail_list';
-import ReadOnlyInput from '../../UI/atoms/read_only_input';
+import MarkdownDiv from '../../UI/atoms/markdown_div';
 import useStyles from './style';
 
 const MyBucketListDetail = ({ bucket, details }) => {
@@ -14,7 +14,7 @@ const MyBucketListDetail = ({ bucket, details }) => {
       <div className={classes.header} />
       <DetailHeader bucket={bucket} />
       {achieveComment ? (
-        <ReadOnlyInput label="달성 소감🎉" value={achieveComment} />
+        <MarkdownDiv label="달성 소감🎉" value={achieveComment} />
       ) : (
         <DetailRegister bucket={bucket} />
       )}

@@ -15,8 +15,11 @@ const DELETE_DETAIL_SUCCESS = 'details/DELETE_DETAIL_SUCCESS';
 const CREATE_DETAIL = 'details/CREATE_DETAIL';
 const CREATE_DETAIL_SUCCESS = 'details/CREATE_DETAIL_SUCCESS';
 
+const UPDATE_DETAIL_INFO = 'details/UPDATE_DETAIL_INFO';
+
 export const getDetails = createRequestThunk(GET_DETAILS, api.getDetails);
 export const updateDetailStatus = createRequestThunk(UPDATE_DETAIL_STATUS, api.updateDetailStatus);
+export const updateDetailInfo = createRequestThunk(UPDATE_DETAIL_INFO, api.updateDetailInfo);
 export const deleteDetail = createRequestThunk(DELETE_DETAIL, api.deleteDetail);
 export const createDetail = createRequestThunk(CREATE_DETAIL, api.createDetail);
 

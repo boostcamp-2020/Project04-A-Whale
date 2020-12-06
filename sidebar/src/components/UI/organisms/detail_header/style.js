@@ -36,12 +36,4 @@ const TitleWrapper = styled.div`
   }
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  width: 100%;
-  justify-content: flex-end;
-`;
-
-export { useStyles, TitleWrapper, ButtonWrapper };
+export { useStyles, TitleWrapper };

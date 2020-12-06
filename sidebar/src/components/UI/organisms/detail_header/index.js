@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import SaveIcon from '@material-ui/icons/Save';
-import BlockIcon from '@material-ui/icons/Block';
 import CreateIcon from '@material-ui/icons/Create';
+import CancelSaveButton from '../../molecules/cancle_save_button';
 import { updateBucketInfo } from '../../../../modules/buckets';
-import { useStyles, TitleWrapper, ButtonWrapper } from './style';
+import { useStyles, TitleWrapper } from './style';
 
 const DetailHeader = ({ bucket }) => {
   const classes = useStyles();
@@ -69,25 +67,7 @@ const DetailHeader = ({ bucket }) => {
             }}
             onChange={handleDescChange}
           />
-          <ButtonWrapper>
-            <Button
-              style={{ marginRight: '10px' }}
-              variant="contained"
-              color="default"
-              startIcon={<BlockIcon />}
-              onClick={handleCancel}
-            >
-              취소
-            </Button>
-            <Button
-              variant="contained"
-              color="default"
-              startIcon={<SaveIcon />}
-              onClick={handleSave}
-            >
-              저장
-            </Button>
-          </ButtonWrapper>
+          <CancelSaveButton handleCancel={handleCancel} handleSave={handleSave} />
         </>
       ) : (
         <>

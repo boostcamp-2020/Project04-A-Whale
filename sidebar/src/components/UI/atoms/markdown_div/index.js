@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import useStyles from './style';
 
-const ReadOnlyInput = ({ value }) => {
+const MarkdownDiv = ({ value }) => {
   const classes = useStyles();
 
   return (
@@ -12,4 +12,4 @@ const ReadOnlyInput = ({ value }) => {
   );
 };
 
-export default ReadOnlyInput;
+export default MarkdownDiv;
