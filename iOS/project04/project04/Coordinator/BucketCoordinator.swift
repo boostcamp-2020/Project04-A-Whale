@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 protocol DetailListPushCoordinator {
-    func pushToDetailList(bucket: RealmBucket?)
+    func pushToDetailList(bucket: RealmBucket?, index: Int, delegate: BucketListObserverDelegate)
 }
 
 protocol BucketListAddCoordinator {
-    func pushToBucketListAdd(from deletage: BucketListAddDelegate)
+    func pushToBucketListAdd(from deletage: BucketListObserverDelegate)
 }
 
 final class BucketCoordinator: NavigationCoordinator {
@@ -40,14 +40,16 @@ final class BucketCoordinator: NavigationCoordinator {
 }
 
 extension BucketCoordinator: DetailListPushCoordinator {
-    func pushToDetailList(bucket: RealmBucket?) {
+    func pushToDetailList(bucket: RealmBucket?, index: Int, delegate: BucketListObserverDelegate) {
         let viewModel = configureDetailListViewModel(bucket: bucket)
         let coordinator = DetailAddCoordinator(navigationController)
         let viewController = UIStoryboard(name: "DetailList", bundle: nil).instantiateViewController(identifier: "DetailListViewController", creator: { coder in
             return DetailListViewController(coder: coder,
                                             bucket: bucket,
                                             viewModel: viewModel,
-                                            coordinator: coordinator)
+                                            coordinator: coordinator,
+                                            index: index,
+                                            delegate: delegate)
         })
         navigationController.pushViewController(viewController, animated: true)
     }
@@ -62,7 +64,7 @@ extension BucketCoordinator: DetailListPushCoordinator {
 }
 
 extension BucketCoordinator: BucketListAddCoordinator {
-    func pushToBucketListAdd(from delegate: BucketListAddDelegate) {
+    func pushToBucketListAdd(from delegate: BucketListObserverDelegate) {
         let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController", creator: { (coder) -> BucketListAddViewController? in
             let usecase = BucketListAddUseCase()
             let viewModel = BucketListAddViewModel(usecase: usecase)

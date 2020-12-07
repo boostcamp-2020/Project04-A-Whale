@@ -14,13 +14,13 @@ class DetailListUseCase: ListUseCase {
         self.repository = repository
     }
     
-    func fetch(completion: @escaping ([Detail]) -> Void) {
+    func fetch(completion: @escaping ([RealmDetail]) -> Void) {
         repository.fetchDetailList(completion: { list in
             completion(list)
         })
     }
 
-    func append(_ element: Detail) {
+    func append(_ element: RealmDetail) {
         repository.appendDetailList(element)
     }
 
@@ -28,9 +28,11 @@ class DetailListUseCase: ListUseCase {
         repository.removeDetailList(at: index)
     }
 
-    func revise(at index: Int, element: Detail) {
-        repository.reviseDetailList(at: index, element: element)
+    func revise(element: RealmDetail, title: String, dueDate: String) {
+        repository.reviseDetailList(element: element, title: title, dueDate: dueDate)
     }
     
-    
+    func reviseStatus(element: RealmDetail) {
+        repository.reviseDetailListStatus(element: element)
+    }
 }

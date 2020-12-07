@@ -8,8 +8,8 @@
 import Foundation
 
 protocol SearchUseCase {
-    func fetch(handler: @escaping ([Bucket]) -> Void) -> Void
-    func serach(with keyword: String, handler: @escaping ([Bucket]) -> Void)
+    func fetch(handler: @escaping ([RealmBucket]) -> Void) -> Void
+    func serach(with keyword: String, handler: @escaping ([RealmBucket]) -> Void)
 }
 
 class BucketListSearchUseCase: SearchUseCase {
@@ -19,13 +19,13 @@ class BucketListSearchUseCase: SearchUseCase {
         self.repository = repository
     }
     
-    func fetch(handler: @escaping ([Bucket]) -> Void) {
+    func fetch(handler: @escaping ([RealmBucket]) -> Void) {
         repository.fetch { (buckets) in
             handler(buckets)
         }
     }
     
-    func serach(with keyword: String, handler: @escaping ([Bucket]) -> Void) {
+    func serach(with keyword: String, handler: @escaping ([RealmBucket]) -> Void) {
         repository.search(with: keyword) { (buckets) in
             handler(buckets)
         }

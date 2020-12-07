@@ -8,7 +8,7 @@
 import Foundation
 
 class BucketAPIAgent: NetworkService {
-    typealias Item = Bucket
+    typealias Item = RealmBucket
     
     enum RequestURL {
         static let append = "https://~~"
@@ -17,7 +17,7 @@ class BucketAPIAgent: NetworkService {
         static let fetch = "https://~~"
     }
     
-    func request(from urlString: String, method: HTTPMethod, body: Bucket?, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+    func request(from urlString: String, method: HTTPMethod, body: RealmBucket?, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         completion(.failure(.URLError))
     }
 }

@@ -14,4 +14,5 @@ protocol LocalService {
     func append(_ element: Item)
     func remove(at index: Int)
     func revise(at index: Int, element: Item)
+    func reviseStatus(element: Item)
 }

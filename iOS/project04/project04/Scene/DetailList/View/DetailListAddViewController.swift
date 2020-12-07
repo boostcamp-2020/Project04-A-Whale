@@ -14,10 +14,10 @@ class DetailListAddViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     private var contentSize: CGFloat = 37
     private var viewModel: DetailListViewModelProtocol?
-    private var detail: Detail?
+    private var detail: RealmDetail?
     private var index: Int?
     
-    init?(coder: NSCoder, viewModel: DetailListViewModelProtocol?, detail: Detail? = nil, index: Int? = nil) {
+    init?(coder: NSCoder, viewModel: DetailListViewModelProtocol?, detail: RealmDetail? = nil, index: Int? = nil) {
         self.viewModel = viewModel
         self.detail = detail
         self.index = index
@@ -74,21 +74,22 @@ class DetailListAddViewController: UIViewController {
         let dueDate = datePicker.toString()
         let currentTime = Date().toStringKST(dateFormat: "yyyy-MM-dd HH:mm:ss")
         
-        if detail == nil {
-            viewModel?.listAddAction(Detail(no: 0,
-                                            title: title ?? "",
-                                            status: "O",
-                                            dueDate: dueDate ?? "",
-                                            createdAt: currentTime,
-                                            updatedAt: currentTime,
-                                            deletedAt: nil,
-                                            bucketNo: 0))
-        } else {
-            detail?.title = title ?? ""
-            detail?.dueDate = dueDate ?? ""
-            guard let item = detail else { return }
-            viewModel?.listReviseAction(item, at: index ?? 0)
+        guard let detail = detail else {
+            viewModel?.listAddAction(RealmDetail(value:
+                                                    [0,
+                                                     title ?? "",
+                                                     "O",
+                                                     dueDate ?? "",
+                                                     currentTime,
+                                                     currentTime,
+                                                     nil,
+                                                     0]
+            ))
+            dismiss(animated: false, completion: nil)
+            return
         }
+        
+        viewModel?.listReviseAction(detail, title: title ?? "", dueDate: dueDate ?? "")
         dismiss(animated: false, completion: nil)
     }
 }

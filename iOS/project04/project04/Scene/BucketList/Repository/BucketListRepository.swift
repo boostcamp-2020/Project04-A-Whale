@@ -16,7 +16,7 @@ class BucketListRepository {
         self.local = local
     }
     
-    func fetchBucketList(completion: @escaping ([Bucket]) -> Void) {
+    func fetchBucketList(completion: @escaping ([RealmBucket]) -> Void) {
         network.request(from: BucketAPIAgent.RequestURL.fetch, method: .GET, body: nil) { [weak self] result in
             switch result {
             case .success(_):
@@ -27,7 +27,7 @@ class BucketListRepository {
         }
     }
     
-    func appendBucketList(_ element: Bucket) {
+    func appendBucketList(_ element: RealmBucket) {
         network.request(from: BucketAPIAgent.RequestURL.append,
                         method: .GET,
                         body: element,
@@ -55,7 +55,7 @@ class BucketListRepository {
                         })
     }
     
-    func reviseBucketList(at index: Int, element: Bucket) {
+    func reviseBucketList(at index: Int, element: RealmBucket) {
         network.request(from: BucketAPIAgent.RequestURL.revise,
                         method: .GET,
                         body: nil,
@@ -69,4 +69,17 @@ class BucketListRepository {
                         })
     }
     
+    func reviseBucketListStatus(element: RealmBucket) {
+        network.request(from: BucketAPIAgent.RequestURL.revise,
+                        method: .GET,
+                        body: nil,
+                        completion: { result in
+                            switch result {
+                            case .success(_):
+                                break
+                            case .failure(_):
+                                self.local.reviseStatus(element: element)
+                            }
+                        })
+    }
 }

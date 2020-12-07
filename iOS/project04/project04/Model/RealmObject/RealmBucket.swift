@@ -9,9 +9,13 @@ import Foundation
 import RealmSwift
 
 class RealmBucket: Object {
+    enum Section: String {
+        case todo
+        case done
+    }
+    
     @objc dynamic var id: Int = 0
     @objc dynamic var title: String = ""
     @objc dynamic var subTitle: String = ""
     @objc dynamic var status: String = "O"
-
 }

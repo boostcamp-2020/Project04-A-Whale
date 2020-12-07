@@ -12,11 +12,11 @@ class BucketListAddViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var sectionHeader: BucketListAddHeaderView?
     
-    typealias DataSource = UICollectionViewDiffableDataSource<Detail.Section, Detail>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Detail.Section, Detail>
+    typealias DataSource = UICollectionViewDiffableDataSource<RealmDetail.Section, RealmDetail>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<RealmDetail.Section, RealmDetail>
     
     var dataSource: DataSource?
-    var delegate: BucketListAddDelegate
+    var delegate: BucketListObserverDelegate
     var coordinator: BucketListSearchCoordinator
     var bucketListAddViewModel: BucketListAddViewModelProtocol {
         didSet {
@@ -29,12 +29,12 @@ class BucketListAddViewController: UIViewController {
             }
             bucketListAddViewModel.didChangeBucket = {[weak self] bucket in
                 self?.sectionHeader?.titleTextField.text = bucket.title
-                self?.sectionHeader?.descriptionTextView.text = bucket.description
+                self?.sectionHeader?.descriptionTextView.text = bucket.subTitle
             }
         }
     }
     
-    init?(coder: NSCoder, viewModel: BucketListAddViewModelProtocol, delegate: BucketListAddDelegate, coordinator: BucketListSearchCoordinator) {
+    init?(coder: NSCoder, viewModel: BucketListAddViewModelProtocol, delegate: BucketListObserverDelegate, coordinator: BucketListSearchCoordinator) {
         self.bucketListAddViewModel = viewModel
         self.delegate = delegate
         self.coordinator = coordinator
@@ -49,7 +49,7 @@ class BucketListAddViewController: UIViewController {
         guard let title = sectionHeader?.titleTextField.text,
               let description = sectionHeader?.descriptionTextView.text else { return }
         if !title.isEmpty {
-            let bucket = Bucket(id: nil, title: title, description: description, status: "O")
+            let bucket = RealmBucket(value: [-1, title, description, "O"])
             delegate.bucketListViewModel.append(bucket: bucket)
         }
         navigationController?.popViewController(animated: true)
@@ -85,7 +85,7 @@ extension BucketListAddViewController: UICollectionViewDelegate {
     }
 
     private func configureDataSource(collectionView: UICollectionView,
-                             cellProvider: @escaping (UICollectionView, IndexPath, Detail) -> UICollectionViewListCell?) {
+                             cellProvider: @escaping (UICollectionView, IndexPath, RealmDetail) -> UICollectionViewListCell?) {
         dataSource = DataSource(collectionView: collectionView, cellProvider: cellProvider)
         dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
             guard kind == UICollectionView.elementKindSectionHeader else {
@@ -115,8 +115,8 @@ extension BucketListAddViewController: UICollectionViewDelegate {
         collectionView.register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BucketListAddHeaderView.reuseIdentifier)
     }
     
-    private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, Detail> {
-        return UICollectionView.CellRegistration<UICollectionViewListCell, Detail> { (cell, _, detail) in
+    private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> {
+        return UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> { (cell, _, detail) in
             var content = cell.defaultContentConfiguration()
             content.text = detail.title
             cell.contentConfiguration = content
@@ -125,7 +125,7 @@ extension BucketListAddViewController: UICollectionViewDelegate {
     
     private func cellProvider(collectionView: UICollectionView,
                               indexPath: IndexPath,
-                              detail: Detail) -> UICollectionViewListCell? {
+                              detail: RealmDetail) -> UICollectionViewListCell? {
         let cell = collectionView.dequeueConfiguredReusableCell(using: configureCell(), for: indexPath, item: detail)
         
         return cell

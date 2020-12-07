@@ -9,28 +9,25 @@ import Foundation
 import RealmSwift
 
 class BucketLocalAgent: LocalService {
-    typealias Item = Bucket
+    typealias Item = RealmBucket
 
-    func load() -> [Bucket] {
+    func load() -> [RealmBucket] {
         do {
             let realm = try Realm()
             
             let buckets = realm.objects(RealmBucket.self)
-            return buckets.map {
-                Bucket(id: $0.id, title: $0.title, description: $0.subTitle, status: $0.status)
-            }
+            return buckets.map { $0 }
         } catch {
             print(error)
             return []
         }
     }
     
-    func append(_ element: Bucket) {
+    func append(_ element: RealmBucket) {
         do {
             let realm = try Realm()
             try Realm().write {
-                let bucket = RealmBucket(value: [element.id ?? 0, element.title])
-                realm.add(bucket)
+                realm.add(element)
             }
         } catch {
             print(error)
@@ -49,8 +46,17 @@ class BucketLocalAgent: LocalService {
         }
     }
     
-    func revise(at index: Int, element: Bucket) {
+    func revise(at index: Int, element: RealmBucket) {
         
     }
 
+    func reviseStatus(element: RealmBucket) {
+        do {
+            try Realm().write {
+                element.status = "A"
+            }
+        } catch {
+            print(error)
+        }
+    }
 }

@@ -8,8 +8,8 @@
 import Foundation
 
 protocol BucketListSearchViewModelProtocol {
-    var buckets: [Bucket] { get }
-    var filteredBuckets: [Bucket] { get }
+    var buckets: [RealmBucket] { get }
+    var filteredBuckets: [RealmBucket] { get }
     var handler: (() -> Void)? { get set }
     var count: Int { get }
     var filteredCount: Int { get }
@@ -29,9 +29,9 @@ class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
     
     let usecase: SearchUseCase
 
-    var buckets: [Bucket] = []
+    var buckets: [RealmBucket] = []
     
-    var filteredBuckets: [Bucket] = []
+    var filteredBuckets: [RealmBucket] = []
     
     var handler: (() -> Void)?
 

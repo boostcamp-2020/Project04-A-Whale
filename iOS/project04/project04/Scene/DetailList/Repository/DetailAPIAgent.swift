@@ -17,7 +17,7 @@ class DetailAPIAgent: NetworkService {
     
     func request(from urlString: String,
                  method: HTTPMethod,
-                 body: Detail?,
+                 body: RealmDetail?,
                  completion: @escaping (Result<Data, NetworkError>) -> Void) {
         completion(.failure(.URLError))
     }
