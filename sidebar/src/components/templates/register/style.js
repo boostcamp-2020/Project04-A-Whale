@@ -7,7 +7,7 @@ export const useStyles = makeStyles(() => ({
     width: '100%',
   },
   outlineButton: {
-    width: 'calc(100% - 10px)',
+    width: 'calc(50% - 10px)',
     padding: '10px 0',
     margin: '5px',
   },
