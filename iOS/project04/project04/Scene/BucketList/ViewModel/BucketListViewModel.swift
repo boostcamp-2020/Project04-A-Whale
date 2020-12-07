@@ -63,7 +63,7 @@ class BucketListViewModel: BucketListViewModelProtocol {
     func autoIncreaseIdValue() -> Int {
         do {
             let realm = try Realm()
-            guard let maxIdValue: Int = realm.objects(RealmBucket.self).max(ofProperty: "id") else {
+            guard let maxIdValue: Int = realm.objects(RealmBucket.self).max(ofProperty: "no") else {
                 return 0
             }
             return maxIdValue + 1
