@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Bucket, Detail, User } = require('../../models');
+const { Bucket, User, Achieve } = require('../../models');
 
 exports.getPresets = async (keyword) => {
   const results = await Bucket.findAll({
@@ -52,6 +52,21 @@ exports.updateBucketTitleDesc = async (no, title, description) => {
 
 exports.selectBucket = async (no) => {
   const results = await Bucket.findOne({ raw: true, where: { no } });
+
+  return results;
+};
+
+exports.selectBucketWithAchieve = async (no) => {
+  const results = await Bucket.findOne({
+    raw: true,
+    where: { no },
+    include: [
+      {
+        model: Achieve,
+        attributes: ['description'],
+      },
+    ],
+  });
 
   return results;
 };

@@ -68,7 +68,6 @@ exports.setFollowing = async (req, res, next) => {
   try {
     const { followingNo } = req.body;
     const result = await followServices.setFollowing({ userNo, followingNo });
-    console.log(result);
     res.status(CREATED).json({
       message: '팔로우 추가 성공',
       followNo: result.no,
