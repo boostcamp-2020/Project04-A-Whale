@@ -8,26 +8,33 @@
 import UIKit
 import RealmSwift
 
-class DetailListViewController: UIViewController {
+protocol ImpressionDelegate {
+    var impressionViewModel: ImpressionViewModelProtocol { get set }
+}
+
+class DetailListViewController: UIViewController, ImpressionDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<RealmDetail.Section, RealmDetail>! = nil
     var bucket: RealmBucket?
-    var coordinator: DetailAddCoordinator?
+    var coordinator: DetailCoordinator?
     var collectionViewModel: DetailListViewModelProtocol?
     var delegate: BucketListObserverDelegate
     var index: Int
+    var impressionViewModel: ImpressionViewModelProtocol
 
     init?(coder: NSCoder,
           bucket: RealmBucket?,
           viewModel: DetailListViewModelProtocol,
-          coordinator: DetailAddCoordinator,
+          coordinator: DetailCoordinator,
           index: Int,
-          delegate: BucketListObserverDelegate) {
+          delegate: BucketListObserverDelegate,
+          impressionViewModel: ImpressionViewModelProtocol) {
         self.bucket = bucket
         self.collectionViewModel = viewModel
         self.coordinator = coordinator
         self.index = index
         self.delegate = delegate
+        self.impressionViewModel = impressionViewModel
         super.init(coder: coder)
     }
     
@@ -46,7 +53,14 @@ class DetailListViewController: UIViewController {
             self?.detailSuccessChecker(viewModel: viewModel)
             self?.animatePieView(viewModel: viewModel)
         }
+        impressionViewModel.textChange = { [weak self] viewModel in
+            self?.updateList()
+        }
         
+        if bucket?.status == "A" {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        impressionViewModel.impressionFetch(bucketNo: bucket?.id ?? 0)
         collectionViewModel?.listFetchAction()
     }
     
@@ -132,6 +146,13 @@ extension DetailListViewController {
                     guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailSectionImpressionHeaderView.description(), for: indexPath) as? DetailSectionImpressionHeaderView else {
                         return nil
                     }
+                    headerView.editHandler = { [weak self] in
+                        self?.coordinator?.presentImpression(self?.navigationController, viewModel: self!)
+                    }
+                    headerView.impressionLabel.text = self?.impressionViewModel.impressionText
+                    if headerView.impressionLabel.text == "" {
+                        headerView.impressionLabel.text = "소감을 입력하지 않았습니다."
+                    }
                     return headerView
                 case RealmDetail.Section.todo.rawValue:
                     guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailSectionHeaderTodoView.description(), for: indexPath) as? DetailSectionHeaderTodoView else {
@@ -201,6 +222,7 @@ extension DetailListViewController {
             // 소감 작성 완료 시 리로드 해줘야함 (소감 섹션, 그래프 섹션 추가)
             // bucket으로 돌아갈 때, todo에서 done으로 바뀌어야함
             self?.delegate.bucketListViewModel.reviseStatus(index: self?.index ?? 0)
+            self?.coordinator?.presentImpression(self?.navigationController, viewModel: self!)
         })
         let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
         alert.addAction(successAction)
