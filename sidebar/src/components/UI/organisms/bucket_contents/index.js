@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import BucketInputText from '../../molecules/bucket_input_text';
 import { inputDescAction, inputTitleAction } from '../../../../modules/actions/createbucket';
+import BucketDescription from '../../molecules/bucket_decription';
+import BucketTitle from '../../molecules/bucket_title';
 
 const BucketContentsWrapper = styled.div`
   display: flex;
@@ -37,18 +38,17 @@ const BucketContents = ({
 
   return (
     <BucketContentsWrapper>
-      <BucketInputText
+      <BucketTitle
         style={titleStyle}
         label="목표 Title 작성"
         changeInputText={changeTitle}
         value={storeTitle}
       />
-      <BucketInputText
+      <BucketDescription
         style={decriptionStyle}
-        label="목표 Description 작성"
-        changeInputText={changeDesc}
+        label="목표 description 작성"
         value={storeDescription}
-        isMultiline
+        onChangeHandler={changeDesc}
       />
     </BucketContentsWrapper>
   );
