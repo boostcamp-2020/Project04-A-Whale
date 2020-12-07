@@ -8,10 +8,15 @@
 import UIKit
 
 class DetailSectionImpressionHeaderView: UICollectionReusableView {
-
+    @IBOutlet weak var impressionLabel: UILabel!
+    var editHandler: (() -> ())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
+    @IBAction func impressionEditAction(_ sender: UIButton) {
+        editHandler?()
+    }
 }
