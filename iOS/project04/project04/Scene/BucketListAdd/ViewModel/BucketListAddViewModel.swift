@@ -11,7 +11,7 @@ protocol BucketListAddViewModelProtocol {
     var bucket: RealmBucket? { get set }
     var didChangeBucket: ((RealmBucket) -> Void)? { get set }
     var didChangeDetails: (([RealmDetail.Section: [RealmDetail]]) -> Void)? { get set }
-    func fetch(with: String) -> Void
+    func fetch() -> Void
     func append(detail: RealmDetail) -> Void
 }
 
@@ -37,8 +37,16 @@ class BucketListAddViewModel: BucketListAddViewModelProtocol {
         self.usecase = usecase
     }
     
-    func fetch(with: String) {
-        self.details = []
+    func fetch() {
+        guard let bucket = self.bucket
+        else {
+            self.details = []
+            return
+        }
+        usecase.fetch(with: bucket, completion: { [weak self] (details) in
+            self?.details = details
+        })
+        
     }
     
     func append(detail: RealmDetail) {

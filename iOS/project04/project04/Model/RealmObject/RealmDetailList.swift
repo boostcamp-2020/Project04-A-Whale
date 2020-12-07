@@ -14,6 +14,7 @@ class RealmDetail: Object, Codable {
         case graph
         case feel
         case done
+        case input
     }
     
     @objc dynamic var no: Int = 0

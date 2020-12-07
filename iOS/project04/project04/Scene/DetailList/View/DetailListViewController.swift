@@ -124,7 +124,7 @@ extension DetailListViewController {
                     }
                     headerView.titleLabel.text = sectionIdentifier
                     
-                    headerView.successHandler = { [weak self] in
+                    headerView.rightButtonHandler = { [weak self] in
                         self?.configureSuccessHandler()
                     }
                     return headerView
@@ -246,7 +246,7 @@ extension DetailListViewController {
         let headerView = headerViews.filter { $0.isKind(of: DetailSectionHeaderView.self) }
             .map { $0 as? DetailSectionHeaderView }
             .filter { $0?.titleLabel.text == "done" }.first
-        headerView??.successButton.isHidden = status
+        headerView??.rightButton.isHidden = status
     }
 }
 

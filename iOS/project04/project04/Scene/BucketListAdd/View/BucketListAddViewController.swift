@@ -22,14 +22,13 @@ class BucketListAddViewController: UIViewController {
         didSet {
             bucketListAddViewModel.didChangeDetails = { [weak self] data in
                 var snapshot = Snapshot()
-                snapshot.appendSections([.todo])
+                snapshot.appendSections([.input, .todo])
                 snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
 
                 self?.dataSource?.apply(snapshot,animatingDifferences: false)
             }
             bucketListAddViewModel.didChangeBucket = {[weak self] bucket in
-                self?.sectionHeader?.titleTextField.text = bucket.title
-                self?.sectionHeader?.descriptionTextView.text = bucket.subTitle
+                self?.sectionHeader?.configure(with: bucket)
             }
         }
     }
@@ -60,21 +59,22 @@ class BucketListAddViewController: UIViewController {
         configureCollectionView()
         bucketListAddViewModel.didChangeDetails = { [weak self] data in
             var snapshot = Snapshot()
-            snapshot.appendSections([.todo])
+            snapshot.appendSections([.input,.todo])
             snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
 
             self?.dataSource?.apply(snapshot)
         }
         bucketListAddViewModel.didChangeBucket = { [weak self] bucket in 
-            self?.sectionHeader?.titleTextField.text = bucket.title
+            self?.sectionHeader?.configure(with: bucket)
         }
 
-        bucketListAddViewModel.fetch(with: "")
+        bucketListAddViewModel.fetch()
     }
     
     @objc func didTouchSearchButton(sender: UIButton) {
-        coordinator.pushToBucketListSearch { (bucket) in
-            self.bucketListAddViewModel.bucket = bucket
+        coordinator.pushToBucketListSearch { [weak self] (bucket) in
+            self?.bucketListAddViewModel.bucket = bucket
+            self?.bucketListAddViewModel.fetch()
         }
     }
 }
@@ -91,15 +91,32 @@ extension BucketListAddViewController: UICollectionViewDelegate {
             guard kind == UICollectionView.elementKindSectionHeader else {
                 return nil
             }
-            let view = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: BucketListAddHeaderView.reuseIdentifier,
-                for: indexPath) as? BucketListAddHeaderView
-            view?.configureTextViewPlaceholder()
-            view?.descriptionTextView.delegate = view
-            view?.searchButton.addTarget(self, action: #selector(self.didTouchSearchButton), for: .touchUpInside)
-            self.sectionHeader = view
-            return view
+            let sectionIdentifier = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
+
+            switch sectionIdentifier {
+            case .input:
+                let view = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: BucketListAddHeaderView.reuseIdentifier,
+                    for: indexPath) as? BucketListAddHeaderView
+                view?.configureTextViewPlaceholder()
+                view?.descriptionTextView.delegate = view
+                view?.searchButton.addTarget(self, action: #selector(self.didTouchSearchButton), for: .touchUpInside)
+                self.sectionHeader = view
+                return view
+            case .todo:
+                let view = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: DetailSectionHeaderView.description(),
+                    for: indexPath) as? DetailSectionHeaderView
+                view?.titleLabel.text = "TODO"
+                view?.rightButton.setTitle("추가하기", for: .normal)
+                view?.rightButton.imageView?.image = .add
+                view?.rightButton.isHidden = false
+                return view
+            default:
+                return nil
+            }
         }
     }
     
@@ -111,8 +128,10 @@ extension BucketListAddViewController: UICollectionViewDelegate {
         collectionView.collectionViewLayout = createLayout(using: configuration)
         collectionView.delegate = self
         
-        let nib = UINib(nibName: "BucketListAddHeaderView", bundle: nil)
-        collectionView.register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BucketListAddHeaderView.reuseIdentifier)
+        let inputHeaderNib = UINib(nibName: "BucketListAddHeaderView", bundle: nil)
+        collectionView.register(inputHeaderNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BucketListAddHeaderView.reuseIdentifier)
+        let detailHeaderNib = UINib(nibName: "DetailSectionHeaderView", bundle: nil)
+        collectionView.register(detailHeaderNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailSectionHeaderView.description())
     }
     
     private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> {

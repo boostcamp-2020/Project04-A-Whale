@@ -199,6 +199,7 @@
 		8261DBA125789D130027F6F8 /* BucketListAdd */ = {
 			isa = PBXGroup;
 			children = (
+				82736740257DC89600A8B644 /* UseCase */,
 				8261DBA425789D670027F6F8 /* View */,
 				8261DBA325789D5B0027F6F8 /* ViewModel */,
 			);
@@ -244,11 +245,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		82736740257DC89600A8B644 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				8261DB8D25761B7F0027F6F8 /* BucketListAddUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 		82A7290C256F41C100BD5797 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
 				82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */,
-				8261DB8D25761B7F0027F6F8 /* BucketListAddUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
