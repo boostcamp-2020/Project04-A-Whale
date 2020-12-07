@@ -28,7 +28,6 @@ const initialState = {
   details: {
     openDetails: [],
     achieveDetails: [],
-    achieveComment: null,
   },
 };
 
