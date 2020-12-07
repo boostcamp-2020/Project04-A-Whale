@@ -20,7 +20,7 @@ const MyBucketListDetailPage = ({ match }) => {
 
   return (
     <>
-      <Header title="내 목표" isGoBack />
+      <Header title="내 목표 상세" isGoBack />
       {loadingDetails && <Spinner />}
       {!loadingDetails && details && <MyBucketListDetail bucket={bucket} details={details} />}
     </>

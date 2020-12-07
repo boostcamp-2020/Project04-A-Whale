@@ -13,12 +13,13 @@ const BucketListItemWrapper = styled.div`
   }
   .list-icon {
     margin-left: 10px;
+    font-size: 18px;
   }
   border-bottom: 1px solid #eeeeee;
 `;
 
 const BucketTitleTextWrapper = styled.span`
-  padding-left: 25px;
+  padding-left: 20px;
   flex: 6;
   font-size: 18px;
 `;

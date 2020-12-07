@@ -25,6 +25,9 @@ const useStyles = makeStyles(() => ({
     fontSize: '18px',
     color: '#555555',
   },
+  achieveButton: {
+    marginLeft: '10px',
+  },
 }));
 
 const TitleWrapper = styled.div`
@@ -36,12 +39,4 @@ const TitleWrapper = styled.div`
   }
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  width: 100%;
-  justify-content: flex-end;
-`;
-
-export { useStyles, TitleWrapper, ButtonWrapper };
+export { useStyles, TitleWrapper };

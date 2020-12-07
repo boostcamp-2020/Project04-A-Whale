@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import * as api from '../lib/api';
 import createRequestThunk from '../lib/createRequestThunk';
+import { OPEN, GIVEUP, ACHIEVE } from '../constants/status';
 
 const GET_BUCKETS = 'buckets/GET_BUCKETS';
 const GET_BUCKETS_SUCCESS = 'buckets/GET_BUCKETS_SUCCESS';
@@ -36,15 +37,20 @@ const updateStatusBucket = (addArray, removeArray, idx, status) => {
 
 const getUpdateStatusBuckets = ({ buckets }, { no, status }) => {
   const openIdx = buckets.openBuckets.findIndex((bucket) => bucket.no === no);
+  const giveUpIdx = buckets.giveUpBuckets.findIndex((bucket) => bucket.no === no);
 
-  if (openIdx > -1 && status === 'G') {
+  if (openIdx > -1 && status === GIVEUP) {
     updateStatusBucket(buckets.giveUpBuckets, buckets.openBuckets, openIdx, status);
     return buckets;
   }
-
-  const giveUpIdx = buckets.giveUpBuckets.findIndex((bucket) => bucket.no === no);
-
-  updateStatusBucket(buckets.openBuckets, buckets.giveUpBuckets, giveUpIdx, status);
+  if (giveUpIdx > -1 && status === OPEN) {
+    updateStatusBucket(buckets.openBuckets, buckets.giveUpBuckets, giveUpIdx, status);
+    return buckets;
+  }
+  if (openIdx > -1 && status === ACHIEVE) {
+    updateStatusBucket(buckets.achieveBuckets, buckets.openBuckets, openIdx, status);
+    return buckets;
+  }
   return buckets;
 };
 

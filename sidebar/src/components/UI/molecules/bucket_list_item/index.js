@@ -1,37 +1,53 @@
 import React, { useState } from 'react';
-import ListAltIcon from '@material-ui/icons/ListAlt';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { BucketListItemWrapper, BucketTitleTextWrapper } from './style';
 import HoverButton from '../../atoms/hover_button';
-import ConfirmDialog from '../../organisms/confirm_dialog';
+import ConfirmDialog from '../confirm_dialog';
+import { updateBucketStatus } from '../../../../modules/buckets';
 import Text from '../../atoms/text';
+import { OPEN, GIVEUP } from '../../../../constants/status';
 
 const BucketListItem = ({ bucket }) => {
   const [hidden, setHidden] = useState(true);
   const [open, setOpen] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const changeHidden = (hidden) => {
-    setHidden(!hidden);
-  };
+  const changeHidden = (hidden) => setHidden(!hidden);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const handleOpen = () => setOpen(true);
 
   const handleClose = () => {
     setOpen(false);
     setHidden(true);
   };
 
+  const getText = () => {
+    if (bucket.status === GIVEUP) return '정말 되돌리시겠습니까?';
+    if (bucket.status === OPEN) return '정말 포기하시겠습니까?';
+    return null;
+  };
+
   const handleClick = () => {
-    history.push(`/detail/${bucket.no}`);
+    handleClose();
+    const params = {};
+    params.no = bucket.no;
+    if (bucket.status === OPEN) params.status = GIVEUP;
+    if (bucket.status === GIVEUP) params.status = OPEN;
+    dispatch(updateBucketStatus(params));
   };
 
   const getButton = () => {
-    if (bucket.status === 'G') return <HoverButton handleOpen={handleOpen} text="되돌리기" />;
-    if (bucket.status === 'O') return <HoverButton handleOpen={handleOpen} text="포기" />;
+    if (bucket.status === GIVEUP) return <HoverButton handleOpen={handleOpen} text="되돌리기" />;
+    if (bucket.status === OPEN) return <HoverButton handleOpen={handleOpen} text="포기" />;
     return null;
+  };
+
+  const getIcon = () => {
+    if (bucket.status === GIVEUP) return <div className="list-icon">🔒</div>;
+    if (bucket.status === OPEN) return <div className="list-icon">⏳</div>;
+    return <div className="list-icon">🎉</div>;
   };
 
   return (
@@ -39,12 +55,17 @@ const BucketListItem = ({ bucket }) => {
       onMouseOver={() => changeHidden(true)}
       onMouseLeave={() => changeHidden(false)}
     >
-      <ListAltIcon className="list-icon" />
-      <BucketTitleTextWrapper onClick={handleClick}>
+      {getIcon()}
+      <BucketTitleTextWrapper onClick={() => history.push(`/detail/${bucket.no}`)}>
         <Text value={bucket.title} fontSize="16px" />
       </BucketTitleTextWrapper>
       {hidden ? null : getButton()}
-      <ConfirmDialog open={open} handleClose={handleClose} bucket={bucket} />
+      <ConfirmDialog
+        open={open}
+        handleClose={handleClose}
+        handleClick={handleClick}
+        text={getText()}
+      />
     </BucketListItemWrapper>
   );
 };

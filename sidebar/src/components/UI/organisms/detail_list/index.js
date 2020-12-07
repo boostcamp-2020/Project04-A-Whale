@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import DetailListItem from '../../molecules/detail_list_item';
 import { updateDetailStatus } from '../../../../modules/details';
 import useStyles from './style';
+import { ACHIEVE, OPEN } from '../../../../constants/status';
 
-const DetailList = ({ details }) => {
+const DetailList = ({ details, handleAchieveButton, isAchieve }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { openDetails, achieveDetails } = details;
@@ -16,21 +17,24 @@ const DetailList = ({ details }) => {
   const statusChange = (detail) => {
     const params = {};
     params.no = detail.no;
-    if (detail.status === 'A') params.status = 'O';
-    if (detail.status === 'O') params.status = 'A';
+    if (detail.status === ACHIEVE) params.status = OPEN;
+    if (detail.status === OPEN) params.status = ACHIEVE;
     dispatch(updateDetailStatus(params));
   };
 
   const handleToggle = (value) => () => {
+    if (isAchieve) return;
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
+    if (currentIndex === -1) newChecked.push(value);
+    else newChecked.splice(currentIndex, 1);
 
+    if (newChecked.length === details.openDetails.length + details.achieveDetails.length) {
+      handleAchieveButton(false);
+    } else {
+      handleAchieveButton(true);
+    }
     setChecked(newChecked);
     statusChange(value);
   };
@@ -42,17 +46,28 @@ const DetailList = ({ details }) => {
         detail={detail}
         handleToggle={handleToggle}
         checked={checked}
+        isAchieve={isAchieve}
       />
     ));
 
   return (
     <>
-      <Typography className={classes.text}>진행 중인 상세 목표</Typography>
-      <Divider />
-      <List className={classes.list}>{getDetailListItem(openDetails)}</List>
-      <Typography className={classes.text}>달성된 상세 목표</Typography>
-      <Divider />
-      <List className={classes.list}>{getDetailListItem(achieveDetails)}</List>
+      {isAchieve ? (
+        <>
+          <Typography className={classes.text}>상세 목표</Typography>
+          <Divider />
+          <List className={classes.list}>{getDetailListItem(achieveDetails)}</List>
+        </>
+      ) : (
+        <>
+          <Typography className={classes.text}>진행중</Typography>
+          <Divider />
+          <List className={classes.list}>{getDetailListItem(openDetails)}</List>
+          <Typography className={classes.text}>달성</Typography>
+          <Divider />
+          <List className={classes.list}>{getDetailListItem(achieveDetails)}</List>
+        </>
+      )}
     </>
   );
 };

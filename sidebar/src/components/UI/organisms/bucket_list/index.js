@@ -5,24 +5,39 @@ import Typography from '@material-ui/core/Typography';
 import BucketListItem from '../../molecules/bucket_list_item';
 import useStyles from './style';
 
-const BucketList = ({ buckets }) => {
+const BucketList = ({ buckets, value }) => {
   const classes = useStyles();
   const { openBuckets, achieveBuckets, giveUpBuckets } = buckets;
 
   const getBucketListItem = (buckets) =>
     buckets.map((bucket) => <BucketListItem key={bucket.no} bucket={bucket} />);
 
+  const getBucketList = (buckets, text = null) => {
+    return (
+      <>
+        {text ? (
+          <>
+            <Typography className={classes.text}>{text}</Typography>
+            <Divider />
+          </>
+        ) : null}
+        <List>{getBucketListItem(buckets)}</List>
+      </>
+    );
+  };
+
   return (
     <>
-      <Typography className={classes.text}>진행 중인 목표</Typography>
-      <Divider />
-      <List>{getBucketListItem(openBuckets)}</List>
-      <Typography className={classes.text}>달성된 목표</Typography>
-      <Divider />
-      <List>{getBucketListItem(achieveBuckets)}</List>
-      <Typography className={classes.text}>포기한 목표</Typography>
-      <Divider />
-      <List>{getBucketListItem(giveUpBuckets)}</List>
+      {value === 0 ? (
+        <>
+          {getBucketList(openBuckets, '진행중')}
+          {getBucketList(achieveBuckets, '달성')}
+          {getBucketList(giveUpBuckets, '포기')}
+        </>
+      ) : null}
+      {value === 1 ? getBucketList(openBuckets) : null}
+      {value === 2 ? getBucketList(achieveBuckets) : null}
+      {value === 3 ? getBucketList(giveUpBuckets) : null}
     </>
   );
 };

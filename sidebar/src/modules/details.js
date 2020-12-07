@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import * as api from '../lib/api';
 import createRequestThunk from '../lib/createRequestThunk';
+import { ACHIEVE } from '../constants/status';
 
 const GET_DETAILS = 'details/GET_DETAILS';
 const GET_DETAILS_SUCCESS = 'details/GET_DETAILS_SUCCESS';
@@ -14,8 +15,11 @@ const DELETE_DETAIL_SUCCESS = 'details/DELETE_DETAIL_SUCCESS';
 const CREATE_DETAIL = 'details/CREATE_DETAIL';
 const CREATE_DETAIL_SUCCESS = 'details/CREATE_DETAIL_SUCCESS';
 
+const UPDATE_DETAIL_INFO = 'details/UPDATE_DETAIL_INFO';
+
 export const getDetails = createRequestThunk(GET_DETAILS, api.getDetails);
 export const updateDetailStatus = createRequestThunk(UPDATE_DETAIL_STATUS, api.updateDetailStatus);
+export const updateDetailInfo = createRequestThunk(UPDATE_DETAIL_INFO, api.updateDetailInfo);
 export const deleteDetail = createRequestThunk(DELETE_DETAIL, api.deleteDetail);
 export const createDetail = createRequestThunk(CREATE_DETAIL, api.createDetail);
 
@@ -46,7 +50,7 @@ const updateStatusDetail = (addArray, removeArray, idx, status) => {
 const getUpdateStatusDetails = ({ details }, { no, status }) => {
   const openIdx = details.openDetails.findIndex((detail) => detail.no === no);
 
-  if (openIdx > -1 && status === 'A') {
+  if (openIdx > -1 && status === ACHIEVE) {
     updateStatusDetail(details.achieveDetails, details.openDetails, openIdx, status);
     return details;
   }
