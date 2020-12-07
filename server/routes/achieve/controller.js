@@ -2,13 +2,30 @@ const { OK, CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCo
 const achieveServices = require('../../services/achieve');
 
 /*
+    GET /api/achieves/:bucketNo
+    * 목표 달성 소감 조회 API
+*/
+exports.getAchieve = async (req, res, next) => {
+  try {
+    const { bucketNo } = req.params;
+    const result = await achieveServices.getAchieve(bucketNo);
+
+    res.status(CREATED).json({
+      message: '목표 달성 조회 성공',
+      data: result,
+    });
+  } catch (error) {
+    next(err);
+  }
+};
+
+/*
     POST /api/achieves
     * 목표 달성 소감 추가 API
 */
 exports.setAchieve = async (req, res, next) => {
   try {
     const data = req.body;
-    console.log(req.body);
     const result = await achieveServices.setAchieve(data);
 
     res.status(CREATED).json({
@@ -16,9 +33,7 @@ exports.setAchieve = async (req, res, next) => {
       achieveNo: result.no,
     });
   } catch (error) {
-    res.status(BAD_REQUEST).json({
-      message: '소감 추가 실패',
-    });
+    next(err);
   }
 };
 
@@ -36,8 +51,6 @@ exports.updateAchieve = async (req, res, next) => {
       message: '소감 수정 성공',
     });
   } catch (error) {
-    res.status(BAD_REQUEST).json({
-      message: '소감 수정 실패',
-    });
+    next(err);
   }
 };

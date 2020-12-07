@@ -1,5 +1,4 @@
 const db = require('./db/detail');
-const adb = require('./db/achieve');
 
 exports.bulkCreate = async (details) => {
   const newBucket = await db.bulkCreate(details);
@@ -20,7 +19,6 @@ const initialDetails = () => {
   const result = {};
   result.openDetails = [];
   result.achieveDetails = [];
-  result.achieveComment = null;
   return result;
 };
 
@@ -36,11 +34,7 @@ const detailsByStatus = (details) => {
 
 exports.getDetails = async (bucketNo) => {
   const details = await db.selectDetails(bucketNo);
-  const achieve = await adb.selectBucketAchieve(bucketNo);
   const result = detailsByStatus(details);
-  if (achieve) {
-    result.achieveComment = achieve.description;
-  }
   return result;
 };
 

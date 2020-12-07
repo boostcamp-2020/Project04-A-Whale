@@ -4,13 +4,20 @@ const bucketServices = require('../../services/bucket');
 
 /*
     GET /api/details/:bucketNo
-    * 버킷 상세 목록 조회 API
+    * 버킷 상세 전체 목록 조회 API
 */
 exports.getDetails = async (req, res, next) => {
   try {
     const { bucketNo } = req.params;
-    const bucket = await bucketServices.getBucket(bucketNo);
-    const details = await detailServices.getDetails(bucketNo);
+    let bucket;
+    let details;
+    if (req.useragent.isMobile) {
+      bucket = await bucketServices.getBucket(bucketNo);
+      details = await detailServices.getDetails(bucketNo);
+    } else {
+      bucket = await bucketServices.getBucketWithAchieve(bucketNo);
+      details = await detailServices.getDetails(bucketNo);
+    }
 
     res.status(OK).json({
       message: '버킷 상세 목록 조회 성공',

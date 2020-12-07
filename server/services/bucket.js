@@ -53,6 +53,13 @@ exports.updateBucketTitleDesc = async (no, title, description) => {
   return result;
 };
 
+exports.getBucketWithAchieve = async (no) => {
+  const result = await db.selectBucketWithAchieve(no);
+  const temp = { ...result, achieveComment: result['achieve.description'] };
+  delete temp['achieve.description'];
+  return temp;
+};
+
 exports.getBucket = async (no) => {
   const result = await db.selectBucket(no);
   return result;
