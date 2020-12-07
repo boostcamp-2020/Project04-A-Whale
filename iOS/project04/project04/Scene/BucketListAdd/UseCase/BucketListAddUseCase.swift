@@ -7,24 +7,17 @@
 
 import Foundation
 
-class BucketListAddUseCase: ListUseCase {
+class BucketListAddUseCase: DetailListUseCaseProtocol {
 
-    typealias Item = RealmDetail
-
-    func fetch(completion: @escaping ([RealmDetail]) -> Void) {
-        
-    }
+    let repository: PresetRepositoryProtocol
     
-    func fetch(with bucket: RealmBucket, completion: @escaping ([RealmDetail]) -> Void) {
-        let list =  (1...10).map({ RealmDetail(value: [0,
-                                                  "Test \($0)",
-                                                  "O",
-                                                  "Test \($0)",
-                                                  "Test \($0)",
-                                                  "Test \($0)",
-                                                  nil,
-                                                  0]) })
-        completion(list)
+    init(repository: PresetRepositoryProtocol) {
+        self.repository = repository
+    }
+    func fetch(with index: Int?, completion: @escaping ([RealmDetail]) -> Void) {
+        repository.fetch(with: index) { (list) in
+            completion(list)
+        }
     }
     
     func append(_ element: RealmDetail) {

@@ -47,7 +47,7 @@ class DetailListViewController: UIViewController {
             self?.animatePieView(viewModel: viewModel)
         }
         
-        collectionViewModel?.listFetchAction()
+        collectionViewModel?.listFetchAction(with: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -10,14 +10,14 @@ import RealmSwift
 
 protocol DetailListViewModelProtocol {
     var list: [RealmDetail.Section: [RealmDetail]] { get }
-    var usecase: DetailListUseCase { get }
+    var usecase: DetailListUseCaseProtocol { get }
     var listDidChange: ((DetailListViewModelProtocol) -> ())? { get set }
     func listDeleteAction(at index: Int)
     func listAddAction(_ newElement: RealmDetail)
     func listReviseAction(_ element: RealmDetail, title: String, dueDate: String)
     func listStatusReviseAction(at index: Int)
-    func listFetchAction()
-    init(usecase: DetailListUseCase)
+    func listFetchAction(with index: Int?)
+    init(usecase: DetailListUseCaseProtocol)
 }
 
 class DetailListViewModel: DetailListViewModelProtocol {
@@ -29,14 +29,14 @@ class DetailListViewModel: DetailListViewModelProtocol {
     }
     
     var listDidChange: ((DetailListViewModelProtocol) -> ())?
-    var usecase: DetailListUseCase
+    var usecase: DetailListUseCaseProtocol
     
-    required init(usecase: DetailListUseCase) {
+    required init(usecase: DetailListUseCaseProtocol) {
         self.usecase = usecase
     }
     
-    func listFetchAction() {
-        usecase.fetch(completion: { [weak self] list in
+    func listFetchAction(with index: Int? = nil) {
+        usecase.fetch(with: index, completion: { [weak self] list in
             self?.list[.done] = list.filter { $0.status == "A" }
             self?.list[.todo] = list.filter { $0.status == "O" }
         })

@@ -66,7 +66,9 @@ extension BucketCoordinator: DetailListPushCoordinator {
 extension BucketCoordinator: BucketListAddCoordinator {
     func pushToBucketListAdd(from delegate: BucketListObserverDelegate) {
         let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController", creator: { (coder) -> BucketListAddViewController? in
-            let usecase = BucketListAddUseCase()
+            let presetNetwork = PresetAPIAgent()
+            let repository = PresetRepository(network: presetNetwork)
+            let usecase = BucketListAddUseCase(repository: repository)
             let viewModel = BucketListAddViewModel(usecase: usecase)
             let coordinator = BucketListSearchCoordinator(self.navigationController)
             return BucketListAddViewController(coder: coder, viewModel: viewModel, delegate: delegate, coordinator: coordinator)

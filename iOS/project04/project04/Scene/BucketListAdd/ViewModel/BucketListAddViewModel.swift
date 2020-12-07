@@ -7,51 +7,56 @@
 
 import Foundation
 
-protocol BucketListAddViewModelProtocol {
+protocol BucketViewModelProtocol {
     var bucket: RealmBucket? { get set }
     var didChangeBucket: ((RealmBucket) -> Void)? { get set }
-    var didChangeDetails: (([RealmDetail.Section: [RealmDetail]]) -> Void)? { get set }
-    func fetch() -> Void
-    func append(detail: RealmDetail) -> Void
 }
 
-class BucketListAddViewModel: BucketListAddViewModelProtocol {
+class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtocol {
+    
     var bucket: RealmBucket? {
         didSet {
             guard let bucket = self.bucket else { return }
             didChangeBucket?(bucket)
         }
     }
-    var details: [RealmDetail] = [] {
+    var didChangeBucket: ((RealmBucket) -> Void)?
+    
+    var list: [RealmDetail.Section : [RealmDetail]] = [:] {
         didSet {
-            didChangeDetails?([.todo: details])
+            listDidChange?(self)
         }
     }
     
-    var didChangeBucket: ((RealmBucket) -> Void)?
-    var didChangeDetails: (([RealmDetail.Section : [RealmDetail]]) -> Void)?
+    var usecase: DetailListUseCaseProtocol
     
-    let usecase: BucketListAddUseCase
+    var listDidChange: ((DetailListViewModelProtocol) -> ())?
     
-    init(usecase: BucketListAddUseCase) {
+    
+    required init(usecase: DetailListUseCaseProtocol) {
         self.usecase = usecase
     }
     
-    func fetch() {
-        guard let bucket = self.bucket
-        else {
-            self.details = []
-            return
-        }
-        usecase.fetch(with: bucket, completion: { [weak self] (details) in
-            self?.details = details
+    func listDeleteAction(at index: Int) {
+        
+    }
+    
+    func listAddAction(_ newElement: RealmDetail) {
+        
+    }
+    
+    func listReviseAction(_ element: RealmDetail, title: String, dueDate: String) {
+        
+    }
+    
+    func listStatusReviseAction(at index: Int) {
+        
+    }
+    
+    func listFetchAction(with index: Int?) {
+        usecase.fetch(with: index, completion: { [weak self] list in
+            self?.list[.todo] = list
         })
-        
     }
-    
-    func append(detail: RealmDetail) {
-        
-    }
-    
-    
+
 }

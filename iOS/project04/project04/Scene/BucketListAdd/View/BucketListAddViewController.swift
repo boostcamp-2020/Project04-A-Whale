@@ -18,22 +18,22 @@ class BucketListAddViewController: UIViewController {
     var dataSource: DataSource?
     var delegate: BucketListObserverDelegate
     var coordinator: BucketListSearchCoordinator
-    var bucketListAddViewModel: BucketListAddViewModelProtocol {
+    var bucketListAddViewModel: BucketViewModelProtocol & DetailListViewModelProtocol {
         didSet {
-            bucketListAddViewModel.didChangeDetails = { [weak self] data in
-                var snapshot = Snapshot()
-                snapshot.appendSections([.input, .todo])
-                snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
-
-                self?.dataSource?.apply(snapshot,animatingDifferences: false)
-            }
-            bucketListAddViewModel.didChangeBucket = {[weak self] bucket in
+            bucketListAddViewModel.didChangeBucket = { [weak self] bucket in
                 self?.sectionHeader?.configure(with: bucket)
             }
+            bucketListAddViewModel.listDidChange = { [weak self] viewModel in
+                var snapshot = Snapshot()
+                snapshot.appendSections([.input, .todo])
+                snapshot.appendItems(viewModel.list[.todo] ?? [], toSection: .todo)
+                self?.dataSource?.apply(snapshot, animatingDifferences: false)
+            }
+            bucketListAddViewModel.listFetchAction(with: bucketListAddViewModel.bucket?.no)
         }
     }
     
-    init?(coder: NSCoder, viewModel: BucketListAddViewModelProtocol, delegate: BucketListObserverDelegate, coordinator: BucketListSearchCoordinator) {
+    init?(coder: NSCoder, viewModel: BucketViewModelProtocol & DetailListViewModelProtocol, delegate: BucketListObserverDelegate, coordinator: BucketListSearchCoordinator) {
         self.bucketListAddViewModel = viewModel
         self.delegate = delegate
         self.coordinator = coordinator
@@ -57,24 +57,21 @@ class BucketListAddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        bucketListAddViewModel.didChangeDetails = { [weak self] data in
-            var snapshot = Snapshot()
-            snapshot.appendSections([.input,.todo])
-            snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
-
-            self?.dataSource?.apply(snapshot)
-        }
-        bucketListAddViewModel.didChangeBucket = { [weak self] bucket in 
+        bucketListAddViewModel.didChangeBucket = { [weak self] bucket in
             self?.sectionHeader?.configure(with: bucket)
         }
-
-        bucketListAddViewModel.fetch()
+        bucketListAddViewModel.listDidChange = { [weak self] viewModel in
+            var snapshot = Snapshot()
+            snapshot.appendSections([.input, .todo])
+            snapshot.appendItems(viewModel.list[.todo] ?? [], toSection: .todo)
+            self?.dataSource?.apply(snapshot, animatingDifferences: false)
+        }
+        bucketListAddViewModel.listFetchAction(with: nil)
     }
     
     @objc func didTouchSearchButton(sender: UIButton) {
         coordinator.pushToBucketListSearch { [weak self] (bucket) in
             self?.bucketListAddViewModel.bucket = bucket
-            self?.bucketListAddViewModel.fetch()
         }
     }
 }
