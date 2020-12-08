@@ -9,7 +9,7 @@ import LineBarAreaComposedChart from '../../UI/organisms/line_bar_area_composed_
 import PieChart from '../../UI/organisms/pie_chart';
 import useStyles from './style';
 
-const MyBucketListDetail = ({ bucket, details }) => {
+const MyBucketListDetail = ({ bucket, details, detailTot }) => {
   const classes = useStyles();
   const { achieveComment } = bucket;
   const [achieveDisable, setAchieveDisable] = useState(true);
@@ -34,14 +34,14 @@ const MyBucketListDetail = ({ bucket, details }) => {
           </div>
           <Typography className={classes.text}>한눈에 보기</Typography>
           <Divider />
-          <LineBarAreaComposedChart />
-          <PieChart />
+          <LineBarAreaComposedChart detailTot={detailTot} />
+          <PieChart detailTot={detailTot} />
           <DetailList details={details} isAchieve={isAchieve} />
         </>
       ) : (
         <>
-          <LineBarAreaComposedChart />
-          <PieChart />
+          <LineBarAreaComposedChart detailTot={detailTot} />
+          <PieChart detailTot={detailTot} />
           <DetailRegister bucket={bucket} />
           <DetailList details={details} handleAchieveButton={handleAchieveButton} />
         </>

@@ -36,6 +36,7 @@ const DetailRegister = ({ bucket }) => {
         margin="dense"
         variant="outlined"
         fullWidth
+        placeholder="세부 목표를 추가해주세요."
         value={title}
         onChange={handleChange}
       />

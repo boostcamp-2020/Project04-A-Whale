@@ -1,11 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
-
-const data = [
-  { name: '진행중', value: 2 },
-  { name: '달성', value: 3 },
-  { name: '포기', value: 1 },
-];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
@@ -69,11 +63,22 @@ const renderActiveShape = (props) => {
   );
 };
 
-const PieChart1 = () => {
+const PieChart1 = ({ detailTot }) => {
+  const [data, setData] = useState([
+    { name: '진행중', value: 0 },
+    { name: '달성', value: 0 },
+  ]);
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = (data, index) => {
     setActiveIndex(index);
   };
+
+  useEffect(() => {
+    setData([
+      { name: '진행 중', value: detailTot.details.openDetails.length },
+      { name: '달성', value: detailTot.details.achieveDetails.length },
+    ]);
+  }, [detailTot]);
   return (
     <PieChart
       width={400}
