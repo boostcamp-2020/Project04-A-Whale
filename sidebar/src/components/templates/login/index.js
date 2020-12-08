@@ -24,17 +24,10 @@ const Login = ({ setLoginInfo }) => {
   const [id, setId] = useState({ text: '', valid: true });
   const [password, setPassword] = useState({ text: '', valid: true });
 
-  const idChangeHandler = useCallback(
-    (e) => {
-      setId({ ...id, text: e.target.value });
-    },
-    [id]
-  );
+  const idChangeHandler = useCallback((e) => setId({ ...id, text: e.target.value }), [id]);
 
   const passwordChangeHandler = useCallback(
-    (e) => {
-      setPassword({ ...password, text: e.target.value });
-    },
+    (e) => setPassword({ ...password, text: e.target.value }),
     [password]
   );
 
@@ -62,7 +55,6 @@ const Login = ({ setLoginInfo }) => {
       if (idValid() && passwordValid()) {
         setLoginInfo({ id: id.text, password: password.text });
       }
-      setLoginInfo({ id: id.text, password: password.text });
     },
     [id, password]
   );

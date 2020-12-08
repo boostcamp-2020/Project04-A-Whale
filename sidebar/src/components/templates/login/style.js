@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(() => ({
   input: {
-    margin: '5px 0',
+    display: 'block',
+    margin: '10px 0',
     width: '100%',
     '& div': {
       width: '100%',
