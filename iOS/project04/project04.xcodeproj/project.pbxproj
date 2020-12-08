@@ -34,6 +34,14 @@
 		C16019BB25792DCC00506430 /* PieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16019BA25792DCC00506430 /* PieView.swift */; };
 		C16019C025792FEE00506430 /* DetailSectionGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16019BE25792FEE00506430 /* DetailSectionGraphView.swift */; };
 		C16019C125792FEE00506430 /* DetailSectionGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C16019BF25792FEE00506430 /* DetailSectionGraphView.xib */; };
+		C1604D0D257DFC450019E6E2 /* RealmImpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1604D0C257DFC450019E6E2 /* RealmImpression.swift */; };
+		C1604D11257DFEB30019E6E2 /* ImpressionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1604D10257DFEB30019E6E2 /* ImpressionUseCase.swift */; };
+		C1604D15257E0E3C0019E6E2 /* ImpressionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1604D14257E0E3C0019E6E2 /* ImpressionRepository.swift */; };
+		C1604D19257E0EF90019E6E2 /* ImpressionLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1604D18257E0EF90019E6E2 /* ImpressionLocalAgent.swift */; };
+		C1604D1D257E0F050019E6E2 /* ImpressionAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1604D1C257E0F050019E6E2 /* ImpressionAPIAgent.swift */; };
+		C160C4D8257DC84100578BE3 /* ImpressionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160C4D7257DC84100578BE3 /* ImpressionViewController.swift */; };
+		C160C4DE257DC85D00578BE3 /* Impression.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C160C4DD257DC85D00578BE3 /* Impression.storyboard */; };
+		C160C4E2257DCC6700578BE3 /* ImpressionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160C4E1257DCC6700578BE3 /* ImpressionViewModel.swift */; };
 		C160DBA925775FA400290EAE /* DetailSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160DBA725775FA400290EAE /* DetailSectionHeaderView.swift */; };
 		C160DBAA25775FA400290EAE /* DetailSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C160DBA825775FA400290EAE /* DetailSectionHeaderView.xib */; };
 		C160DBB025776DB800290EAE /* DetailSectionImpressionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160DBAE25776DB800290EAE /* DetailSectionImpressionHeaderView.swift */; };
@@ -55,7 +63,7 @@
 		C1754F07256E4AC00037C805 /* ListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754F06256E4AC00037C805 /* ListUseCase.swift */; };
 		C175AA7825752C57009D8103 /* DetailListAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175AA7725752C57009D8103 /* DetailListAddViewController.swift */; };
 		C175AA7C25752C7D009D8103 /* DetailListAdd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C175AA7B25752C7D009D8103 /* DetailListAdd.storyboard */; };
-		C175AA8025752F72009D8103 /* DetailAddCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175AA7F25752F72009D8103 /* DetailAddCoordinator.swift */; };
+		C175AA8025752F72009D8103 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175AA7F25752F72009D8103 /* DetailCoordinator.swift */; };
 		C175D190256CC028001144F0 /* DetailListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D18F256CC028001144F0 /* DetailListUseCase.swift */; };
 		C175D194256CC2EC001144F0 /* DetailAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D193256CC2EC001144F0 /* DetailAPIAgent.swift */; };
 		C175D197256CC31C001144F0 /* DetailLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D196256CC31C001144F0 /* DetailLocalAgent.swift */; };
@@ -113,6 +121,14 @@
 		C16019BA25792DCC00506430 /* PieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieView.swift; sourceTree = "<group>"; };
 		C16019BE25792FEE00506430 /* DetailSectionGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionGraphView.swift; sourceTree = "<group>"; };
 		C16019BF25792FEE00506430 /* DetailSectionGraphView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSectionGraphView.xib; sourceTree = "<group>"; };
+		C1604D0C257DFC450019E6E2 /* RealmImpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmImpression.swift; sourceTree = "<group>"; };
+		C1604D10257DFEB30019E6E2 /* ImpressionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionUseCase.swift; sourceTree = "<group>"; };
+		C1604D14257E0E3C0019E6E2 /* ImpressionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionRepository.swift; sourceTree = "<group>"; };
+		C1604D18257E0EF90019E6E2 /* ImpressionLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionLocalAgent.swift; sourceTree = "<group>"; };
+		C1604D1C257E0F050019E6E2 /* ImpressionAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionAPIAgent.swift; sourceTree = "<group>"; };
+		C160C4D7257DC84100578BE3 /* ImpressionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionViewController.swift; sourceTree = "<group>"; };
+		C160C4DD257DC85D00578BE3 /* Impression.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Impression.storyboard; sourceTree = "<group>"; };
+		C160C4E1257DCC6700578BE3 /* ImpressionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionViewModel.swift; sourceTree = "<group>"; };
 		C160DBA725775FA400290EAE /* DetailSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionHeaderView.swift; sourceTree = "<group>"; };
 		C160DBA825775FA400290EAE /* DetailSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSectionHeaderView.xib; sourceTree = "<group>"; };
 		C160DBAE25776DB800290EAE /* DetailSectionImpressionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionImpressionHeaderView.swift; sourceTree = "<group>"; };
@@ -136,7 +152,7 @@
 		C1754F06256E4AC00037C805 /* ListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUseCase.swift; sourceTree = "<group>"; };
 		C175AA7725752C57009D8103 /* DetailListAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListAddViewController.swift; sourceTree = "<group>"; };
 		C175AA7B25752C7D009D8103 /* DetailListAdd.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailListAdd.storyboard; sourceTree = "<group>"; };
-		C175AA7F25752F72009D8103 /* DetailAddCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddCoordinator.swift; sourceTree = "<group>"; };
+		C175AA7F25752F72009D8103 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		C175D18F256CC028001144F0 /* DetailListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListUseCase.swift; sourceTree = "<group>"; };
 		C175D193256CC2EC001144F0 /* DetailAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPIAgent.swift; sourceTree = "<group>"; };
 		C175D196256CC31C001144F0 /* DetailLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocalAgent.swift; sourceTree = "<group>"; };
@@ -320,6 +336,52 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		C160C4D2257DC79700578BE3 /* Impression */ = {
+			isa = PBXGroup;
+			children = (
+				C160C4D3257DC7B000578BE3 /* ViewModel */,
+				C160C4D4257DC7BA00578BE3 /* UseCase */,
+				C160C4D5257DC7C300578BE3 /* Repository */,
+				C160C4D6257DC7CC00578BE3 /* View */,
+			);
+			path = Impression;
+			sourceTree = "<group>";
+		};
+		C160C4D3257DC7B000578BE3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C160C4E1257DCC6700578BE3 /* ImpressionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C160C4D4257DC7BA00578BE3 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				C1604D10257DFEB30019E6E2 /* ImpressionUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		C160C4D5257DC7C300578BE3 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				C1604D14257E0E3C0019E6E2 /* ImpressionRepository.swift */,
+				C1604D18257E0EF90019E6E2 /* ImpressionLocalAgent.swift */,
+				C1604D1C257E0F050019E6E2 /* ImpressionAPIAgent.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		C160C4D6257DC7CC00578BE3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C160C4D7257DC84100578BE3 /* ImpressionViewController.swift */,
+				C160C4DD257DC85D00578BE3 /* Impression.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C160DBAD25776C0000290EAE /* SectionHeaderView */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +505,7 @@
 			children = (
 				C175D19A256CCF3C001144F0 /* RealmDetailList.swift */,
 				82A7291E256F4BCB00BD5797 /* RealmBucket.swift */,
+				C1604D0C257DFC450019E6E2 /* RealmImpression.swift */,
 			);
 			path = RealmObject;
 			sourceTree = "<group>";
@@ -467,6 +530,7 @@
 		C1900D77256B83970071E8C7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C160C4D2257DC79700578BE3 /* Impression */,
 				C1900D7C256B85D50071E8C7 /* DetailList */,
 				C1900D78256B84840071E8C7 /* BucketList */,
 				8261DBA225789D1F0027F6F8 /* BucketListSearch */,
@@ -535,7 +599,7 @@
 			children = (
 				C1E6C4162574D45900BD4B4B /* MainTabBarController.swift */,
 				C1E6C41A2574D4BE00BD4B4B /* BucketCoordinator.swift */,
-				C175AA7F25752F72009D8103 /* DetailAddCoordinator.swift */,
+				C175AA7F25752F72009D8103 /* DetailCoordinator.swift */,
 				C1E6C41E2574E83200BD4B4B /* NavigationCoordinator.swift */,
 				8261DBAE25789EC20027F6F8 /* BucketListAddCoordinator.swift */,
 			);
@@ -626,6 +690,7 @@
 			files = (
 				C11AC460256B7F8B00E45667 /* .swiftlint.yml in Resources */,
 				C1655CA1256B7ED30067E3C5 /* LaunchScreen.storyboard in Resources */,
+				C160C4DE257DC85D00578BE3 /* Impression.storyboard in Resources */,
 				8261DB7C2575F89F0027F6F8 /* BucketListAdd.storyboard in Resources */,
 				C1E6C40E2574D27900BD4B4B /* BucketList.storyboard in Resources */,
 				C160DBB125776DB800290EAE /* DetailSectionImpressionHeaderView.xib in Resources */,
@@ -697,7 +762,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1655C99256B7ED10067E3C5 /* BucketListViewController.swift in Sources */,
-				C175AA8025752F72009D8103 /* DetailAddCoordinator.swift in Sources */,
+				C160C4E2257DCC6700578BE3 /* ImpressionViewModel.swift in Sources */,
+				C175AA8025752F72009D8103 /* DetailCoordinator.swift in Sources */,
 				C175AA7825752C57009D8103 /* DetailListAddViewController.swift in Sources */,
 				82A72917256F43E100BD5797 /* BucketLocalAgent.swift in Sources */,
 				82F12FD82579B59C0079DB71 /* BucketListSearchRepository.swift in Sources */,
@@ -708,6 +774,10 @@
 				82E8AC9E257F1F6600041785 /* DetailMemoryAgent.swift in Sources */,
 				C1754EF1256E1A570037C805 /* NetworkError.swift in Sources */,
 				82A7291B256F448100BD5797 /* BucketAPIAgent.swift in Sources */,
+				C1604D0D257DFC450019E6E2 /* RealmImpression.swift in Sources */,
+				C1604D1D257E0F050019E6E2 /* ImpressionAPIAgent.swift in Sources */,
+				8261DBAF25789EC20027F6F8 /* BucketListSearchCoordinator.swift in Sources */,
+				C1604D19257E0EF90019E6E2 /* ImpressionLocalAgent.swift in Sources */,
 				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
 				C1E6C41B2574D4BE00BD4B4B /* BucketCoordinator.swift in Sources */,
 				C175D190256CC028001144F0 /* DetailListUseCase.swift in Sources */,
@@ -717,6 +787,7 @@
 				C16019BB25792DCC00506430 /* PieView.swift in Sources */,
 				C164DF962578AAD20046B902 /* DetailSectionHeaderTodoView.swift in Sources */,
 				C175D197256CC31C001144F0 /* DetailLocalAgent.swift in Sources */,
+				C1604D15257E0E3C0019E6E2 /* ImpressionRepository.swift in Sources */,
 				C1754EE3256E17F20037C805 /* LocalService.swift in Sources */,
 				C160DBA925775FA400290EAE /* DetailSectionHeaderView.swift in Sources */,
 				822CE39B257E6A5800B2854B /* PresetAPIAgent.swift in Sources */,
@@ -731,12 +802,14 @@
 				C1E6C41F2574E83200BD4B4B /* NavigationCoordinator.swift in Sources */,
 				C160DBB025776DB800290EAE /* DetailSectionImpressionHeaderView.swift in Sources */,
 				C16019C025792FEE00506430 /* DetailSectionGraphView.swift in Sources */,
+				C160C4D8257DC84100578BE3 /* ImpressionViewController.swift in Sources */,
 				C1754EEC256E197C0037C805 /* NetworkService.swift in Sources */,
 				C1754EF5256E1B8B0037C805 /* HTTPMethod.swift in Sources */,
 				C1BFAD10257631F400BDEF93 /* DefaultAlertViewController.swift in Sources */,
 				C1BFAD162576340800BDEF93 /* extension+UIDatePicker.swift in Sources */,
 				C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */,
 				C1754EDC256E13650037C805 /* DetailRepository.swift in Sources */,
+				C1604D11257DFEB30019E6E2 /* ImpressionUseCase.swift in Sources */,
 				8261DB8A25761A420027F6F8 /* BucketListAddViewModel.swift in Sources */,
 				82A7290E256F41DD00BD5797 /* BucketListUseCase.swift in Sources */,
 				C16BEFB52579CF2000108265 /* extension+UIColor.swift in Sources */,

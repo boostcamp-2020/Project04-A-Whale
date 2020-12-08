@@ -36,6 +36,9 @@
                             <state key="normal" title="•••">
                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="impressionEditAction:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="Q9s-9z-GMK"/>
+                            </connections>
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pxz-fl-gXy">
                             <rect key="frame" x="20" y="8.5" width="30" height="29"/>
@@ -87,6 +90,9 @@
                 <constraint firstItem="UEY-sd-6gW" firstAttribute="trailing" secondItem="VXr-Tz-HHm" secondAttribute="trailing" id="nMB-u2-S7Y"/>
                 <constraint firstItem="UEY-sd-6gW" firstAttribute="top" secondItem="uYr-iq-rgg" secondAttribute="bottom" constant="10" id="oGf-yY-lK0"/>
             </constraints>
+            <connections>
+                <outlet property="impressionLabel" destination="utd-Mm-I8f" id="msu-WP-bVp"/>
+            </connections>
             <point key="canvasLocation" x="241.30434782608697" y="171.42857142857142"/>
         </collectionReusableView>
     </objects>
