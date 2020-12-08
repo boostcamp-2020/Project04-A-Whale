@@ -14,9 +14,9 @@ import {
   Cloud2,
   Cloud3,
   Cloud4,
-  LoginLayout,
-  LoginContainer,
-  LoginBox,
+  RegisterLayout,
+  RegisterContainer,
+  RegisterBox,
 } from './style';
 
 const Login = () => {
@@ -71,9 +71,9 @@ const Login = () => {
           </svg>
         </CloudWrapper>
       </LogoWrapper>
-      <LoginLayout>
-        <LoginContainer>
-          <LoginBox>
+      <RegisterLayout>
+        <RegisterContainer>
+          <RegisterBox>
             <form>
               <TextField className={classes.input} label="아이디" variant="outlined" />
               <TextField
@@ -112,9 +112,9 @@ const Login = () => {
                 Naver 아이디로 회원가입
               </Button>
             </Link>
-          </LoginBox>
-        </LoginContainer>
-      </LoginLayout>
+          </RegisterBox>
+        </RegisterContainer>
+      </RegisterLayout>
     </>
   );
 };

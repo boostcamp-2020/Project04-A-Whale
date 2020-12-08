@@ -5,6 +5,12 @@ export const useStyles = makeStyles(() => ({
   input: {
     margin: '5px 0',
     width: '100%',
+    '& div': {
+      width: '100%',
+    },
+    '& input': {
+      width: '100%',
+    },
   },
   outlineButton: {
     width: 'calc(50% - 10px)',
