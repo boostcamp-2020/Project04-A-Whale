@@ -9,36 +9,40 @@ import Foundation
 
 protocol BucketListAddRepositoryProtocol {
     func fetch(with no: Int?, completion: @escaping ([RealmDetail]) -> Void)
+    func remove(at index: Int)
+    func append(element: RealmDetail)
 }
 
 class BucketListAddRepository: BucketListAddRepositoryProtocol {
     var network: PresetAPIAgent
-        
-    init(network: PresetAPIAgent) {
+    var memory: DetailMemoryAgent
+    
+    init(network: PresetAPIAgent, memory: DetailMemoryAgent) {
         self.network = network
+        self.memory = memory
     }
+    
     func fetch(with no: Int?, completion: @escaping ([RealmDetail]) -> Void) {
         guard let no = no
         else {
             completion([])
             return
         }
-        network.request(from: PresetAPIAgent.RequestURL.fetch.rawValue + "\(no)", method: .GET, body: nil) { (result) in
+        network.request(from: PresetAPIAgent.RequestURL.fetch.rawValue + "\(no)", method: .GET, body: nil) { [weak self] (result) in
             switch result {
             case .success(_):
                 break
             case .failure(_):
-                completion((1...5).map({ RealmDetail(value: [$0,
-                                                            "\($0)",
-                                                            "O",
-                                                            "\($0)",
-                                                            "\($0)",
-                                                            "\($0)",
-                                                            nil,
-                                                            0]) }))
+                completion(self?.memory.load() ?? [])
             }
         }
     }
     
-
+    func remove(at index: Int) {
+        memory.remove(at: index)
+    }
+    
+    func append(element: RealmDetail) {
+        memory.append(element)
+    }
 }
