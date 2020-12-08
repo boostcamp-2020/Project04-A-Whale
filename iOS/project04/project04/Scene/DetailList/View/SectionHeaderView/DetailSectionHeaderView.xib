@@ -36,7 +36,7 @@
                 <constraint firstItem="l44-kQ-zeb" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="25" id="mqj-Sa-Be7"/>
             </constraints>
             <connections>
-                <outlet property="successButton" destination="idM-EO-ql4" id="Fcz-Jt-N9R"/>
+                <outlet property="rightButton" destination="idM-EO-ql4" id="Fcz-Jt-N9R"/>
                 <outlet property="titleLabel" destination="l44-kQ-zeb" id="tpC-qp-k8Y"/>
             </connections>
             <point key="canvasLocation" x="58.695652173913047" y="127.23214285714285"/>

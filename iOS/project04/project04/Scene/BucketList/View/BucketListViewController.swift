@@ -16,7 +16,7 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
     typealias DataSource = UICollectionViewDiffableDataSource<RealmBucket.Section, RealmBucket>
     typealias Snapshot = NSDiffableDataSourceSnapshot<RealmBucket.Section, RealmBucket>
     var dataSource: DataSource?
-    var coordinator: DetailListPushCoordinator & BucketListAddCoordinator
+    var coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator
     @IBOutlet weak var collectionView: UICollectionView!
     var bucketListViewModel: BucketListViewModelProtocol {
         didSet {
@@ -31,7 +31,7 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
         }
     }
     
-    init?(coder: NSCoder, coordinator: DetailListPushCoordinator & BucketListAddCoordinator, viewModel: BucketListViewModelProtocol) {
+    init?(coder: NSCoder, coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator, viewModel: BucketListViewModelProtocol) {
         self.coordinator = coordinator
         self.bucketListViewModel = viewModel
         super.init(coder: coder)

@@ -7,14 +7,22 @@
 
 import Foundation
 
-class DetailListUseCase: ListUseCase {
+protocol DetailListUseCaseProtocol {
+    func fetch(with index: Int?, completion: @escaping ([RealmDetail]) -> Void)
+    func append(_ element: RealmDetail)
+    func remove(at index: Int)
+    func revise(element: RealmDetail, title: String, dueDate: String)
+    func reviseStatus(element: RealmDetail)
+}
+
+class DetailListUseCase: DetailListUseCaseProtocol {
     let repository: DetailRepositoryProtocol
     
     init(repository: DetailRepositoryProtocol) {
         self.repository = repository
     }
     
-    func fetch(completion: @escaping ([RealmDetail]) -> Void) {
+    func fetch(with index: Int? = nil, completion: @escaping ([RealmDetail]) -> Void) {
         repository.fetchDetailList(completion: { list in
             completion(list)
         })

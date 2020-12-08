@@ -21,12 +21,19 @@ class BucketListAddHeaderView: UICollectionReusableView {
         super.awakeFromNib()
     }
   
+    func configure(with bucket: RealmBucket) {
+        self.titleTextField.text = bucket.title
+        self.descriptionTextView.text = bucket.subTitle
+        self.descriptionTextView.textColor = .label
+    }
 }
 
 extension BucketListAddHeaderView: UITextViewDelegate {
     func configureTextViewPlaceholder() {
-        descriptionTextView.text = "목표 설명을 입력해주세요"
-        descriptionTextView.textColor = .secondaryLabel
+        if descriptionTextView.text.isEmpty {
+            descriptionTextView.text = "목표 설명을 입력해주세요"
+            descriptionTextView.textColor = .secondaryLabel
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -35,9 +42,8 @@ extension BucketListAddHeaderView: UITextViewDelegate {
             textView.text = nil
         }
     }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            configureTextViewPlaceholder()
-        }
+        configureTextViewPlaceholder()
     }
 }
