@@ -22,7 +22,7 @@ class BucketListAddUseCase: DetailListUseCaseProtocol {
     }
     
     func append(_ element: RealmDetail) {
-    
+        
     }
     
     func remove(at index: Int) {

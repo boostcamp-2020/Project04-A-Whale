@@ -17,7 +17,6 @@ protocol DetailListViewModelProtocol {
     func listReviseAction(_ element: RealmDetail, title: String, dueDate: String)
     func listStatusReviseAction(at index: Int)
     func listFetchAction(with index: Int?)
-    init(usecase: DetailListUseCaseProtocol)
 }
 
 class DetailListViewModel: DetailListViewModelProtocol {

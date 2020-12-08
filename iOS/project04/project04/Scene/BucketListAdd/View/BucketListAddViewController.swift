@@ -50,6 +50,7 @@ class BucketListAddViewController: UIViewController {
         if !title.isEmpty {
             let bucket = RealmBucket(value: [-1, title, description, "O"])
             delegate.bucketListViewModel.append(bucket: bucket)
+            self.bucketListAddViewModel.saveAction(with: bucket.no)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -111,6 +112,7 @@ extension BucketListAddViewController: UICollectionViewDelegate {
                 view?.rightButton.imageView?.image = .add
                 view?.rightButton.isHidden = false
                 view?.rightButtonHandler = { [weak self] in
+                    self?.view.endEditing(true)
                     self?.coordinator.presentDetailListAdd(self?.navigationController, viewModel: self?.bucketListAddViewModel)
                 }
                 return view
@@ -150,8 +152,10 @@ extension BucketListAddViewController: UICollectionViewDelegate {
     private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> {
         return UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> { (cell, _, detail) in
             var content = cell.defaultContentConfiguration()
-            content.text = detail.title
+            content.text = "목표: \(detail.title)"
+            content.secondaryText = "만료일: \(detail.dueDate)"
             cell.contentConfiguration = content
+            cell.backgroundConfiguration?.backgroundColor = .systemBackground
         }
     }
     

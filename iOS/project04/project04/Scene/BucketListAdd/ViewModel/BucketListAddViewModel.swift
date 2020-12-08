@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol BucketViewModelProtocol {
     var bucket: RealmBucket? { get set }
     var didChangeBucket: ((RealmBucket) -> Void)? { get set }
+    func saveAction(with bucketNo: Int)
 }
 
 class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtocol {
-    
     var bucket: RealmBucket? {
         didSet {
             guard let bucket = self.bucket else { return }
@@ -29,11 +30,10 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
     }
     
     var usecase: DetailListUseCaseProtocol
-    
     var listDidChange: ((DetailListViewModelProtocol) -> ())?
     
     
-    required init(usecase: DetailListUseCaseProtocol) {
+    init(usecase: DetailListUseCaseProtocol) {
         self.usecase = usecase
     }
     
@@ -61,5 +61,29 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
             self?.list[.todo] = list
         })
     }
-
+    
+    func saveAction(with bucketNo: Int) {
+        let detailLocal = DetailLocalAgent(bucketNumber: bucketNo)
+        let detailNetwork = DetailAPIAgent()
+        let detailRepository = DetailRepository(network: detailNetwork, local: detailLocal)
+        let detailListUsecase = DetailListUseCase(repository: detailRepository)
+        list[.todo]?.forEach { [weak self] (element) in
+            element.no = self?.autoIncreaseIdValue() ?? 0
+            detailListUsecase.append(element)
+        }
+        
+    }
+    
+    func autoIncreaseIdValue() -> Int {
+        do {
+            let realm = try Realm()
+            guard let maxIdValue: Int = realm.objects(RealmDetail.self).max(ofProperty: "no") else {
+                return 0
+            }
+            return maxIdValue + 1
+        } catch {
+            print(error)
+        }
+        return 0
+    }
 }
