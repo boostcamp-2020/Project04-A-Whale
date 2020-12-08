@@ -60,6 +60,44 @@ const getUpdateStatusDetails = ({ details }, { no, status }) => {
   return details;
 };
 
+const formattingBurndownChart = (details) => {
+  if (!details.length) return [];
+  const dates = details.map(({ dueDate }) => dueDate);
+  let prevDate = null;
+  if (details.length === 1) prevDate = details[0].createdAt;
+  else {
+    prevDate = details.reduce((prev, { createdAt }) => (prev > createdAt ? createdAt : prev));
+  }
+  if (prevDate) {
+    dates.push(prevDate.split(' ')[0]);
+  }
+  const uniqueDate = [...new Set(dates)].sort();
+
+  const result = uniqueDate.map((date, index) => {
+    const burndownChart = {
+      name: date,
+      Ideal_burndown: ((uniqueDate.length - 1 - index) / (uniqueDate.length - 1)) * details.length,
+      Completed_tasks: details.filter(
+        ({ status, updatedAt }) => status === 'A' && prevDate < updatedAt && updatedAt <= date
+      ).length,
+      Remaining_tasks:
+        details.filter(({ status }) => status === 'O').length +
+        details.filter(({ status, updatedAt }) => status === 'A' && updatedAt > date).length,
+    };
+    prevDate = date;
+    return burndownChart;
+  });
+  return result;
+};
+
+const getUpdateBurndownChart = (state) => {
+  let details = [];
+  details = details.concat(state.details.openDetails);
+  details = details.concat(state.details.achieveDetails);
+  details.sort((a, b) => a.dueDate - b.dueDate);
+  return formattingBurndownChart(details);
+};
+
 const getDeleteDetail = ({ details }, { no }) => {
   const openIdx = details.openDetails.findIndex((detail) => detail.no === no);
   const achieveIdx = details.achieveDetails.findIndex((detail) => detail.no === no);
@@ -69,28 +107,36 @@ const getDeleteDetail = ({ details }, { no }) => {
   return details;
 };
 
+const getDeleteBurndownChart = (state) => formattingBurndownChart(getDeleteDetail(state));
+
 const getNewDetails = ({ details }, { detail }) => {
   insertDetail(details.openDetails, detail);
   return details;
 };
+
+const getNewBurndownChart = (state) => formattingBurndownChart(getNewDetails(state));
 
 const details = handleActions(
   {
     [GET_DETAILS_SUCCESS]: (state, action) => ({
       bucket: action.payload.data.bucket,
       details: action.payload.data.details,
+      burnDownChart: action.payload.data.burnDownChart,
     }),
     [UPDATE_DETAIL_STATUS_SUCCESS]: (state, action) => ({
       ...state,
       buckets: getUpdateStatusDetails(state, action.params),
+      burnDownChart: getUpdateBurndownChart(state),
     }),
     [DELETE_DETAIL_SUCCESS]: (state, action) => ({
       ...state,
       buckets: getDeleteDetail(state, action.params),
+      burnDownChart: getDeleteBurndownChart(state),
     }),
     [CREATE_DETAIL_SUCCESS]: (state, action) => ({
       ...state,
       buckets: getNewDetails(state, action.payload.data),
+      burnDownChart: getNewBurndownChart(state),
     }),
   },
   initialState
