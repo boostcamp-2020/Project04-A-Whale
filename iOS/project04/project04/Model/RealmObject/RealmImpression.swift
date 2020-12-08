@@ -8,6 +8,11 @@
 import Foundation
 import RealmSwift
 
+struct Impression: Codable {
+    let message: String
+    let data: RealmImpression
+}
+
 class RealmImpression: Object, Codable {
     @objc dynamic var text: String = ""
     @objc dynamic var bucketNo: Int = 0
