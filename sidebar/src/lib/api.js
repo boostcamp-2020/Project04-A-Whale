@@ -5,6 +5,22 @@ axios.defaults.baseURL =
 
 // axios.interceptors.response.use(({ data }) => data);
 
+// login
+export const userLogin = ({ id, password }) =>
+  axios.post('/api/users/login', {
+    id,
+    password,
+  });
+
+// register
+export const userRegister = ({ id, password, nickname, description }) =>
+  axios.post('/api/users', {
+    id,
+    password,
+    nickname,
+    description,
+  });
+
 // buckets
 export const getBuckets = () => axios.get('/api/buckets');
 
