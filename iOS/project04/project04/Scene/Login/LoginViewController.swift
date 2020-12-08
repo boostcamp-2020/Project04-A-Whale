@@ -28,13 +28,6 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        UIView.animate(withDuration: 1, animations: { [weak self] in
-            self?.backgroundImageView.alpha = 0.8
-        })
-    }
-    
     @IBAction func loginAction(_ sender: UIButton) {
         let agent = LoginAPIAgent()
         let data = try! JSONEncoder().encode(["id": "whale04a", "password": "1234"])
@@ -55,6 +48,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func joinAction(_ sender: UIButton) {
-        coordinator.presentJoin()
+        dismiss(animated: true, completion: { [weak self] in
+            self?.coordinator.presentJoin()
+        })
     }
 }
