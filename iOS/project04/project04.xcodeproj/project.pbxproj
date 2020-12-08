@@ -26,6 +26,7 @@
 		82A7291B256F448100BD5797 /* BucketAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7291A256F448100BD5797 /* BucketAPIAgent.swift */; };
 		82A7291F256F4BCB00BD5797 /* RealmBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7291E256F4BCB00BD5797 /* RealmBucket.swift */; };
 		82E8AC9E257F1F6600041785 /* DetailMemoryAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8AC9D257F1F6600041785 /* DetailMemoryAgent.swift */; };
+		82E8ACB7257F721B00041785 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8ACB6257F721B00041785 /* NetworkService.swift */; };
 		82F12FD12579AD620079DB71 /* BucketListSearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F12FD02579AD620079DB71 /* BucketListSearchUseCase.swift */; };
 		82F12FD82579B59C0079DB71 /* BucketListSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F12FD72579B59C0079DB71 /* BucketListSearchRepository.swift */; };
 		B20CB3CD1814FA9193815C42 /* Pods_project04.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549A8B673E411EE0B839D8C7 /* Pods_project04.framework */; };
@@ -123,6 +124,7 @@
 		82A7291A256F448100BD5797 /* BucketAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketAPIAgent.swift; sourceTree = "<group>"; };
 		82A7291E256F4BCB00BD5797 /* RealmBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBucket.swift; sourceTree = "<group>"; };
 		82E8AC9D257F1F6600041785 /* DetailMemoryAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoryAgent.swift; sourceTree = "<group>"; };
+		82E8ACB6257F721B00041785 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		82F12FD02579AD620079DB71 /* BucketListSearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchUseCase.swift; sourceTree = "<group>"; };
 		82F12FD72579B59C0079DB71 /* BucketListSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchRepository.swift; sourceTree = "<group>"; };
 		C11AC45F256B7F8B00E45667 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -338,6 +340,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		82E8ACB5257F71DB00041785 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				82E8ACB6257F721B00041785 /* NetworkService.swift */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
 		82F12FCF2579AD330079DB71 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +514,7 @@
 		C1754EE1256E17D40037C805 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				82E8ACB5257F71DB00041785 /* Singleton */,
 				C1BFAD0E257631DC00BDEF93 /* Function */,
 				C1BFAD03257613E700BDEF93 /* View */,
 				C1754EEF256E1A4C0037C805 /* Enum */,
@@ -643,7 +654,6 @@
 				C175AA7F25752F72009D8103 /* DetailCoordinator.swift */,
 				C1E6C41E2574E83200BD4B4B /* NavigationCoordinator.swift */,
 				8261DBAE25789EC20027F6F8 /* BucketListAddCoordinator.swift */,
-				8261DBAE25789EC20027F6F8 /* BucketListSearchCoordinator.swift */,
 				C1269C8B257F343A00A5C1EC /* LoginCoordinator.swift */,
 				C1269CA0257F483800A5C1EC /* SettingCoordinator.swift */,
 			);
@@ -824,7 +834,7 @@
 				82A7291B256F448100BD5797 /* BucketAPIAgent.swift in Sources */,
 				C1604D0D257DFC450019E6E2 /* RealmImpression.swift in Sources */,
 				C1604D1D257E0F050019E6E2 /* ImpressionAPIAgent.swift in Sources */,
-				8261DBAF25789EC20027F6F8 /* BucketListSearchCoordinator.swift in Sources */,
+				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
 				C1604D19257E0EF90019E6E2 /* ImpressionLocalAgent.swift in Sources */,
 				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
 				C1E6C41B2574D4BE00BD4B4B /* BucketCoordinator.swift in Sources */,
@@ -858,6 +868,7 @@
 				C1754EEC256E197C0037C805 /* NetworkService.swift in Sources */,
 				C1754EF5256E1B8B0037C805 /* HTTPMethod.swift in Sources */,
 				C1BFAD10257631F400BDEF93 /* DefaultAlertViewController.swift in Sources */,
+				82E8ACB7257F721B00041785 /* NetworkService.swift in Sources */,
 				C1BFAD162576340800BDEF93 /* extension+UIDatePicker.swift in Sources */,
 				C1269C78257F121100A5C1EC /* LoginViewController.swift in Sources */,
 				C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */,
