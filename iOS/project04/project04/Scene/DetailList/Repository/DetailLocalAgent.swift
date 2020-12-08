@@ -9,16 +9,16 @@ import Foundation
 import RealmSwift
 
 class DetailLocalAgent: LocalService {
-    var bucketNo: Int
+    var bucketNo: Int?
     
-    init(bucketNumber: Int) {
+    init(bucketNumber: Int?) {
         self.bucketNo = bucketNumber
     }
     
     func load() -> [RealmDetail] {
         do {
             let result = try Realm().objects(RealmDetail.self)
-                .filter("bucketNo == \(bucketNo)")
+                .filter("bucketNo == \(bucketNo ?? -1)")
 
             return result.map { $0 }
         } catch {
@@ -31,7 +31,7 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try Realm().write {
-                element.bucketNo = bucketNo
+                element.bucketNo = bucketNo ?? -1
                 realm.add(element)
             }
         } catch {
@@ -43,7 +43,7 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try realm.write {
-                let result = realm.objects(RealmDetail.self).filter("bucketNo == \(bucketNo) && #no == \(index)")
+                let result = realm.objects(RealmDetail.self).filter("bucketNo == \(bucketNo ?? -1) && #no == \(index)")
                 realm.delete(result)
             }
         } catch {

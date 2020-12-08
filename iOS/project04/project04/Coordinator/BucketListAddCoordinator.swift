@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class BucketListSearchCoordinator: NavigationCoordinator {
+class BucketListAddCoordinator: NavigationCoordinator {
     var navigationController: UINavigationController
     
     required init(_ navigationController: UINavigationController) {
@@ -24,4 +24,18 @@ class BucketListSearchCoordinator: NavigationCoordinator {
         })
         navigationController.pushViewController(viewController, animated: true)
     }
+}
+
+extension BucketListAddCoordinator: DetailAddPushCoordinator {
+    func presentDetailListAdd(_ navigationController: UINavigationController?, viewModel: DetailListViewModelProtocol?, detail: RealmDetail? = nil, index: Int? = nil) {
+        let viewController = UIStoryboard(name: "DetailListAdd", bundle: nil).instantiateViewController(identifier: "DetailListAddViewController", creator: { coder in
+            return DetailListAddViewController(coder: coder,
+                                               viewModel: viewModel,
+                                               detail: detail,
+                                               index: index)
+        })
+        navigationController?.present(viewController, animated: false)
+    }
+    
+    
 }

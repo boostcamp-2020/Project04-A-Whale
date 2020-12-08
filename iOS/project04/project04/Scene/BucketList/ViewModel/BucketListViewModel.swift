@@ -48,7 +48,7 @@ class BucketListViewModel: BucketListViewModelProtocol {
     
     func append(bucket: RealmBucket) {
         let newId = autoIncreaseIdValue()
-        bucket.id = newId
+        bucket.no = newId
         self.buckets?[.todo]?.append(bucket)
         useCase.append(bucket)
     }
@@ -57,13 +57,13 @@ class BucketListViewModel: BucketListViewModelProtocol {
         guard let bucket = self.buckets?[.todo]?.remove(at: index) else { return }
         self.buckets?[.done]?.append(bucket)
         
-        useCase.revise(at: bucket.id, element: bucket)
+        useCase.revise(at: bucket.no, element: bucket)
     }
     
     func autoIncreaseIdValue() -> Int {
         do {
             let realm = try Realm()
-            guard let maxIdValue: Int = realm.objects(RealmBucket.self).max(ofProperty: "id") else {
+            guard let maxIdValue: Int = realm.objects(RealmBucket.self).max(ofProperty: "no") else {
                 return 0
             }
             return maxIdValue + 1

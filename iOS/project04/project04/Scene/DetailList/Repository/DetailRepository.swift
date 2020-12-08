@@ -52,7 +52,7 @@ class DetailRepository: DetailRepositoryProtocol {
                                 break
                             case .failure(_):
                                 self?.local.append(element)
-                            }
+                            } 
                         })
     }
     

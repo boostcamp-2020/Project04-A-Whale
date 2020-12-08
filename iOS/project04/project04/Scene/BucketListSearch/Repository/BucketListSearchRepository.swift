@@ -13,7 +13,10 @@ protocol SearchRepositoryProtocol {
 }
 
 class BucketListSearchRepository: SearchRepositoryProtocol {
-    let buckets = (1...100).map({ RealmBucket(value: [-1, "목표 \($0)", "목표 \($0) 설명", "O"]) })
+    let buckets = (1...100).map({ RealmBucket(value: [$0,
+                                                      "목표 \($0)",
+                                                      "목표 \($0) 설명",
+                                                      "O"]) })
     func fetch(completion: @escaping ([RealmBucket]) -> Void) {
         completion(buckets)
     }

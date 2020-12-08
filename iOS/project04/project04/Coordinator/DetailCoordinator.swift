@@ -7,13 +7,20 @@
 import Foundation
 import UIKit
 
-class DetailCoordinator: NavigationCoordinator {
+protocol DetailAddPushCoordinator {
+    func presentDetailListAdd(_ navigationController: UINavigationController?, viewModel: DetailListViewModelProtocol?, detail: RealmDetail?, index: Int?)
+
+}
+
+class DetailAddCoordinator: NavigationCoordinator {
     var navigationController: UINavigationController
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+}
+
+extension DetailAddCoordinator: DetailAddPushCoordinator {
     func presentDetailListAdd(_ navigationController: UINavigationController?, viewModel: DetailListViewModelProtocol?, detail: RealmDetail? = nil, index: Int? = nil) {
         let viewController = UIStoryboard(name: "DetailListAdd", bundle: nil).instantiateViewController(identifier: "DetailListAddViewController", creator: { coder in
             return DetailListAddViewController(coder: coder,
