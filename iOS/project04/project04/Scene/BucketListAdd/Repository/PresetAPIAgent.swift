@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PresetAPIAgent: NetworkService {
+class PresetAPIAgent: ListNetworkService {
     typealias Item = RealmDetail
 
     enum RequestURL: String {

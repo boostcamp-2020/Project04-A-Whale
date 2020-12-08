@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DetailAPIAgent: NetworkService {
+class DetailAPIAgent: ListNetworkService {
     enum RequestURL {
         static let append = "https://~~"
         static let remove = "https://~~"

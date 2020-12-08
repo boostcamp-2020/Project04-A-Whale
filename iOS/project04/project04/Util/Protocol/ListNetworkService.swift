@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkService {
+protocol ListNetworkService {
     associatedtype Item: Any
     
     func request(from urlString: String,

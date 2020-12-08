@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ImpressionAPIAgent: NetworkService {
+class ImpressionAPIAgent: ListNetworkService {
     typealias Item = RealmImpression
     enum RequestURL {
         static let fetch = "https://~~"

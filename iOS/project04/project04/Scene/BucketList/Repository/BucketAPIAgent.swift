@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BucketAPIAgent: NetworkService {
+class BucketAPIAgent: ListNetworkService {
     typealias Item = RealmBucket
     
     enum RequestURL {
