@@ -107,7 +107,7 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
             )}
           </TitleWrapper>
           <Typography className={classes.description} variant="h5">
-            {description}
+            ＃ {description}
           </Typography>
         </>
       )}

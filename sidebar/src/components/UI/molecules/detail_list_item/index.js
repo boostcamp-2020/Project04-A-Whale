@@ -13,6 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import CreateIcon from '@material-ui/icons/Create';
 import RemoveIcon from '@material-ui/icons/Remove';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CancelSaveButton from '../cancle_save_button';
 import ConfirmDialog from '../confirm_dialog';
 import { deleteDetail, updateDetailInfo } from '../../../../modules/details';
@@ -88,7 +89,11 @@ const DetailListItem = ({ detail, handleToggle, checked, isAchieve }) => {
         </>
       ) : (
         <ListItem role={undefined} dense button onClick={handleToggle(detail)}>
-          {isAchieve ? null : (
+          {isAchieve ? (
+            <ListItemIcon>
+              <ThumbUpIcon />
+            </ListItemIcon>
+          ) : (
             <ListItemIcon>
               <Checkbox
                 edge="start"
