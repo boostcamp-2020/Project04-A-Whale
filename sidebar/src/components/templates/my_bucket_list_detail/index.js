@@ -40,6 +40,8 @@ const MyBucketListDetail = ({ bucket, details, detailTot }) => {
         </>
       ) : (
         <>
+          <Typography className={classes.text}>한눈에 보기</Typography>
+          <Divider />
           <LineBarAreaComposedChart detailTot={detailTot} />
           <PieChart detailTot={detailTot} />
           <DetailRegister bucket={bucket} />
