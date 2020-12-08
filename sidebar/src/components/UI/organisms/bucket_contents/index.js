@@ -41,7 +41,7 @@ const BucketContents = ({
       <BucketTitle
         style={titleStyle}
         label="목표 Title 작성"
-        changeInputText={changeTitle}
+        onChangeHandler={changeTitle}
         value={storeTitle}
       />
       <BucketDescription

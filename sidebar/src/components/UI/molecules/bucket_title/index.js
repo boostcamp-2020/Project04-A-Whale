@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import { IconButton, Input, InputAdornment, InputLabel, Modal } from '@material-ui/core';
+import { IconButton, Input, InputAdornment, InputLabel, Modal, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import SearchGuide from '../search_guide';
+import BucketSearchModal from '../bucket_search_modal';
 
-const BucketDescription = ({ style, label, value, onChangeHandler }) => {
-
+const BucketTitle = ({ style, label, value, onChangeHandler }) => {
     const [isHover, setHover] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -28,12 +28,12 @@ const BucketDescription = ({ style, label, value, onChangeHandler }) => {
   return (
     <>
       <InputLabel>{label}</InputLabel>
-      <Input
+      <TextField
         style={style}
-        variant="filled"
         onChange={onChangeHandler}
         value={value}
-        endAdornment={
+        InputProps={
+          {endAdornment:
             <>
           <InputAdornment position="end">
             <IconButton onClick={onClickHandler} onMouseOver={onHoverEvent} onMouseLeave={onLeaveEvent} >
@@ -41,14 +41,15 @@ const BucketDescription = ({ style, label, value, onChangeHandler }) => {
             </IconButton>
             <SearchGuide isHover={isHover}/>
           </InputAdornment>
-          </>
+          </>}
         }
       />
-      <Modal>
-
+      <Modal open={open} onClose={modalClose} aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description">
+        <BucketSearchModal modalClose={modalClose}/>
       </Modal>
     </>
   );
 };
 
-export default BucketDescription;
+export default BucketTitle;

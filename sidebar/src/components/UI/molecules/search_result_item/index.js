@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Span from '../../atoms/span';
-import { loadPresetAction } from '../../../../modules/actions/createbucket';
 import { getDetails } from '../../../../lib/api';
 
 const SearchResultItemWrapper = styled.div`
@@ -35,7 +33,7 @@ const RefNumStyle = {
   verticalAlign: 'center',
 };
 
-const SearchResultItem = ({ bucket, boldWord, loadPresetActionConnect }) => {
+const SearchResultItem = ({ bucket, boldWord, selectFunc }) => {
   const { no, title, description, refCount, nickname } = bucket;
 
   const partialBoldText = (text, boldWord) => {
@@ -57,13 +55,7 @@ const SearchResultItem = ({ bucket, boldWord, loadPresetActionConnect }) => {
     const { data } = await getDetails(no);
     const { openDetails, achieveDetails } = data.data.details;
     const details = openDetails.concat(achieveDetails);
-    loadPresetActionConnect({
-      bucketTitle: title,
-      bucketDescription: description,
-      bucketDetails: details.map((detail) => {
-        return { title: detail.title, status: detail.status, dueDate: detail.dueDate };
-      }),
-    });
+    selectFunc({ title, description, details });
   };
 
   return (
@@ -75,4 +67,4 @@ const SearchResultItem = ({ bucket, boldWord, loadPresetActionConnect }) => {
   );
 };
 
-export default connect(null, { loadPresetActionConnect: loadPresetAction })(SearchResultItem);
+export default SearchResultItem;
