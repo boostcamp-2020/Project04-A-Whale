@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol PresetRepositoryProtocol {
+protocol BucketListAddRepositoryProtocol {
     func fetch(with no: Int?, completion: @escaping ([RealmDetail]) -> Void)
 }
 
-class PresetRepository: PresetRepositoryProtocol {
+class BucketListAddRepository: BucketListAddRepositoryProtocol {
     var network: PresetAPIAgent
         
     init(network: PresetAPIAgent) {
