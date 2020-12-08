@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RealmBucket: Object {
+class RealmBucket: Object, Codable {
     enum Section: String {
         case todo
         case done
@@ -22,4 +22,10 @@ class RealmBucket: Object {
     @objc dynamic var createdAt: String = ""
     @objc dynamic var updatedAt: String = ""
     @objc dynamic var userNo:Int = 0
+    
+    enum CodingKeys: String, CodingKey {
+        case no, title, status
+        case subTitle = "description"
+        case refCount, createdAt, updatedAt, userNo
+    }
 }
