@@ -9,7 +9,7 @@ import useStyles from './style';
 
 const MyBucketListDetail = ({ bucket, details }) => {
   const classes = useStyles();
-  const { achieveComment } = details;
+  const { achieveComment } = bucket;
   const [achieveDisable, setAchieveDisable] = useState(true);
 
   const handleAchieveButton = (value) => setAchieveDisable(value);

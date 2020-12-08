@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { deepOrange } from '@material-ui/core/colors';
+import styled from 'styled-components';
 
 const drawerWidth = 400;
 
@@ -19,16 +19,54 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   list: {
-    paddingLeft: '10px',
+    background: '#fafafa',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  menuList: {
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   listIcon: {
-    minWidth: '45px',
+    minWidth: 45,
   },
-  orange: {
-    color: theme.palette.getContrastText(deepOrange[500]),
-    backgroundColor: deepOrange[500],
-    marginRight: '10px',
+  avatar: {
+    width: 60,
+    height: 60,
+  },
+  nickname: {
+    fontSize: 20,
+    marginLeft: 16,
+  },
+  rankText: {
+    fontSize: 15,
+    marginLeft: 16,
+    marginTop: 2,
+  },
+  followerText: {
+    marginLeft: 17,
   },
 }));
 
-export default useStyles;
+const UserInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const FollowerWrapper = styled.div`
+  margin-left: 17px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+const DescriptionWrapper = styled.div`
+  margin-bottom: 10px;
+  margin-top: 13px;
+  margin-left: 17px;
+  border: 1px solid #aaa;
+  padding: 10px;
+  margin-right: 17px;
+  border-radius: 5px;
+`;
+
+export { useStyles, UserInfoWrapper, FollowerWrapper, DescriptionWrapper };
