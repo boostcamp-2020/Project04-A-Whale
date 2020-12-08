@@ -42,8 +42,8 @@ final class BucketCoordinator: NavigationCoordinator {
 extension BucketCoordinator: DetailListPushCoordinator {
     func pushToDetailList(bucket: RealmBucket?, index: Int, delegate: BucketListObserverDelegate) {
         let viewModel = configureDetailListViewModel(bucket: bucket)
-        let impressionViewModel = configureImpressionViewModel(bucketNo: bucket?.id ?? 0)
-        let coordinator = DetailCoordinator(navigationController)
+        let impressionViewModel = configureImpressionViewModel(bucketNo: bucket?.no ?? 0)
+        let coordinator = DetailAddCoordinator(navigationController)
         let viewController = UIStoryboard(name: "DetailList", bundle: nil).instantiateViewController(identifier: "DetailListViewController", creator: { coder in
             return DetailListViewController(coder: coder,
                                             bucket: bucket,
