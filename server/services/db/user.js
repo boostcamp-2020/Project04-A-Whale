@@ -11,6 +11,8 @@ exports.selectUserFromPassport = async (id) => {
   return results;
 };
 
+exports.isDuplicated = async (id) => User.count({ where: { id } });
+
 exports.selectUsers = async () => {
   const results = await User.findAll({
     attributes: ['no', 'id'],

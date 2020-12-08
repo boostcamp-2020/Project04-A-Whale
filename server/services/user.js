@@ -1,6 +1,14 @@
 const db = require('./db/user');
 
 /*
+ * id 중복 개수 조회
+ */
+exports.isDuplicated = async (id) => {
+  const cnt = await db.isDuplicated(id);
+  return !!cnt;
+};
+
+/*
  * 전체 유저 조회
  */
 exports.getUsers = async () => {

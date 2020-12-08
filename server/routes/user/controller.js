@@ -21,7 +21,27 @@ exports.login = async (req, res, next) => {
 };
 
 /*
-    GET /api/user/list
+    GET /api/users/{id}
+    * id 중복 조회
+*/
+exports.isDuplicated = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const isDuplicated = await userServices.isDuplicated(id);
+
+    res.status(OK).json({
+      message: 'ID 중복 조회 성공',
+      isDuplicated,
+    });
+  } catch (error) {
+    res.status(BAD_REQUEST).json({
+      message: 'ID 중복 조회 실패',
+    });
+  }
+};
+
+/*
+    GET /api/users
     * 전체 사용자 목록 조회 API
 */
 exports.getUsers = async (req, res, next) => {
@@ -33,7 +53,9 @@ exports.getUsers = async (req, res, next) => {
       data: users,
     });
   } catch (error) {
-    next(error);
+    res.status(BAD_REQUEST).json({
+      message: '전체 사용자 목록 조회 실패',
+    });
   }
 };
 
