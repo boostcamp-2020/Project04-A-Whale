@@ -14,28 +14,14 @@ protocol BucketListAddRepositoryProtocol {
 }
 
 class BucketListAddRepository: BucketListAddRepositoryProtocol {
-    var network: PresetAPIAgent
     var memory: DetailMemoryAgent
     
-    init(network: PresetAPIAgent, memory: DetailMemoryAgent) {
-        self.network = network
+    init(memory: DetailMemoryAgent) {
         self.memory = memory
     }
     
     func fetch(with no: Int?, completion: @escaping ([RealmDetail]) -> Void) {
-        guard let no = no
-        else {
-            completion([])
-            return
-        }
-        network.request(from: PresetAPIAgent.RequestURL.fetch.rawValue + "\(no)", method: .GET, body: nil) { [weak self] (result) in
-            switch result {
-            case .success(_):
-                break
-            case .failure(_):
-                completion(self?.memory.load() ?? [])
-            }
-        }
+        completion(self.memory.load() ?? [])
     }
     
     func remove(at index: Int) {
