@@ -10,22 +10,10 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import PeopleIcon from '@material-ui/icons/People';
-import FeedbackIcon from '@material-ui/icons/Feedback';
-import SettingsIcon from '@material-ui/icons/Settings';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import menuItems from '../../../../constants/menuItem';
 import { getUser } from '../../../../modules/user';
 import AchieveRate from '../../molecules/achieve_rate';
 import { useStyles, UserInfoWrapper, FollowerWrapper, DescriptionWrapper } from './style';
-
-const menuItems = [
-  { title: '내 목표', icon: <ListAltIcon />, path: '/' },
-  { title: '팔로우', icon: <PeopleIcon />, path: '/follow' },
-  { title: '피드', icon: <FeedbackIcon />, path: '/feed' },
-  { title: '설정', icon: <SettingsIcon />, path: '/achieves/2/create' },
-  { title: '로그아웃', icon: <ExitToAppIcon />, path: '/achieves/2/result' },
-];
 
 const MenuDrawer = ({ open, toggleDrawer }) => {
   const classes = useStyles();
