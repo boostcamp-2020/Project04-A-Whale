@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8215F5242579A81800DDCD09 /* BucketListSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8215F5232579A81800DDCD09 /* BucketListSearchViewModel.swift */; };
 		822CE395257E697F00B2854B /* BucketListAddRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822CE394257E697F00B2854B /* BucketListAddRepository.swift */; };
-		822CE39B257E6A5800B2854B /* PresetAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822CE39A257E6A5800B2854B /* PresetAPIAgent.swift */; };
 		8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259AAFC256B9D49006698FC /* BucketListViewModel.swift */; };
 		8261DB7C2575F89F0027F6F8 /* BucketListAdd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8261DB7B2575F89F0027F6F8 /* BucketListAdd.storyboard */; };
 		8261DB802575F8C40027F6F8 /* BucketListAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DB7F2575F8C40027F6F8 /* BucketListAddViewController.swift */; };
@@ -20,10 +19,10 @@
 		8261DBA725789E140027F6F8 /* BucketListSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8261DBA625789E140027F6F8 /* BucketListSearch.storyboard */; };
 		8261DBAB25789E820027F6F8 /* BucketListSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DBAA25789E820027F6F8 /* BucketListSearchViewController.swift */; };
 		8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DBAE25789EC20027F6F8 /* BucketListAddCoordinator.swift */; };
+		8285704B257F77BF00E3FEA9 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285704A257F77BF00E3FEA9 /* Endpoint.swift */; };
 		82A7290E256F41DD00BD5797 /* BucketListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */; };
 		82A72913256F437200BD5797 /* BucketListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A72912256F437100BD5797 /* BucketListRepository.swift */; };
 		82A72917256F43E100BD5797 /* BucketLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A72916256F43E100BD5797 /* BucketLocalAgent.swift */; };
-		82A7291B256F448100BD5797 /* BucketAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7291A256F448100BD5797 /* BucketAPIAgent.swift */; };
 		82A7291F256F4BCB00BD5797 /* RealmBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7291E256F4BCB00BD5797 /* RealmBucket.swift */; };
 		82E8AC9E257F1F6600041785 /* DetailMemoryAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8AC9D257F1F6600041785 /* DetailMemoryAgent.swift */; };
 		82E8ACB7257F721B00041785 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8ACB6257F721B00041785 /* NetworkService.swift */; };
@@ -48,7 +47,6 @@
 		C1604D11257DFEB30019E6E2 /* ImpressionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1604D10257DFEB30019E6E2 /* ImpressionUseCase.swift */; };
 		C1604D15257E0E3C0019E6E2 /* ImpressionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1604D14257E0E3C0019E6E2 /* ImpressionRepository.swift */; };
 		C1604D19257E0EF90019E6E2 /* ImpressionLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1604D18257E0EF90019E6E2 /* ImpressionLocalAgent.swift */; };
-		C1604D1D257E0F050019E6E2 /* ImpressionAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1604D1C257E0F050019E6E2 /* ImpressionAPIAgent.swift */; };
 		C160C4D8257DC84100578BE3 /* ImpressionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160C4D7257DC84100578BE3 /* ImpressionViewController.swift */; };
 		C160C4DE257DC85D00578BE3 /* Impression.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C160C4DD257DC85D00578BE3 /* Impression.storyboard */; };
 		C160C4E2257DCC6700578BE3 /* ImpressionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160C4E1257DCC6700578BE3 /* ImpressionViewModel.swift */; };
@@ -67,7 +65,6 @@
 		C16BEFB52579CF2000108265 /* extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16BEFB42579CF2000108265 /* extension+UIColor.swift */; };
 		C1754EDC256E13650037C805 /* DetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EDB256E13650037C805 /* DetailRepository.swift */; };
 		C1754EE3256E17F20037C805 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EE2256E17F20037C805 /* LocalService.swift */; };
-		C1754EEC256E197C0037C805 /* ListNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EEB256E197C0037C805 /* ListNetworkService.swift */; };
 		C1754EF1256E1A570037C805 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EF0256E1A570037C805 /* NetworkError.swift */; };
 		C1754EF5256E1B8B0037C805 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EF4256E1B8B0037C805 /* HTTPMethod.swift */; };
 		C1754F07256E4AC00037C805 /* ListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754F06256E4AC00037C805 /* ListUseCase.swift */; };
@@ -75,7 +72,6 @@
 		C175AA7C25752C7D009D8103 /* DetailListAdd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C175AA7B25752C7D009D8103 /* DetailListAdd.storyboard */; };
 		C175AA8025752F72009D8103 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175AA7F25752F72009D8103 /* DetailCoordinator.swift */; };
 		C175D190256CC028001144F0 /* DetailListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D18F256CC028001144F0 /* DetailListUseCase.swift */; };
-		C175D194256CC2EC001144F0 /* DetailAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D193256CC2EC001144F0 /* DetailAPIAgent.swift */; };
 		C175D197256CC31C001144F0 /* DetailLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D196256CC31C001144F0 /* DetailLocalAgent.swift */; };
 		C175D19B256CCF3C001144F0 /* RealmDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D19A256CCF3C001144F0 /* RealmDetailList.swift */; };
 		C175D1A4256CD242001144F0 /* project04Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D1A3256CD242001144F0 /* project04Tests.swift */; };
@@ -107,7 +103,6 @@
 		549A8B673E411EE0B839D8C7 /* Pods_project04.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project04.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8215F5232579A81800DDCD09 /* BucketListSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchViewModel.swift; sourceTree = "<group>"; };
 		822CE394257E697F00B2854B /* BucketListAddRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddRepository.swift; sourceTree = "<group>"; };
-		822CE39A257E6A5800B2854B /* PresetAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetAPIAgent.swift; sourceTree = "<group>"; };
 		8259AAFC256B9D49006698FC /* BucketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListViewModel.swift; sourceTree = "<group>"; };
 		8261DB7B2575F89F0027F6F8 /* BucketListAdd.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BucketListAdd.storyboard; sourceTree = "<group>"; };
 		8261DB7F2575F8C40027F6F8 /* BucketListAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddViewController.swift; sourceTree = "<group>"; };
@@ -118,10 +113,10 @@
 		8261DBA625789E140027F6F8 /* BucketListSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BucketListSearch.storyboard; sourceTree = "<group>"; };
 		8261DBAA25789E820027F6F8 /* BucketListSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchViewController.swift; sourceTree = "<group>"; };
 		8261DBAE25789EC20027F6F8 /* BucketListAddCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddCoordinator.swift; sourceTree = "<group>"; };
+		8285704A257F77BF00E3FEA9 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListUseCase.swift; sourceTree = "<group>"; };
 		82A72912256F437100BD5797 /* BucketListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListRepository.swift; sourceTree = "<group>"; };
 		82A72916256F43E100BD5797 /* BucketLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketLocalAgent.swift; sourceTree = "<group>"; };
-		82A7291A256F448100BD5797 /* BucketAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketAPIAgent.swift; sourceTree = "<group>"; };
 		82A7291E256F4BCB00BD5797 /* RealmBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBucket.swift; sourceTree = "<group>"; };
 		82E8AC9D257F1F6600041785 /* DetailMemoryAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoryAgent.swift; sourceTree = "<group>"; };
 		82E8ACB6257F721B00041785 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -145,7 +140,6 @@
 		C1604D10257DFEB30019E6E2 /* ImpressionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionUseCase.swift; sourceTree = "<group>"; };
 		C1604D14257E0E3C0019E6E2 /* ImpressionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionRepository.swift; sourceTree = "<group>"; };
 		C1604D18257E0EF90019E6E2 /* ImpressionLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionLocalAgent.swift; sourceTree = "<group>"; };
-		C1604D1C257E0F050019E6E2 /* ImpressionAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionAPIAgent.swift; sourceTree = "<group>"; };
 		C160C4D7257DC84100578BE3 /* ImpressionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionViewController.swift; sourceTree = "<group>"; };
 		C160C4DD257DC85D00578BE3 /* Impression.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Impression.storyboard; sourceTree = "<group>"; };
 		C160C4E1257DCC6700578BE3 /* ImpressionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressionViewModel.swift; sourceTree = "<group>"; };
@@ -166,7 +160,6 @@
 		C16BEFB42579CF2000108265 /* extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIColor.swift"; sourceTree = "<group>"; };
 		C1754EDB256E13650037C805 /* DetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRepository.swift; sourceTree = "<group>"; };
 		C1754EE2256E17F20037C805 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
-		C1754EEB256E197C0037C805 /* ListNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNetworkService.swift; sourceTree = "<group>"; };
 		C1754EF0256E1A570037C805 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		C1754EF4256E1B8B0037C805 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		C1754F06256E4AC00037C805 /* ListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUseCase.swift; sourceTree = "<group>"; };
@@ -174,7 +167,6 @@
 		C175AA7B25752C7D009D8103 /* DetailListAdd.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailListAdd.storyboard; sourceTree = "<group>"; };
 		C175AA7F25752F72009D8103 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		C175D18F256CC028001144F0 /* DetailListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListUseCase.swift; sourceTree = "<group>"; };
-		C175D193256CC2EC001144F0 /* DetailAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAPIAgent.swift; sourceTree = "<group>"; };
 		C175D196256CC31C001144F0 /* DetailLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocalAgent.swift; sourceTree = "<group>"; };
 		C175D19A256CCF3C001144F0 /* RealmDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDetailList.swift; sourceTree = "<group>"; };
 		C175D1A1256CD242001144F0 /* project04Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = project04Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				822CE394257E697F00B2854B /* BucketListAddRepository.swift */,
-				822CE39A257E6A5800B2854B /* PresetAPIAgent.swift */,
 				82E8AC9D257F1F6600041785 /* DetailMemoryAgent.swift */,
 			);
 			path = Repository;
@@ -319,7 +310,6 @@
 			children = (
 				82A72912256F437100BD5797 /* BucketListRepository.swift */,
 				82A72916256F43E100BD5797 /* BucketLocalAgent.swift */,
-				82A7291A256F448100BD5797 /* BucketAPIAgent.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -417,7 +407,6 @@
 			children = (
 				C1604D14257E0E3C0019E6E2 /* ImpressionRepository.swift */,
 				C1604D18257E0EF90019E6E2 /* ImpressionLocalAgent.swift */,
-				C1604D1C257E0F050019E6E2 /* ImpressionAPIAgent.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -506,7 +495,6 @@
 			children = (
 				C1754EDB256E13650037C805 /* DetailRepository.swift */,
 				C175D196256CC31C001144F0 /* DetailLocalAgent.swift */,
-				C175D193256CC2EC001144F0 /* DetailAPIAgent.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -527,7 +515,6 @@
 			isa = PBXGroup;
 			children = (
 				C1754EE2256E17F20037C805 /* LocalService.swift */,
-				C1754EEB256E197C0037C805 /* ListNetworkService.swift */,
 				C1754F06256E4AC00037C805 /* ListUseCase.swift */,
 			);
 			path = Protocol;
@@ -538,6 +525,7 @@
 			children = (
 				C1754EF0256E1A570037C805 /* NetworkError.swift */,
 				C1754EF4256E1B8B0037C805 /* HTTPMethod.swift */,
+				8285704A257F77BF00E3FEA9 /* Endpoint.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -829,11 +817,10 @@
 				C168BF612576873700A1A338 /* extension+Date.swift in Sources */,
 				C1754F07256E4AC00037C805 /* ListUseCase.swift in Sources */,
 				C1BFAD0B25761BF300BDEF93 /* RoundButton.swift in Sources */,
+				8285704B257F77BF00E3FEA9 /* Endpoint.swift in Sources */,
 				82E8AC9E257F1F6600041785 /* DetailMemoryAgent.swift in Sources */,
 				C1754EF1256E1A570037C805 /* NetworkError.swift in Sources */,
-				82A7291B256F448100BD5797 /* BucketAPIAgent.swift in Sources */,
 				C1604D0D257DFC450019E6E2 /* RealmImpression.swift in Sources */,
-				C1604D1D257E0F050019E6E2 /* ImpressionAPIAgent.swift in Sources */,
 				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
 				C1604D19257E0EF90019E6E2 /* ImpressionLocalAgent.swift in Sources */,
 				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
@@ -850,11 +837,9 @@
 				C1604D15257E0E3C0019E6E2 /* ImpressionRepository.swift in Sources */,
 				C1754EE3256E17F20037C805 /* LocalService.swift in Sources */,
 				C160DBA925775FA400290EAE /* DetailSectionHeaderView.swift in Sources */,
-				822CE39B257E6A5800B2854B /* PresetAPIAgent.swift in Sources */,
 				8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */,
 				82F12FD12579AD620079DB71 /* BucketListSearchUseCase.swift in Sources */,
 				C1BFAD05257613F500BDEF93 /* RoundView.swift in Sources */,
-				C175D194256CC2EC001144F0 /* DetailAPIAgent.swift in Sources */,
 				C15F33612577BC9E0032EACF /* extension+String.swift in Sources */,
 				8261DB92257723D20027F6F8 /* BucketListAddHeaderView.swift in Sources */,
 				C1655C97256B7ED10067E3C5 /* SceneDelegate.swift in Sources */,
@@ -865,7 +850,6 @@
 				C160DBB025776DB800290EAE /* DetailSectionImpressionHeaderView.swift in Sources */,
 				C16019C025792FEE00506430 /* DetailSectionGraphView.swift in Sources */,
 				C160C4D8257DC84100578BE3 /* ImpressionViewController.swift in Sources */,
-				C1754EEC256E197C0037C805 /* ListNetworkService.swift in Sources */,
 				C1754EF5256E1B8B0037C805 /* HTTPMethod.swift in Sources */,
 				C1BFAD10257631F400BDEF93 /* DefaultAlertViewController.swift in Sources */,
 				82E8ACB7257F721B00041785 /* NetworkService.swift in Sources */,
