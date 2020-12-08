@@ -21,6 +21,9 @@ export const userRegister = ({ id, password, nickname, description }) =>
     description,
   });
 
+// user
+export const getUser = () => axios.get('/api/users/info');
+
 // buckets
 export const getBuckets = () => axios.get('/api/buckets');
 

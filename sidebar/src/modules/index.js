@@ -4,6 +4,7 @@ import acheiveState from './achieve';
 import buckets from './buckets';
 import loading from './loading';
 import details from './details';
+import user from './user';
 
 const rootReducer = combineReducers({
   createbucket,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   buckets,
   loading,
   details,
+  user,
 });
 
 export default rootReducer;
