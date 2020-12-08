@@ -21,7 +21,7 @@ class BucketListAddRepository: BucketListAddRepositoryProtocol {
     }
     
     func fetch(with no: Int?, completion: @escaping ([RealmDetail]) -> Void) {
-        completion(self.memory.load() ?? [])
+        completion(self.memory.load())
     }
     
     func remove(at index: Int) {
