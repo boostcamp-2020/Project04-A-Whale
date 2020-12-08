@@ -16,7 +16,7 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<RealmDetail.Section, RealmDetail>! = nil
     var bucket: RealmBucket?
-    var coordinator: DetailCoordinator?
+    var coordinator: DetailAddCoordinator?
     var collectionViewModel: DetailListViewModelProtocol?
     var delegate: BucketListObserverDelegate
     var index: Int
@@ -25,7 +25,7 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
     init?(coder: NSCoder,
           bucket: RealmBucket?,
           viewModel: DetailListViewModelProtocol,
-          coordinator: DetailCoordinator,
+          coordinator: DetailAddCoordinator,
           index: Int,
           delegate: BucketListObserverDelegate,
           impressionViewModel: ImpressionViewModelProtocol) {
@@ -60,8 +60,8 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
         if bucket?.status == "A" {
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
-        impressionViewModel.impressionFetch(bucketNo: bucket?.id ?? 0)
-        collectionViewModel?.listFetchAction()
+        impressionViewModel.impressionFetch(bucketNo: bucket?.no ?? 0)
+        collectionViewModel?.listFetchAction(with: bucket?.no)
     }
     
     override func viewDidAppear(_ animated: Bool) {
