@@ -3,37 +3,37 @@ import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 
 const data = [
   {
-    name: 'Day 1',
+    name: '2020.11.06',
     Ideal_burndown: 10,
     Completed_tasks: 1,
     Remaining_tasks: 9,
   },
   {
-    name: 'Day 2',
+    name: '2020.11.09',
     Ideal_burndown: 10 - 1 * (10 / 5),
     Completed_tasks: 2,
     Remaining_tasks: 7,
   },
   {
-    name: 'Day 3',
+    name: '2020.11.13',
     Ideal_burndown: 10 - 2 * (10 / 5),
     Completed_tasks: 1,
     Remaining_tasks: 6,
   },
   {
-    name: 'Day 4',
+    name: '2020.11.15',
     Ideal_burndown: 10 - 3 * (10 / 5),
     Completed_tasks: 1,
     Remaining_tasks: 5,
   },
   {
-    name: 'Day 5',
+    name: '2020.11.19',
     Ideal_burndown: 10 - 4 * (10 / 5),
     Completed_tasks: 2,
     Remaining_tasks: 3,
   },
   {
-    name: 'Day 6',
+    name: '2020.11.23',
     Ideal_burndown: 0,
     Completed_tasks: 3,
     Remaining_tasks: 0,
@@ -52,7 +52,7 @@ const LineBarAreaComposedChart = () => {
 
   return (
     <ComposedChart
-      width={(windowWidth * 80) / 100}
+      width={windowWidth - 465 > 400 ? windowWidth - 465 : 400}
       height={400}
       data={data}
       margin={{
@@ -62,7 +62,8 @@ const LineBarAreaComposedChart = () => {
         left: 20,
       }}
       style={{
-        margin: '0 auto',
+        display: 'inline-block',
+        margin: '12px auto',
         border: '1px solid #eee',
         borderRadius: '10px',
       }}

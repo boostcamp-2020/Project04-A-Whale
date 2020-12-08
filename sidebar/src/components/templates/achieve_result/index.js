@@ -14,7 +14,7 @@ const AchieveResult = ({ bucket, description, date }) => {
           <p>{description}</p>
           <p>from {date}</p>
         </div>
-        <div className="graph">
+        <div>
           <LineBarAreaComposedChart />
         </div>
       </div>
