@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RealmBucket: Object {
+class RealmBucket: Object, Codable {
     enum Section: String {
         case todo
         case done
