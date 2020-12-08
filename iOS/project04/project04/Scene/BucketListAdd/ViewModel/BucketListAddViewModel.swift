@@ -64,8 +64,7 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
     
     func saveAction(with bucketNo: Int) {
         let detailLocal = DetailLocalAgent(bucketNumber: bucketNo)
-        let detailNetwork = DetailAPIAgent()
-        let detailRepository = DetailRepository(network: detailNetwork, local: detailLocal)
+        let detailRepository = DetailRepository(local: detailLocal)
         let detailListUsecase = DetailListUseCase(repository: detailRepository)
         list[.todo]?.forEach { [weak self] (element) in
             element.no = self?.autoIncreaseIdValue() ?? 0

@@ -24,9 +24,8 @@ final class BucketCoordinator: NavigationCoordinator {
     }
     
     func pushViewController() {
-        let network = BucketAPIAgent()
         let local = BucketLocalAgent()
-        let repository = BucketListRepository(network: network, local: local)
+        let repository = BucketListRepository(local: local)
         let useCase = BucketListUseCase(repository: repository)
         let bucketListViewModel = BucketListViewModel(useCase: useCase)
         
@@ -57,17 +56,15 @@ extension BucketCoordinator: DetailListPushCoordinator {
     }
     
     private func configureDetailListViewModel(bucket: RealmBucket?) -> DetailListViewModel {
-        let networkAgent = DetailAPIAgent()
         let localAgent = DetailLocalAgent(bucketNumber: bucket?.no ?? 0)
-        let repository = DetailRepository(network: networkAgent, local: localAgent)
+        let repository = DetailRepository(local: localAgent)
         let usecase = DetailListUseCase(repository: repository)
         return DetailListViewModel(usecase: usecase)
     }
     
     private func configureImpressionViewModel(bucketNo: Int) -> ImpressionViewModel {
-        let networkAgent = ImpressionAPIAgent()
         let localAgent = ImpressionLocalAgent(bucketNo: bucketNo)
-        let repository = ImpressionRepository(local: localAgent, network: networkAgent)
+        let repository = ImpressionRepository(local: localAgent)
         let usecase = ImpressionUseCase(repository: repository)
         return ImpressionViewModel(usecase: usecase)
     }
@@ -76,9 +73,8 @@ extension BucketCoordinator: DetailListPushCoordinator {
 extension BucketCoordinator: BucketListAddPushCoordinator {
     func pushToBucketListAdd(from delegate: BucketListObserverDelegate) {
         let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController", creator: { (coder) -> BucketListAddViewController? in
-            let presetNetwork = PresetAPIAgent()
             let detailMemory = DetailMemoryAgent()
-            let repository = BucketListAddRepository(network: presetNetwork, memory: detailMemory)
+            let repository = BucketListAddRepository(memory: detailMemory)
             let usecase = BucketListAddUseCase(repository: repository)
             let viewModel = BucketListAddViewModel(usecase: usecase)
             let coordinator = BucketListAddCoordinator(self.navigationController)
