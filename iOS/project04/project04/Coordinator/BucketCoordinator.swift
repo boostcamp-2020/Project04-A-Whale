@@ -12,7 +12,7 @@ protocol DetailListPushCoordinator {
     func pushToDetailList(bucket: RealmBucket?, index: Int, delegate: BucketListObserverDelegate)
 }
 
-protocol BucketListAddCoordinator {
+protocol BucketListAddPushCoordinator {
     func pushToBucketListAdd(from deletage: BucketListObserverDelegate)
 }
 
@@ -63,14 +63,14 @@ extension BucketCoordinator: DetailListPushCoordinator {
     }
 }
 
-extension BucketCoordinator: BucketListAddCoordinator {
+extension BucketCoordinator: BucketListAddPushCoordinator {
     func pushToBucketListAdd(from delegate: BucketListObserverDelegate) {
         let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController", creator: { (coder) -> BucketListAddViewController? in
             let presetNetwork = PresetAPIAgent()
             let repository = PresetRepository(network: presetNetwork)
             let usecase = BucketListAddUseCase(repository: repository)
             let viewModel = BucketListAddViewModel(usecase: usecase)
-            let coordinator = BucketListSearchCoordinator(self.navigationController)
+            let coordinator = BucketListAddCoordinator(self.navigationController)
             return BucketListAddViewController(coder: coder, viewModel: viewModel, delegate: delegate, coordinator: coordinator)
         })
         navigationController.pushViewController(viewController, animated: true)

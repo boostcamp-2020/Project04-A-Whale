@@ -38,15 +38,17 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
     }
     
     func listDeleteAction(at index: Int) {
-        
+        list[.todo]?.remove(at: index)
     }
     
     func listAddAction(_ newElement: RealmDetail) {
-        
+        let item = newElement
+        list[.todo]?.append(item)
     }
     
     func listReviseAction(_ element: RealmDetail, title: String, dueDate: String) {
-        
+        usecase.revise(element: element, title: title, dueDate: dueDate)
+        listDidChange?(self)
     }
     
     func listStatusReviseAction(at index: Int) {

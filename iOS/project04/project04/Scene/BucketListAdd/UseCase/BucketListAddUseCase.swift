@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class BucketListAddUseCase: DetailListUseCaseProtocol {
 
@@ -21,7 +22,6 @@ class BucketListAddUseCase: DetailListUseCaseProtocol {
     }
     
     func append(_ element: RealmDetail) {
-        
     }
     
     func remove(at index: Int) {
@@ -30,7 +30,7 @@ class BucketListAddUseCase: DetailListUseCaseProtocol {
     }
     
     func revise(at index: Int, element: RealmDetail) {
-        
+
     }
     
     func reviseStatus(element: RealmDetail) {
@@ -38,7 +38,15 @@ class BucketListAddUseCase: DetailListUseCaseProtocol {
     }
     
     func revise(element: RealmDetail, title: String, dueDate: String) {
-        
+        do {
+            try Realm().write {
+                element.title = title
+                element.dueDate = dueDate
+                element.updatedAt = Date().toStringKST(dateFormat: "yyyy-MM-dd HH:mm:ss")
+            }
+        } catch {
+            print(error)
+        }
     }
     
 }

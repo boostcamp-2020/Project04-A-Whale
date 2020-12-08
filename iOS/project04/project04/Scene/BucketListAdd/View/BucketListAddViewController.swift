@@ -17,7 +17,7 @@ class BucketListAddViewController: UIViewController {
     
     var dataSource: DataSource?
     var delegate: BucketListObserverDelegate
-    var coordinator: BucketListSearchCoordinator
+    var coordinator: BucketListAddCoordinator
     var bucketListAddViewModel: BucketViewModelProtocol & DetailListViewModelProtocol {
         didSet {
             bucketListAddViewModel.didChangeBucket = { [weak self] bucket in
@@ -33,7 +33,7 @@ class BucketListAddViewController: UIViewController {
         }
     }
     
-    init?(coder: NSCoder, viewModel: BucketViewModelProtocol & DetailListViewModelProtocol, delegate: BucketListObserverDelegate, coordinator: BucketListSearchCoordinator) {
+    init?(coder: NSCoder, viewModel: BucketViewModelProtocol & DetailListViewModelProtocol, delegate: BucketListObserverDelegate, coordinator: BucketListAddCoordinator) {
         self.bucketListAddViewModel = viewModel
         self.delegate = delegate
         self.coordinator = coordinator
@@ -110,6 +110,9 @@ extension BucketListAddViewController: UICollectionViewDelegate {
                 view?.rightButton.setTitle("추가하기", for: .normal)
                 view?.rightButton.imageView?.image = .add
                 view?.rightButton.isHidden = false
+                view?.rightButtonHandler = { [weak self] in
+                    self?.coordinator.presentDetailListAdd(self?.navigationController, viewModel: self?.bucketListAddViewModel)
+                }
                 return view
             default:
                 return nil
@@ -122,6 +125,19 @@ extension BucketListAddViewController: UICollectionViewDelegate {
                             cellProvider: cellProvider(collectionView:indexPath:detail:))
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         configuration.headerMode = .supplementary
+        configuration.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
+            let sectionIdentifier = self?.dataSource?.snapshot().sectionIdentifiers[indexPath.section].rawValue
+            guard sectionIdentifier == "todo" else { return nil }
+            
+            let deleteAction = UIContextualAction(style: .destructive,
+                                                  title: "Delete",
+                                                  handler: { [weak self] _, _, _ in
+                                                    let detail = self?.dataSource?.itemIdentifier(for: indexPath)
+                                                    self?.bucketListAddViewModel.listDeleteAction(at: detail?.no ?? 0)
+                                                  })
+            
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }
         collectionView.collectionViewLayout = createLayout(using: configuration)
         collectionView.delegate = self
         
@@ -148,6 +164,9 @@ extension BucketListAddViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        coordinator.presentDetailListAdd(navigationController,
+                                          viewModel: bucketListAddViewModel,
+                                          detail: bucketListAddViewModel.list[.todo]?[indexPath.item],
+                                          index: indexPath.item)
     }
 }

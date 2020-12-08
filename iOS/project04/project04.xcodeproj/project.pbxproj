@@ -19,7 +19,7 @@
 		8261DB98257767080027F6F8 /* BucketListAddHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8261DB97257767080027F6F8 /* BucketListAddHeaderView.xib */; };
 		8261DBA725789E140027F6F8 /* BucketListSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8261DBA625789E140027F6F8 /* BucketListSearch.storyboard */; };
 		8261DBAB25789E820027F6F8 /* BucketListSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DBAA25789E820027F6F8 /* BucketListSearchViewController.swift */; };
-		8261DBAF25789EC20027F6F8 /* BucketListSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DBAE25789EC20027F6F8 /* BucketListSearchCoordinator.swift */; };
+		8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DBAE25789EC20027F6F8 /* BucketListAddCoordinator.swift */; };
 		82A7290E256F41DD00BD5797 /* BucketListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */; };
 		82A72913256F437200BD5797 /* BucketListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A72912256F437100BD5797 /* BucketListRepository.swift */; };
 		82A72917256F43E100BD5797 /* BucketLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A72916256F43E100BD5797 /* BucketLocalAgent.swift */; };
@@ -98,7 +98,7 @@
 		8261DB97257767080027F6F8 /* BucketListAddHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BucketListAddHeaderView.xib; sourceTree = "<group>"; };
 		8261DBA625789E140027F6F8 /* BucketListSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BucketListSearch.storyboard; sourceTree = "<group>"; };
 		8261DBAA25789E820027F6F8 /* BucketListSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchViewController.swift; sourceTree = "<group>"; };
-		8261DBAE25789EC20027F6F8 /* BucketListSearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchCoordinator.swift; sourceTree = "<group>"; };
+		8261DBAE25789EC20027F6F8 /* BucketListAddCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddCoordinator.swift; sourceTree = "<group>"; };
 		82A7290D256F41DD00BD5797 /* BucketListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListUseCase.swift; sourceTree = "<group>"; };
 		82A72912256F437100BD5797 /* BucketListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListRepository.swift; sourceTree = "<group>"; };
 		82A72916256F43E100BD5797 /* BucketLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketLocalAgent.swift; sourceTree = "<group>"; };
@@ -534,7 +534,7 @@
 				C1E6C41A2574D4BE00BD4B4B /* BucketCoordinator.swift */,
 				C175AA7F25752F72009D8103 /* DetailAddCoordinator.swift */,
 				C1E6C41E2574E83200BD4B4B /* NavigationCoordinator.swift */,
-				8261DBAE25789EC20027F6F8 /* BucketListSearchCoordinator.swift */,
+				8261DBAE25789EC20027F6F8 /* BucketListAddCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -704,7 +704,7 @@
 				C1BFAD0B25761BF300BDEF93 /* RoundButton.swift in Sources */,
 				C1754EF1256E1A570037C805 /* NetworkError.swift in Sources */,
 				82A7291B256F448100BD5797 /* BucketAPIAgent.swift in Sources */,
-				8261DBAF25789EC20027F6F8 /* BucketListSearchCoordinator.swift in Sources */,
+				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
 				C1E6C41B2574D4BE00BD4B4B /* BucketCoordinator.swift in Sources */,
 				C175D190256CC028001144F0 /* DetailListUseCase.swift in Sources */,
 				8215F5242579A81800DDCD09 /* BucketListSearchViewModel.swift in Sources */,
