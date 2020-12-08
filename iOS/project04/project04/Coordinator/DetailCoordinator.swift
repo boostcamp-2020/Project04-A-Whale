@@ -4,11 +4,10 @@
 //
 //  Created by 남기범 on 2020/11/30.
 //
-
 import Foundation
 import UIKit
 
-class DetailAddCoordinator: NavigationCoordinator {
+class DetailCoordinator: NavigationCoordinator {
     var navigationController: UINavigationController
     
     required init(_ navigationController: UINavigationController) {
@@ -21,6 +20,13 @@ class DetailAddCoordinator: NavigationCoordinator {
                                                viewModel: viewModel,
                                                detail: detail,
                                                index: index)
+        })
+        navigationController?.present(viewController, animated: false)
+    }
+    
+    func presentImpression(_ navigationController: UINavigationController?, viewModel: ImpressionDelegate) {
+        let viewController = UIStoryboard(name: "Impression", bundle: nil).instantiateViewController(identifier: "ImpressionViewController", creator: { coder in
+            return ImpressionViewController(coder: coder, viewModel: viewModel)
         })
         navigationController?.present(viewController, animated: false)
     }

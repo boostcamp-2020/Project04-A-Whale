@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yor-tS-Mit">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Impression View Controller-->
+        <scene sceneID="4Me-r2-v4h">
+            <objects>
+                <viewController storyboardIdentifier="ImpressionViewController" id="yor-tS-Mit" customClass="ImpressionViewController" customModule="project04" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C8W-CG-9XO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소감 작성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsG-iW-DO8">
+                                <rect key="frame" x="20" y="54" width="74" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lg-wQ-JtX">
+                                <rect key="frame" x="359" y="49" width="35" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="완료"/>
+                                <connections>
+                                    <action selector="impressionSaveAction:" destination="yor-tS-Mit" eventType="touchUpInside" id="aLU-Br-hqN"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0ZJ-8Q-SJ8">
+                                <rect key="frame" x="20" y="86" width="374" height="776"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FVu-ou-hZr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0ZJ-8Q-SJ8" firstAttribute="leading" secondItem="FVu-ou-hZr" secondAttribute="leading" constant="20" id="Cdd-qV-1zY"/>
+                            <constraint firstItem="FVu-ou-hZr" firstAttribute="trailing" secondItem="9lg-wQ-JtX" secondAttribute="trailing" constant="20" id="I9b-Wg-cri"/>
+                            <constraint firstItem="lsG-iW-DO8" firstAttribute="leading" secondItem="FVu-ou-hZr" secondAttribute="leading" constant="20" id="TpD-X5-QFX"/>
+                            <constraint firstItem="0ZJ-8Q-SJ8" firstAttribute="top" secondItem="lsG-iW-DO8" secondAttribute="bottom" constant="8" id="UKo-6J-qFd"/>
+                            <constraint firstItem="0ZJ-8Q-SJ8" firstAttribute="bottom" secondItem="FVu-ou-hZr" secondAttribute="bottom" id="aaL-uR-D7G"/>
+                            <constraint firstItem="FVu-ou-hZr" firstAttribute="trailing" secondItem="0ZJ-8Q-SJ8" secondAttribute="trailing" constant="20" id="nAa-lo-eTM"/>
+                            <constraint firstItem="lsG-iW-DO8" firstAttribute="top" secondItem="FVu-ou-hZr" secondAttribute="top" constant="10" id="ohN-fH-aNi"/>
+                            <constraint firstItem="9lg-wQ-JtX" firstAttribute="top" secondItem="FVu-ou-hZr" secondAttribute="top" constant="5" id="xZt-4f-3UD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="impressionTextView" destination="0ZJ-8Q-SJ8" id="dPW-7d-pA7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yFs-91-6YJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147.82608695652175" y="146.65178571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
