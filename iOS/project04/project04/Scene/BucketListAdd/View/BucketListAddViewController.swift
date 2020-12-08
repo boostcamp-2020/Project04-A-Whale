@@ -50,7 +50,8 @@ class BucketListAddViewController: UIViewController {
         if !title.isEmpty {
             let bucket = RealmBucket(value: [-1, title, description, "O"])
             delegate.bucketListViewModel.append(bucket: bucket)
-            self.bucketListAddViewModel.saveAction(with: bucket.no)
+            bucketListAddViewModel.bucket = bucket
+            bucketListAddViewModel.saveAction(with: bucket.no)
         }
         navigationController?.popViewController(animated: true)
     }
