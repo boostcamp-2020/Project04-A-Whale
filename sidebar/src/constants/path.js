@@ -6,6 +6,7 @@ const pathURI = {
   bucketcreate: '/createbucket',
   achieveCreate: '/achieves/:bucketNo/create',
   achieveResult: '/achieves/:bucketNo/result',
+  feed: '/feed',
 };
 
 export default pathURI;
