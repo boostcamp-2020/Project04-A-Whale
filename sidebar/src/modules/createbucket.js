@@ -27,7 +27,7 @@ const createbucket = handleActions(
     [INPUT_DESC]: (state, { payload: input }) => ({ ...state, description: input }),
     [ADD_DETAIL]: (state, { payload: input }) =>
       produce(state, (draft) => {
-        draft.details.push({ title: input, status: 'O', dueDate: '2020-12-25' });
+        draft.details.push({ title: input.title, status: 'O', dueDate: input.dueDate });
       }),
     [UPDATE_DETAILDUE]: (state, { payload: input }) =>
       produce(state, (draft) => {
