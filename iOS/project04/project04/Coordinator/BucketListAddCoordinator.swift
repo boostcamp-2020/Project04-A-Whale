@@ -15,7 +15,7 @@ class BucketListAddCoordinator: NavigationCoordinator {
         self.navigationController = navigationController
     }
     
-    func pushToBucketListSearch(_ completion: @escaping (RealmBucket) -> Void) {
+    func pushToBucketListSearch(_ completion: @escaping (SearchBucket) -> Void) {
         let viewController = UIStoryboard(name: "BucketListSearch", bundle: nil).instantiateViewController(identifier: "BucketListSearchViewController", creator: { coder in
             let repository = BucketListSearchRepository()
             let usecase = BucketListSearchUseCase(repository: repository)
