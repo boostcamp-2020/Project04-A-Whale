@@ -22,8 +22,8 @@ class DetailListUseCase: DetailListUseCaseProtocol {
         self.repository = repository
     }
     
-    func fetch(with index: Int? = nil, completion: @escaping ([RealmDetail]) -> Void) {
-        repository.fetchDetailList(completion: { list in
+    func fetch(with index: Int?, completion: @escaping ([RealmDetail]) -> Void) {
+        repository.fetchDetailList(bucketNo: index ?? 0, completion: { list in
             completion(list)
         })
     }

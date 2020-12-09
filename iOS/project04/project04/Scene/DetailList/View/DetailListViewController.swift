@@ -47,7 +47,7 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
         title = bucket?.title
         configureHierarchy()
         configureDataSource()
-        
+        print(bucket?.no)
         collectionViewModel?.listDidChange = { [weak self] viewModel in
             DispatchQueue.main.async {
                 self?.updateList()
@@ -75,7 +75,7 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
     }
     
     @IBAction func detailAppendAction(_ sender: UIBarButtonItem) {
-        coordinator?.presentDetailListAdd(navigationController, viewModel: collectionViewModel)
+        coordinator?.presentDetailListAdd(navigationController, viewModel: collectionViewModel, index: bucket?.no)
     }
 }
 
@@ -151,7 +151,7 @@ extension DetailListViewController {
                         return nil
                     }
                     headerView.editHandler = { [weak self] in
-                        self?.coordinator?.presentImpression(self?.navigationController, viewModel: self!)
+                        self?.coordinator?.presentImpression(self?.navigationController, viewModel: self!, bucketNo: self?.bucket?.no ?? 0)
                     }
                     headerView.impressionLabel.text = self?.impressionViewModel.impressionText
                     if headerView.impressionLabel.text == "" {
@@ -226,7 +226,7 @@ extension DetailListViewController {
             // 소감 작성 완료 시 리로드 해줘야함 (소감 섹션, 그래프 섹션 추가)
             // bucket으로 돌아갈 때, todo에서 done으로 바뀌어야함
             self?.delegate.bucketListViewModel.reviseStatus(index: self?.index ?? 0)
-            self?.coordinator?.presentImpression(self?.navigationController, viewModel: self!)
+            self?.coordinator?.presentImpression(self?.navigationController, viewModel: self!, bucketNo: self?.bucket?.no ?? 0)
         })
         let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
         alert.addAction(successAction)
