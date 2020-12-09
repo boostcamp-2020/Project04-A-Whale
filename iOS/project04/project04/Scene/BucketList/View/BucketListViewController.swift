@@ -26,7 +26,9 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
                 snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
                 snapshot.appendItems(data?[.done] ?? [], toSection: .done)
 
-                self?.dataSource?.apply(snapshot, animatingDifferences: false)
+                DispatchQueue.main.async {
+                    self?.dataSource?.apply(snapshot, animatingDifferences: false)
+                }
             }
         }
     }
@@ -50,8 +52,10 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
             snapshot.appendSections([.todo, .done])
             snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
             snapshot.appendItems(data?[.done] ?? [], toSection: .done)
-
-            self?.dataSource?.apply(snapshot, animatingDifferences: false)
+            
+            DispatchQueue.main.async {
+                self?.dataSource?.apply(snapshot, animatingDifferences: false)
+            }
         }
         bucketListViewModel.fetch()
     }

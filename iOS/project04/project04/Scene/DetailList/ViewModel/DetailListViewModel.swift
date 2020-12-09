@@ -34,7 +34,7 @@ class DetailListViewModel: DetailListViewModelProtocol {
         self.usecase = usecase
     }
     
-    func listFetchAction(with index: Int? = nil) {
+    func listFetchAction(with index: Int?) {
         usecase.fetch(with: index, completion: { [weak self] list in
             self?.list[.done] = list.filter { $0.status == "A" }
             self?.list[.todo] = list.filter { $0.status == "O" }

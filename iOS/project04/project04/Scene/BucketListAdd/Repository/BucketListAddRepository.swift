@@ -21,7 +21,22 @@ class BucketListAddRepository: BucketListAddRepositoryProtocol {
     }
     
     func fetch(with no: Int?, completion: @escaping ([RealmDetail]) -> Void) {
-        completion(self.memory.load())
+        guard let no = no else {
+            completion(self.memory.load())
+            return
+        }
+        NetworkService.shared.request(from: Endpoint.details.urlString + "/\(no)",
+                                      method: .GET,
+                                      completion: { [weak self] result in
+                                        switch result {
+                                        case .success(let data):
+                                            let detailFetch = try? JSONDecoder().decode(Response<Info>.self, from: data)
+                                            completion(detailFetch?.data.details.allDetails ?? [])
+                                        case .failure(let error):
+                                            print(error)
+                                            completion(self?.memory.load() ?? [])
+                                        }
+                                      })
     }
     
     func remove(at index: Int) {

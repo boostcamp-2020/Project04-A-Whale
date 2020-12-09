@@ -83,7 +83,7 @@ class DetailListAddViewController: UIViewController {
                                                      currentTime,
                                                      currentTime,
                                                      nil,
-                                                     0]
+                                                     index ?? 0]
             ))
             dismiss(animated: false, completion: nil)
             return

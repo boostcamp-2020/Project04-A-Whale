@@ -27,9 +27,11 @@ class BucketListAddViewController: UIViewController {
                 var snapshot = Snapshot()
                 snapshot.appendSections([.input, .todo])
                 snapshot.appendItems(viewModel.list[.todo] ?? [], toSection: .todo)
-                self?.dataSource?.apply(snapshot, animatingDifferences: false)
+                DispatchQueue.main.async {
+                    self?.dataSource?.apply(snapshot, animatingDifferences: false)
+                }
             }
-            bucketListAddViewModel.listFetchAction(with: bucketListAddViewModel.bucket?.no)
+//            bucketListAddViewModel.listFetchAction(with: bucketListAddViewModel.bucket?.no ?? 0)
         }
     }
     
@@ -54,9 +56,11 @@ class BucketListAddViewController: UIViewController {
             return
         }
         let bucket = RealmBucket(value: [-1, title, description, "O"])
-        delegate.bucketListViewModel.append(bucket: bucket)
+//        delegate.bucketListViewModel.append(bucket: bucket)
         bucketListAddViewModel.bucket = bucket
-        bucketListAddViewModel.saveAction(with: bucket.no)
+        bucketListAddViewModel.saveAction(completion: { [weak self] check in
+            self?.delegate.bucketListViewModel.fetch()
+        })
         navigationController?.popViewController(animated: true)
     }
     
@@ -78,6 +82,7 @@ class BucketListAddViewController: UIViewController {
     @objc func didTouchSearchButton(sender: UIButton) {
         coordinator.pushToBucketListSearch { [weak self] (bucket) in
             self?.bucketListAddViewModel.bucket = RealmBucket(value: [bucket.no, bucket.title, bucket.bucketDescription])
+            self?.bucketListAddViewModel.listFetchAction(with: bucket.no)
         }
     }
 }

@@ -8,18 +8,17 @@
 import Foundation
 import RealmSwift
 
-struct DetailFetch: Codable {
-    let message: String
-    let data: Info
-}
-
 struct Info: Codable {
     let bucket: RealmBucket
     let details: Details
 }
 
 struct Details: Codable {
-    let openDetails: [RealmDetail]
+    let achieveDetails, openDetails: [RealmDetail]
+    
+    var allDetails: [RealmDetail] {
+        return achieveDetails + openDetails
+    }
 }
 
 class RealmDetail: Object, Codable {

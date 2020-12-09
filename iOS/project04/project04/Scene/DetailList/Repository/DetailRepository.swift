@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailRepositoryProtocol {
-    func fetchDetailList(completion: @escaping ([RealmDetail]) -> Void)
+    func fetchDetailList(bucketNo: Int, completion: @escaping ([RealmDetail]) -> Void)
     func appendDetailList(_ element: RealmDetail)
     func removeDetailList(at index: Int)
     func reviseDetailList(element: RealmDetail, title: String, dueDate: String)
@@ -22,23 +22,21 @@ class DetailRepository: DetailRepositoryProtocol {
         self.local = local
     }
     
-    func fetchDetailList(completion: @escaping ([RealmDetail]) -> Void) {
+    func fetchDetailList(bucketNo: Int, completion: @escaping ([RealmDetail]) -> Void) {
         
         // RealmBucket 인자가 다름
-        NetworkService.shared.request(from: Endpoint.details.urlString + "/2",
+        NetworkService.shared.request(from: Endpoint.details.urlString + "/\(bucketNo)",
                                       method: .GET,
                                       completion: { [weak self] result in
                                         switch result {
                                         case .success(let data):
-                                            let detailFetch = try? JSONDecoder().decode(DetailFetch.self, from: data)
-                                            print(detailFetch)
-                                            break
+                                            let detailFetch = try? JSONDecoder().decode(Response<Info>.self, from: data)
+                                            completion(detailFetch?.data.details.allDetails ?? [])
                                         case .failure(let error):
                                             print(error)
-//                                            completion(self?.local.load() ?? [])
+                                            completion(self?.local.load() ?? [])
                                         }
                                       })
-        completion(local.load())
     }
     
     func appendDetailList(_ element: RealmDetail) {
@@ -46,44 +44,43 @@ class DetailRepository: DetailRepositoryProtocol {
         NetworkService.shared.request(from: Endpoint.details.urlString,
                                       method: .POST,
                                       body: data,
-                                      completion: { result in
+                                      completion: { [weak self] result in
                                         switch result {
-                                        case .success(let data):
-                                            print(String(data: data, encoding: .utf8))
+                                        case .success(_):
                                             break
                                         case .failure(let error):
                                             print(error)
+                                            self?.local.append(element)
                                         }
                                       })
-        local.append(element)
     }
     
     func removeDetailList(at index: Int) {
         NetworkService.shared.request(from: Endpoint.details.urlString + "/\(index)",
                                       method: .DELETE,
-                                      completion: { [weak self] result in
+                                      completion: {  result in
                                         switch result {
-                                        case .success(let data):
-                                            print(String(data: data, encoding: .utf8))
-                                        case .failure(let error):
-                                            print(error)
+                                        case .success(_):
+                                            break
+                                        case .failure(_):
+                                            break
                                         }
             
         })
-        local.remove(at: index)
+//        local.remove(at: index)
     }
     
     func reviseDetailList(element: RealmDetail, title: String, dueDate: String) {
         let data = try? JSONEncoder().encode(["title": title, "dueDate": dueDate])
-        NetworkService.shared.request(from: Endpoint.details.urlString + "\(element.no)",
+        NetworkService.shared.request(from: Endpoint.details.urlString + "/\(element.no)",
                                       method: .PATCH,
                                       body: data,
                                       completion: { result in
                                         switch result {
-                                        case .success(let data):
-                                            print(String(data: data, encoding: .utf8))
-                                        case .failure(let error):
-                                            print(error)
+                                        case .success(_):
+                                            break
+                                        case .failure(_):
+                                            break
                                         }
                                       })
         local.revise(element: element, title: title, dueDate: dueDate)
@@ -91,7 +88,7 @@ class DetailRepository: DetailRepositoryProtocol {
     
     func reviseDetailListStatus(element: RealmDetail) {
         let data = try? JSONEncoder().encode(["status": "A"])
-        NetworkService.shared.request(from: Endpoint.details.urlString,
+        NetworkService.shared.request(from: Endpoint.details.urlString + "/\(element.bucketNo)",
                                       method: .PATCH,
                                       body: data,
                                       completion: { result in
@@ -102,6 +99,7 @@ class DetailRepository: DetailRepositoryProtocol {
                                             print(error)
                                         }
                                       })
+        
         local.reviseStatus(element: element)
     }
 }

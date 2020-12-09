@@ -15,12 +15,6 @@ protocol ImpressionLocalAgentProtocol {
 }
 
 class ImpressionLocalAgent {
-    private var bucketNo: Int
-    
-    init(bucketNo: Int) {
-        self.bucketNo = bucketNo
-    }
-    
     func fetch(bucketNo: Int) -> RealmImpression? {
         do {
             let realm = try Realm()
@@ -32,7 +26,7 @@ class ImpressionLocalAgent {
         }
     }
     
-    func save(text: String) {
+    func save(bucketNo: Int, text: String) {
         do {
             let realm = try Realm()
             

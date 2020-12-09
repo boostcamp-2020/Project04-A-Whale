@@ -11,9 +11,11 @@ class ImpressionViewController: UIViewController {
     @IBOutlet weak var impressionTextView: UITextView!
     var delegate: ImpressionDelegate
     var isEdited: Bool = false
+    var bucketNo: Int
     
-    init?(coder: NSCoder, viewModel: ImpressionDelegate) {
+    init?(coder: NSCoder, viewModel: ImpressionDelegate, bucketNo: Int) {
         self.delegate = viewModel
+        self.bucketNo = bucketNo
         super.init(coder: coder)
     }
     
@@ -40,7 +42,7 @@ class ImpressionViewController: UIViewController {
         if isEdited {
             delegate.impressionViewModel.impressionEdit(text: impressionTextView.text)
         } else {
-            delegate.impressionViewModel.impressionSave(text: impressionTextView.text)
+            delegate.impressionViewModel.impressionSave(bucketNo: bucketNo, text: impressionTextView.text)
         }
         
         dismiss(animated: true, completion: nil)
