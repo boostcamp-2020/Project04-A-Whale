@@ -1,20 +1,16 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { reset, changeInput, setAchieve } from '../../modules/achieve';
 import AchieveCreateLayout from '../templates/achieve_create';
 import Header from '../UI/organisms/header';
 
-const bucketState = {
-  bucket: '부스트캠프 수료',
-  description: '멤버십을 훌륭하게 해내고 싶습니다. ',
-  date: '2020.07.27',
-};
-
 const AchieveCreatePage = ({ match }) => {
+  const location = useLocation();
+  const [bucketState, setBucket] = useState({});
   const { bucketNo } = match.params;
-  const acheiveState = useSelector((state) => state.acheiveState, []);
+  const acheiveState = useSelector((state) => state.acheiveState);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,9 +25,19 @@ const AchieveCreatePage = ({ match }) => {
   useEffect(() => {
     if (acheiveState.message) {
       dispatch(reset());
-      history.replace(`/achieves/${bucketNo}/result`);
+      history.replace(`/detail/${bucketNo}`);
     }
   }, [acheiveState]);
+
+  useEffect(() => {
+    // url 직접 접근 제한
+    if (!location.state) {
+      history.goBack();
+      return;
+    }
+    const { bucket } = location.state;
+    setBucket(bucket);
+  }, []);
 
   return (
     <>
