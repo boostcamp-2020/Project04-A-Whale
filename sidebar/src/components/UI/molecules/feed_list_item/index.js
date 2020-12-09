@@ -3,12 +3,17 @@ import React from 'react';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
+import { useHistory } from 'react-router-dom';
 import useStyles from './style';
 
 const FeedListItem = ({ feed }) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push(`/follow/${feed.userNo}`);
+  };
 
   return (
     <ListItem alignItems="flex-start">
@@ -16,20 +21,15 @@ const FeedListItem = ({ feed }) => {
         <Avatar alt="profile-img" src="/empty-user.png" />
       </ListItemAvatar>
       <ListItemText
-        primary={feed.name}
-        secondary={
+        primary={
           <>
-            <Typography
-              component="span"
-              variant="body2"
-              className={classes.inline}
-              color="textPrimary"
-            >
-              {feed.content}
-            </Typography>
-            {` - ${feed.date}`}
+            <span className={classes.nickname} onClick={handleClick} role="presentation">
+              {feed.nickname}
+            </span>
+            님이 {feed.content}
           </>
         }
+        secondary={feed.date}
       />
     </ListItem>
   );

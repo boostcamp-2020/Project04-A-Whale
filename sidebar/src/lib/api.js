@@ -91,3 +91,6 @@ export const uploadObjectStorage = (file) => {
   };
   return axios.post(`/api/upload/`, formData, config);
 };
+
+// feed
+export const getFeeds = () => axios.get('/api/feeds');
