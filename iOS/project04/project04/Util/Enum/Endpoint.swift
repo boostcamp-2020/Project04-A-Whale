@@ -10,8 +10,8 @@ import Foundation
 enum Endpoint: String {
     static let baseURL = "http://101.101.210.76:8000/api"
     case buckets
-    case achieves = "api/achieves"
-    case details = "api/details"
+    case achieves = "achieves"
+    case details = "details"
     case presets = "buckets/presets"
   
     var urlString: String {
