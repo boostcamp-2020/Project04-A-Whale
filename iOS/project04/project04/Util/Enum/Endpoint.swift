@@ -13,6 +13,7 @@ enum Endpoint: String {
     case achieves = "achieves"
     case details = "details"
     case presets = "buckets/presets"
+    case login = "users/login"
   
     var urlString: String {
         return Endpoint.baseURL + "/\(self.rawValue)"

@@ -8,7 +8,8 @@
 import UIKit
 
 class JoinViewController: UIViewController {
-
+    @IBOutlet weak var idTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

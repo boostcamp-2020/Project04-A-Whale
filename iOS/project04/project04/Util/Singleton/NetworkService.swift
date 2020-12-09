@@ -24,6 +24,11 @@ class NetworkService {
         
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
+        
+        let auth = AccessToken()
+        if !auth.token.isEmpty {
+            request.setValue(auth.token, forHTTPHeaderField: "Authorization")
+        }
         if let body = body {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = body

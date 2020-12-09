@@ -57,6 +57,10 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
                 self?.dataSource?.apply(snapshot, animatingDifferences: false)
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         bucketListViewModel.fetch()
     }
     
