@@ -15,7 +15,7 @@ exports.selectFeeds = async (followings) => {
     raw: true,
     where: {
       userNo: { [Op.in]: followings },
-      createdAt: { [Op.gte]: lastWeek }, // 최대 일주일전
+      createdAt: { [Op.lte]: lastWeek }, // 최대 일주일전
     },
     order: [['created_at', 'DESC']], // 최근 순으로
     include: {
