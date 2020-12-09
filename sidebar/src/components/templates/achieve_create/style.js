@@ -19,9 +19,28 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   page: {
-    width: '85vw',
-    'max-width': 'calc(100% - 140px)',
     margin: '0 auto',
+  },
+  title: {
+    fontSize: '1.2rem',
+  },
+  bigTitle: {
+    padding: theme.spacing(2),
+    fontSize: '3rem',
+    fontWeight: 'bold',
+    fontFamily: 'Nanum Brush Script, sans-serif !important',
+  },
+  date: {
+    padding: theme.spacing(2),
+    fontSize: '1.5rem',
+    fontFamily: 'Nanum Brush Script, sans-serif !important',
+  },
+  description: {
+    padding: theme.spacing(3),
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    border: '1px solid #eeeeee',
+    borderRadius: '5px',
   },
 }));
 
