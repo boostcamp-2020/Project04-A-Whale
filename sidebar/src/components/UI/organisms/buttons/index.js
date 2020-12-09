@@ -13,7 +13,6 @@ const Buttons = () => {
   return (
     <ButtonsWrapper>
       <BucketCreateButton />
-      <ResetButton />
     </ButtonsWrapper>
   );
 };

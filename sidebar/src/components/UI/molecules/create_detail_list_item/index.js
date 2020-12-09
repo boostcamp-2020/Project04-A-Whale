@@ -54,6 +54,8 @@ const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActi
     });
   };
 
+  console.log(detail);
+
   const content = (
     <DetailListItemWrapper>
       <Span content={detail.title} />
