@@ -5,9 +5,8 @@ exports.addFeed = async (userNo, content) => {
   return result;
 };
 
-exports.getFeeds = async (userNo) => {
-  const result = await db.selectFeeds(userNo);
-  // 팔로워 no 목록
-  // in 으로 userNo에 해당하는 것들만 출력
+exports.getFeeds = async (followingList) => {
+  const followingUserNos = followingList.map((user) => user.followed_no);
+  const result = await db.selectFeeds(followingUserNos);
   return result;
 };
