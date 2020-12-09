@@ -31,9 +31,11 @@ extension DetailAddCoordinator: DetailAddPushCoordinator {
         navigationController?.present(viewController, animated: false)
     }
     
-    func presentImpression(_ navigationController: UINavigationController?, viewModel: ImpressionDelegate) {
+    func presentImpression(_ navigationController: UINavigationController?, viewModel: ImpressionDelegate, bucketNo: Int) {
         let viewController = UIStoryboard(name: "Impression", bundle: nil).instantiateViewController(identifier: "ImpressionViewController", creator: { coder in
-            return ImpressionViewController(coder: coder, viewModel: viewModel)
+            return ImpressionViewController(coder: coder,
+                                            viewModel: viewModel,
+                                            bucketNo: bucketNo)
         })
         navigationController?.present(viewController, animated: false)
     }
