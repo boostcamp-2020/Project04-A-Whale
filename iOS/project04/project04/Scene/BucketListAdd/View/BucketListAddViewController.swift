@@ -74,10 +74,10 @@ class BucketListAddViewController: UIViewController {
         }
         bucketListAddViewModel.listFetchAction(with: nil)
     }
-    
+
     @objc func didTouchSearchButton(sender: UIButton) {
         coordinator.pushToBucketListSearch { [weak self] (bucket) in
-            self?.bucketListAddViewModel.bucket = bucket
+            self?.bucketListAddViewModel.bucket = RealmBucket(value: [bucket.no, bucket.title, bucket.bucketDescription])
         }
     }
 }

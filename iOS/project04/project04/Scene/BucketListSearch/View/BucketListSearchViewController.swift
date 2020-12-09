@@ -16,9 +16,9 @@ class BucketListSearchViewController: UITableViewController {
             }
         }
     }
-    var didSelectRowHandler: (RealmBucket) -> Void
+    var didSelectRowHandler: (SearchBucket) -> Void
     
-    init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol, didSelectRowHandler: @escaping (RealmBucket) -> Void) {
+    init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol, didSelectRowHandler: @escaping (SearchBucket) -> Void) {
         self.viewModel = viewModel
         self.didSelectRowHandler = didSelectRowHandler
         viewModel.fetch()
@@ -70,19 +70,27 @@ extension BucketListSearchViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let item: RealmBucket
+        let item: SearchBucket
         if isFiltering() {
             item = viewModel.filteredBuckets[indexPath.row]
         } else {
             item = viewModel.buckets[indexPath.row]
         }
-        cell.textLabel?.text = item.title
-        cell.detailTextLabel?.text = item.subTitle
+        
+        let fontSize = UIFont.boldSystemFont(ofSize: 12)
+        let text = "\(item.title)    @\(item.nickname)"
+        let range = (text as NSString).range(of: "@\(item.nickname)")
+        let attributedStr = NSMutableAttributedString(string: text)
+        attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: fontSize, range: range)
+        attributedStr.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.secondaryLabel, range: range)
+        cell.textLabel?.attributedText = attributedStr
+        cell.detailTextLabel?.text = item.bucketDescription
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item: RealmBucket
+        let item: SearchBucket
         if isFiltering() {
             item = viewModel.filteredBuckets[indexPath.row]
         } else {

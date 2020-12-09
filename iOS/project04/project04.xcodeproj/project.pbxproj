@@ -26,6 +26,7 @@
 		82A72913256F437200BD5797 /* BucketListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A72912256F437100BD5797 /* BucketListRepository.swift */; };
 		82A72917256F43E100BD5797 /* BucketLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A72916256F43E100BD5797 /* BucketLocalAgent.swift */; };
 		82A7291F256F4BCB00BD5797 /* RealmBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7291E256F4BCB00BD5797 /* RealmBucket.swift */; };
+		82DDAEFF2580528C0033F39A /* SearchBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DDAEFE2580528C0033F39A /* SearchBucket.swift */; };
 		82E8AC9E257F1F6600041785 /* DetailMemoryAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8AC9D257F1F6600041785 /* DetailMemoryAgent.swift */; };
 		82E8ACB7257F721B00041785 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8ACB6257F721B00041785 /* NetworkService.swift */; };
 		82F12FD12579AD620079DB71 /* BucketListSearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F12FD02579AD620079DB71 /* BucketListSearchUseCase.swift */; };
@@ -122,6 +123,7 @@
 		82A72912256F437100BD5797 /* BucketListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListRepository.swift; sourceTree = "<group>"; };
 		82A72916256F43E100BD5797 /* BucketLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketLocalAgent.swift; sourceTree = "<group>"; };
 		82A7291E256F4BCB00BD5797 /* RealmBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBucket.swift; sourceTree = "<group>"; };
+		82DDAEFE2580528C0033F39A /* SearchBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBucket.swift; sourceTree = "<group>"; };
 		82E8AC9D257F1F6600041785 /* DetailMemoryAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoryAgent.swift; sourceTree = "<group>"; };
 		82E8ACB6257F721B00041785 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		82F12FD02579AD620079DB71 /* BucketListSearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchUseCase.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 				C175D199256CCF0E001144F0 /* RealmObject */,
 				8285704E257FBA4300E3FEA9 /* Response.swift */,
 				82857052257FBAA200E3FEA9 /* ResponseBucket.swift */,
+				82DDAEFE2580528C0033F39A /* SearchBucket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -845,6 +848,7 @@
 				C1604D15257E0E3C0019E6E2 /* ImpressionRepository.swift in Sources */,
 				C1754EE3256E17F20037C805 /* LocalService.swift in Sources */,
 				C160DBA925775FA400290EAE /* DetailSectionHeaderView.swift in Sources */,
+				82DDAEFF2580528C0033F39A /* SearchBucket.swift in Sources */,
 				8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */,
 				82F12FD12579AD620079DB71 /* BucketListSearchUseCase.swift in Sources */,
 				C1BFAD05257613F500BDEF93 /* RoundView.swift in Sources */,
