@@ -11,7 +11,7 @@ import RealmSwift
 protocol BucketViewModelProtocol {
     var bucket: RealmBucket? { get set }
     var didChangeBucket: ((RealmBucket) -> Void)? { get set }
-    func saveAction(with bucketNo: Int)
+    func saveAction(completion: @escaping (Bool) -> Void)
 }
 
 class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtocol {
@@ -62,7 +62,7 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
         })
     }
     
-    func saveAction(with bucketNo: Int) {
+    func saveAction(completion: @escaping (Bool) -> Void) {
         var details =  [[String: String]]()
         if let list =  list[.todo] {
             details = list.map({ ["title": $0.title,
@@ -70,7 +70,7 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
                                               "dueDate": $0.dueDate
             ] })
         }
-        
+        print(details)
         let data: [String: Any] = ["title": bucket?.title ?? "",
                     "description": bucket?.subTitle ?? "",
                     "details": details
@@ -79,8 +79,10 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
         NetworkService.shared.request(from: Endpoint.buckets.urlString, method: .POST, body: body) { (result) in
             switch result {
             case .success(_):
+                completion(true)
                 break
             case .failure(_):
+                completion(false)
                 break
             }
         }

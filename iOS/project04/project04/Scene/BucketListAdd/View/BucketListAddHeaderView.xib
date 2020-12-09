@@ -58,7 +58,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="J0M-1a-krQ" secondAttribute="trailing" constant="4" id="NC5-sb-vlL"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="J0M-1a-krQ" secondAttribute="bottom" constant="15" id="glb-1f-LJM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="J0M-1a-krQ" secondAttribute="bottom" priority="999" constant="15" id="glb-1f-LJM"/>
                 <constraint firstItem="J0M-1a-krQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="4" id="hMw-PW-VCB"/>
                 <constraint firstItem="J0M-1a-krQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="xwj-PG-e6E"/>
             </constraints>
