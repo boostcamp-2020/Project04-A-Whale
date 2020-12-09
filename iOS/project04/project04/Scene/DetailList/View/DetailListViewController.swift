@@ -54,7 +54,9 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
             self?.animatePieView(viewModel: viewModel)
         }
         impressionViewModel.textChange = { [weak self] viewModel in
-            self?.updateList()
+            DispatchQueue.main.async {
+                self?.updateList()
+            }
         }
         
         if bucket?.status == "A" {

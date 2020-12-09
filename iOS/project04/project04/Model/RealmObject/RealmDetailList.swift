@@ -8,6 +8,20 @@
 import Foundation
 import RealmSwift
 
+struct DetailFetch: Codable {
+    let message: String
+    let data: Info
+}
+
+struct Info: Codable {
+    let bucket: RealmBucket
+    let details: Details
+}
+
+struct Details: Codable {
+    let openDetails: [RealmDetail]
+}
+
 class RealmDetail: Object, Codable {
     enum Section: String {
         case todo
