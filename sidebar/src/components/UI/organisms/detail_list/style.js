@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     paddingTop: theme.spacing(3),
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    fontFamily: 'Nanum Brush Script, sans-serif !important',
   },
 }));
 
