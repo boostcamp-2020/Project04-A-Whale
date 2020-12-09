@@ -46,12 +46,17 @@ class BucketListAddViewController: UIViewController {
     
     @IBAction func didToucAddButton(_ sender: UIBarButtonItem) {
         guard let title = sectionHeader?.titleTextField.text,
-              let description = sectionHeader?.descriptionTextView.text else { return }
-        if !title.isEmpty {
-            let bucket = RealmBucket(value: [-1, title, description, "O"])
-            delegate.bucketListViewModel.append(bucket: bucket)
-            self.bucketListAddViewModel.saveAction(with: bucket.no)
+              let description = sectionHeader?.descriptionTextView.text,
+              !title.isEmpty
+        else {
+            let alert = defaultAlertViewController(title: "추가 불가", message: "목표는 필수로 입력해야합니다.")
+            present(alert, animated: true, completion: nil)
+            return
         }
+        let bucket = RealmBucket(value: [-1, title, description, "O"])
+        delegate.bucketListViewModel.append(bucket: bucket)
+        bucketListAddViewModel.bucket = bucket
+        bucketListAddViewModel.saveAction(with: bucket.no)
         navigationController?.popViewController(animated: true)
     }
     
@@ -69,10 +74,10 @@ class BucketListAddViewController: UIViewController {
         }
         bucketListAddViewModel.listFetchAction(with: nil)
     }
-    
+
     @objc func didTouchSearchButton(sender: UIButton) {
         coordinator.pushToBucketListSearch { [weak self] (bucket) in
-            self?.bucketListAddViewModel.bucket = bucket
+            self?.bucketListAddViewModel.bucket = RealmBucket(value: [bucket.no, bucket.title, bucket.bucketDescription])
         }
     }
 }

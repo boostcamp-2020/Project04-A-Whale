@@ -63,12 +63,26 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
     }
     
     func saveAction(with bucketNo: Int) {
-        let detailLocal = DetailLocalAgent(bucketNumber: bucketNo)
-        let detailRepository = DetailRepository(local: detailLocal)
-        let detailListUsecase = DetailListUseCase(repository: detailRepository)
-        list[.todo]?.forEach { [weak self] (element) in
-            element.no = self?.autoIncreaseIdValue() ?? 0
-            detailListUsecase.append(element)
+        var details =  [[String: String]]()
+        if let list =  list[.todo] {
+            details = list.map({ ["title": $0.title,
+                                              "status": "O",
+                                              "dueDate": $0.dueDate
+            ] })
+        }
+        
+        let data: [String: Any] = ["title": bucket?.title ?? "",
+                    "description": bucket?.subTitle ?? "",
+                    "details": details
+        ]
+        let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        NetworkService.shared.request(from: Endpoint.buckets.urlString, method: .POST, body: body) { (result) in
+            switch result {
+            case .success(_):
+                break
+            case .failure(_):
+                break
+            }
         }
         
     }

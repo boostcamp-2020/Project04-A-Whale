@@ -15,7 +15,16 @@ class BucketListRepository {
     }
     
     func fetchBucketList(completion: @escaping ([RealmBucket]) -> Void) {
-        completion(local.load())
+        NetworkService.shared.request(from: Endpoint.buckets.urlString, method: .GET) { [weak self] (result) in
+            switch result {
+            case .success(let data):
+                let response = try? JSONDecoder().decode(Response<ResponseBucket>.self, from: data)
+                let buckets = response?.data.allBuckets
+                completion(buckets ?? [])
+            case .failure(_):
+                completion(self?.local.load() ?? [])
+            }
+        }
     }
     
     func appendBucketList(_ element: RealmBucket) {
@@ -31,6 +40,15 @@ class BucketListRepository {
     }
     
     func reviseBucketListStatus(element: RealmBucket) {
+        let data = try? JSONEncoder().encode(["status": "A"])
+        NetworkService.shared.request(from: Endpoint.buckets.urlString + "\(element.no)", method: .PATCH, body: data) { (result) in
+            switch result {
+            case .success(_):
+                break
+            case .failure(_):
+                break
+            }
+        }
         local.reviseStatus(element: element)
     }
 }

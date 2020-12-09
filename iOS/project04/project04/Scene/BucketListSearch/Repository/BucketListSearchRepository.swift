@@ -8,21 +8,22 @@
 import Foundation
 
 protocol SearchRepositoryProtocol {
-    func fetch(completion: @escaping ([RealmBucket]) -> Void)
-    func search(with keyword: String, completion: @escaping ([RealmBucket]) -> Void)
+    func search(with keyword: String, completion: @escaping ([SearchBucket]) -> Void)
 }
 
 class BucketListSearchRepository: SearchRepositoryProtocol {
-    let buckets = (1...100).map({ RealmBucket(value: [$0,
-                                                      "목표 \($0)",
-                                                      "목표 \($0) 설명",
-                                                      "O"]) })
-    func fetch(completion: @escaping ([RealmBucket]) -> Void) {
-        completion(buckets)
-    }
-    
-    func search(with keyword: String, completion: @escaping ([RealmBucket]) -> Void) {
-        completion(buckets.filter({$0.title.contains(keyword)}))
+    func search(with keyword: String, completion: @escaping ([SearchBucket]) -> Void) {
+        var list: [SearchBucket]?
+        NetworkService.shared.request(from: Endpoint.presets.urlString  + "?keyword=\(keyword)", method: .GET) { (result) in
+            switch result {
+            case .success(let data):
+                let response = try? JSONDecoder().decode(Response<[SearchBucket]>.self, from: data)
+                list = response?.data
+            case .failure(_):
+                break
+            }
+            completion(list ?? [])
+        }
     }
     
 }
