@@ -8,6 +8,7 @@ import MyBucketListDetailPage from './components/pages/MyBucketListDetailPage';
 import BucketCreatePage from './components/pages/BucketCreatePage';
 import AchieveCreatePage from './components/pages/AchieveCreatePage';
 import AchieveResultPage from './components/pages/AchieveResultPage';
+import FollowListPage from './components/pages/FollowListPage';
 
 const routes = () => (
   <Switch>
@@ -18,6 +19,7 @@ const routes = () => (
     <Route exact path={pathURI.bucketcreate} component={BucketCreatePage} />
     <Route exact path={pathURI.achieveCreate} component={AchieveCreatePage} />
     <Route exact path={pathURI.achieveResult} component={AchieveResultPage} />
+    <Route exact path={pathURI.follow} component={FollowListPage} />
   </Switch>
 );
 

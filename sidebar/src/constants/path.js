@@ -4,6 +4,7 @@ const pathURI = {
   login: '/login',
   register: '/register',
   bucketcreate: '/createbucket',
+  follow: '/follow',
   achieveCreate: '/achieves/:bucketNo/create',
   achieveResult: '/achieves/:bucketNo/result',
 };
