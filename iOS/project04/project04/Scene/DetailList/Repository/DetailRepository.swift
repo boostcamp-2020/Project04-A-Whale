@@ -87,8 +87,9 @@ class DetailRepository: DetailRepositoryProtocol {
     }
     
     func reviseDetailListStatus(element: RealmDetail) {
+        print(element.bucketNo)
         let data = try? JSONEncoder().encode(["status": "A"])
-        NetworkService.shared.request(from: Endpoint.details.urlString + "/\(element.bucketNo)",
+        NetworkService.shared.request(from: Endpoint.details.urlString + "/\(element.no)",
                                       method: .PATCH,
                                       body: data,
                                       completion: { result in

@@ -26,6 +26,7 @@ class ImpressionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(bucketNo)
         impressionTextView.text = delegate.impressionViewModel.impressionText
         isEdited = (impressionTextView.text != "")
         impressionTextView.delegate = self
@@ -42,6 +43,7 @@ class ImpressionViewController: UIViewController {
         if isEdited {
             delegate.impressionViewModel.impressionEdit(text: impressionTextView.text)
         } else {
+            print(bucketNo)
             delegate.impressionViewModel.impressionSave(bucketNo: bucketNo, text: impressionTextView.text)
         }
         

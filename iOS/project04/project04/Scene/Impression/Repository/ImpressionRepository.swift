@@ -33,6 +33,7 @@ class ImpressionRepository: ImpressionRepositoryProtocol {
                                         case .success(let data):
                                             let impression = try? JSONDecoder().decode(Impression.self, from: data)
                                             completion(impression?.data)
+                                            print(impression?.data)
                                             break
                                         case .failure(let error):
                                             print(error)
@@ -64,6 +65,7 @@ class ImpressionRepository: ImpressionRepositoryProtocol {
         let data = try? JSONEncoder().encode(["description": text])
         // /2 -> /\(element.bucketNo)
         // 성공 했다고 하는데, 반영이 안되어서 나옴
+        print(element?.bucketNo)
         NetworkService.shared.request(from: Endpoint.achieves.urlString + "/\(element?.bucketNo)",
                                       method: .PUT,
                                       body: data,
