@@ -15,7 +15,7 @@ import Foundation
 //}
 protocol ImpressionRepositoryProtocol {
     func fetchImpression(bucketNo: Int, completion: @escaping (RealmImpression?) -> Void)
-    func saveImpression(text: String)
+    func saveImpression(bucketNo: Int, text: String)
     func editImpression(element: RealmImpression?, text: String)
 }
 
@@ -27,7 +27,6 @@ class ImpressionRepository: ImpressionRepositoryProtocol {
     }
     
     func fetchImpression(bucketNo: Int, completion: @escaping (RealmImpression?) -> Void) {
-        // /2 부분 -> /\(bucketNo)
         NetworkService.shared.request(from: Endpoint.achieves.urlString + "/\(bucketNo)",
                                       method: .GET, completion: { [weak self] result in
                                         switch result {
@@ -42,8 +41,8 @@ class ImpressionRepository: ImpressionRepositoryProtocol {
                                       })
     }
     
-    func saveImpression(text: String) {
-        let data = try? JSONEncoder().encode(["description": text, "bucketNo": "6"])
+    func saveImpression(bucketNo: Int, text: String) {
+        let data = try? JSONEncoder().encode(["description": text, "bucketNo": "\(bucketNo)"])
         // 타임아웃 걸림
         // bucketNo 파라미터로 받아야함
         NetworkService.shared.request(from: Endpoint.achieves.urlString,
@@ -52,22 +51,20 @@ class ImpressionRepository: ImpressionRepositoryProtocol {
                                       completion: { result in
                                         
                                         switch result {
-                                        case .success(let data):
-                                            let element = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String]
-                                            print(element?["message"])
+                                        case .success(_):
                                             break
                                         case .failure(let error):
                                             print(error)
                                         }
                                       })
-        local.save(text: text)
+        local.save(bucketNo: bucketNo, text: text)
     }
     
     func editImpression(element: RealmImpression?, text: String) {
         let data = try? JSONEncoder().encode(["description": text])
         // /2 -> /\(element.bucketNo)
         // 성공 했다고 하는데, 반영이 안되어서 나옴
-        NetworkService.shared.request(from: Endpoint.achieves.urlString + "/2",
+        NetworkService.shared.request(from: Endpoint.achieves.urlString + "/\(element?.bucketNo)",
                                       method: .PUT,
                                       body: data,
                                       completion: { result in
