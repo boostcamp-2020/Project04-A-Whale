@@ -30,13 +30,12 @@ class DetailRepository: DetailRepositoryProtocol {
                                       completion: { [weak self] result in
                                         switch result {
                                         case .success(let data):
-                                            print(String(data: data, encoding: .utf8))
                                             let detailFetch = try? JSONDecoder().decode(DetailFetch.self, from: data)
                                             print(detailFetch)
                                             break
                                         case .failure(let error):
                                             print(error)
-                                            completion(self?.local.load() ?? [])
+//                                            completion(self?.local.load() ?? [])
                                         }
                                       })
         completion(local.load())

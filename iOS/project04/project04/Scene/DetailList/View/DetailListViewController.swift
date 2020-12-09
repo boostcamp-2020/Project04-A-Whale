@@ -49,9 +49,11 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
         configureDataSource()
         
         collectionViewModel?.listDidChange = { [weak self] viewModel in
-            self?.updateList()
-            self?.detailSuccessChecker(viewModel: viewModel)
-            self?.animatePieView(viewModel: viewModel)
+            DispatchQueue.main.async {
+                self?.updateList()
+                self?.detailSuccessChecker(viewModel: viewModel)
+                self?.animatePieView(viewModel: viewModel)
+            }
         }
         impressionViewModel.textChange = { [weak self] viewModel in
             DispatchQueue.main.async {
