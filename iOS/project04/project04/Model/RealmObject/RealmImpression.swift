@@ -19,11 +19,6 @@ class RealmImpression: Object, Codable {
     
     private enum CodingKeys: String, CodingKey {
         case text = "description"
-    }
-    
-    required convenience init(from decoder: Decoder) throws {
-        self.init()
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        text = try values.decode(String.self, forKey: .text)
+        case bucketNo
     }
 }

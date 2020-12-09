@@ -19,6 +19,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage" translatesAutoresizingMaskIntoConstraints="NO" id="2tV-Ae-WHw">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PW"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDP-ie-4pk">
                                 <rect key="frame" x="142.5" y="153" width="129" height="51"/>
@@ -29,6 +30,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ID를 입력해주세요!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bai-Cd-Nly">
                                 <rect key="frame" x="77" y="260" width="260" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ID"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -106,6 +108,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="2tV-Ae-WHw" id="eh8-lg-yRX"/>
                         <outlet property="idTextField" destination="bai-Cd-Nly" id="zl7-2U-N4H"/>
+                        <outlet property="loginButton" destination="UoW-sh-fMW" id="Yth-ux-s18"/>
                         <outlet property="pwTextField" destination="2Ic-9H-zuj" id="KpF-9q-Bg5"/>
                         <outlet property="topConstraint" destination="8KU-zh-iKN" id="taW-2c-BeO"/>
                     </connections>

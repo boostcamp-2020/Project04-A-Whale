@@ -41,7 +41,7 @@ class BucketListRepository {
     
     func reviseBucketListStatus(element: RealmBucket) {
         let data = try? JSONEncoder().encode(["status": "A"])
-        NetworkService.shared.request(from: Endpoint.buckets.urlString + "\(element.no)", method: .PATCH, body: data) { (result) in
+        NetworkService.shared.request(from: Endpoint.buckets.urlString + "/\(element.no)", method: .PATCH, body: data) { (result) in
             switch result {
             case .success(_):
                 break
