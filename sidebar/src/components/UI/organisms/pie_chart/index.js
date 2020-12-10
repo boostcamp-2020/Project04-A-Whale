@@ -74,10 +74,14 @@ const PieChart1 = ({ detailTot }) => {
   };
 
   useEffect(() => {
-    setData([
-      { name: '진행 중', value: detailTot.details.openDetails.length },
-      { name: '달성', value: detailTot.details.achieveDetails.length },
-    ]);
+    setTimeout(
+      () =>
+        setData([
+          { name: '진행 중', value: detailTot.details.openDetails.length },
+          { name: '달성', value: detailTot.details.achieveDetails.length },
+        ]),
+      1000
+    );
   }, [detailTot]);
   return (
     <PieChart

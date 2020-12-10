@@ -13,7 +13,7 @@ const LineBarAreaComposedChart = ({ detailTot }) => {
   }, []);
 
   useEffect(() => {
-    setData(detailTot.burnDownChart);
+    setTimeout(() => setData(detailTot.burnDownChart), 2000);
   }, [detailTot]);
 
   return (
