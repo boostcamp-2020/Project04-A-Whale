@@ -44,7 +44,8 @@ class ImpressionViewController: UIViewController {
             delegate.impressionViewModel.impressionEdit(text: impressionTextView.text)
         } else {
             print(bucketNo)
-            delegate.impressionViewModel.impressionSave(bucketNo: bucketNo, text: impressionTextView.text)
+            var impression = RealmImpression(value: [0, impressionTextView.text, bucketNo])
+            delegate.impressionViewModel.impressionSave(impression)
         }
         
         dismiss(animated: true, completion: nil)

@@ -81,6 +81,7 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             let result = realm.objects(RealmDetail.self)
+            
             try realm.write {
                 realm.delete(result)
                 realm.add(details)

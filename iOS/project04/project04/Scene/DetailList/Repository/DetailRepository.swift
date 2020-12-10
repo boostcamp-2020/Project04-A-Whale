@@ -30,7 +30,9 @@ class DetailRepository: DetailRepositoryProtocol {
                                         switch result {
                                         case .success(let data):
                                             let detailFetch = try? JSONDecoder().decode(Response<Info>.self, from: data)
-                                            self?.local.sync(details: detailFetch?.data.details.allDetails ?? [])
+                                            DispatchQueue.main.async {
+                                                self?.local.sync(details: detailFetch?.data.details.allDetails ?? [])
+                                            }
                                         case .failure(let error):
                                             print(error)
                                             
@@ -50,14 +52,18 @@ class DetailRepository: DetailRepositoryProtocol {
                                       body: data,
                                       completion: { [weak self] result in
                                         switch result {
-                                        case .success(_):
+                                        case .success(let data):
+                                            let response = try? JSONDecoder().decode(Response<[String: RealmDetail]>.self, from: data)
+                                            let detail = response?.data["detail"]
+                                            element.no = detail?.no ?? 0
                                             break
                                         case .failure(let error):
                                             print(error)
-                                            DispatchQueue.main.async {
-                                                self?.local.append(element)
-                                            }
+                                            
                                             TransactionRecorder.shared.record(url: Endpoint.details.urlString, method: .POST, data: data)
+                                        }
+                                        DispatchQueue.main.async {
+                                            self?.local.append(element)
                                         }
                                       })
     }
