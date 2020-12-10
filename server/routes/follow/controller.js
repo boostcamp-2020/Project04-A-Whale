@@ -36,7 +36,7 @@ exports.getFollowingList = async (req, res, next) => {
     });
   } catch (error) {
     res.status(BAD_REQUEST).json({
-      message: '내가 팔로우한 사람 목록 조회 실패',
+      message: `내가 팔로우한 사람 목록 조회 실패`,
     });
   }
 };
@@ -55,7 +55,7 @@ exports.getFollowedList = async (req, res, next) => {
     });
   } catch (error) {
     res.status(BAD_REQUEST).json({
-      message: '나를 팔로우 하는 사람 목록 조회 실패',
+      message: `나를 팔로우 하는 사람 목록 조회 실패`,
     });
   }
 };

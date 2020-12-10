@@ -1,12 +1,19 @@
-const { Follow } = require('../../models');
+const { Follow, User } = require('../../models');
 
 // 내가 팔로잉 하는 사람 목록 조회
 exports.selectFollowingList = async (userNo) => {
   const result = await Follow.findAll({
-    attributes: ['no', 'following_no', 'followed_no'],
     where: { following_no: userNo },
+    attributes: [],
+    include: [
+      {
+        model: User,
+        attributes: ['nickname', 'description', 'no'],
+      },
+    ],
     raw: true,
   });
+
   return result;
 };
 
@@ -14,6 +21,13 @@ exports.selectFollowingList = async (userNo) => {
 exports.selectFollowedList = async (userNo) => {
   const result = await Follow.findAll({
     where: { followed_no: userNo },
+    attributes: [],
+    include: [
+      {
+        model: User,
+        attributes: ['nickname', 'description', 'no'],
+      },
+    ],
     raw: true,
   });
 
