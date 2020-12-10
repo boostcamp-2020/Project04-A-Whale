@@ -21,6 +21,9 @@ export const userRegister = ({ id, password, nickname, description }) =>
     description,
   });
 
+
+export const getUser = () => axios.get('/api/users/info');
+
 // 중복 조회
 export const isDuplicated = (id) => axios.get(`/api/users/${id}`);
 
@@ -91,3 +94,6 @@ export const uploadObjectStorage = (file) => {
   };
   return axios.post(`/api/upload/`, formData, config);
 };
+
+// feed
+export const getFeeds = () => axios.get('/api/feeds');
