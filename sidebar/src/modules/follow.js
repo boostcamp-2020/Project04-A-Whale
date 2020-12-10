@@ -6,6 +6,7 @@ const SEARCH_RESULT = 'follow/SEARCH_RESULT';
 export const searchResult = createAction(SEARCH_RESULT, (input) => input);
 
 const initialState = {
+  value: 0,
   searchResult: [],
 };
 

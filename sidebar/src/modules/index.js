@@ -5,6 +5,7 @@ import buckets from './buckets';
 import loading from './loading';
 import details from './details';
 import follow from './follow';
+import userinfo from './userinfo';
 
 const rootReducer = combineReducers({
   createbucket,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   loading,
   details,
   follow,
+  userinfo,
 });
 
 export default rootReducer;
