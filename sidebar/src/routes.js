@@ -1,6 +1,8 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import pathURI from './constants/path';
+import PublicRoute from './lib/PublicRoute';
+import PrivateRoute from './lib/PrivateRoute';
 import LoginPage from './components/pages/LoginPage';
 import RegisterPage from './components/pages/RegisterPage';
 import MyBucketListPage from './components/pages/MyBucketListPage';
@@ -9,18 +11,21 @@ import BucketCreatePage from './components/pages/BucketCreatePage';
 import AchieveCreatePage from './components/pages/AchieveCreatePage';
 import FeedPage from './components/pages/FeedPage';
 import SettingPage from './components/pages/SettingPage';
+import LogoutPage from './components/pages/LogoutPage';
 
-const routes = () => (
-  <Switch>
-    <Route exact path={pathURI.login} component={LoginPage} />
-    <Route exact path={pathURI.register} component={RegisterPage} />
-    <Route exact path={pathURI.myBucketList} component={MyBucketListPage} />
-    <Route exact path={pathURI.myBucketListDetail} component={MyBucketListDetailPage} />
-    <Route exact path={pathURI.bucketcreate} component={BucketCreatePage} />
-    <Route exact path={pathURI.achieveCreate} component={AchieveCreatePage} />
-    <Route exact path={pathURI.feed} component={FeedPage} />
-    <Route exact path={pathURI.setting} component={SettingPage} />
-  </Switch>
-);
-
+const routes = () => {
+  return (
+    <Switch>
+      <PublicRoute restricted component={LoginPage} path={pathURI.login} exact />
+      <PublicRoute restricted component={RegisterPage} path={pathURI.register} exact />
+      <PrivateRoute component={MyBucketListPage} path={pathURI.myBucketList} exact />
+      <PrivateRoute component={MyBucketListDetailPage} path={pathURI.myBucketListDetail} exact />
+      <PrivateRoute component={BucketCreatePage} path={pathURI.bucketcreate} exact />
+      <PrivateRoute component={AchieveCreatePage} path={pathURI.achieveCreate} exact />
+      <PrivateRoute component={FeedPage} path={pathURI.feed} exact />
+      <PrivateRoute component={SettingPage} path={pathURI.setting} exact />
+      <PrivateRoute component={LogoutPage} path={pathURI.logout} exact />
+    </Switch>
+  );
+};
 export default routes;
