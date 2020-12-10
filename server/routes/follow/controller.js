@@ -1,7 +1,7 @@
 const { OK, CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCode;
 const followServices = require('../../services/follow');
 
-const userNo = 2;
+const userNo = 1;
 
 /*
     GET /api/follows/counts
@@ -67,6 +67,7 @@ exports.getFollowedList = async (req, res, next) => {
 exports.setFollowing = async (req, res, next) => {
   try {
     const { followingNo } = req.body;
+    console.log(userNo, followingNo);
     const result = await followServices.setFollowing({ userNo, followingNo });
     res.status(CREATED).json({
       message: '팔로우 추가 성공',
@@ -74,7 +75,23 @@ exports.setFollowing = async (req, res, next) => {
     });
   } catch (error) {
     res.status(BAD_REQUEST).json({
-      message: '팔로우 추가 실패',
+      message: `팔로우 추가 실패${error}`,
+    });
+  }
+};
+
+exports.isFollowing = async (req, res, next) => {
+  const { following, followed } = req.query;
+
+  try {
+    const result = await followServices.isFollowing(following, followed);
+    res.status(OK).json({
+      message: '팔로우 확인 성공',
+      data: result,
+    });
+  } catch (error) {
+    res.status(BAD_REQUEST).json({
+      message: `팔로우 확인 실패${error}`,
     });
   }
 };
@@ -86,7 +103,7 @@ exports.setFollowing = async (req, res, next) => {
 exports.deleteFollowing = async (req, res, next) => {
   const { no } = req.params;
   try {
-    await followServices.deleteFollowing(no);
+    await followServices.deleteFollowing(userNo, no);
     res.status(OK).json({
       message: '팔로우 삭제 성공',
     });

@@ -38,7 +38,12 @@ exports.setFollowing = async ({ userNo, followingNo }) => {
 /*
  * 팔로우 삭제
  */
-exports.deleteFollowing = async (no) => {
-  const result = await db.deleteFollowing(no);
+exports.deleteFollowing = async (followingNo, followedNo) => {
+  const result = await db.deleteFollowing(followingNo, followedNo);
+  return result;
+};
+
+exports.isFollowing = async (following, followed) => {
+  const result = await db.isFollowing(following, followed);
   return result;
 };
