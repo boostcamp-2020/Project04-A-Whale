@@ -1,6 +1,7 @@
 const { OK, CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCode;
 const detailServices = require('../../services/detail');
 const bucketServices = require('../../services/bucket');
+const feedServices = require('../../services/feed');
 
 /*
     GET /api/details/:bucketNo
