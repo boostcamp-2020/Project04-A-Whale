@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { deleteFollowing, setFollowing } from '../../../../lib/api';
 import StyledButton from '../../atoms/styled_button';
 
-const FollowButton = ({ isFollow }) => {
+const FollowButton = ({ userNo }) => {
+  const { isFollow } = useSelector(({ userinfo }) => ({
+    isFollow: userinfo.isFollowing,
+  }));
   const [follow, setFollow] = useState(isFollow);
   const style = {
     margin: '15px',
@@ -12,8 +17,12 @@ const FollowButton = ({ isFollow }) => {
     fontWeight: 'bold',
     width: '80%',
   };
-
   const clickFollowButton = () => {
+    if (follow === false) {
+      setFollowing(userNo);
+    } else {
+      deleteFollowing(userNo);
+    }
     setFollow(!follow);
   };
 

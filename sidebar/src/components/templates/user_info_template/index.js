@@ -14,13 +14,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserInfoTemplate = () => {
+const UserInfoTemplate = ({ userNo }) => {
   const classes = useStyles();
   return (
     <>
       <div className={classes.header} />
       <UserInfo />
-      <FollowButton />
+      <FollowButton userNo={userNo} />
       <UserBuckets />
     </>
   );

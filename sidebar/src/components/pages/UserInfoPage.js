@@ -25,7 +25,7 @@ const UserInfoPage = ({ match }) => {
     <>
       <Header isGoBack />
       {loadingBuckets && <Spinner />}
-      {!loadingBuckets && buckets && <UserInfoTemplate />}
+      {!loadingBuckets && buckets && <UserInfoTemplate userNo={userNo} />}
     </>
   );
 };
