@@ -27,6 +27,7 @@ exports.setAchieve = async (req, res, next) => {
   try {
     const data = req.body;
     const result = await achieveServices.setAchieve(data);
+    feedServices.addFeed(1, '달성소감을 추가했습니다.');
 
     res.status(CREATED).json({
       message: '소감 추가 성공',
@@ -47,6 +48,8 @@ exports.updateAchieve = async (req, res, next) => {
 
   try {
     await achieveServices.updateAchieve({ no, description });
+    feedServices.addFeed(1, '달성소감을 수정했습니다.');
+
     res.status(OK).json({
       message: '소감 수정 성공',
     });

@@ -13,12 +13,21 @@ db.Bucket = require('./bucket')(sequelize, Sequelize);
 db.Detail = require('./detail')(sequelize, Sequelize);
 db.Achieve = require('./achieve')(sequelize, Sequelize);
 db.Follow = require('./follow')(sequelize, Sequelize);
+db.Feed = require('./feed')(sequelize, Sequelize);
 
-// 관계정의 users : bucket = 1 : N
+// 관계정의 user : bucket = 1 : N
 db.User.hasMany(db.Bucket, {
   foreignKey: { allowNull: false },
 });
 db.Bucket.belongsTo(db.User, {
+  foreignKey: { allowNull: false },
+});
+
+// 관계정의 user : feed = 1 : N
+db.User.hasMany(db.Feed, {
+  foreignKey: { allowNull: false },
+});
+db.Feed.belongsTo(db.User, {
   foreignKey: { allowNull: false },
 });
 

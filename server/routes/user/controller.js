@@ -76,3 +76,22 @@ exports.setUser = async (req, res, next) => {
     });
   }
 };
+
+/*
+    GET /api/users/info
+    * 사용자 정보 조회 API
+*/
+exports.getUserInfo = async (req, res, next) => {
+  try {
+    // const { no } = req.user;
+    const no = 1;
+    const user = await userServices.getUserInfo(no);
+
+    res.status(OK).json({
+      message: '사용자 정보 조회 성공',
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

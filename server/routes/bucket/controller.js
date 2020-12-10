@@ -1,6 +1,7 @@
 const { OK, CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCode;
 const bucketServices = require('../../services/bucket');
 const detailServices = require('../../services/detail');
+const feedServices = require('../../services/feed');
 
 /*
     GET /api/buckets/presets
@@ -31,7 +32,7 @@ exports.create = async (req, res, next) => {
       .create(title, description, 1)
       .then((data) => JSON.parse(JSON.stringify(data)));
     const bucketNo = newBucket.no;
-    const newDetails = await detailServices
+    await detailServices
       .bulkCreate(
         details.map((detail) => {
           return { ...detail, bucketNo };
@@ -39,7 +40,8 @@ exports.create = async (req, res, next) => {
       )
       .then((data) => JSON.parse(JSON.stringify(data)));
 
-    res.status(OK).json({ message: '버킷 추가 성공' });
+    feedServices.addFeed(1, '버킷리스트를 추가했습니다.');
+    res.status(CREATED).json({ message: '버킷 추가 성공' });
   } catch (error) {
     next(error);
   }
@@ -53,9 +55,7 @@ exports.getBuckets = async (req, res, next) => {
   try {
     // TODO: 로그인 기능 구현후 주석 해제
     // const { userNo } = req.user;
-    // const buckets = await bucketServices.getBuckets(userNo);
     const buckets = await bucketServices.getBuckets(1);
-
     res.status(OK).json({
       message: '버킷 목록 조회 성공',
       data: buckets,
@@ -77,7 +77,7 @@ exports.updateBucket = async (req, res, next) => {
 
     if (status) result = await bucketServices.updateBucketStatus(no, status);
     else result = await bucketServices.updateBucketTitleDesc(no, title, description);
-
+    feedServices.addFeed(1, '버킷리스트를 수정했습니다.');
     if (result === 1) {
       res.status(OK).json({
         message: '버킷 수정 성공',

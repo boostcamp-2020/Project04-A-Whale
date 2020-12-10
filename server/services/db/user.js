@@ -1,5 +1,5 @@
 const { hashingPw } = require('../../utils/bcrypt');
-const { User } = require('../../models');
+const { User, Bucket } = require('../../models');
 
 exports.selectUserFromPassport = async (id) => {
   const results = await User.findOne({
@@ -32,5 +32,18 @@ exports.insertUser = async ({ id, password, nickname, description }) => {
 
   const results = await User.create(userData);
 
+  return results;
+};
+
+exports.selectUser = async (no) => {
+  const results = await User.findOne({
+    attributes: ['nickname', 'description', 'rank'],
+    include: [
+      {
+        model: Bucket,
+      },
+    ],
+    where: { no },
+  });
   return results;
 };

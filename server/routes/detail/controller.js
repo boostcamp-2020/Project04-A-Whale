@@ -45,6 +45,7 @@ exports.updateDetail = async (req, res, next) => {
     else result = await detailServices.updateBucketTitleDueDate(no, title, dueDate);
 
     if (result === 1) {
+      feedServices.addFeed(1, '버킷 상세 목표를 수정했습니다.');
       res.status(OK).json({
         message: '버킷 상세 수정 성공',
         data: true,
@@ -70,6 +71,7 @@ exports.deleteDetail = async (req, res, next) => {
     const result = await detailServices.deleteDetail(no);
 
     if (result === 1) {
+      feedServices.addFeed(1, '버킷 상세 목표를 삭제했습니다.');
       res.status(OK).json({
         message: '버킷 상세 삭제 성공',
         data: true,
@@ -94,6 +96,7 @@ exports.createDetail = async (req, res, next) => {
     const { bucketNo, title, dueDate } = req.body;
 
     const detail = await detailServices.createDetail(bucketNo, title, dueDate);
+    feedServices.addFeed(1, '버킷 상세 목표를 추가했습니다.');
 
     res.status(CREATED).json({
       message: '버킷 상세 추가 성공',
