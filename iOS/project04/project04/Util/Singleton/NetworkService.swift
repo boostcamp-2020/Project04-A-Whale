@@ -45,7 +45,9 @@ class NetworkService {
             if error != nil {
                 completion(.failure(.responseError))
                 semaphore?.signal()
+                return
             }
+            
             guard let response = response as? HTTPURLResponse,
                   (200...299).contains(response.statusCode),
                   let data = data else {

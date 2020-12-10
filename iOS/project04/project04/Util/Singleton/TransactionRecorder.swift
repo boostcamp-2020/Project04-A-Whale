@@ -13,7 +13,7 @@ class TransactionRecorder {
     
     private init(){}
     
-    func record(url: String, method: HTTPMethod, data: Data) {
+    func record(url: String, method: HTTPMethod, data: Data?) {
         let transaction = RealmTransaction(value: [url, method.rawValue, data])
         do {
             let realm = try Realm()
@@ -26,11 +26,38 @@ class TransactionRecorder {
     }
     
     func execute() {
-        var transactions: [RealmTransaction]
+        var transactions: [RealmTransaction] = []
+        var executedTransactions: [RealmTransaction] = []
+        
         do {
             let results = try Realm().objects(RealmTransaction.self)
             transactions = results.map({ $0 })
 
+        } catch {
+            print(error)
+        }
+        
+        transactions.forEach { (transaction) in
+            guard let method = HTTPMethod(rawValue: transaction.method) else {
+                return
+            }
+            
+            NetworkService.shared.request(sync: true, from: transaction.url, method: method, body: transaction.data) { (result) in
+                switch result {
+                case .success(_):
+                    executedTransactions.append(transaction)
+                    break
+                case .failure(let error):
+                    print(error)
+                    break
+                }
+            }
+        }
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.delete(executedTransactions)
+            }
         } catch {
             print(error)
         }

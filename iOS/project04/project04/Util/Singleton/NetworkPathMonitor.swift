@@ -27,6 +27,7 @@ class NetworkStatus {
         self.monitor.pathUpdateHandler = { path in
             if path.status == .satisfied {
                 print("good")
+                TransactionRecorder.shared.execute()
             } else {
                 print("not good")
             }

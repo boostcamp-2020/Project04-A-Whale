@@ -76,4 +76,17 @@ class DetailLocalAgent: LocalService {
     func revise(at index: Int, element: RealmDetail) {
          
     }
+    
+    func sync(details: [RealmDetail]) {
+        do {
+            let realm = try Realm()
+            let result = realm.objects(RealmDetail.self)
+            try realm.write {
+                realm.delete(result)
+                realm.add(details)
+            }
+        } catch {
+            print(error)
+        }
+    }
 }

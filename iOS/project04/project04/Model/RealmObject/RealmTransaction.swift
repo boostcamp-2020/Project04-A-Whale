@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class RealmTransaction: Object {
-    @objc dynamic var endpointURL: String = ""
+    @objc dynamic var url: String = ""
     @objc dynamic var method: String = ""
-    @objc dynamic var data: Data = Data()
+    @objc dynamic var data: Data? = nil
 }
