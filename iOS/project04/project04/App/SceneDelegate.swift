@@ -16,12 +16,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let navigationController = UINavigationController()
-        let controller = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginViewController", creator: { coder in
-            let coordinator = LoginCoordinator(navigationController)
-            return LoginViewController(coder: coder, coordinator: coordinator)
-        })
-        navigationController.pushViewController(controller, animated: false)
-        window?.rootViewController = navigationController
+        var controller: UIViewController
+        
+        let auth = AccessToken()
+        if auth.token.isEmpty {
+            controller = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginViewController", creator: { coder in
+                let coordinator = LoginCoordinator(navigationController)
+                return LoginViewController(coder: coder, coordinator: coordinator)
+            })
+            window?.rootViewController = navigationController
+            navigationController.pushViewController(controller, animated: false)
+
+        } else {
+            controller = MainTabBarController()
+            window?.rootViewController = controller
+        }
         window?.makeKeyAndVisible()
     }
 
