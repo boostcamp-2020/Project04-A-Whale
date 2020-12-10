@@ -21,7 +21,6 @@ export const userRegister = ({ id, password, nickname, description }) =>
     description,
   });
 
-
 export const getUser = () => axios.get('/api/users/info');
 
 // 중복 조회
