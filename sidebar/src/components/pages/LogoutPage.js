@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import isLogin from '../../lib/isLogin';
 
 const LogoutPage = () => {
-  const authState = useSelector((state) => state.auth);
   const history = useHistory();
-
   useEffect(() => {
-    if (authState.isAuth) {
+    if (isLogin()) {
       localStorage.removeItem('accessToken');
       history.replace('/login');
     }
