@@ -9,19 +9,22 @@ const bucketServices = require('../../services/bucket');
 exports.getDetails = async (req, res, next) => {
   try {
     const { bucketNo } = req.params;
-    let bucket;
-    let details;
+    let data = null;
+
     if (req.useragent.isMobile) {
-      bucket = await bucketServices.getBucket(bucketNo);
-      details = await detailServices.getDetails(bucketNo);
+      const bucket = await bucketServices.getBucket(bucketNo);
+      const details = await detailServices.getDetails(bucketNo);
+      data = { bucket, details };
     } else {
-      bucket = await bucketServices.getBucketWithAchieve(bucketNo);
-      details = await detailServices.getDetails(bucketNo);
+      const bucket = await bucketServices.getBucketWithAchieve(bucketNo);
+      const details = await detailServices.getDetails(bucketNo);
+      const burnDownChart = await detailServices.getBurnDownChart(bucketNo);
+      data = { bucket, details, burnDownChart };
     }
 
     res.status(OK).json({
       message: '버킷 상세 목록 조회 성공',
-      data: { bucket, details },
+      data,
     });
   } catch (error) {
     next(error);
