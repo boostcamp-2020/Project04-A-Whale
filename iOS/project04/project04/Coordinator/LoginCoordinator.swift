@@ -25,7 +25,7 @@ class LoginCoordinator: NavigationCoordinator {
     
     func presentTabBarController() {
         let viewController = MainTabBarController()
-        navigationController.popViewController(animated: false)
+        navigationController.viewControllers.removeAll()
         navigationController.pushViewController(viewController, animated: true)
     }
 }
