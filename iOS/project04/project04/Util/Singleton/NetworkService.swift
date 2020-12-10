@@ -14,10 +14,17 @@ class NetworkService {
         
     }
     
-    func request(from urlString: String,
+    func request(sync: Bool = false, from urlString: String,
                  method: HTTPMethod,
                  body: Data? = nil,
                  completion: @escaping (Result<Data, NetworkError>) -> Void) {
+        
+        var semaphore: DispatchSemaphore?
+        
+        if sync {
+            semaphore = DispatchSemaphore(value: 0)
+        }
+        
         guard let url = URL(string: urlString) else {
             return
         }
@@ -37,15 +44,21 @@ class NetworkService {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
                 completion(.failure(.responseError))
+                semaphore?.signal()
             }
             guard let response = response as? HTTPURLResponse,
                   (200...299).contains(response.statusCode),
                   let data = data else {
                 completion(.failure(.responseError))
+                semaphore?.signal()
                 return
             }
             
             completion(.success(data))
+            semaphore?.signal()
+            
         }.resume()
+
+        semaphore?.wait()
     }
 }
