@@ -95,3 +95,17 @@ exports.getUserInfo = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.searchUsers = async (req, res, next) => {
+  try {
+    const { keyword } = req.query;
+    const user = await userServices.searchUser(keyword);
+
+    res.status(OK).json({
+      message: '사용자 검색 성공',
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
