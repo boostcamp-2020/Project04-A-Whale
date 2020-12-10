@@ -26,6 +26,7 @@ export const isDuplicated = (id) => axios.get(`/api/users/${id}`);
 
 // buckets
 export const getBuckets = () => axios.get('/api/buckets');
+export const getBucketsbyNo = (no) => axios.get(`/api/buckets/${no}`);
 
 export const createBucket = (title, description, details, ref) =>
   axios.post('/api/buckets', {
@@ -94,3 +95,7 @@ export const uploadObjectStorage = (file) => {
 
 export const getFollowed = (no) => axios.get('/api/follows/followed');
 export const getFollowing = (no) => axios.get('/api/follows/following');
+export const searchUser = (keyword) => axios.get(`/api/users/search?keyword=${keyword}`);
+export const getUserInfo = (no) => axios.get(`/api/users/info/${no}`);
+export const isFollowing = (following, followed) =>
+  axios.get(`/api/follows/isfollowing?following=${following}&followed=${followed}`);
