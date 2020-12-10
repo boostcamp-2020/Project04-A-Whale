@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import createbucket from './createbucket';
-import acheiveState from './achieve';
+import acheive from './achieve';
 import buckets from './buckets';
 import loading from './loading';
 import details from './details';
@@ -9,7 +9,7 @@ import feeds from './feeds';
 
 const rootReducer = combineReducers({
   createbucket,
-  acheiveState,
+  acheive,
   buckets,
   loading,
   details,
