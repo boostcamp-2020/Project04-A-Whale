@@ -29,6 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
+        let monitor = NetworkStatus.shared
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
