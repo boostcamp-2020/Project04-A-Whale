@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import UserItem from '../../molecules/user_item';
 import Span from '../../atoms/span';
 
-const FollowTabBar = ({ followed, following }) => {
-  const [value, setValue] = useState(0);
+const FollowTabBar = ({ value, setValue, followed, following }) => {
   const searchResult = useSelector((state) => state.follow.search);
   const tabLabels = ['팔로우 목록', '팔로워 목록', '검색 결과'];
   const tabClickHandler = (e, newValue) => {
