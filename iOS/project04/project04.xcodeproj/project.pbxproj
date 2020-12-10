@@ -29,6 +29,7 @@
 		82DDAEFF2580528C0033F39A /* SearchBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DDAEFE2580528C0033F39A /* SearchBucket.swift */; };
 		82E8AC9E257F1F6600041785 /* DetailMemoryAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8AC9D257F1F6600041785 /* DetailMemoryAgent.swift */; };
 		82E8ACB7257F721B00041785 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8ACB6257F721B00041785 /* NetworkService.swift */; };
+		82E8B7542581C0040008A22A /* RealmTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8B7532581C0040008A22A /* RealmTransaction.swift */; };
 		82F12FD12579AD620079DB71 /* BucketListSearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F12FD02579AD620079DB71 /* BucketListSearchUseCase.swift */; };
 		82F12FD82579B59C0079DB71 /* BucketListSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F12FD72579B59C0079DB71 /* BucketListSearchRepository.swift */; };
 		B20CB3CD1814FA9193815C42 /* Pods_project04.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549A8B673E411EE0B839D8C7 /* Pods_project04.framework */; };
@@ -128,6 +129,7 @@
 		82DDAEFE2580528C0033F39A /* SearchBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBucket.swift; sourceTree = "<group>"; };
 		82E8AC9D257F1F6600041785 /* DetailMemoryAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoryAgent.swift; sourceTree = "<group>"; };
 		82E8ACB6257F721B00041785 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		82E8B7532581C0040008A22A /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
 		82F12FD02579AD620079DB71 /* BucketListSearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchUseCase.swift; sourceTree = "<group>"; };
 		82F12FD72579B59C0079DB71 /* BucketListSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchRepository.swift; sourceTree = "<group>"; };
 		C11AC45F256B7F8B00E45667 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 				C175D19A256CCF3C001144F0 /* RealmDetailList.swift */,
 				82A7291E256F4BCB00BD5797 /* RealmBucket.swift */,
 				C1604D0C257DFC450019E6E2 /* RealmImpression.swift */,
+				82E8B7532581C0040008A22A /* RealmTransaction.swift */,
 			);
 			path = RealmObject;
 			sourceTree = "<group>";
@@ -868,6 +871,7 @@
 				C175D19B256CCF3C001144F0 /* RealmDetailList.swift in Sources */,
 				C1E6C41F2574E83200BD4B4B /* NavigationCoordinator.swift in Sources */,
 				C160DBB025776DB800290EAE /* DetailSectionImpressionHeaderView.swift in Sources */,
+				82E8B7542581C0040008A22A /* RealmTransaction.swift in Sources */,
 				C16019C025792FEE00506430 /* DetailSectionGraphView.swift in Sources */,
 				C160C4D8257DC84100578BE3 /* ImpressionViewController.swift in Sources */,
 				C1754EF5256E1B8B0037C805 /* HTTPMethod.swift in Sources */,
