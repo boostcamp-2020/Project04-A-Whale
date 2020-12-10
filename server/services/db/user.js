@@ -38,7 +38,7 @@ exports.insertUser = async ({ id, password, nickname, description }) => {
 
 exports.selectUser = async (no) => {
   const results = await User.findOne({
-    attributes: ['nickname', 'description', 'rank'],
+    attributes: ['no', 'nickname', 'description', 'rank'],
     include: [
       {
         model: Bucket,
