@@ -46,3 +46,8 @@ exports.getUserInfo = async (no) => {
 
   return temp;
 };
+
+exports.searchUser = async (keyword) => {
+  const user = await db.selectUserByKeyword(keyword);
+  return user;
+};
