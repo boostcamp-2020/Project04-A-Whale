@@ -7,12 +7,11 @@ export default function createRequestThunk(type, request) {
     dispatch({ type });
     dispatch(startLoading(type));
     try {
-      const response = await request(params);
-
+      const { data } = await request(params);
       dispatch({
         type: SUCCESS,
         params,
-        payload: response.data,
+        payload: data,
       });
       dispatch(finishLoading(type));
     } catch (e) {
@@ -21,8 +20,8 @@ export default function createRequestThunk(type, request) {
         payload: e,
         error: true,
       });
-      dispatch(startLoading(type));
-      throw e;
+      dispatch(finishLoading(type));
+      // throw e;
     }
   };
 }

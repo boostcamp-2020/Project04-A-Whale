@@ -10,14 +10,16 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
-// axios.interceptors.response.use(
-//   (response) => {
-//     console.log(response);
-//   },
-//   (error) => {
-//     console.log(error);
-//   }
-// );
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 401 && localStorage.getItem('accessToken')) {
+      alert('accessToken 기한 만료! 재로그인해주세요');
+      localStorage.removeItem('accessToken');
+      window.location.reload(false);
+    }
+  }
+);
 
 // login
 export const userLogin = ({ id, password }) =>
