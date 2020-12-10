@@ -47,7 +47,6 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
         title = bucket?.title
         configureHierarchy()
         configureDataSource()
-        print(bucket?.no)
         collectionViewModel?.listDidChange = { [weak self] viewModel in
             DispatchQueue.main.async {
                 self?.updateList()
@@ -71,7 +70,6 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         detailSuccessChecker(viewModel: collectionViewModel)
-        animatePieView(viewModel: collectionViewModel)
     }
     
     @IBAction func detailAppendAction(_ sender: UIBarButtonItem) {
