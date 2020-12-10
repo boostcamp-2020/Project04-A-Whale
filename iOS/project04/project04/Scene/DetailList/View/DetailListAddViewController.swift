@@ -85,6 +85,7 @@ class DetailListAddViewController: UIViewController {
                                                      nil,
                                                      index ?? 0]
             ))
+            
             dismiss(animated: false, completion: nil)
             return
         }

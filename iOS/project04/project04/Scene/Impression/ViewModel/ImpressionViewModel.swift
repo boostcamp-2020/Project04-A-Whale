@@ -12,7 +12,7 @@ protocol ImpressionViewModelProtocol {
     var impressionText: String { get set }
     var textChange: ((ImpressionViewModelProtocol)->())? { get set }
     func impressionFetch(bucketNo: Int)
-    func impressionSave(bucketNo: Int, text: String)
+    func impressionSave(_ element: RealmImpression)
     func impressionEdit(text: String)
 }
 
@@ -39,9 +39,9 @@ class ImpressionViewModel: ImpressionViewModelProtocol {
         })
     }
     
-    func impressionSave(bucketNo: Int, text: String) {
-        usecase.save(bucketNo: bucketNo, text: text)
-        impressionText = text
+    func impressionSave(_ element: RealmImpression) {
+        usecase.save(element)
+        impressionText = element.text
     }
     
     func impressionEdit(text: String) {

@@ -20,8 +20,9 @@ class BucketListSearchViewController: UITableViewController {
     
     init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol, didSelectRowHandler: @escaping (SearchBucket) -> Void) {
         self.viewModel = viewModel
+
+        self.viewModel.fetch()
         self.didSelectRowHandler = didSelectRowHandler
-        viewModel.fetch()
         super.init(coder: coder)
     }
     
@@ -32,6 +33,10 @@ class BucketListSearchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchController()
+        self.viewModel.handler = {
+            self.tableView.reloadData()
+        }
+        self.viewModel.fetch()
     }
     
     func isFiltering() -> Bool {

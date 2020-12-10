@@ -8,16 +8,13 @@
 import Foundation
 import RealmSwift
 
-struct Impression: Codable {
-    let message: String
-    let data: RealmImpression
-}
-
 class RealmImpression: Object, Codable {
+    @objc dynamic var no: Int = 0
     @objc dynamic var text: String = ""
     @objc dynamic var bucketNo: Int = 0
     
     private enum CodingKeys: String, CodingKey {
+        case no
         case text = "description"
         case bucketNo
     }

@@ -43,6 +43,7 @@ class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
     func fetch() {
         usecase.fetch { [weak self] (buckets) in
             self?.buckets = buckets
+            self?.handler?()
         }
     }
     

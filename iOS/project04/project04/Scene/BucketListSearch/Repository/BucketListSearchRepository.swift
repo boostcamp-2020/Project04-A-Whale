@@ -18,11 +18,14 @@ class BucketListSearchRepository: SearchRepositoryProtocol {
             switch result {
             case .success(let data):
                 let response = try? JSONDecoder().decode(Response<[SearchBucket]>.self, from: data)
-                list = response?.data
-            case .failure(_):
+                DispatchQueue.main.async {
+                    completion(response?.data ?? [])
+                }
+            case .failure(let error):
+                print(error)
                 break
             }
-            completion(list ?? [])
+            
         }
     }
     

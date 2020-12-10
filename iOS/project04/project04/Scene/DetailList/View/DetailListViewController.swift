@@ -210,7 +210,9 @@ extension DetailListViewController {
         
         snapshot.appendItems(collectionViewModel?.list[.todo] ?? [], toSection: .todo)
         snapshot.appendItems(collectionViewModel?.list[.done] ?? [], toSection: .done)
+        
         dataSource.apply(snapshot, animatingDifferences: false)
+        
     }
     
     private func configureSuccessHandler() {

@@ -15,7 +15,7 @@ import Foundation
 //}
 protocol ImpressionRepositoryProtocol {
     func fetchImpression(bucketNo: Int, completion: @escaping (RealmImpression?) -> Void)
-    func saveImpression(bucketNo: Int, text: String)
+    func saveImpression(_ element: RealmImpression)
     func editImpression(element: RealmImpression?, text: String)
 }
 
@@ -31,56 +31,62 @@ class ImpressionRepository: ImpressionRepositoryProtocol {
                                       method: .GET, completion: { [weak self] result in
                                         switch result {
                                         case .success(let data):
-                                            let impression = try? JSONDecoder().decode(Impression.self, from: data)
-                                            completion(impression?.data)
-                                            print(impression?.data)
+                                            let response = try? JSONDecoder().decode(Response<RealmImpression>.self, from: data)
+                                            self?.local.sync(impression: response?.data)
+                                        case .failure(_):
                                             break
-                                        case .failure(let error):
-                                            print(error)
+                                        }
+                                        DispatchQueue.main.async {
                                             completion(self?.local.fetch(bucketNo: bucketNo))
                                         }
                                       })
     }
     
-    func saveImpression(bucketNo: Int, text: String) {
-        let data = try? JSONEncoder().encode(["description": text, "bucketNo": "\(bucketNo)"])
-        // 타임아웃 걸림
-        // bucketNo 파라미터로 받아야함
+    func saveImpression(_ element: RealmImpression) {
+        let data = try? JSONEncoder().encode(["description": element.text, "bucketNo": "\(element.bucketNo)"])
+
         NetworkService.shared.request(from: Endpoint.achieves.urlString,
                                       method: .POST,
                                       body: data,
                                       completion: { result in
                                         
                                         switch result {
-                                        case .success(_):
+                                        case .success(let responseData):
+                                            let response = try? JSONSerialization.jsonObject(with: responseData, options: []) as? [String : Any]
+                                            
+                                            let no = response?["achieveNo"] as? Int
+                                            element.no = no ?? 0
                                             break
-                                        case .failure(let error):
-                                            print(error)
+                                        case .failure(_):
+                                            TransactionRecorder.shared.record(url: Endpoint.achieves.urlString, method: .POST, data: data)
+                                            
+                                        }
+                                        DispatchQueue.main.async { [weak self] in
+                                            self?.local.save(element)
                                         }
                                       })
-        local.save(bucketNo: bucketNo, text: text)
     }
     
     func editImpression(element: RealmImpression?, text: String) {
         let data = try? JSONEncoder().encode(["description": text])
-        // /2 -> /\(element.bucketNo)
-        // 성공 했다고 하는데, 반영이 안되어서 나옴
-        print(element?.bucketNo)
-        NetworkService.shared.request(from: Endpoint.achieves.urlString + "/\(element?.bucketNo)",
+        let url = Endpoint.achieves.urlString + "/\(element?.no ?? 0)"
+        NetworkService.shared.request(from: url,
                                       method: .PUT,
                                       body: data,
                                       completion: { result in
                                         
                                         switch result {
                                         case .success(let data):
-                                            let element = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String]
-                                            print(element?["message"])
-                                            break
+                                            let reponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String]
+                                            print(reponse?["message"])
                                         case .failure(let error):
                                             print(error)
+                                            TransactionRecorder.shared.record(url: url, method: .PUT, data: data)
+                                        }
+                                        DispatchQueue.main.async { [weak self] in
+                                            self?.local.edit(element: element, text: text)
                                         }
                                       })
         
-        local.edit(element: element, text: text)
     }
 }

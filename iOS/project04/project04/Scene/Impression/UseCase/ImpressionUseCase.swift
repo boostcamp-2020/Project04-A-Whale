@@ -9,7 +9,7 @@ import Foundation
 
 protocol ImpressionUseCaseProtocol {
     func fetch(bucketNo: Int, completion: @escaping (RealmImpression?) -> Void)
-    func save(bucketNo: Int, text: String)
+    func save(_ element: RealmImpression)
     func edit(element: RealmImpression?, text: String)
 }
 
@@ -26,8 +26,8 @@ class ImpressionUseCase: ImpressionUseCaseProtocol {
         })
     }
     
-    func save(bucketNo: Int, text: String) {
-        repository.saveImpression(bucketNo: bucketNo, text: text)
+    func save(_ element: RealmImpression) {
+        repository.saveImpression(element)
     }
     
     func edit(element: RealmImpression?, text: String) {
