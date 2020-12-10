@@ -20,8 +20,14 @@ class BucketListRepository {
             case .success(let data):
                 let response = try? JSONDecoder().decode(Response<ResponseBucket>.self, from: data)
                 let buckets = response?.data.allBuckets
-                completion(buckets ?? [])
-            case .failure(_):
+                DispatchQueue.main.async {
+                    self?.local.sync(buckets: buckets ?? [])
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+            DispatchQueue.main.async {
                 completion(self?.local.load() ?? [])
             }
         }
@@ -41,12 +47,13 @@ class BucketListRepository {
     
     func reviseBucketListStatus(element: RealmBucket) {
         let data = try? JSONEncoder().encode(["status": "A"])
-        NetworkService.shared.request(from: Endpoint.buckets.urlString + "/\(element.no)", method: .PATCH, body: data) { (result) in
+        let url = Endpoint.buckets.urlString + "/\(element.no)"
+        NetworkService.shared.request(from: url, method: .PATCH, body: data) { (result) in
             switch result {
             case .success(_):
                 break
             case .failure(_):
-                break
+                TransactionRecorder.shared.record(url: url, method: .PATCH, data: data)
             }
         }
         local.reviseStatus(element: element)

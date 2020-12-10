@@ -59,4 +59,18 @@ class BucketLocalAgent: LocalService {
             print(error)
         }
     }
+    
+    func sync(buckets: [RealmBucket]) {
+        do {
+            let realm = try Realm()
+            let result = realm.objects(RealmBucket.self)
+            
+            try realm.write {
+                realm.delete(result)
+                realm.add(buckets)
+            }
+        } catch {
+            print(error)
+        }
+    }
 }
