@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import useStyles from './style';
 
@@ -98,6 +99,7 @@ const Setting = () => {
           <Link className={classes.link} to="/user/info">
             <div>회원 정보 수정 / 탈퇴</div>
           </Link>
+          <Divider />
           <Link className={classes.link} to="/user/password">
             <div>비밀번호 수정</div>
           </Link>

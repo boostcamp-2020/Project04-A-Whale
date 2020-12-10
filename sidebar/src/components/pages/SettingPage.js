@@ -1,5 +1,4 @@
 import React from 'react';
-
 import SettingLayout from '../templates/setting';
 import Header from '../UI/organisms/header';
 
