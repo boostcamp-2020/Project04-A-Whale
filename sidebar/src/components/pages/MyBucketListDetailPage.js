@@ -4,6 +4,7 @@ import { getDetails } from '../../modules/details';
 import Spinner from '../UI/atoms/spinner';
 import Header from '../UI/organisms/header';
 import MyBucketListDetail from '../templates/my_bucket_list_detail';
+import getFormatDate from '../../lib/date';
 
 const MyBucketListDetailPage = ({ match }) => {
   const { bucketNo } = match.params;
@@ -19,6 +20,15 @@ const MyBucketListDetailPage = ({ match }) => {
     dispatch(getDetails(bucketNo));
   }, [dispatch]);
 
+  const alarmOnHandler = () => {
+    const today = new Date();
+    details.openDetails.forEach((detail) => {
+      if (getFormatDate(today) === getFormatDate(new Date(detail.dueDate))) {
+        whale.runtime.sendMessage({ message: 'dueDateCheck', detail });
+      }
+    });
+  };
+
   return (
     <>
       <Header title="내 목표 상세" isGoBack />
@@ -26,6 +36,7 @@ const MyBucketListDetailPage = ({ match }) => {
       {!loadingDetails && details && (
         <MyBucketListDetail bucket={bucket} details={details} detailTot={detailTot} />
       )}
+      <input type="button" value="alarmsOn" onClick={alarmOnHandler} />
     </>
   );
 };

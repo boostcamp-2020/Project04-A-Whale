@@ -5,14 +5,13 @@ axios.defaults.baseURL =
 
 // axios.interceptors.response.use(({ data }) => data);
 
-// login
+// user
 export const userLogin = ({ id, password }) =>
   axios.post('/api/users/login', {
     id,
     password,
   });
 
-// register
 export const userRegister = ({ id, password, nickname, description }) =>
   axios.post('/api/users', {
     id,
@@ -21,10 +20,8 @@ export const userRegister = ({ id, password, nickname, description }) =>
     description,
   });
 
-
 export const getUser = () => axios.get('/api/users/info');
 
-// 중복 조회
 export const isDuplicated = (id) => axios.get(`/api/users/${id}`);
 
 // buckets
