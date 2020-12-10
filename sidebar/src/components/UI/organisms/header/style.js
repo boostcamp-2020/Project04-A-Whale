@@ -4,8 +4,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  text: {
+    fontSize: '2rem',
+    fontFamily: 'Nanum Brush Script, sans-serif !important',
+    fontWeight: 'bold',
+  },
   appBar: {
-    backgroundColor: '#333333',
+    background: 'linear-gradient(#00e0b2, #aaaaee 80%)',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
