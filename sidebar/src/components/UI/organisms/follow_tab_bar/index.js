@@ -6,20 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import UserItem from '../../molecules/user_item';
 import Span from '../../atoms/span';
 
-const FollowTabBar = () => {
-  const dispatch = useDispatch();
+const FollowTabBar = ({ followed, following }) => {
   const [value, setValue] = useState(0);
-  const follows = [
-    { nickname: '팔로우1', description: '팔로우 상세 1', no: 11 },
-    { nickname: '팔로우2', description: '팔로우 상세 2', no: 12 },
-  ];
-  const followers = [
-    { nickname: '팔로워1', description: '팔로워 상세 1', no: 21 },
-    { nickname: '팔로워2', description: '팔로워 상세 2', no: 22 },
-  ];
   const searchResult = useSelector((state) => state.follow.search);
   const tabLabels = ['팔로우 목록', '팔로워 목록', '검색 결과'];
-
   const tabClickHandler = (e, newValue) => {
     setValue(newValue);
   };
@@ -34,7 +24,7 @@ const FollowTabBar = () => {
         </Tabs>
       </AppBar>
       <div>
-        {[follows, followers, searchResult].map((v, index) => {
+        {[following, followed, searchResult].map((v, index) => {
           return (
             <div hidden={value !== index}>
               {typeof v === 'undefined' ? (

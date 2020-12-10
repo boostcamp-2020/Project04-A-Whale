@@ -13,13 +13,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FollowListTemplate = () => {
+const FollowListTemplate = ({ followed, following }) => {
   const classes = useStyles();
   return (
     <>
       <div className={classes.header} />
       <UserSearch />
-      <FollowTabBar />
+      <FollowTabBar followed={followed} following={following} />
     </>
   );
 };

@@ -91,3 +91,6 @@ export const uploadObjectStorage = (file) => {
   };
   return axios.post(`/api/upload/`, formData, config);
 };
+
+export const getFollowed = (no) => axios.get('/api/follows/followed');
+export const getFollowing = (no) => axios.get('/api/follows/following');
