@@ -21,8 +21,11 @@ export const userRegister = ({ id, password, nickname, description }) =>
     description,
   });
 
-// user
+
 export const getUser = () => axios.get('/api/users/info');
+
+// 중복 조회
+export const isDuplicated = (id) => axios.get(`/api/users/${id}`);
 
 // buckets
 export const getBuckets = () => axios.get('/api/buckets');

@@ -3,8 +3,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(() => ({
   input: {
-    margin: '5px 0',
+    display: 'block',
+    margin: '10px 0',
     width: '100%',
+    '& div': {
+      width: '100%',
+    },
+    '& input': {
+      width: '100%',
+    },
   },
   outlineButton: {
     width: 'calc(50% - 10px)',
@@ -159,20 +166,20 @@ export const Cloud4 = styled.path`
   animation: ${cloud4Anim} 12s infinite ease-in-out;
 `;
 
-export const LoginLayout = styled.div`
+export const RegisterLayout = styled.div`
   width: 100%;
   margin-top: 2rem;
   position: relative;
 `;
 
-export const LoginContainer = styled.div`
+export const RegisterContainer = styled.div`
   margin: 0 auto;
   width: 40%;
   min-width: fit-content;
   height: fit-content;
 `;
 
-export const LoginBox = styled.div`
+export const RegisterBox = styled.div`
   padding: 20px;
   border: 1px solid #b6b6b6;
   box-shadow: 0 0 5px #9c9c9c;

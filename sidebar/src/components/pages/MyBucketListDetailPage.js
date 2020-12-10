@@ -8,6 +8,7 @@ import MyBucketListDetail from '../templates/my_bucket_list_detail';
 const MyBucketListDetailPage = ({ match }) => {
   const { bucketNo } = match.params;
   const dispatch = useDispatch();
+  const detailTot = useSelector((state) => state.details);
   const { bucket, details, loadingDetails } = useSelector(({ details, loading }) => ({
     bucket: details.bucket,
     details: details.details,
@@ -22,7 +23,9 @@ const MyBucketListDetailPage = ({ match }) => {
     <>
       <Header title="내 목표 상세" isGoBack />
       {loadingDetails && <Spinner />}
-      {!loadingDetails && details && <MyBucketListDetail bucket={bucket} details={details} />}
+      {!loadingDetails && details && (
+        <MyBucketListDetail bucket={bucket} details={details} detailTot={detailTot} />
+      )}
     </>
   );
 };

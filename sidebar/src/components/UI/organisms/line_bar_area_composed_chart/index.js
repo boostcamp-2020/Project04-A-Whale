@@ -1,46 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const data = [
-  {
-    name: 'Day 1',
-    Ideal_burndown: 10,
-    Completed_tasks: 1,
-    Remaining_tasks: 9,
-  },
-  {
-    name: 'Day 2',
-    Ideal_burndown: 10 - 1 * (10 / 5),
-    Completed_tasks: 2,
-    Remaining_tasks: 7,
-  },
-  {
-    name: 'Day 3',
-    Ideal_burndown: 10 - 2 * (10 / 5),
-    Completed_tasks: 1,
-    Remaining_tasks: 6,
-  },
-  {
-    name: 'Day 4',
-    Ideal_burndown: 10 - 3 * (10 / 5),
-    Completed_tasks: 1,
-    Remaining_tasks: 5,
-  },
-  {
-    name: 'Day 5',
-    Ideal_burndown: 10 - 4 * (10 / 5),
-    Completed_tasks: 2,
-    Remaining_tasks: 3,
-  },
-  {
-    name: 'Day 6',
-    Ideal_burndown: 0,
-    Completed_tasks: 3,
-    Remaining_tasks: 0,
-  },
-];
-
-const LineBarAreaComposedChart = () => {
+const LineBarAreaComposedChart = ({ detailTot }) => {
+  const [data, setData] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const resizeHandler = () => {
     setWindowWidth(window.innerWidth);
@@ -50,9 +12,13 @@ const LineBarAreaComposedChart = () => {
     window.addEventListener('resize', resizeHandler);
   }, []);
 
+  useEffect(() => {
+    setData(detailTot.burnDownChart);
+  }, [detailTot]);
+
   return (
     <ComposedChart
-      width={(windowWidth * 80) / 100}
+      width={windowWidth - 465 > 400 ? windowWidth - 465 : 400}
       height={400}
       data={data}
       margin={{
@@ -62,7 +28,8 @@ const LineBarAreaComposedChart = () => {
         left: 20,
       }}
       style={{
-        margin: '0 auto',
+        display: 'inline-block',
+        margin: '12px auto',
         border: '1px solid #eee',
         borderRadius: '10px',
       }}
