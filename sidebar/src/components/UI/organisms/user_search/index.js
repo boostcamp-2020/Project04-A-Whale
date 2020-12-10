@@ -5,28 +5,36 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useDispatch } from 'react-redux';
 import { searchResult } from '../../../../modules/follow';
 import { SearchBar } from './style';
-
-const UserSearch = () => {
+import { searchUser } from '../../../../lib/api';
+const UserSearch = ({setValue}) => {
   const dispatch = useDispatch();
 
-  const onClickHandler = () => {
+  const [keyword, setKeyword] = useState('');
+
+  const onChangeHandler = (e) => {
+    setKeyword(e.target.value);
+  }
+
+  const onClickHandler = async () => {
+    const res = await searchUser(keyword);
+    const {data} = res.data
+    console.log(data);
     dispatch(
-      searchResult([
-        { nickname: '닉네임1', description: '검색 상세 12345678910111213141516',no: 1 },
-        { nickname: '닉네임2', description: '검색 상세 2', no: 2 },
-      ])
+      searchResult(data)
     );
+    setValue(2);
   };
 
   return (
     <div style={SearchBar}>
     <InputLabel>사용자 검색</InputLabel>
     <TextField style={{width: '480px'}}
+      onChange={onChangeHandler}
       InputProps={
         {endAdornment: 
           <>
             <InputAdornment position="end">
-              <IconButton onClick={onClickHandler}>
+              <IconButton onClick={onClickHandler} disabled={ keyword.length > 0 ? false : true}>
                 <SearchIcon />
               </IconButton>
             </InputAdornment>
