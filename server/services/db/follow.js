@@ -6,8 +6,29 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../../config/config')[env];
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
 // 내가 팔로잉 하는 사람 목록 조회
 exports.selectFollowingList = async (userNo) => {
+  const result = await Follow.findAll({
+    attributes: ['no', 'following_no', 'followed_no'],
+    where: { following_no: userNo },
+    raw: true,
+  });
+  return result;
+};
+
+// 나를 팔로우 하는 사람 목록 조회
+exports.selectFollowedList = async (userNo) => {
+  const result = await Follow.findAll({
+    attributes: ['no', 'following_no', 'followed_no'],
+    where: { followed_no: userNo },
+    raw: true,
+  });
+
+  return result;
+};
+
+exports.selectFollowingUsers = async (userNo) => {
   const result = await Follow.findAll({
     where: { following_no: userNo },
     attributes: [],
@@ -23,8 +44,7 @@ exports.selectFollowingList = async (userNo) => {
   return result;
 };
 
-// 나를 팔로우 하는 사람 목록 조회
-exports.selectFollowedList = async (userNo) => {
+exports.selectFollowedUsers = async (userNo) => {
   const result = await sequelize.query(
     `SELECT user.no, user.nickname, user.description FROM whale04a.follow as Follow INNER JOIN whale04a.user as user on Follow.following_no = user.no where followed_no = ${userNo}`,
     {

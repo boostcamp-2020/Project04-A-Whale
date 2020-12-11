@@ -6,6 +6,8 @@ router.get('/counts', middlewares.jwtAuth, controller.getFollowCounts);
 router.get('/following', middlewares.jwtAuth, controller.getFollowingList);
 router.get('/followed', middlewares.jwtAuth, controller.getFollowedList);
 router.get('/isfollowing', middlewares.jwtAuth, controller.isFollowing);
+router.get('/followingusers', middlewares.jwtAuth, controller.getFollowingUsers);
+router.get('/followedusers', middlewares.jwtAuth, controller.getFollowedUsers);
 router.post('/', middlewares.jwtAuth, controller.setFollowing);
 router.delete('/:no', middlewares.jwtAuth, controller.deleteFollowing);
 
