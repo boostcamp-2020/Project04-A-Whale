@@ -9,6 +9,9 @@ import MyBucketListPage from './components/pages/MyBucketListPage';
 import MyBucketListDetailPage from './components/pages/MyBucketListDetailPage';
 import BucketCreatePage from './components/pages/BucketCreatePage';
 import AchieveCreatePage from './components/pages/AchieveCreatePage';
+import AchieveResultPage from './components/pages/AchieveResultPage';
+import FollowListPage from './components/pages/FollowListPage';
+import UserInfoPage from './components/pages/UserInfoPage';
 import FeedPage from './components/pages/FeedPage';
 import SettingPage from './components/pages/SettingPage';
 import LogoutPage from './components/pages/LogoutPage';
@@ -25,7 +28,10 @@ const routes = () => {
       <PrivateRoute component={FeedPage} path={pathURI.feed} exact />
       <PrivateRoute component={SettingPage} path={pathURI.setting} exact />
       <PrivateRoute component={LogoutPage} path={pathURI.logout} exact />
+      <PrivateRoute component={FollowListPage} path={pathURI.follow} />
+      <PrivateRoute component={UserInfoPage} path={pathURI.userInfo} />
     </Switch>
   );
 };
+
 export default routes;

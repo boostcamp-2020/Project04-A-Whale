@@ -42,7 +42,8 @@ const createbucket = handleActions(
     [LOAD_PRESET]: (state, { payload: input }) => {
       console.log(input);
       const { bucketTitle, bucketDescription, bucketDetails } = input;
-      return { title: bucketTitle, description: bucketDescription, details: bucketDetails };
+      const newBucketDetails = bucketDetails.map((detail) => ({ ...detail, status: 'O' }));
+      return { title: bucketTitle, description: bucketDescription, details: newBucketDetails };
     },
     [CREATE_BUCKET]: (state, action) => ({
       ...state,

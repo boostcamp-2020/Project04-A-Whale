@@ -25,14 +25,13 @@ axios.interceptors.response.use(
   }
 );
 
-// login
+// user
 export const userLogin = ({ id, password }) =>
   axios.post('/api/users/login', {
     id,
     password,
   });
 
-// register
 export const userRegister = ({ id, password, nickname, description }) =>
   axios.post('/api/users', {
     id,
@@ -43,11 +42,11 @@ export const userRegister = ({ id, password, nickname, description }) =>
 
 export const getUser = () => axios.get('/api/users/info');
 
-// 중복 조회
 export const isDuplicated = (id) => axios.get(`/api/users/${id}`);
 
 // buckets
 export const getBuckets = () => axios.get('/api/buckets');
+export const getBucketsbyNo = (no) => axios.get(`/api/buckets/${no}`);
 
 export const createBucket = (title, description, details, ref) =>
   axios.post('/api/buckets', {
@@ -113,6 +112,17 @@ export const uploadObjectStorage = (file) => {
   };
   return axios.post(`/api/upload/`, formData, config);
 };
+
+// follow
+export const setFollowing = (followingNo) => axios.post('/api/follows', { followingNo });
+export const deleteFollowing = (no) => axios.delete(`/api/follows/${no}`);
+
+export const getFollowedUsers = (no) => axios.get('/api/follows/followedusers');
+export const getFollowingUsers = (no) => axios.get('/api/follows/followingusers');
+export const searchUser = (keyword) => axios.get(`/api/users/search?keyword=${keyword}`);
+export const getUserInfo = (no) => axios.get(`/api/users/info/${no}`);
+export const isFollowing = (following, followed) =>
+  axios.get(`/api/follows/isfollowing?following=${following}&followed=${followed}`);
 
 // feed
 export const getFeeds = () => axios.get('/api/feeds');

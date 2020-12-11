@@ -8,6 +8,7 @@ export default function createRequestThunk(type, request) {
     dispatch(startLoading(type));
     try {
       const { data } = await request(params);
+
       dispatch({
         type: SUCCESS,
         params,
@@ -21,7 +22,6 @@ export default function createRequestThunk(type, request) {
         error: true,
       });
       dispatch(finishLoading(type));
-      // throw e;
     }
   };
 }
