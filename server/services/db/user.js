@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { hashingPw } = require('../../utils/bcrypt');
 const { User, Bucket } = require('../../models');
 
@@ -37,13 +38,25 @@ exports.insertUser = async ({ id, password, nickname, description }) => {
 
 exports.selectUser = async (no) => {
   const results = await User.findOne({
-    attributes: ['nickname', 'description', 'rank'],
+    attributes: ['no', 'nickname', 'description', 'rank'],
     include: [
       {
         model: Bucket,
       },
     ],
     where: { no },
+  });
+  return results;
+};
+
+exports.selectUserByKeyword = async (keyword) => {
+  const results = await User.findAll({
+    attributes: ['nickname', 'description', 'no'],
+    where: {
+      nickname: {
+        [Op.like]: `%${keyword}%`,
+      },
+    },
   });
   return results;
 };

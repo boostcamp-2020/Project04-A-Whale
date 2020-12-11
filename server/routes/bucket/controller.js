@@ -65,6 +65,19 @@ exports.getBuckets = async (req, res, next) => {
   }
 };
 
+exports.getBucketsbyNo = async (req, res, next) => {
+  try {
+    const { no } = req.params;
+    const buckets = await bucketServices.getBuckets(no);
+    res.status(OK).json({
+      message: '버킷 목록 조회 성공',
+      data: buckets,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 /*
     PATCH /api/buckets/:no
     * 버킷 수정 API

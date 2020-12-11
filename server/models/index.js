@@ -51,6 +51,9 @@ db.Achieve.belongsTo(db.Bucket, {
 db.User.belongsToMany(db.User, { as: 'following', foreignKey: 'following_no', through: db.Follow });
 db.User.belongsToMany(db.User, { as: 'followed', foreignKey: 'followed_no', through: db.Follow });
 
+db.Follow.belongsTo(db.User, { foreignKey: 'following_no' });
+db.Follow.belongsTo(db.User, { foreignKey: 'followed_no' });
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

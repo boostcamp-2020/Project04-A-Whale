@@ -14,7 +14,9 @@ exports.getFollowCounts = async (userNo) => {
  */
 exports.getFollowingList = async (userNo) => {
   const followingList = await db.selectFollowingList(userNo);
-  return followingList;
+  return followingList.map((v) => {
+    return { nickname: v['user.nickname'], description: v['user.nickname'], no: v['user.no'] };
+  });
 };
 
 /*
@@ -22,13 +24,7 @@ exports.getFollowingList = async (userNo) => {
  */
 exports.getFollowedList = async (userNo) => {
   const followedList = await db.selectFollowedList(userNo);
-  const filtered = followedList.map((followed) => {
-    const tmp = { ...followed };
-    delete tmp.createdAt;
-    delete tmp.updatedAt;
-    return tmp;
-  });
-  return filtered;
+  return followedList;
 };
 
 /*
@@ -42,7 +38,12 @@ exports.setFollowing = async ({ userNo, followingNo }) => {
 /*
  * 팔로우 삭제
  */
-exports.deleteFollowing = async (no) => {
-  const result = await db.deleteFollowing(no);
+exports.deleteFollowing = async (followingNo, followedNo) => {
+  const result = await db.deleteFollowing(followingNo, followedNo);
+  return result;
+};
+
+exports.isFollowing = async (following, followed) => {
+  const result = await db.isFollowing(following, followed);
   return result;
 };

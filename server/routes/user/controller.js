@@ -93,3 +93,41 @@ exports.getUserInfo = async (req, res, next) => {
     next(error);
   }
 };
+
+/*
+    GET /api/users/info/:id
+    * 특정 사용자 정보 조회 API
+*/
+
+exports.getUserInfoByNo = async (req, res, next) => {
+  try {
+    const { no } = req.params;
+    const user = await userServices.getUserInfo(no);
+
+    res.status(OK).json({
+      message: '사용자 정보 조회 성공',
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    GET /api/users/search
+    * 사용자 검색 API
+*/
+
+exports.searchUsers = async (req, res, next) => {
+  try {
+    const { keyword } = req.query;
+    const user = await userServices.searchUser(keyword);
+
+    res.status(OK).json({
+      message: '사용자 검색 성공',
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
