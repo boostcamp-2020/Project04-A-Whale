@@ -39,10 +39,11 @@ class JoinViewController: UIViewController {
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
+                    showToast(message: "회원가입에 성공했습니다.", font: .systemFont(ofSize: 14))
                     self?.dismiss(animated: true, completion: nil)
                 }
             case .failure(_):
-                let alert = defaultAlertViewController(title: "회원가입", message: "회원가입에 실패했습니다.")
+                let alert = defaultAlertViewController(title: "회원가입", message: "이미 존재하는 아이디입니다.")
                 DispatchQueue.main.async {
                     self?.present(alert, animated: true, completion: nil)
                 }
