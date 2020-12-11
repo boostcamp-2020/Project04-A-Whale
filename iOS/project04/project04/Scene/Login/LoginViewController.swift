@@ -71,10 +71,6 @@ class LoginViewController: UIViewController {
         })
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-         self.view.endEditing(true)
-   }
-    
     @IBAction func joinAction(_ sender: UIButton) {
         dismiss(animated: true, completion: { [weak self] in
             self?.coordinator.presentJoin()
@@ -99,5 +95,9 @@ extension LoginViewController: UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
     }
 }
