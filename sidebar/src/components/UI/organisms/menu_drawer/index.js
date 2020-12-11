@@ -12,14 +12,16 @@ import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import menuItems from '../../../../constants/menuItem';
 import { getUser } from '../../../../modules/user';
+import Spinner from '../../atoms/spinner';
 import AchieveRate from '../../molecules/achieve_rate';
 import { useStyles, UserInfoWrapper, FollowerWrapper, DescriptionWrapper } from './style';
 
 const MenuDrawer = ({ open, toggleDrawer }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { user } = useSelector(({ user }) => ({
+  const { user, loadingUser } = useSelector(({ user, loading }) => ({
     user: user.user,
+    loadingUser: loading['details/GET_USER'],
   }));
 
   useEffect(() => {
@@ -28,7 +30,8 @@ const MenuDrawer = ({ open, toggleDrawer }) => {
 
   return (
     <>
-      {user && (
+      {loadingUser && <Spinner />}
+      {!loadingUser && user && (
         <Drawer
           className={classes.drawer}
           anchor="left"

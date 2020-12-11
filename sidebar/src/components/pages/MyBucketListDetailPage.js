@@ -8,12 +8,14 @@ import MyBucketListDetail from '../templates/my_bucket_list_detail';
 const MyBucketListDetailPage = ({ match }) => {
   const { bucketNo } = match.params;
   const dispatch = useDispatch();
-  const detailTot = useSelector((state) => state.details);
-  const { bucket, details, loadingDetails } = useSelector(({ details, loading }) => ({
-    bucket: details.bucket,
-    details: details.details,
-    loadingDetails: loading['details/GET_DETAILS'],
-  }));
+  const { bucket, details, loadingDetails, burnDownChart } = useSelector(
+    ({ details, loading }) => ({
+      bucket: details.bucket,
+      details: details.details,
+      burnDownChart: details.burnDownChart,
+      loadingDetails: loading['details/GET_DETAILS'],
+    })
+  );
 
   useEffect(() => {
     dispatch(getDetails(bucketNo));
@@ -24,7 +26,7 @@ const MyBucketListDetailPage = ({ match }) => {
       <Header title="내 목표 상세" isGoBack />
       {loadingDetails && <Spinner />}
       {!loadingDetails && details && (
-        <MyBucketListDetail bucket={bucket} details={details} detailTot={detailTot} />
+        <MyBucketListDetail bucket={bucket} details={details} burnDownChart={burnDownChart} />
       )}
     </>
   );
