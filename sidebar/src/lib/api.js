@@ -94,10 +94,10 @@ export const uploadObjectStorage = (file) => {
 };
 
 export const setFollowing = (followingNo) => axios.post('/api/follows', { followingNo });
-export const deleteFollowing = ( no ) => axios.delete(`/api/follows/${no}`);
+export const deleteFollowing = (no) => axios.delete(`/api/follows/${no}`);
 
-export const getFollowed = (no) => axios.get('/api/follows/followed');
-export const getFollowing = (no) => axios.get('/api/follows/following');
+export const getFollowedUsers = (no) => axios.get('/api/follows/followedusers');
+export const getFollowingUsers = (no) => axios.get('/api/follows/followingusers');
 export const searchUser = (keyword) => axios.get(`/api/users/search?keyword=${keyword}`);
 export const getUserInfo = (no) => axios.get(`/api/users/info/${no}`);
 export const isFollowing = (following, followed) =>
