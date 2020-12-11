@@ -4,6 +4,8 @@ const controller = require('./controller');
 router.get('/counts', controller.getFollowCounts);
 router.get('/following', controller.getFollowingList);
 router.get('/followed', controller.getFollowedList);
+router.get('/followingusers', controller.getFollowingUsers);
+router.get('/followedusers', controller.getFollowedUsers);
 router.get('/isfollowing', controller.isFollowing);
 router.post('/', controller.setFollowing);
 router.delete('/:no', controller.deleteFollowing);

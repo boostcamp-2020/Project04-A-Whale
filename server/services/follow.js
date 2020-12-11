@@ -14,9 +14,7 @@ exports.getFollowCounts = async (userNo) => {
  */
 exports.getFollowingList = async (userNo) => {
   const followingList = await db.selectFollowingList(userNo);
-  return followingList.map((v) => {
-    return { nickname: v['user.nickname'], description: v['user.nickname'], no: v['user.no'] };
-  });
+  return followingList;
 };
 
 /*
@@ -25,6 +23,18 @@ exports.getFollowingList = async (userNo) => {
 exports.getFollowedList = async (userNo) => {
   const followedList = await db.selectFollowedList(userNo);
   return followedList;
+};
+
+exports.getFollowingUsers = async (userNo) => {
+  const followingList = await db.selectFollowingUsers(userNo);
+  return followingList.map((v) => {
+    return { nickname: v['user.nickname'], description: v['user.nickname'], no: v['user.no'] };
+  });
+};
+
+exports.getFollowedUsers = async (userNo) => {
+  const followedUsers = await db.selectFollowedUsers(userNo);
+  return followedUsers;
 };
 
 /*

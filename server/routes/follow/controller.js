@@ -60,6 +60,36 @@ exports.getFollowedList = async (req, res, next) => {
   }
 };
 
+exports.getFollowingUsers = async (req, res, next) => {
+  try {
+    const followedList = await followServices.getFollowingUsers(userNo);
+
+    res.status(OK).json({
+      message: '내가 팔로우 하는 사람 정보 조회 성공',
+      data: followedList,
+    });
+  } catch (error) {
+    res.status(BAD_REQUEST).json({
+      message: `내가 팔로우 하는 사람 정보 조회 실패: ${error}`,
+    });
+  }
+};
+
+exports.getFollowedUsers = async (req, res, next) => {
+  try {
+    const followedList = await followServices.getFollowedUsers(userNo);
+
+    res.status(OK).json({
+      message: '나를 팔로우 하는 사람 정보 조회 성공',
+      data: followedList,
+    });
+  } catch (error) {
+    res.status(BAD_REQUEST).json({
+      message: `나를 팔로우 하는 사람 정보 조회 실패: ${error}`,
+    });
+  }
+};
+
 /*
     POST /api/follows
     * 팔로우 추가 API
