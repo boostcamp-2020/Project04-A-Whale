@@ -5,8 +5,9 @@ exports.addFeed = async (userNo, content) => {
   return result;
 };
 
-exports.getFeeds = async (followingList) => {
+exports.getFeeds = async (userNo, followingList) => {
   const followingUserNos = followingList.map((user) => user.followed_no);
+  followingUserNos.push(userNo);
   const result = await db.selectFeeds(followingUserNos);
   return result;
 };

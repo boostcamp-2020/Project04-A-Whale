@@ -1,5 +1,4 @@
 const { User, Feed, Sequelize } = require('../../models');
-const lastWeek = require('../../utils/date');
 
 const { Op } = Sequelize;
 
@@ -15,7 +14,7 @@ exports.selectFeeds = async (followings) => {
     raw: true,
     where: {
       userNo: { [Op.in]: followings },
-      createdAt: { [Op.lte]: lastWeek }, // 최대 일주일전
+      createdAt: { [Op.between]: [new Date().getTime() - 7 * 24 * 60 * 60 * 1000, new Date()] }, // 최근 일주일 사이
     },
     order: [['created_at', 'DESC']], // 최근 순으로
     include: {
