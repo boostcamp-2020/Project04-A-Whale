@@ -27,9 +27,10 @@ exports.presets = async (req, res, next) => {
 */
 exports.create = async (req, res, next) => {
   try {
+    const userNo = req.user.no;
     const { title, description, details, ref } = req.body;
     const newBucket = await bucketServices
-      .create(title, description, 1)
+      .create(title, description, userNo)
       .then((data) => JSON.parse(JSON.stringify(data)));
     const bucketNo = newBucket.no;
     await detailServices
@@ -40,7 +41,7 @@ exports.create = async (req, res, next) => {
       )
       .then((data) => JSON.parse(JSON.stringify(data)));
 
-    feedServices.addFeed(1, '버킷리스트를 추가했습니다.');
+    feedServices.addFeed(userNo, '버킷리스트를 추가했습니다.');
     res.status(CREATED).json({ message: '버킷 추가 성공' });
   } catch (error) {
     next(error);
@@ -53,9 +54,8 @@ exports.create = async (req, res, next) => {
 */
 exports.getBuckets = async (req, res, next) => {
   try {
-    // TODO: 로그인 기능 구현후 주석 해제
-    // const { userNo } = req.user;
-    const buckets = await bucketServices.getBuckets(1);
+    const userNo = req.user.no;
+    const buckets = await bucketServices.getBuckets(userNo);
     res.status(OK).json({
       message: '버킷 목록 조회 성공',
       data: buckets,
@@ -73,11 +73,12 @@ exports.updateBucket = async (req, res, next) => {
   try {
     const { no } = req.params;
     const { status, title, description } = req.body;
+    const userNo = req.user.no;
     let result;
 
     if (status) result = await bucketServices.updateBucketStatus(no, status);
     else result = await bucketServices.updateBucketTitleDesc(no, title, description);
-    feedServices.addFeed(1, '버킷리스트를 수정했습니다.');
+    feedServices.addFeed(userNo, '버킷리스트를 수정했습니다.');
     if (result === 1) {
       res.status(OK).json({
         message: '버킷 수정 성공',

@@ -40,13 +40,14 @@ exports.updateDetail = async (req, res, next) => {
   try {
     const { no } = req.params;
     const { status, title, dueDate } = req.body;
+    const userNo = req.user.no;
     let result;
 
     if (status) result = await detailServices.updateDetailStatus(no, status);
     else result = await detailServices.updateBucketTitleDueDate(no, title, dueDate);
 
     if (result === 1) {
-      feedServices.addFeed(1, '버킷 상세 목표를 수정했습니다.');
+      feedServices.addFeed(userNo, '버킷 상세 목표를 수정했습니다.');
       res.status(OK).json({
         message: '버킷 상세 수정 성공',
         data: true,
@@ -70,9 +71,9 @@ exports.deleteDetail = async (req, res, next) => {
   try {
     const { no } = req.params;
     const result = await detailServices.deleteDetail(no);
-
+    const userNo = req.user.no;
     if (result === 1) {
-      feedServices.addFeed(1, '버킷 상세 목표를 삭제했습니다.');
+      feedServices.addFeed(userNo, '버킷 상세 목표를 삭제했습니다.');
       res.status(OK).json({
         message: '버킷 상세 삭제 성공',
         data: true,
@@ -95,9 +96,9 @@ exports.deleteDetail = async (req, res, next) => {
 exports.createDetail = async (req, res, next) => {
   try {
     const { bucketNo, title, dueDate } = req.body;
-
+    const userNo = req.user.no;
     const detail = await detailServices.createDetail(bucketNo, title, dueDate);
-    feedServices.addFeed(1, '버킷 상세 목표를 추가했습니다.');
+    feedServices.addFeed(userNo, '버킷 상세 목표를 추가했습니다.');
 
     res.status(CREATED).json({
       message: '버킷 상세 추가 성공',

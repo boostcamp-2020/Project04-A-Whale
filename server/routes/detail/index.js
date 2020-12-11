@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const controller = require('./controller');
+const middlewares = require('../../middlewares/auth');
 
-router.get('/:bucketNo', controller.getDetails);
-router.post('/', controller.createDetail);
-router.patch('/:no', controller.updateDetail);
-router.delete('/:no', controller.deleteDetail);
+router.get('/:bucketNo', middlewares.jwtAuth, controller.getDetails);
+router.post('/', middlewares.jwtAuth, controller.createDetail);
+router.patch('/:no', middlewares.jwtAuth, controller.updateDetail);
+router.delete('/:no', middlewares.jwtAuth, controller.deleteDetail);
 
 module.exports = router;

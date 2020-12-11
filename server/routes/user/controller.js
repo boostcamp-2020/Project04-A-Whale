@@ -83,10 +83,8 @@ exports.setUser = async (req, res, next) => {
 */
 exports.getUserInfo = async (req, res, next) => {
   try {
-    // const { no } = req.user;
-    const no = 1;
-    const user = await userServices.getUserInfo(no);
-
+    const userNo = req.user.no;
+    const user = await userServices.getUserInfo(userNo);
     res.status(OK).json({
       message: '사용자 정보 조회 성공',
       data: user,
