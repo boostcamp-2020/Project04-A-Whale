@@ -12,7 +12,7 @@ exports.getDetails = async (req, res, next) => {
     const { bucketNo } = req.params;
     let data = null;
 
-    if (req.useragent.isMobile) {
+    if (req.useragent.isMobile && !req.useragent.isAndroid) {
       const bucket = await bucketServices.getBucket(bucketNo);
       const details = await detailServices.getDetails(bucketNo);
       data = { bucket, details };
