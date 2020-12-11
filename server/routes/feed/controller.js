@@ -8,9 +8,9 @@ const followServices = require('../../services/follow');
 */
 exports.getFeeds = async (req, res, next) => {
   try {
-    // const { userNo } = req.user;
-    const followingList = await followServices.getFollowingList(1);
-    const feeds = await feedServices.getFeeds(followingList);
+    const userNo = req.user.no;
+    const followingList = await followServices.getFollowingList(userNo);
+    const feeds = await feedServices.getFeeds(userNo, followingList);
 
     res.status(OK).json({
       message: '피드 조회 성공',
