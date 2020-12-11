@@ -8,10 +8,65 @@
 import UIKit
 
 class JoinViewController: UIViewController {
-    @IBOutlet weak var idTextField: UITextField!
+    @IBOutlet var textFields: [UITextField]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        textFields.forEach({ [weak self] textField in
+            textField.delegate = self
+        })
+    }
+
+    @IBAction func joinAction(_ sender: UIButton) {
+        if !(textFields.filter { $0.text == "" }).isEmpty {
+            let alert = defaultAlertViewController(title: "회원가입", message: "필요한 정보를 모두 입력해주세요!")
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let data = try! JSONEncoder().encode([
+            "id": textFields[0].text ?? "",
+            "password": textFields[1].text ?? "",
+            "nickname": textFields[2].text ?? "",
+            "description": textFields[3].text ?? ""
+        ])
+        NetworkService.shared.request(from: Endpoint.join.urlString,
+                                      method: .POST,
+                                      body: data,
+                                      completion: { [weak self] result in
+            
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            case .failure(_):
+                let alert = defaultAlertViewController(title: "회원가입", message: "회원가입에 실패했습니다.")
+                DispatchQueue.main.async {
+                    self?.present(alert, animated: true, completion: nil)
+                }
+                break
+            }
+        })
+    }
+}
+extension JoinViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.view.frame.origin.y = -150
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.view.frame.origin.y = 0
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
     }
 }
