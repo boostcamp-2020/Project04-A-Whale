@@ -3,5 +3,6 @@ exports.lastWeek = () => {
   const d = new Date();
   const dayOfMonth = d.getDate();
   d.setDate(dayOfMonth - 7);
-  return getDateStr(d);
+  console.log(d);
+  return d;
 };
