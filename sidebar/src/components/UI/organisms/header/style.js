@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
   appBar: {
-    background: 'linear-gradient(#00e0b2, #aaaaee 80%)',
+    // backgroundColor: '#33ccff',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
