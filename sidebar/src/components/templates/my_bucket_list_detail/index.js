@@ -40,12 +40,12 @@ const MyBucketListDetail = ({ bucket, details, burnDownChart }) => {
         </>
       ) : (
         <>
+          <DetailRegister bucket={bucket} />
+          <DetailList details={details} handleAchieveButton={handleAchieveButton} />
           <Typography className={classes.text}>한눈에 보기</Typography>
           <Divider />
           <LineBarAreaComposedChart burnDownChart={burnDownChart} />
           <PieChart details={details} />
-          <DetailRegister bucket={bucket} />
-          <DetailList details={details} handleAchieveButton={handleAchieveButton} />
         </>
       )}
     </main>

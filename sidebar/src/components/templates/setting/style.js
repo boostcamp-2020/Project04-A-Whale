@@ -18,10 +18,33 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
-  page: {
-    width: '85vw',
-    'max-width': 'calc(100% - 140px)',
-    margin: '0 auto',
+  section: {
+    marginBottom: '20px',
+    padding: '20px',
+    backgroundColor: '#eeeeee',
+    borderRadius: '5px',
+  },
+  title: {
+    fontSize: '1.5rem',
+    fontFamily: 'Nanum Brush Script, sans-serif !important',
+    fontWeight: 'bold',
+  },
+  input: {
+    width: 'fit-content',
+    padding: '5px',
+    margin: '5px',
+    border: '1px solid #dddddd',
+    borderRadius: '5px',
+  },
+  link: {
+    color: 'inherit',
+    textDecoration: 'none',
+    '&>div': {
+      padding: '20px',
+      '&:hover': {
+        backgroundColor: '#dddddd',
+      },
+    },
   },
 }));
 

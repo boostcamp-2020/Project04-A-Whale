@@ -21,7 +21,7 @@ const Header = ({ title, isGoBack = null }) => {
         <Toolbar>
           {isGoBack ? <GoBackButton /> : <MenuButton open={open} toggleDrawer={toggleDrawer} />}
           <MenuDrawer open={open} toggleDrawer={toggleDrawer} />
-          <Typography variant="h6" noWrap>
+          <Typography className={classes.text} variant="h6" noWrap>
             {title}
           </Typography>
         </Toolbar>

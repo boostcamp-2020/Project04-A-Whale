@@ -1,9 +1,29 @@
 import axios from 'axios';
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://101.101.210.76:8000';
+  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://localhost:8000';
 
-// axios.interceptors.response.use(({ data }) => data);
+axios.interceptors.request.use((config) => {
+  config.headers = {
+    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+  };
+  return config;
+});
+
+axios.interceptors.response.use(
+  (response) => {
+    console.log(response);
+    return response;
+  },
+  (error) => {
+    console.log(error);
+    if (error.response.status === 401 && localStorage.getItem('accessToken')) {
+      alert('accessToken 기한 만료! 재로그인해주세요');
+      localStorage.removeItem('accessToken');
+      window.location.reload(false);
+    }
+  }
+);
 
 // user
 export const userLogin = ({ id, password }) =>

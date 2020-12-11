@@ -10,7 +10,7 @@ const AchieveCreatePage = ({ match }) => {
   const location = useLocation();
   const [bucketState, setBucket] = useState({});
   const { bucketNo } = match.params;
-  const acheiveState = useSelector((state) => state.acheiveState);
+  const acheiveState = useSelector((state) => state.acheive);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -23,7 +23,7 @@ const AchieveCreatePage = ({ match }) => {
   }, []);
 
   useEffect(() => {
-    if (acheiveState.message) {
+    if (acheiveState.success) {
       dispatch(reset());
       history.replace(`/detail/${bucketNo}`);
     }

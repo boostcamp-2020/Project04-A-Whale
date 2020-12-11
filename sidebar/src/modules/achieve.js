@@ -24,14 +24,14 @@ const achieveReducer = handleActions(
   {
     [RESET]: () => ({ input: '' }),
     [CHANGE_INPUT]: (state, { payload: input }) => ({ ...state, input }),
-    [SET_ACHIEVE_SUCCESS]: (state, { payload: { message, achieveNo } }) => ({
+    [SET_ACHIEVE_SUCCESS]: (state, { payload: { achieveNo } }) => ({
       ...state,
-      message,
+      success: true,
       achieveNo,
     }),
-    [UPDATE_ACHIEVE_SUCCESS]: (state, { payload: { message } }) => ({
+    [UPDATE_ACHIEVE_SUCCESS]: (state, { payload }) => ({
       ...state,
-      message,
+      success: true,
     }),
   },
   initialState

@@ -12,19 +12,13 @@ const LoginPage = () => {
   const axiosLogin = useCallback(async (body) => {
     const result = await userLogin(body);
     localStorage.setItem('accessToken', result.data.accessToken);
-  }, []);
-
-  useEffect(() => {
-    if (localStorage.getItem('accessToken')) {
-      history.replace('/');
-    }
+    resetLoginInfo();
+    history.replace('/');
   }, []);
 
   useEffect(() => {
     if (loginInfo.id && loginInfo.password) {
       axiosLogin({ ...loginInfo });
-      resetLoginInfo();
-      history.replace('/');
     }
   }, [loginInfo]);
   return (
