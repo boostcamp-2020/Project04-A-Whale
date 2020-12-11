@@ -1,5 +1,6 @@
-const { OK, CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCode;
+const { OK, CREATED } = require('../../config/statusCode').statusCode;
 const achieveServices = require('../../services/achieve');
+const feedServices = require('../../services/feed');
 
 /*
     GET /api/achieves/:bucketNo
@@ -25,9 +26,10 @@ exports.getAchieve = async (req, res, next) => {
 */
 exports.setAchieve = async (req, res, next) => {
   try {
+    const userNo = req.user.no;
     const data = req.body;
     const result = await achieveServices.setAchieve(data);
-    feedServices.addFeed(1, '달성소감을 추가했습니다.');
+    feedServices.addFeed(userNo, '달성소감을 추가했습니다.');
 
     res.status(CREATED).json({
       message: '소감 추가 성공',
@@ -45,10 +47,10 @@ exports.setAchieve = async (req, res, next) => {
 exports.updateAchieve = async (req, res, next) => {
   const { no } = req.params;
   const { description } = req.body;
-
+  const userNo = req.user.no;
   try {
     await achieveServices.updateAchieve({ no, description });
-    feedServices.addFeed(1, '달성소감을 수정했습니다.');
+    feedServices.addFeed(userNo, '달성소감을 수정했습니다.');
 
     res.status(OK).json({
       message: '소감 수정 성공',
