@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const LineBarAreaComposedChart = ({ detailTot }) => {
-  const [data, setData] = useState([]);
+const LineBarAreaComposedChart = ({ burnDownChart }) => {
+  const [data, setData] = useState(burnDownChart);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const resizeHandler = () => {
     setWindowWidth(window.innerWidth);
@@ -13,8 +13,8 @@ const LineBarAreaComposedChart = ({ detailTot }) => {
   }, []);
 
   useEffect(() => {
-    setData(detailTot.burnDownChart);
-  }, [detailTot]);
+    setData(burnDownChart);
+  }, [burnDownChart]);
 
   return (
     <ComposedChart

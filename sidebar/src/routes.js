@@ -10,6 +10,7 @@ import AchieveCreatePage from './components/pages/AchieveCreatePage';
 import AchieveResultPage from './components/pages/AchieveResultPage';
 import FollowListPage from './components/pages/FollowListPage';
 import UserInfoPage from './components/pages/UserInfoPage';
+import FeedPage from './components/pages/FeedPage';
 
 const routes = () => (
   <Switch>
@@ -22,6 +23,7 @@ const routes = () => (
     <Route exact path={pathURI.achieveResult} component={AchieveResultPage} />
     <Route exact path={pathURI.follow} component={FollowListPage} />
     <Route exact path={pathURI.userInfo} component={UserInfoPage} />
+    <Route exact path={pathURI.feed} component={FeedPage} />
   </Switch>
 );
 

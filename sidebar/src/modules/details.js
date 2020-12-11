@@ -29,6 +29,7 @@ const initialState = {
     openDetails: [],
     achieveDetails: [],
   },
+  burnDownChart: [],
 };
 
 const insertDetail = (array, detail) => {
@@ -107,14 +108,10 @@ const getDeleteDetail = ({ details }, { no }) => {
   return details;
 };
 
-const getDeleteBurndownChart = (state) => formattingBurndownChart(getDeleteDetail(state));
-
 const getNewDetails = ({ details }, { detail }) => {
   insertDetail(details.openDetails, detail);
   return details;
 };
-
-const getNewBurndownChart = (state) => formattingBurndownChart(getNewDetails(state));
 
 const details = handleActions(
   {
@@ -125,18 +122,18 @@ const details = handleActions(
     }),
     [UPDATE_DETAIL_STATUS_SUCCESS]: (state, action) => ({
       ...state,
-      buckets: getUpdateStatusDetails(state, action.params),
+      details: getUpdateStatusDetails(state, action.params),
       burnDownChart: getUpdateBurndownChart(state),
     }),
     [DELETE_DETAIL_SUCCESS]: (state, action) => ({
       ...state,
-      buckets: getDeleteDetail(state, action.params),
-      burnDownChart: getDeleteBurndownChart(state),
+      details: getDeleteDetail(state, action.params),
+      burnDownChart: getUpdateBurndownChart(state),
     }),
     [CREATE_DETAIL_SUCCESS]: (state, action) => ({
       ...state,
-      buckets: getNewDetails(state, action.payload.data),
-      burnDownChart: getNewBurndownChart(state),
+      details: getNewDetails(state, action.payload.data),
+      burnDownChart: getUpdateBurndownChart(state),
     }),
   },
   initialState

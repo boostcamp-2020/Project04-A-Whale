@@ -8,6 +8,7 @@ const pathURI = {
   userInfo: '/userinfo/:userNo',
   achieveCreate: '/achieves/:bucketNo/create',
   achieveResult: '/achieves/:bucketNo/result',
+  feed: '/feed',
 };
 
 export default pathURI;

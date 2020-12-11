@@ -49,7 +49,7 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
     params.no = bucket.no;
     params.status = ACHIEVE;
     dispatch(updateBucketStatus(params));
-    history.push(`/achieves/${bucket.no}/create`);
+    history.push({ pathname: `/achieves/${bucket.no}/create`, state: { bucket } });
   };
 
   return (

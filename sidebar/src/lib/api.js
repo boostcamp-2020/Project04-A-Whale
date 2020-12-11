@@ -5,14 +5,13 @@ axios.defaults.baseURL =
 
 // axios.interceptors.response.use(({ data }) => data);
 
-// login
+// user
 export const userLogin = ({ id, password }) =>
   axios.post('/api/users/login', {
     id,
     password,
   });
 
-// register
 export const userRegister = ({ id, password, nickname, description }) =>
   axios.post('/api/users', {
     id,
@@ -21,7 +20,8 @@ export const userRegister = ({ id, password, nickname, description }) =>
     description,
   });
 
-// 중복 조회
+export const getUser = () => axios.get('/api/users/info');
+
 export const isDuplicated = (id) => axios.get(`/api/users/${id}`);
 
 // buckets
@@ -93,6 +93,7 @@ export const uploadObjectStorage = (file) => {
   return axios.post(`/api/upload/`, formData, config);
 };
 
+// follow
 export const setFollowing = (followingNo) => axios.post('/api/follows', { followingNo });
 export const deleteFollowing = (no) => axios.delete(`/api/follows/${no}`);
 
@@ -102,3 +103,6 @@ export const searchUser = (keyword) => axios.get(`/api/users/search?keyword=${ke
 export const getUserInfo = (no) => axios.get(`/api/users/info/${no}`);
 export const isFollowing = (following, followed) =>
   axios.get(`/api/follows/isfollowing?following=${following}&followed=${followed}`);
+
+// feed
+export const getFeeds = () => axios.get('/api/feeds');

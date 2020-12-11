@@ -63,7 +63,7 @@ const renderActiveShape = (props) => {
   );
 };
 
-const PieChart1 = ({ detailTot }) => {
+const PieChart1 = ({ details }) => {
   const [data, setData] = useState([
     { name: '진행중', value: 0 },
     { name: '달성', value: 0 },
@@ -75,10 +75,11 @@ const PieChart1 = ({ detailTot }) => {
 
   useEffect(() => {
     setData([
-      { name: '진행 중', value: detailTot.details.openDetails.length },
-      { name: '달성', value: detailTot.details.achieveDetails.length },
+      { name: '진행 중', value: details.openDetails.length },
+      { name: '달성', value: details.achieveDetails.length },
     ]);
-  }, [detailTot]);
+  }, [details.openDetails.length]);
+
   return (
     <PieChart
       width={400}
