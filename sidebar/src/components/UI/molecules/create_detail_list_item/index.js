@@ -11,9 +11,7 @@ import {
 
 import { DetailListItemWrapper, DatePicker, RemoveIcon, rootStyle } from './style';
 
-
 const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActionConnect }) => {
-
   const onClickHandler = () => {
     removeDetailActionConnect(detail.title);
   };

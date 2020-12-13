@@ -29,5 +29,5 @@ export const RemoveIcon = {
 };
 
 export const rootStyle = {
-    color: 'inherit',
-  };
+  color: 'inherit',
+};

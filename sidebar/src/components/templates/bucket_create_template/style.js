@@ -8,13 +8,13 @@ export const BucketCreateTemplateWrapper = styled.div`
 `;
 
 const useStyles = makeStyles((theme) => ({
-    header: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
-    },
-  }));
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  },
+}));
 
 export default useStyles;

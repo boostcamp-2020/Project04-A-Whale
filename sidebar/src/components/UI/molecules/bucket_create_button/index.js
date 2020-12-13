@@ -13,7 +13,6 @@ const BucketCreateButton = ({
   resetBucketActionConnect,
 }) => {
   const history = useHistory();
-  
 
   const disabled = storeTitle.length * storeDetails.length === 0;
 

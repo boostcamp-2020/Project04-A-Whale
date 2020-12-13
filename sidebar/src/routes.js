@@ -9,7 +9,6 @@ import MyBucketListPage from './components/pages/MyBucketListPage';
 import MyBucketListDetailPage from './components/pages/MyBucketListDetailPage';
 import BucketCreatePage from './components/pages/BucketCreatePage';
 import AchieveCreatePage from './components/pages/AchieveCreatePage';
-import AchieveResultPage from './components/pages/AchieveResultPage';
 import FollowListPage from './components/pages/FollowListPage';
 import UserInfoPage from './components/pages/UserInfoPage';
 import FeedPage from './components/pages/FeedPage';
