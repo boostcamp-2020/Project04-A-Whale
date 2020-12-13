@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import { Typography } from '@material-ui/core';
 import useStyle from './style';
-import useMousePosition from '../../../../lib/useMousePosition';
+import useMousePosition from '../../../../hooks/useMousePosition';
 
 const SearchGuide = ({ isHover }) => {
   const { posX, posY } = useMousePosition();
