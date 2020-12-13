@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import SearchResultItem from '../../molecules/search_result_item';
 import Span from '../../atoms/span';
 import { getPresets } from '../../../../lib/api';
-
-const BucketSearchWrapper = styled.div`
-  display: flex;
-  padding: 15px;
-  width: 500px;
-`;
+import BucketSearchWrapper from './style';
 
 const BucketSearch = () => {
   const [loading, setLoading] = useState(false);

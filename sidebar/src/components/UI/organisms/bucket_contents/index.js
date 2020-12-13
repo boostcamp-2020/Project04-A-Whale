@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { inputDescAction, inputTitleAction } from '../../../../modules/actions/createbucket';
 import BucketDescription from '../../molecules/bucket_decription';
