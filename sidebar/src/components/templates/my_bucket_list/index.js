@@ -46,7 +46,7 @@ const MyBucketList = ({ buckets }) => {
   };
 
   return (
-    <div className={classes.root}>
+    <main className={classes.root}>
       <div className={classes.header} />
       <AppBar position="static" color="default">
         <Tabs
@@ -70,7 +70,7 @@ const MyBucketList = ({ buckets }) => {
       <Link to="/createbucket">
         <AddFabButton />
       </Link>
-    </div>
+    </main>
   );
 };
 

@@ -4,10 +4,9 @@ import styled from 'styled-components';
 
 const BorderLinearProgress = withStyles(() => ({
   root: {
-    width: 255,
+    width: '100%',
     height: 10,
     borderRadius: 5,
-    marginLeft: 17,
   },
   colorPrimary: {
     backgroundColor: '#d8e9ef',
@@ -24,13 +23,14 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       cursor: 'default',
     },
+    width: '30%',
   },
 }));
 
 const AchieveRateWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 17px;
+  padding: ${(props) => props.padding || '0px 17px 0px 17px'};
 `;
 
 export { useStyles, BorderLinearProgress, AchieveRateWrapper };

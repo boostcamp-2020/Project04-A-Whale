@@ -19,12 +19,9 @@ const TabPanel = ({ buckets, value, index }) => {
   );
 };
 
-const UserBuckets = () => {
+const UserBuckets = ({ buckets }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const { buckets } = useSelector(({ userinfo }) => ({
-    buckets: userinfo.buckets,
-  }));
   const openCount = buckets.openBuckets.length;
   const achieveCount = buckets.achieveBuckets.length;
   const total = openCount + achieveCount;

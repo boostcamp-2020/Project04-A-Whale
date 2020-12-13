@@ -17,12 +17,15 @@ const TabPanel = ({ users, value, index }) => {
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
     >
-      {value !== 2 && value === index && users && users.map((user) => <UserItem user={user} />)}
+      {value !== 2 &&
+        value === index &&
+        users &&
+        users.map((user, i) => <UserItem key={i} user={user} />)}
       {value === 2 && value === index && (
         <>
           <UserSearch />
           {users ? (
-            users.map((user) => <UserItem user={user} />)
+            users.map((user, i) => <UserItem key={i} user={user} />)
           ) : (
             <span className={classes.noResult}>검색 결과가 없습니다</span>
           )}

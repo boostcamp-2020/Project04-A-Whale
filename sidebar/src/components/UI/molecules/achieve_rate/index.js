@@ -1,11 +1,11 @@
 import React from 'react';
 import { useStyles, BorderLinearProgress, AchieveRateWrapper } from './style';
 
-const AcieveRate = ({ achieveRate }) => {
+const AcieveRate = ({ achieveRate, padding }) => {
   const classes = useStyles();
 
   return (
-    <AchieveRateWrapper>
+    <AchieveRateWrapper padding={padding}>
       <span className={classes.achieveRateText}>목표 달성률</span>
       <BorderLinearProgress variant="determinate" value={achieveRate} />
     </AchieveRateWrapper>

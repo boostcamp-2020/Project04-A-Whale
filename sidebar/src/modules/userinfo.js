@@ -23,7 +23,7 @@ const initialState = {
   },
 };
 
-const buckets = handleActions(
+const userInfo = handleActions(
   {
     [GET_USERBUCKETS_SUCCESS]: (state, action) => ({
       ...state,
@@ -38,4 +38,4 @@ const buckets = handleActions(
   initialState
 );
 
-export default buckets;
+export default userInfo;
