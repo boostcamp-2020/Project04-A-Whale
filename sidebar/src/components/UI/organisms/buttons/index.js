@@ -1,12 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import BucketCreateButton from '../../molecules/bucket_create_button';
-
-const ButtonsWrapper = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 15px;
-`;
+import ButtonsWrapper from './style';
 
 const Buttons = () => {
   return (
