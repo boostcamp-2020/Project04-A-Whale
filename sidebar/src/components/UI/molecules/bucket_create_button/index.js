@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import StyledButton from '../../atoms/styled_button';
 import { createBucket } from '../../../../lib/api';
 import { resetBucketAction } from '../../../../modules/actions/createbucket';
+import style from './style';
 
 const BucketCreateButton = ({
   storeTitle,
@@ -12,14 +13,7 @@ const BucketCreateButton = ({
   resetBucketActionConnect,
 }) => {
   const history = useHistory();
-  const style = {
-    margin: '15px',
-    minWidth: '120px',
-    minHeight: '30px',
-    backgroundColor: 'blue',
-    color: 'white',
-    fontWeight: 'bold',
-  };
+  
 
   const disabled = storeTitle.length * storeDetails.length === 0;
 
