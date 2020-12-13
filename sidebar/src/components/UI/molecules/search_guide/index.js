@@ -13,7 +13,7 @@ const SearchGuide = ({ isHover }) => {
       <span className={classes.title}>다른 사람들의 목표가 궁금하신가요?</span>
       <br />
       <span className={classes.desc}>
-        검색기능을 이용하여 다른 사람들의 목표를 볼수있고
+        검색기능을 이용하여 다른 사람들의 목표를 볼 수 있고
         <br />
         불러와서 내 마음대로 수정할 수 있습니다.
       </span>
