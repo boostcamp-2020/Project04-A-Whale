@@ -5,7 +5,6 @@ import { BucketListItemWrapper, BucketTitleTextWrapper } from './style';
 import HoverButton from '../../atoms/hover_button';
 import ConfirmDialog from '../confirm_dialog';
 import { updateBucketStatus } from '../../../../modules/buckets';
-import Text from '../../atoms/text';
 import { OPEN, GIVEUP } from '../../../../constants/status';
 
 const BucketListItem = ({ bucket }) => {

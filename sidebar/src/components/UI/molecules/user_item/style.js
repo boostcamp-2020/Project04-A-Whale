@@ -6,7 +6,10 @@ const useStyle = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    margin: '8px',
+    margin: '8px 0px 0px 0px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 }));
 

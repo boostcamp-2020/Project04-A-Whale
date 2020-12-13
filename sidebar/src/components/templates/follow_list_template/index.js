@@ -1,27 +1,83 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import { useSelector } from 'react-redux';
+import useStyles from './style';
+import UserItem from '../../UI/molecules/user_item';
 import UserSearch from '../../UI/organisms/user_search';
-import FollowTabBar from '../../UI/organisms/follow_tab_bar';
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-}));
+const TabPanel = ({ users, value, index }) => {
+  const classes = useStyles();
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+    >
+      {value !== 2 && value === index && users && users.map((user) => <UserItem user={user} />)}
+      {value === 2 && value === index && (
+        <>
+          <UserSearch />
+          {users ? (
+            users.map((user) => <UserItem user={user} />)
+          ) : (
+            <span className={classes.noResult}>검색 결과가 없습니다</span>
+          )}
+        </>
+      )}
+    </div>
+  );
+};
 
 const FollowListTemplate = ({ followed, following }) => {
   const classes = useStyles();
+  const searchResult = useSelector((state) => state.follow.search);
   const [value, setValue] = useState(0);
+  const tabItems = [`팔로우`, `팔로워`, `사용자 검색`];
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const getIdAndAriaControls = (index) => {
+    return {
+      id: `full-width-tab-${index}`,
+      'aria-controls': `full-width-tabpanel-${index}`,
+    };
+  };
+
+  const getUsers = (value) => {
+    if (value === '팔로우') return following;
+    if (value === '팔로워') return followed;
+    return searchResult;
+  };
+
   return (
-    <>
+    <main className={classes.root}>
       <div className={classes.header} />
-      <UserSearch setValue={setValue} />
-      <FollowTabBar value={value} setValue={setValue} followed={followed} following={following} />
-    </>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          aria-label="full width tabs example"
+        >
+          {tabItems.map((v, i) => (
+            <Tab className={classes.text} key={i} label={v} {...getIdAndAriaControls(i)} />
+          ))}
+        </Tabs>
+      </AppBar>
+      <div>
+        {tabItems.map((v, i) => (
+          <TabPanel key={i} value={value} index={i} users={getUsers(v)} />
+        ))}
+      </div>
+    </main>
   );
 };
 

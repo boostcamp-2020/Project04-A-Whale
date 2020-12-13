@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import UserItem from '../../molecules/user_item';
 import Span from '../../atoms/span';
 
@@ -15,7 +15,7 @@ const FollowTabBar = ({ value, setValue, followed, following }) => {
 
   return (
     <>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="primary">
         <Tabs value={value} onChange={tabClickHandler}>
           {tabLabels.map((label, i) => (
             <Tab key={i} label={label} />
