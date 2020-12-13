@@ -4,24 +4,7 @@ import { connect } from 'react-redux';
 import { inputDescAction, inputTitleAction } from '../../../../modules/actions/createbucket';
 import BucketDescription from '../../molecules/bucket_decription';
 import BucketTitle from '../../molecules/bucket_title';
-
-const BucketContentsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 15px;
-`;
-
-const titleStyle = {
-  width: '100%',
-};
-
-const decriptionStyle = {
-  marginTop: '15px',
-  width: '100%',
-  rows: 4,
-  rowsMax: 10,
-};
+import { BucketContentsWrapper, titleStyle, decriptionStyle } from './style';
 
 const BucketContents = ({
   storeTitle,
