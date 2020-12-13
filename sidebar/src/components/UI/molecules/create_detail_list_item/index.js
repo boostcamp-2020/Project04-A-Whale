@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import Span from '../../atoms/span';
@@ -10,38 +9,10 @@ import {
   updateDetailDueAction,
 } from '../../../../modules/actions/createbucket';
 
-const DetailListItemWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  vertical-align: middle;
-  border: 1.5px;
-  border-right: 0px;
-  border-left: 0px;
-  border-style: ridge;
-  padding: 15px;
-  font-size: 14px;
-`;
+import { DetailListItemWrapper, DatePicker, RemoveIcon, rootStyle } from './style';
 
-const DatePicker = {
-  position: 'absolute',
-  right: '18%',
-  padding: '1px',
-  margin: '-5px',
-};
-
-const RemoveIcon = {
-  position: 'absolute',
-  right: '4%',
-  padding: '1px',
-  backgroundColor: 'white',
-  height: '20px',
-};
 
 const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActionConnect }) => {
-  const style = {
-    color: 'inherit',
-  };
 
   const onClickHandler = () => {
     removeDetailActionConnect(detail.title);
@@ -53,8 +24,6 @@ const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActi
       dueDate: e.target.value,
     });
   };
-
-  console.log(detail);
 
   const content = (
     <DetailListItemWrapper>
@@ -77,7 +46,7 @@ const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActi
       />
     </DetailListItemWrapper>
   );
-  return <Span style={style} content={content} />;
+  return <Span style={rootStyle} content={content} />;
 };
 
 const mapStateToProps = () => ({});
