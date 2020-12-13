@@ -121,7 +121,7 @@ export const getFollowedUsers = (no) => axios.get('/api/follows/followedusers');
 export const getFollowingUsers = (no) => axios.get('/api/follows/followingusers');
 export const searchUser = (keyword) => axios.get(`/api/users/search?keyword=${keyword}`);
 export const getUserInfo = (no) => axios.get(`/api/users/info/${no}`);
-export const isFollowing = ({following, followed}) =>
+export const isFollowing = ({ following, followed }) =>
   axios.get(`/api/follows/isfollowing?following=${following}&followed=${followed}`);
 
 // feed

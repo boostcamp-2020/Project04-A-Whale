@@ -28,12 +28,12 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     fontSize: '3rem',
     fontWeight: 'bold',
-    fontFamily: 'Nanum Brush Script, sans-serif !important',
+    // fontFamily: 'Nanum Brush Script, sans-serif !important',
   },
   date: {
     padding: theme.spacing(2),
     fontSize: '1.5rem',
-    fontFamily: 'Nanum Brush Script, sans-serif !important',
+    // fontFamily: 'Nanum Brush Script, sans-serif !important',
   },
   description: {
     padding: theme.spacing(3),

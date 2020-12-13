@@ -5,6 +5,9 @@ const useStyles = makeStyles(() => ({
   datePicker: {
     marginLeft: '10px',
   },
+  titleText: {
+    fontSize: 20,
+  },
 }));
 
 const DetailTextWrapper = styled.div`

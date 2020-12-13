@@ -53,7 +53,7 @@ const MenuDrawer = ({ open, toggleDrawer }) => {
                 <Avatar className={classes.avatar} alt="profile-img" src="/empty-user.png" />
                 <UserInfoWrapper>
                   <span className={classes.nickname}>{user.nickname}</span>
-                  <span className={classes.rankText}>랭크: {user.rank}</span>
+                  {/* <span className={classes.rankText}>랭크: {user.rank}</span> */}
                 </UserInfoWrapper>
               </ListItem>
               <FollowerWrapper>
@@ -68,7 +68,7 @@ const MenuDrawer = ({ open, toggleDrawer }) => {
                 <Link to={item.path} style={{ textDecoration: 'none' }} key={index}>
                   <ListItem button key={index}>
                     <ListItemIcon className={classes.listIcon}>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.title} style={{ color: '#000000' }} />
+                    <span className={classes.menuText}>{item.title}</span>
                   </ListItem>
                 </Link>
               ))}

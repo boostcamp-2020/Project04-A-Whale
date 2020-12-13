@@ -7,7 +7,7 @@ const RefreshButton = ({ handleRefresh }) => {
   const classes = useStyles();
 
   return (
-    <Fab color="primary" aria-label="refresh" className={classes.fab} onClick={handleRefresh}>
+    <Fab color="secondary" aria-label="refresh" className={classes.fab} onClick={handleRefresh}>
       <RefreshIcon />
     </Fab>
   );

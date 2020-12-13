@@ -57,7 +57,7 @@ const BucketListItem = ({ bucket }) => {
     >
       {getIcon()}
       <BucketTitleTextWrapper onClick={() => history.push(`/detail/${bucket.no}`)}>
-        <Text value={bucket.title} fontSize="16px" />
+        {bucket.title}
       </BucketTitleTextWrapper>
       {hidden ? null : getButton()}
       <ConfirmDialog

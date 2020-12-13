@@ -7,7 +7,6 @@ const pathURI = {
   follow: '/follow',
   userInfo: '/userinfo/:userNo',
   achieveCreate: '/achieves/:bucketNo/create',
-  follow: '/follow',
   feed: '/feed',
   setting: '/setting',
   logout: '/logout',

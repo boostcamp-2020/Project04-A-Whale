@@ -107,7 +107,7 @@ const DetailListItem = ({ detail, handleToggle, checked, isAchieve }) => {
             </ListItemIcon>
           )}
           <DetailTextWrapper>
-            <ListItemText primary={<Typography type="body2">{title}</Typography>} />
+            <span className={classes.titleText}>{title}</span>
             <ListItemText secondary={selectedDate} />
           </DetailTextWrapper>
           {isAchieve ? null : (

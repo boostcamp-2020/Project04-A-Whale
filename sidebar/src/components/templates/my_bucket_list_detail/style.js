@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,9 +21,11 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     paddingTop: theme.spacing(3),
-    fontSize: '2rem',
+    // fontSize: '1.5rem',
+    // fontWeight: 'bold',
+    fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'Nanum Brush Script, sans-serif !important',
+    // fontFamily: 'Nanum Brush Script, sans-serif !important',
   },
   achieve: {
     '&>div': {

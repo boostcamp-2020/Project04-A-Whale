@@ -58,7 +58,7 @@ const MyBucketList = ({ buckets }) => {
           aria-label="full width tabs example"
         >
           {tabItems.map((v, i) => (
-            <Tab key={i} label={v} {...getIdAndAriaControls(i)} />
+            <Tab className={classes.text} key={i} label={v} {...getIdAndAriaControls(i)} />
           ))}
         </Tabs>
       </AppBar>

@@ -3,16 +3,16 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import { useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
 import SearchResultItem from '../search_result_item';
 import Span from '../../atoms/span';
-import StyledButton from '../../atoms/styled_button';
-import useStyle, { loadButton, guide, presetItem, presetItemDetail } from './style';
+import { useStyles, guide, presetItem, presetItemDetail, ButtonWrapper } from './style';
 import { getPresets } from '../../../../lib/api';
 import { loadPresetAction } from '../../../../modules/actions/createbucket';
 
 const BucketSearchModal = ({ modalClose }) => {
   const dispatch = useDispatch();
-  const classes = useStyle();
+  const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const [presets, setPresets] = useState([]);
   const [boldWord, setBoldWord] = useState('');
@@ -29,7 +29,7 @@ const BucketSearchModal = ({ modalClose }) => {
       setPresets(data.splice(0, 4));
       setLoading(false);
       setBoldWord(e.target.value);
-    }, 2000);
+    }, 1000);
   };
 
   const loadButtonHandler = () => {
@@ -56,7 +56,6 @@ const BucketSearchModal = ({ modalClose }) => {
   return (
     <div className={classes.ModalWrapper}>
       <Autocomplete
-        id="combo-box-demo"
         options={data}
         filterOptions={(options, state) => options}
         getOptionLabel={(option) => option.title}
@@ -84,14 +83,19 @@ const BucketSearchModal = ({ modalClose }) => {
           </>
         )}
       </Card>
-      <StyledButton
-        type="Text"
-        style={loadButton}
-        variant="contained"
-        content="가져오기"
-        onClickHandler={loadButtonHandler}
-        disabled={Object.keys(selected).length === 0}
-      />
+      <ButtonWrapper>
+        <Button className={classes.cancelButton} variant="contained" onClick={modalClose}>
+          닫기
+        </Button>
+        <Button
+          className={classes.loadButton}
+          variant="contained"
+          onClickHandler={loadButtonHandler}
+          disabled={Object.keys(selected).length === 0}
+        >
+          가져오기
+        </Button>
+      </ButtonWrapper>
     </div>
   );
 };
