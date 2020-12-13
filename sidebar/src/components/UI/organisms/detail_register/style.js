@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
 const useStyles = makeStyles(() => ({
-  datePicker: {
-    marginLeft: '10px',
+  datailInput: {
+    marginRight: '20px',
   },
 }));
 

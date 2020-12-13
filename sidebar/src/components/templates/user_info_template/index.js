@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import UserInfo from '../../UI/organisms/user_info';
 import FollowButton from '../../UI/molecules/follow_button';

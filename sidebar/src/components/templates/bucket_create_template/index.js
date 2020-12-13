@@ -44,38 +44,33 @@ const BucketCreateTemplate = () => {
   const [isHover, setHover] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const onClickHandler = () => setOpen(true);
-  const modalClose = () => setOpen(false);
-  const onHoverEvent = () => setHover(true);
-  const onLeaveEvent = () => setHover(false);
-
   return (
     <main className={classes.root}>
       <div className={classes.header} />
       <SearchButtonWrapper>
         <Button
           variant="outlined"
-          onClick={onClickHandler}
-          onMouseOver={onHoverEvent}
-          onMouseLeave={onLeaveEvent}
+          onClick={() => setOpen(true)}
+          onMouseOver={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
         >
           다른 사용자의 목표 검색 🔍
         </Button>
         <SearchGuide isHover={isHover} />
+        <Modal
+          open={open}
+          onClose={() => setOpen(false)}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          <BucketSearchModal modalClose={() => setOpen(false)} />
+        </Modal>
       </SearchButtonWrapper>
       <BucketCreateTemplateWrapper>
         <BucketContents />
         <CreateDetailList />
         <Buttons />
       </BucketCreateTemplateWrapper>
-      <Modal
-        open={open}
-        onClose={modalClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        <BucketSearchModal modalClose={modalClose} />
-      </Modal>
     </main>
   );
 };

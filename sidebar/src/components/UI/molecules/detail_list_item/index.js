@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import CreateIcon from '@material-ui/icons/Create';
 import RemoveIcon from '@material-ui/icons/Remove';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CancelSaveButton from '../cancle_save_button';
+import DatePicker from '../../atoms/date_picker';
 import ConfirmDialog from '../confirm_dialog';
 import { deleteDetail, updateDetailInfo } from '../../../../modules/details';
 import getFormatData from '../../../../lib/date';
@@ -63,27 +60,14 @@ const DetailListItem = ({ detail, handleToggle, checked, isAchieve }) => {
         <>
           <InputWrapper>
             <TextField
-              id="outlined-basic"
+              className={classes.datailInput}
               margin="dense"
               variant="outlined"
               fullWidth
               value={title}
               onChange={handleChange}
             />
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
-                className={classes.datePicker}
-                disableToolbar
-                variant="inline"
-                format="yyyy-MM-dd"
-                margin="normal"
-                value={selectedDate}
-                onChange={handleDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              />
-            </MuiPickersUtilsProvider>
+            <DatePicker date={selectedDate} handler={handleDateChange} />
           </InputWrapper>
           <CancelSaveButton handleCancel={handleCancel} handleSave={handleSave} />
         </>

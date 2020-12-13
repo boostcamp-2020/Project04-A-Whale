@@ -2,7 +2,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import styled from 'styled-components';
 
-const BorderLinearProgress = withStyles((theme) => ({
+const BorderLinearProgress = withStyles(() => ({
   root: {
     width: 255,
     height: 10,

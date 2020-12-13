@@ -57,7 +57,7 @@ const BucketSearchModal = ({ modalClose }) => {
     <div className={classes.ModalWrapper}>
       <Autocomplete
         options={data}
-        filterOptions={(options, state) => options}
+        filterOptions={(options) => options}
         getOptionLabel={(option) => option.title}
         getOptionDisabled={() => loading}
         style={{ width: '400px' }}
@@ -90,7 +90,7 @@ const BucketSearchModal = ({ modalClose }) => {
         <Button
           className={classes.loadButton}
           variant="contained"
-          onClickHandler={loadButtonHandler}
+          onClick={loadButtonHandler}
           disabled={Object.keys(selected).length === 0}
         >
           가져오기

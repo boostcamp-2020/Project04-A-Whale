@@ -13,6 +13,7 @@ const BucketContentsWrapper = styled.div`
 
 const titleStyle = {
   width: '100%',
+  marginTop: '10px',
 };
 
 const decriptionStyle = {

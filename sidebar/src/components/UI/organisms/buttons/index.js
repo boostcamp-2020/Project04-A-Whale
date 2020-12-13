@@ -5,7 +5,7 @@ import BucketCreateButton from '../../molecules/bucket_create_button';
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
-  padding: 15px;
+  margin-top: 15px;
 `;
 
 const Buttons = () => {

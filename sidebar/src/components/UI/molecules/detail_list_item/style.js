@@ -8,6 +8,9 @@ const useStyles = makeStyles(() => ({
   titleText: {
     fontSize: 20,
   },
+  datailInput: {
+    marginRight: 20,
+  },
 }));
 
 const DetailTextWrapper = styled.div`

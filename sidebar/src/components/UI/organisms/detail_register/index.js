@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { createDetail } from '../../../../modules/details';
+import DatePicker from '../../atoms/date_picker';
 import { useStyles, NewTodoWrapper } from './style';
 
 const DetailRegister = ({ bucket }) => {
@@ -32,7 +30,7 @@ const DetailRegister = ({ bucket }) => {
   return (
     <NewTodoWrapper>
       <TextField
-        id="outlined-basic"
+        className={classes.datailInput}
         margin="dense"
         variant="outlined"
         fullWidth
@@ -40,20 +38,7 @@ const DetailRegister = ({ bucket }) => {
         value={title}
         onChange={handleChange}
       />
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
-          className={classes.datePicker}
-          disableToolbar
-          variant="inline"
-          format="yyyy-MM-dd"
-          margin="normal"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
-      </MuiPickersUtilsProvider>
+      <DatePicker date={selectedDate} handler={handleDateChange} />
       <IconButton edge="end" aria-label="add" onClick={handleSave}>
         <AddCircleIcon fontSize="large" />
       </IconButton>
