@@ -110,8 +110,7 @@ private extension DetailListViewController {
     }
     
     func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> {
-            (cell, indexPath, item) in
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> { (cell, _, item) in
             var content = cell.defaultContentConfiguration()
             content.text = "목표: \(item.title)"
             content.secondaryText = "만료일: \(item.dueDate)"
@@ -119,8 +118,7 @@ private extension DetailListViewController {
             cell.backgroundConfiguration?.backgroundColor = .systemBackground
         }
         
-        dataSource = UICollectionViewDiffableDataSource<RealmDetail.Section, RealmDetail>(collectionView: collectionView) {
-            (collectionView, indexPath, item) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<RealmDetail.Section, RealmDetail>(collectionView: collectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
         }
         
@@ -128,8 +126,7 @@ private extension DetailListViewController {
     }
     
     func configureHeaderView() {
-        dataSource.supplementaryViewProvider = { [weak self]
-            (collectionView, kind, indexPath) -> UICollectionReusableView? in
+        dataSource.supplementaryViewProvider = { [weak self] (collectionView, kind, indexPath) -> UICollectionReusableView? in
             let sectionIdentifier = self?.dataSource?.snapshot().sectionIdentifiers[indexPath.section].rawValue
             
             if kind == UICollectionView.elementKindSectionHeader {
@@ -139,7 +136,6 @@ private extension DetailListViewController {
                         return nil
                     }
                     headerView.titleLabel.text = sectionIdentifier
-                    
                     headerView.rightButtonHandler = { [weak self] in
                         self?.configureSuccessHandler()
                     }

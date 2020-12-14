@@ -9,3 +9,4 @@ disabled_rules:
 - empty_enum_arguments
 - void_return
 - redundant_void_return
+- cyclomatic_complexity

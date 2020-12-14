@@ -58,7 +58,7 @@ class DetailListAddViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             self?.view.endEditing(true)
-        }, completion: { [weak self] success in
+        }, completion: { [weak self] _ in
             self?.dismiss(animated: false, completion: nil)
         })
     }
