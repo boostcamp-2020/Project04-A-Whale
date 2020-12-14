@@ -30,6 +30,4 @@ class BucketListSearchUseCase: SearchUseCase {
             handler(buckets)
         }
     }
-    
-    
 }

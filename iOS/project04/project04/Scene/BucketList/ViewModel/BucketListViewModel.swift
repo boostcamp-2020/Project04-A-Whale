@@ -12,7 +12,7 @@ protocol BucketListViewModelProtocol {
     var buckets: [RealmBucket.Section: [RealmBucket]]? { get set }
     var count: Int { get }
     var handler: (([RealmBucket.Section: [RealmBucket]]?) -> Void)? { get set }
-    func fetch() ->Void
+    func fetch() -> Void
     func append(bucket: RealmBucket) -> Void
     func revise(at index: Int) -> Void
     func autoIncreaseIdValue() -> Int

@@ -75,7 +75,9 @@ extension BucketListViewController: UICollectionViewDelegate {
     }
 
     private func configureDataSource(collectionView: UICollectionView,
-                             cellProvider: @escaping (UICollectionView, IndexPath, RealmBucket) -> UICollectionViewListCell?) {
+                                     cellProvider: @escaping (UICollectionView,
+                                                              IndexPath,
+                                                              RealmBucket) -> UICollectionViewListCell?) {
         dataSource = DataSource(collectionView: collectionView, cellProvider: cellProvider)
     }
     
@@ -85,15 +87,13 @@ extension BucketListViewController: UICollectionViewDelegate {
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         configuration.headerMode = .supplementary
         let headerRegistration = UICollectionView.SupplementaryRegistration
-        <UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) {
-            [unowned self] (headerView, elementKind, indexPath) in
-            let headerItem = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
+        <UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, _, indexPath) in
+            let headerItem = self?.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
             var configuration = headerView.defaultContentConfiguration()
             configuration.text = headerItem?.rawValue
             headerView.contentConfiguration = configuration
         }
-        dataSource?.supplementaryViewProvider = { [unowned self]
-            (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
+        dataSource?.supplementaryViewProvider = { [unowned self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
             if elementKind == UICollectionView.elementKindSectionHeader {
                 return self.collectionView.dequeueConfiguredReusableSupplementary(
                     using: headerRegistration, for: indexPath)

@@ -23,15 +23,14 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
     }
     var didChangeBucket: ((RealmBucket) -> Void)?
     
-    var list: [RealmDetail.Section : [RealmDetail]] = [:] {
+    var list: [RealmDetail.Section: [RealmDetail]] = [:] {
         didSet {
             listDidChange?(self)
         }
     }
     
     var usecase: DetailListUseCaseProtocol
-    var listDidChange: ((DetailListViewModelProtocol) -> ())?
-    
+    var listDidChange: ((DetailListViewModelProtocol) -> Void)?
     
     init(usecase: DetailListUseCaseProtocol) {
         self.usecase = usecase
@@ -80,10 +79,8 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
             switch result {
             case .success(_):
                 completion(true)
-                break
             case .failure(_):
                 completion(false)
-                break
             }
         }
         
