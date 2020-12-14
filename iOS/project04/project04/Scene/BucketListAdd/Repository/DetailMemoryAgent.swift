@@ -10,7 +10,7 @@ import Foundation
 class DetailMemoryAgent: LocalService {
     typealias Item = RealmDetail
     
-    var list = [RealmDetail]()
+    private var list = [RealmDetail]()
     func load() -> [RealmDetail] {
         return list
     }
