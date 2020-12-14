@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import CreateIcon from '@material-ui/icons/Create';
 import Button from '@material-ui/core/Button';
 import CancelSaveButton from '../../molecules/cancle_save_button';
 import { updateBucketInfo } from '../../../../modules/buckets';
 import ConfirmDialog from '../../molecules/confirm_dialog';
 import { useStyles, TitleWrapper } from './style';
+import ModifyButton from '../../atoms/modify_button';
 
 const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
   const classes = useStyles();
@@ -89,7 +89,7 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
             </Typography>
             {isAchieve ? null : (
               <>
-                <CreateIcon onClick={handleClick} />
+                <ModifyButton onClick={handleClick} />
                 <Button
                   className={classes.achieveButton}
                   variant="outlined"

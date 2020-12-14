@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
   },
   description: {
     padding: '8px',
-    fontSize: '1rem',
+    fontSize: '1.2rem',
     '&:hover': {
       cursor: 'default',
     },
@@ -28,7 +28,8 @@ const useStyles = makeStyles(() => ({
     color: '#555555',
   },
   achieveButton: {
-    marginLeft: '10px',
+    marginLeft: 10,
+    fontSize: 16,
   },
 }));
 

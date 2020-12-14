@@ -60,16 +60,16 @@ const DetailList = ({ details, handleAchieveButton, isAchieve }) => {
     <>
       {isAchieve ? (
         <>
-          <Typography className={classes.text}>상세 목표</Typography>
+          <Typography className={classes.text}>📑 상세 목표</Typography>
           <Divider />
           <List className={classes.list}>{getDetailListItem(achieveDetails)}</List>
         </>
       ) : (
         <>
-          <Typography className={classes.text}>진행중</Typography>
+          <Typography className={classes.text}>⏳ 진행중</Typography>
           <Divider />
           <List className={classes.list}>{getDetailListItem(openDetails)}</List>
-          <Typography className={classes.text}>달성</Typography>
+          <Typography className={classes.text}>🎉 달성</Typography>
           <Divider />
           <List className={classes.list}>{getDetailListItem(achieveDetails)}</List>
         </>
