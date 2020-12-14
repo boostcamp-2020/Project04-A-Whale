@@ -84,6 +84,19 @@
 		C175D1A4256CD242001144F0 /* project04Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D1A3256CD242001144F0 /* project04Tests.swift */; };
 		C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */; };
 		C1900D8C256B910F0071E8C7 /* DetailListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */; };
+		C19696A825879C7C0095D470 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19696A725879C7C0095D470 /* WidgetKit.framework */; };
+		C19696AA25879C7C0095D470 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19696A925879C7C0095D470 /* SwiftUI.framework */; };
+		C19696AD25879C7C0095D470 /* Project04Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19696AC25879C7C0095D470 /* Project04Widget.swift */; };
+		C19696AF25879C7D0095D470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C19696AE25879C7D0095D470 /* Assets.xcassets */; };
+		C19696B325879C7D0095D470 /* Project04WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C19696A625879C7C0095D470 /* Project04WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C19696BB25879F910095D470 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8ACB6257F721B00041785 /* NetworkService.swift */; };
+		C19696BF25879F9D0095D470 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EF0256E1A570037C805 /* NetworkError.swift */; };
+		C19696C325879FA00095D470 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285704A257F77BF00E3FEA9 /* Endpoint.swift */; };
+		C19696C725879FA30095D470 /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C168DD962580EBC100EE3849 /* UserToken.swift */; };
+		C19696CB25879FAD0095D470 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EF4256E1B8B0037C805 /* HTTPMethod.swift */; };
+		C19696CF2587A6AA0095D470 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285704E257FBA4300E3FEA9 /* Response.swift */; };
+		C19696DB2587AE4C0095D470 /* extension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19696DA2587AE4C0095D470 /* extension+UserDefaults.swift */; };
+		C19696E22587BB8F0095D470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1655C9D256B7ED30067E3C5 /* Assets.xcassets */; };
 		C1BFAD05257613F500BDEF93 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFAD04257613F500BDEF93 /* RoundView.swift */; };
 		C1BFAD0B25761BF300BDEF93 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFAD0A25761BF300BDEF93 /* RoundButton.swift */; };
 		C1BFAD10257631F400BDEF93 /* DefaultAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFAD0F257631F400BDEF93 /* DefaultAlertViewController.swift */; };
@@ -103,7 +116,28 @@
 			remoteGlobalIDString = C1655C90256B7ED10067E3C5;
 			remoteInfo = project04;
 		};
+		C19696B125879C7D0095D470 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1655C89256B7ED10067E3C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C19696A525879C7C0095D470;
+			remoteInfo = Project04WidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C19696B425879C7D0095D470 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C19696B325879C7D0095D470 /* Project04WidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		331A739A467DFE1643A7FAD2 /* Pods-project04.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project04.release.xcconfig"; path = "Target Support Files/Pods-project04/Pods-project04.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +222,15 @@
 		C175D1A5256CD242001144F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1900D7D256B85ED0071E8C7 /* DetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListViewController.swift; sourceTree = "<group>"; };
 		C1900D8B256B910F0071E8C7 /* DetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailListViewModel.swift; path = project04/Scene/DetailList/ViewModel/DetailListViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C19696A625879C7C0095D470 /* Project04WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Project04WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C19696A725879C7C0095D470 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		C19696A925879C7C0095D470 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		C19696AC25879C7C0095D470 /* Project04Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project04Widget.swift; sourceTree = "<group>"; };
+		C19696AE25879C7D0095D470 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C19696B025879C7D0095D470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C19696D52587AD230095D470 /* project04.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = project04.entitlements; sourceTree = "<group>"; };
+		C19696D62587AD470095D470 /* Project04WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project04WidgetExtension.entitlements; sourceTree = "<group>"; };
+		C19696DA2587AE4C0095D470 /* extension+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UserDefaults.swift"; sourceTree = "<group>"; };
 		C1BFAD04257613F500BDEF93 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		C1BFAD0A25761BF300BDEF93 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		C1BFAD0F257631F400BDEF93 /* DefaultAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlertViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +259,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C19696A325879C7C0095D470 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C19696AA25879C7C0095D470 /* SwiftUI.framework in Frameworks */,
+				C19696A825879C7C0095D470 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -232,6 +284,8 @@
 			isa = PBXGroup;
 			children = (
 				549A8B673E411EE0B839D8C7 /* Pods_project04.framework */,
+				C19696A725879C7C0095D470 /* WidgetKit.framework */,
+				C19696A925879C7C0095D470 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -453,9 +507,11 @@
 		C1655C88256B7ED10067E3C5 = {
 			isa = PBXGroup;
 			children = (
+				C19696D62587AD470095D470 /* Project04WidgetExtension.entitlements */,
 				C11AC45F256B7F8B00E45667 /* .swiftlint.yml */,
 				C1655C93256B7ED10067E3C5 /* project04 */,
 				C175D1A2256CD242001144F0 /* project04Tests */,
+				C19696AB25879C7C0095D470 /* Project04Widget */,
 				C1655C92256B7ED10067E3C5 /* Products */,
 				2578609F17D298AAE7C6B0C1 /* Pods */,
 				594C3BC60F3CE7E204207FE6 /* Frameworks */,
@@ -467,6 +523,7 @@
 			children = (
 				C1655C91256B7ED10067E3C5 /* project04.app */,
 				C175D1A1256CD242001144F0 /* project04Tests.xctest */,
+				C19696A625879C7C0095D470 /* Project04WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -474,6 +531,7 @@
 		C1655C93256B7ED10067E3C5 /* project04 */ = {
 			isa = PBXGroup;
 			children = (
+				C19696D52587AD230095D470 /* project04.entitlements */,
 				C1655CA2256B7ED30067E3C5 /* Info.plist */,
 				C1E6C4152574D41600BD4B4B /* Coordinator */,
 				C1900D79256B84C70071E8C7 /* App */,
@@ -632,6 +690,16 @@
 			path = DetailList;
 			sourceTree = "<group>";
 		};
+		C19696AB25879C7C0095D470 /* Project04Widget */ = {
+			isa = PBXGroup;
+			children = (
+				C19696AC25879C7C0095D470 /* Project04Widget.swift */,
+				C19696AE25879C7D0095D470 /* Assets.xcassets */,
+				C19696B025879C7D0095D470 /* Info.plist */,
+			);
+			path = Project04Widget;
+			sourceTree = "<group>";
+		};
 		C1BFAD03257613E700BDEF93 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +714,7 @@
 			isa = PBXGroup;
 			children = (
 				C1BFAD0F257631F400BDEF93 /* DefaultAlertViewController.swift */,
+				C19696DA2587AE4C0095D470 /* extension+UserDefaults.swift */,
 				C1BFAD152576340800BDEF93 /* extension+UIDatePicker.swift */,
 				C168BF602576873700A1A338 /* extension+Date.swift */,
 				C15F33602577BC9E0032EACF /* extension+String.swift */,
@@ -682,10 +751,12 @@
 				C1655C8F256B7ED10067E3C5 /* Resources */,
 				CA16B30F5314673F2287B2F5 /* [CP] Embed Pods Frameworks */,
 				82F108862586FAED009CB2A2 /* ShellScript */,
+				C19696B425879C7D0095D470 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C19696B225879C7D0095D470 /* PBXTargetDependency */,
 			);
 			name = project04;
 			productName = project04;
@@ -710,13 +781,30 @@
 			productReference = C175D1A1256CD242001144F0 /* project04Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C19696A525879C7C0095D470 /* Project04WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C19696B725879C7D0095D470 /* Build configuration list for PBXNativeTarget "Project04WidgetExtension" */;
+			buildPhases = (
+				C19696A225879C7C0095D470 /* Sources */,
+				C19696A325879C7C0095D470 /* Frameworks */,
+				C19696A425879C7C0095D470 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Project04WidgetExtension;
+			productName = Project04WidgetExtension;
+			productReference = C19696A625879C7C0095D470 /* Project04WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C1655C89256B7ED10067E3C5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1210;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					C1655C90256B7ED10067E3C5 = {
@@ -725,6 +813,9 @@
 					C175D1A0256CD242001144F0 = {
 						CreatedOnToolsVersion = 12.1;
 						TestTargetID = C1655C90256B7ED10067E3C5;
+					};
+					C19696A525879C7C0095D470 = {
+						CreatedOnToolsVersion = 12.2;
 					};
 				};
 			};
@@ -743,6 +834,7 @@
 			targets = (
 				C1655C90256B7ED10067E3C5 /* project04 */,
 				C175D1A0256CD242001144F0 /* project04Tests */,
+				C19696A525879C7C0095D470 /* Project04WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -776,6 +868,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C19696A425879C7C0095D470 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C19696E22587BB8F0095D470 /* Assets.xcassets in Resources */,
+				C19696AF25879C7D0095D470 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,6 +948,7 @@
 			files = (
 				C1269C99257F466300A5C1EC /* SettingViewController.swift in Sources */,
 				C1655C99256B7ED10067E3C5 /* BucketListViewController.swift in Sources */,
+				C19696DB2587AE4C0095D470 /* extension+UserDefaults.swift in Sources */,
 				C160C4E2257DCC6700578BE3 /* ImpressionViewModel.swift in Sources */,
 				C175AA8025752F72009D8103 /* DetailCoordinator.swift in Sources */,
 				C175AA7825752C57009D8103 /* DetailListAddViewController.swift in Sources */,
@@ -923,6 +1025,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C19696A225879C7C0095D470 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C19696BF25879F9D0095D470 /* NetworkError.swift in Sources */,
+				C19696BB25879F910095D470 /* NetworkService.swift in Sources */,
+				C19696CB25879FAD0095D470 /* HTTPMethod.swift in Sources */,
+				C19696C725879FA30095D470 /* UserToken.swift in Sources */,
+				C19696C325879FA00095D470 /* Endpoint.swift in Sources */,
+				C19696AD25879C7C0095D470 /* Project04Widget.swift in Sources */,
+				C19696CF2587A6AA0095D470 /* Response.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -930,6 +1046,11 @@
 			isa = PBXTargetDependency;
 			target = C1655C90256B7ED10067E3C5 /* project04 */;
 			targetProxy = C175D1A6256CD242001144F0 /* PBXContainerItemProxy */;
+		};
+		C19696B225879C7D0095D470 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C19696A525879C7C0095D470 /* Project04WidgetExtension */;
+			targetProxy = C19696B125879C7D0095D470 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1065,8 +1186,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA43E93461629E8CD0B41E3B /* Pods-project04.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = project04/project04.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = "$(SRCROOT)/project04/Info.plist";
@@ -1085,8 +1208,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 331A739A467DFE1643A7FAD2 /* Pods-project04.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = project04/project04.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = "$(SRCROOT)/project04/Info.plist";
@@ -1141,6 +1266,52 @@
 			};
 			name = Release;
 		};
+		C19696B525879C7D0095D470 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Project04WidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = Project04Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = namkibeom.project04.Project04Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C19696B625879C7D0095D470 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Project04WidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = Project04Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = namkibeom.project04.Project04Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1167,6 +1338,15 @@
 			buildConfigurations = (
 				C175D1A9256CD242001144F0 /* Debug */,
 				C175D1AA256CD242001144F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C19696B725879C7D0095D470 /* Build configuration list for PBXNativeTarget "Project04WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C19696B525879C7D0095D470 /* Debug */,
+				C19696B625879C7D0095D470 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

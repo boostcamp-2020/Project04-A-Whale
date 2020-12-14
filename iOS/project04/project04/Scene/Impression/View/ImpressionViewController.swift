@@ -25,8 +25,6 @@ class ImpressionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(bucketNo)
         impressionTextView.text = delegate?.impressionViewModel.impressionText
         isEdited = (impressionTextView.text != "")
         impressionTextView.delegate = self

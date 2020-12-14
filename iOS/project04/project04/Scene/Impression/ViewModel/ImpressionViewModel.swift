@@ -25,6 +25,7 @@ class ImpressionViewModel: ImpressionViewModelProtocol {
             self.textChange?(self)
         }
     }
+    
     var textChange: ((ImpressionViewModelProtocol) -> ())?
     
     required init(usecase: ImpressionUseCaseProtocol) {
