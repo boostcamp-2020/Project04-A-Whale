@@ -15,8 +15,8 @@ protocol BucketViewModelProtocol {
 }
 
 class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtocol {
-    var didChangeBucket: ((RealmBucket) -> Void)?
     var usecase: DetailListUseCaseProtocol
+    var didChangeBucket: ((RealmBucket) -> Void)?
     var listDidChange: ((DetailListViewModelProtocol) -> Void)?
     var list: [RealmDetail.Section: [RealmDetail]] = [:] {
         didSet {
