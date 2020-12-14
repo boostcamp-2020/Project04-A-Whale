@@ -95,7 +95,6 @@
 		C19696C725879FA30095D470 /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C168DD962580EBC100EE3849 /* UserToken.swift */; };
 		C19696CB25879FAD0095D470 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EF4256E1B8B0037C805 /* HTTPMethod.swift */; };
 		C19696CF2587A6AA0095D470 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285704E257FBA4300E3FEA9 /* Response.swift */; };
-		C19696DB2587AE4C0095D470 /* extension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19696DA2587AE4C0095D470 /* extension+UserDefaults.swift */; };
 		C19696E22587BB8F0095D470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1655C9D256B7ED30067E3C5 /* Assets.xcassets */; };
 		C1BFAD05257613F500BDEF93 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFAD04257613F500BDEF93 /* RoundView.swift */; };
 		C1BFAD0B25761BF300BDEF93 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFAD0A25761BF300BDEF93 /* RoundButton.swift */; };
@@ -230,7 +229,6 @@
 		C19696B025879C7D0095D470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C19696D52587AD230095D470 /* project04.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = project04.entitlements; sourceTree = "<group>"; };
 		C19696D62587AD470095D470 /* Project04WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project04WidgetExtension.entitlements; sourceTree = "<group>"; };
-		C19696DA2587AE4C0095D470 /* extension+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UserDefaults.swift"; sourceTree = "<group>"; };
 		C1BFAD04257613F500BDEF93 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		C1BFAD0A25761BF300BDEF93 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		C1BFAD0F257631F400BDEF93 /* DefaultAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlertViewController.swift; sourceTree = "<group>"; };
@@ -714,7 +712,6 @@
 			isa = PBXGroup;
 			children = (
 				C1BFAD0F257631F400BDEF93 /* DefaultAlertViewController.swift */,
-				C19696DA2587AE4C0095D470 /* extension+UserDefaults.swift */,
 				C1BFAD152576340800BDEF93 /* extension+UIDatePicker.swift */,
 				C168BF602576873700A1A338 /* extension+Date.swift */,
 				C15F33602577BC9E0032EACF /* extension+String.swift */,
@@ -948,7 +945,6 @@
 			files = (
 				C1269C99257F466300A5C1EC /* SettingViewController.swift in Sources */,
 				C1655C99256B7ED10067E3C5 /* BucketListViewController.swift in Sources */,
-				C19696DB2587AE4C0095D470 /* extension+UserDefaults.swift in Sources */,
 				C160C4E2257DCC6700578BE3 /* ImpressionViewModel.swift in Sources */,
 				C175AA8025752F72009D8103 /* DetailCoordinator.swift in Sources */,
 				C175AA7825752C57009D8103 /* DetailListAddViewController.swift in Sources */,
