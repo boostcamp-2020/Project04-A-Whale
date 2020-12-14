@@ -57,19 +57,19 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
     }
 }
 
-extension BucketListViewController {
-    private func createLayout(using configuration: UICollectionLayoutListConfiguration) -> UICollectionViewLayout {
+private extension BucketListViewController {
+    func createLayout(using configuration: UICollectionLayoutListConfiguration) -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout.list(using: configuration)
     }
 
-    private func configureDataSource(collectionView: UICollectionView,
-                                     cellProvider: @escaping (UICollectionView,
-                                                              IndexPath,
-                                                              RealmBucket) -> UICollectionViewListCell?) {
+    func configureDataSource(collectionView: UICollectionView,
+                             cellProvider: @escaping (UICollectionView,
+                                                      IndexPath,
+                                                      RealmBucket) -> UICollectionViewListCell?) {
         dataSource = DataSource(collectionView: collectionView, cellProvider: cellProvider)
     }
     
-    private func configureCollectionView() {
+    func configureCollectionView() {
         configureDataSource(collectionView: collectionView,
                             cellProvider: cellProvider(collectionView:indexPath:bucket:))
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -93,7 +93,7 @@ extension BucketListViewController {
         collectionView.delegate = self
     }
     
-    private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmBucket> {
+    func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmBucket> {
         return UICollectionView.CellRegistration<UICollectionViewListCell, RealmBucket> { (cell, _, bucket) in
             var content = cell.defaultContentConfiguration()
             content.text = bucket.title
@@ -106,9 +106,9 @@ extension BucketListViewController {
         }
     }
     
-    private func cellProvider(collectionView: UICollectionView,
-                              indexPath: IndexPath,
-                              bucket: RealmBucket) -> UICollectionViewListCell? {
+    func cellProvider(collectionView: UICollectionView,
+                      indexPath: IndexPath,
+                      bucket: RealmBucket) -> UICollectionViewListCell? {
         let cell = collectionView.dequeueConfiguredReusableCell(using: configureCell(), for: indexPath, item: bucket)
         
         return cell

@@ -36,10 +36,12 @@ class BucketListAddViewController: UIViewController {
             self?.sectionHeader?.configure(with: bucket)
         }
         bucketListAddViewModel.listDidChange = { [weak self] viewModel in
-            var snapshot = Snapshot()
-            snapshot.appendSections([.input, .todo])
-            snapshot.appendItems(viewModel.list[.todo] ?? [], toSection: .todo)
-            self?.dataSource?.apply(snapshot, animatingDifferences: false)
+            DispatchQueue.main.async {
+                var snapshot = Snapshot()
+                snapshot.appendSections([.input, .todo])
+                snapshot.appendItems(viewModel.list[.todo] ?? [], toSection: .todo)
+                self?.dataSource?.apply(snapshot, animatingDifferences: false)
+            }
         }
         bucketListAddViewModel.listFetchAction(with: nil)
     }
