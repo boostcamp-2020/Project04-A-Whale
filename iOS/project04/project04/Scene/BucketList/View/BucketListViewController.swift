@@ -15,23 +15,11 @@ protocol BucketListObserverDelegate: class {
 class BucketListViewController: UIViewController, BucketListObserverDelegate {
     typealias DataSource = UICollectionViewDiffableDataSource<RealmBucket.Section, RealmBucket>
     typealias Snapshot = NSDiffableDataSourceSnapshot<RealmBucket.Section, RealmBucket>
-    var dataSource: DataSource?
-    var coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator
     @IBOutlet weak var collectionView: UICollectionView!
-    var bucketListViewModel: BucketListViewModelProtocol {
-        didSet {
-            bucketListViewModel.handler = { [weak self] (data) in
-                var snapshot = Snapshot()
-                snapshot.appendSections([.todo, .done])
-                snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
-                snapshot.appendItems(data[.done] ?? [], toSection: .done)
 
-                DispatchQueue.main.async {
-                    self?.dataSource?.apply(snapshot, animatingDifferences: false)
-                }
-            }
-        }
-    }
+    private var dataSource: DataSource?
+    private var coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator
+    internal var bucketListViewModel: BucketListViewModelProtocol
     
     init?(coder: NSCoder, coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator, viewModel: BucketListViewModelProtocol) {
         self.coordinator = coordinator
@@ -41,6 +29,11 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bucketListViewModel.fetch()
     }
     
     override func viewDidLoad() {
@@ -59,17 +52,12 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        bucketListViewModel.fetch()
-    }
-    
     @IBAction func didTouchPlusButton(_ sender: UIBarButtonItem) {
         coordinator.pushToBucketListAdd(from: self)
     }
 }
 
-extension BucketListViewController: UICollectionViewDelegate {
+extension BucketListViewController {
     private func createLayout(using configuration: UICollectionLayoutListConfiguration) -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout.list(using: configuration)
     }
@@ -125,7 +113,9 @@ extension BucketListViewController: UICollectionViewDelegate {
         
         return cell
     }
-    
+}
+
+extension BucketListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var section: RealmBucket.Section?
         
