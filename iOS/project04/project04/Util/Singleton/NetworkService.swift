@@ -34,7 +34,7 @@ class NetworkService {
         
         let auth = AccessToken()
         if !auth.token.isEmpty {
-            request.setValue(auth.token, forHTTPHeaderField: "Authorization")
+            request.setValue("Bearer \(auth.token)", forHTTPHeaderField: "Authorization")
         }
         if let body = body {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
