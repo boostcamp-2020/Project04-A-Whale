@@ -78,11 +78,11 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.view.frame.origin.y = -150
+        view.frame.origin.y = -150
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.view.frame.origin.y = 0
+        view.frame.origin.y = 0
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -96,6 +96,6 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-         self.view.endEditing(true)
+         view.endEditing(true)
     }
 }

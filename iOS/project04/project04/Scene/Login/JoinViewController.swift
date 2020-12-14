@@ -53,14 +53,14 @@ class JoinViewController: UIViewController {
 }
 extension JoinViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.view.frame.origin.y = -150
+        view.frame.origin.y = -150
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.view.frame.origin.y = 0
+        view.frame.origin.y = 0
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-         self.view.endEditing(true)
+        view.endEditing(true)
     }
 }

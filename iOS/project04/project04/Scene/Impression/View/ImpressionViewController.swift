@@ -62,6 +62,7 @@ extension ImpressionViewController: UITextViewDelegate {
             textView.text = nil
         }
     }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             configureTextViewPlaceholder()

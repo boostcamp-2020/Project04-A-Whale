@@ -14,7 +14,7 @@ protocol ImpressionUseCaseProtocol {
 }
 
 class ImpressionUseCase: ImpressionUseCaseProtocol {
-    var repository: ImpressionRepositoryProtocol
+    private var repository: ImpressionRepositoryProtocol
     
     init(repository: ImpressionRepositoryProtocol) {
         self.repository = repository

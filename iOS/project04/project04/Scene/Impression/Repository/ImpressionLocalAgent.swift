@@ -11,10 +11,11 @@ import RealmSwift
 protocol ImpressionLocalAgentProtocol {
     func fetch(bucketNo: Int) -> RealmImpression?
     func save(_ element: RealmImpression)
-    func edit(element: RealmImpression, text: String)
+    func edit(element: RealmImpression?, text: String)
+    func sync(impression: RealmImpression?)
 }
 
-class ImpressionLocalAgent {
+class ImpressionLocalAgent: ImpressionLocalAgentProtocol {
     func fetch(bucketNo: Int) -> RealmImpression? {
         do {
             let realm = try Realm()
