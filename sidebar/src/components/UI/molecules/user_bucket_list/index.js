@@ -7,10 +7,10 @@ import UserBucketListItem from '../user_bucket_list_item';
 
 const UserBucketList = ({ buckets, value }) => {
   const classes = useStyles();
-  const { openBuckets, achieveBuckets, giveUpBuckets } = buckets;
+  const { openBuckets, achieveBuckets } = buckets;
 
   const getBucketListItem = (buckets) => {
-    return buckets.map((bucket) => <UserBucketListItem bucket={bucket} />);
+    return buckets.map((bucket) => <UserBucketListItem key={bucket.no} bucket={bucket} />);
   };
 
   const getBucketList = (buckets, text = null) => {

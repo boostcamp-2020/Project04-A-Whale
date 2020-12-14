@@ -13,7 +13,7 @@ const BucketListItemWrapper = styled.div`
   }
   .list-icon {
     margin-left: 10px;
-    font-size: 18px;
+    font-size: 20px;
   }
   border-bottom: 1px solid #eeeeee;
 `;
@@ -21,7 +21,7 @@ const BucketListItemWrapper = styled.div`
 const BucketTitleTextWrapper = styled.span`
   padding-left: 20px;
   flex: 6;
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 export { BucketListItemWrapper, BucketTitleTextWrapper };

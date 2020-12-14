@@ -2,34 +2,35 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import styled from 'styled-components';
 
-const BorderLinearProgress = withStyles((theme) => ({
+const BorderLinearProgress = withStyles(() => ({
   root: {
-    width: 255,
+    width: '100%',
     height: 10,
     borderRadius: 5,
-    marginLeft: 17,
   },
   colorPrimary: {
-    backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+    backgroundColor: '#d8e9ef',
   },
   bar: {
     borderRadius: 5,
-    backgroundColor: '#3f51b5',
+    backgroundColor: '#4ea1d3',
   },
 }))(LinearProgress);
 
 const useStyles = makeStyles(() => ({
   achieveRateText: {
+    fontSize: 20,
     '&:hover': {
       cursor: 'default',
     },
+    width: '30%',
   },
 }));
 
 const AchieveRateWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 17px;
+  padding: ${(props) => props.padding || '0px 17px 0px 17px'};
 `;
 
 export { useStyles, BorderLinearProgress, AchieveRateWrapper };

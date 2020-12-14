@@ -44,7 +44,6 @@ const SearchResultItem = ({ bucket, boldWord, selectFunc }) => {
     const next = right === text.length - 1 ? '' : text.substr(right + 1);
     return [pre, mid, next].map((text, i) => {
       if (i === 1) {
-        console.log(text, i);
         return <Span style={TitleStyleBold} content={text} />;
       }
       return <Span style={TitleStyle} content={text} />;

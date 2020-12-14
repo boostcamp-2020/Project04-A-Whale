@@ -4,19 +4,21 @@ import { deleteFollowing, setFollowing } from '../../../../lib/api';
 import StyledButton from '../../atoms/styled_button';
 
 const FollowButton = ({ userNo }) => {
-  const { isFollow } = useSelector(({ userinfo }) => ({
-    isFollow: userinfo.isFollowing,
+  const { isFollow } = useSelector(({ userInfo }) => ({
+    isFollow: userInfo.isFollowing,
   }));
+
   const [follow, setFollow] = useState(isFollow);
   const style = {
-    margin: '15px',
-    minWidth: '120px',
+    // margin: '17px',
+    // minWidth: '120px',
     minHeight: '30px',
-    background: `${follow ? 'grey' : 'blue'}`,
-    color: `${follow ? 'black' : 'white'}`,
-    fontWeight: 'bold',
-    width: '80%',
+    background: `${follow ? '#454552' : '#4ea1d3'}`,
+    color: 'white',
+    // fontWeight: 'bold',
+    width: '100%',
   };
+
   const clickFollowButton = () => {
     if (follow === false) {
       setFollowing(userNo);

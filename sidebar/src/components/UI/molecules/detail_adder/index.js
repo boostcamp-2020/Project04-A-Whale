@@ -1,62 +1,47 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
-import Span from '../../atoms/span';
-import InputText from '../../atoms/input_text';
+import TextField from '@material-ui/core/TextField';
+import DatePicker from '../../atoms/date_picker';
 import StyledButton from '../../atoms/styled_button';
 import { addDetailAction } from '../../../../modules/actions/createbucket';
-import useStyle, { root, DatePicker, cancleButton, addButton, editButton } from './style';
+import useStyle, { cancleButton, addButton, editButton } from './style';
 
 const DetailAdder = ({ addDetailActionConnect }) => {
   const classes = useStyle();
   const [edit, setEdit] = useState(false);
   const [title, setTitle] = useState('');
-  const [dueDate, setDueDate] = useState('');
+  const [dueDate, setDueDate] = useState(new Date());
 
-  const onChangeHandler = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const editHandler = () => {
-    setEdit(true);
-  };
-  const dueDateHandler = (e) => {
-    setDueDate(e.target.value);
-  };
-  const cancleEditHandler = () => {
-    setEdit(false);
-  };
+  const onChangeHandler = (e) => setTitle(e.target.value);
+  const editHandler = () => setEdit(true);
+  const dueDateHandler = (value) => setDueDate(value);
+  const cancleEditHandler = () => setEdit(false);
 
   const detailAddHandler = () => {
     addDetailActionConnect({ title, dueDate });
     setEdit(false);
+    setTitle('');
+    setDueDate(new Date());
   };
 
   return (
     <>
       {edit ? (
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <InputText
-              id="detailAddButton"
-              style={root}
+        <>
+          <div className={classes.detailInputWrapper}>
+            <TextField
+              className={classes.detailInput}
+              margin="dense"
               variant="outlined"
-              label="새로운 세부목표를 입력해주세요"
-              onChangeHandler={onChangeHandler}
+              fullWidth
+              required
+              placeholder="세부 목표를 추가해주세요."
+              value={title}
+              onChange={onChangeHandler}
             />
-          </Grid>
-          <Grid item xs={6} className={classes.dueDate}>
-            <Span style={{ fontWeight: 'bold', fontSize: '16px' }} content="기한" />
-            <InputText
-              style={DatePicker}
-              type="date"
-              onChangeHandler={dueDateHandler}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </Grid>
-          <Grid item xs={6} className={classes.buttons}>
+            <DatePicker date={dueDate} handler={dueDateHandler} />
+          </div>
+          <div className={classes.buttons}>
             <StyledButton
               variant="contained"
               onClickHandler={detailAddHandler}
@@ -70,8 +55,8 @@ const DetailAdder = ({ addDetailActionConnect }) => {
               style={cancleButton}
               content="취소"
             />
-          </Grid>
-        </Grid>
+          </div>
+        </>
       ) : (
         <StyledButton
           content="버튼을 눌러 새로운 세부 목표를 설정하세요!"

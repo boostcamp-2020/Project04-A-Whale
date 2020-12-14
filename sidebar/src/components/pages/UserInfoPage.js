@@ -1,31 +1,32 @@
-/* eslint-disable */
-import React, {useEffect} from 'react';
-import Header from '../UI/organisms/header';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserInfo, getIsFollowing, getUserBuckets } from '../../modules/userinfo';
+import Header from '../UI/organisms/header';
+import { getUserInfo, getIsFollowing, getUserBuckets } from '../../modules/userInfo';
 import Spinner from '../UI/atoms/spinner';
 import UserInfoTemplate from '../templates/user_info_template';
-import MyBucketList from '../templates/my_bucket_list';
 
 const UserInfoPage = ({ match }) => {
   const { userNo } = match.params;
   const dispatch = useDispatch();
-  const { buckets,loadingBuckets } = useSelector(({ userinfo, loading }) => ({
-    buckets: userinfo.buckets,
-    loadingBuckets: loading['userinfo/GET_USERBUCKETS'],
+  const { userInfo, buckets, loadingBuckets } = useSelector(({ userInfo, loading }) => ({
+    userInfo: userInfo.userInfo,
+    buckets: userInfo.buckets,
+    loadingBuckets: loading['userInfo/GET_USERBUCKETS'],
   }));
-  
+
   useEffect(() => {
     dispatch(getUserInfo(userNo));
-    dispatch(getIsFollowing(1,userNo));
+    dispatch(getIsFollowing({ following: 1, followed: userNo }));
     dispatch(getUserBuckets(userNo));
   }, [dispatch]);
-  
+
   return (
     <>
-      <Header isGoBack />
+      {userInfo && <Header title={userInfo.nickname} isGoBack />}
       {loadingBuckets && <Spinner />}
-      {!loadingBuckets && buckets && <UserInfoTemplate userNo={userNo} />}
+      {!loadingBuckets && buckets && (
+        <UserInfoTemplate userInfo={userInfo} userNo={userNo} buckets={buckets} />
+      )}
     </>
   );
 };

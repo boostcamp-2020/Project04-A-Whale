@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     bottom: theme.spacing(3),
     right: theme.spacing(3),
+    color: 'white',
   },
 }));
 

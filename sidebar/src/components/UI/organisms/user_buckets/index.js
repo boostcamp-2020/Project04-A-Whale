@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { useSelector } from 'react-redux';
 import useStyles from './style';
 import UserBucketList from '../../molecules/user_bucket_list';
 
@@ -19,12 +18,9 @@ const TabPanel = ({ buckets, value, index }) => {
   );
 };
 
-const UserBuckets = () => {
+const UserBuckets = ({ buckets }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const { buckets } = useSelector(({ userinfo }) => ({
-    buckets: userinfo.buckets,
-  }));
   const openCount = buckets.openBuckets.length;
   const achieveCount = buckets.achieveBuckets.length;
   const total = openCount + achieveCount;
