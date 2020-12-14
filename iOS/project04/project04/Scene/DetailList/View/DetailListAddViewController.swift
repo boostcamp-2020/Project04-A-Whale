@@ -123,7 +123,7 @@ extension DetailListAddViewController {
     }
     
     private func textViewContentSizeChange(value: CGFloat) {
-        heightConstraint.constant = heightConstraint.constant + value
+        heightConstraint.constant += value
     }
     
     private func checkReviseMode() {

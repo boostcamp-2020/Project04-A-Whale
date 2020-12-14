@@ -45,8 +45,8 @@ class LoginViewController: UIViewController {
             return
         }
         
-        
-        let data = try! JSONEncoder().encode(["id": id, "password": pw])
+    
+        let data = try? JSONEncoder().encode(["id": id, "password": pw])
         NetworkService.shared.request(from: Endpoint.login.urlString,
                                       method: .POST,
                                       body: data,

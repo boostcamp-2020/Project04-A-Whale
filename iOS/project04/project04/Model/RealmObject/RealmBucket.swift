@@ -21,7 +21,7 @@ class RealmBucket: Object, Codable {
     @objc dynamic var refCount: Int = 0
     @objc dynamic var createdAt: String = ""
     @objc dynamic var updatedAt: String = ""
-    @objc dynamic var userNo:Int = 0
+    @objc dynamic var userNo: Int = 0
     
     enum CodingKeys: String, CodingKey {
         case no, title, status

@@ -27,7 +27,6 @@ class BucketListAddUseCase: DetailListUseCaseProtocol {
     
     func remove(at index: Int) {
         
-    
     }
     
     func revise(at index: Int, element: RealmDetail) {
