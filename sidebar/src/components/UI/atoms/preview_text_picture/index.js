@@ -11,12 +11,16 @@ const PreviewTextPicture = ({ text }) => {
 
 const PreviewText = styled.div`
   width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 10px;
+  overflow: auto;
 `;
 
 const MarkDownArea = styled.div`
   box-sizing: border-box;
   width: 100%;
-  min-height: 10rem;
+  min-height: 12rem;
   margin: 0;
 `;
 

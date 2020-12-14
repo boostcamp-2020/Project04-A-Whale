@@ -17,8 +17,8 @@ const MyBucketListDetail = ({ bucket, details, burnDownChart }) => {
   const handleAchieveButton = (value) => setAchieveDisable(value);
 
   const isAchieve = () => {
-    if (achieveComment) return true;
-    return false;
+    if (achieveComment === null) return false;
+    return true;
   };
 
   return (
@@ -36,7 +36,11 @@ const MyBucketListDetail = ({ bucket, details, burnDownChart }) => {
           <Divider />
           <LineBarAreaComposedChart burnDownChart={burnDownChart} />
           <PieChart details={details} />
-          <DetailList details={details} isAchieve={isAchieve} />
+          <DetailList
+            details={details}
+            isAchieve={isAchieve}
+            handleAchieveButton={handleAchieveButton}
+          />
         </>
       ) : (
         <>

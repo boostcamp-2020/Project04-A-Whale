@@ -104,23 +104,19 @@ export const LogoWrapper = styled.div`
 export const AppTitle = styled.div`
   font-size: 2.7rem;
   font-family: 'Bazzi', sans-serif !important;
-  /* font-weight: bold; */
   position: absolute;
   top: 14%;
-  /* bottom: 0; */
   left: 50%;
   transform: translate(-50%, 0);
   padding: 30px 50px;
   border-radius: 5px;
   z-index: 20;
-  /* background-color: #fffddd; */
 `;
 
 export const WhaleWrapper = styled.div`
   position: relative;
   margin-top: 98px;
   height: 100%;
-  /* bottom: 0; */
 `;
 
 export const WhaleLogo = styled.img`
@@ -172,7 +168,6 @@ export const Cloud4 = styled.path`
 export const LoginLayout = styled.div`
   width: 100%;
   position: relative;
-  /* margin-top: 40px; */
   top: 46%;
 `;
 
@@ -188,4 +183,10 @@ export const LoginBox = styled.div`
   border-radius: 5px;
   border: 1px solid #b6b6b6;
   box-shadow: 0 0 3px #9c9c9c;
+`;
+
+export const LoginWrapper = styled.div`
+  position: absolute;
+  top: 7%;
+  width: 100%;
 `;

@@ -1,11 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   title: {
     flex: 4,
     fontSize: '3rem',
-    // fontFamily: 'Nanum Brush Script, sans-serif !important',
     '&:hover': {
       cursor: 'default',
     },
