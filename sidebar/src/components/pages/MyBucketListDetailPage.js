@@ -17,14 +17,18 @@ const MyBucketListDetailPage = ({ match }) => {
     })
   );
 
+  // useEffect(() => {
+  //   const api = `/api/details/${bucketNo}`;
+  //   chrome.storage.local.get(api, (items) => {
+  //     if (items[api] === 'modified' || JSON.stringify(items) === '{}') {
+  //       console.log('디테일 받아옴');
+  //       dispatch(getDetails(bucketNo));
+  //     }
+  //   });
+  // }, [dispatch]);
+
   useEffect(() => {
-    const api = `/api/details/${bucketNo}`;
-    chrome.storage.local.get(api, (items) => {
-      if (items[api] === 'modified' || JSON.stringify(items) === '{}') {
-        console.log('디테일 받아옴');
-        dispatch(getDetails(bucketNo));
-      }
-    });
+    dispatch(getDetails(bucketNo));
   }, [dispatch]);
 
   return (
