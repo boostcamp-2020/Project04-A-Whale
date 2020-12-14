@@ -37,6 +37,6 @@ extension DetailAddCoordinator: DetailAddPushCoordinator {
                                             viewModel: viewModel,
                                             bucketNo: bucketNo)
         })
-        navigationController?.present(viewController, animated: false)
+        navigationController?.present(viewController, animated: true)
     }
 }

@@ -10,7 +10,6 @@ import RealmSwift
 
 class TransactionRecorder {
     static let shared = TransactionRecorder()
-    
     private init() { }
     
     func record(url: String, method: HTTPMethod, data: Data?) {

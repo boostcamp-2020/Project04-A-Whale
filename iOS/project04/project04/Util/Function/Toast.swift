@@ -27,8 +27,8 @@ func showToast(message: String, font: UIFont) {
                    options: .curveEaseIn,
                    animations: {
                     toastLabel.alpha = 0.0
-                   }, completion: { (_) in
-                    toastLabel.removeFromSuperview()
+                   }, completion: { _ in
+                     toastLabel.removeFromSuperview()
                    })
     
 }

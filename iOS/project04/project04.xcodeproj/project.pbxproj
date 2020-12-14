@@ -41,7 +41,6 @@
 		C1269C84257F1D5800A5C1EC /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269C83257F1D5800A5C1EC /* JoinViewController.swift */; };
 		C1269C88257F1D6700A5C1EC /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1269C87257F1D6700A5C1EC /* Join.storyboard */; };
 		C1269C8C257F343A00A5C1EC /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269C8B257F343A00A5C1EC /* LoginCoordinator.swift */; };
-		C1269C92257F3A7900A5C1EC /* LoginAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269C91257F3A7900A5C1EC /* LoginAPIAgent.swift */; };
 		C1269C99257F466300A5C1EC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269C98257F466300A5C1EC /* SettingViewController.swift */; };
 		C1269C9D257F467500A5C1EC /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1269C9C257F467500A5C1EC /* Setting.storyboard */; };
 		C1269CA1257F483800A5C1EC /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269CA0257F483800A5C1EC /* SettingCoordinator.swift */; };
@@ -142,7 +141,6 @@
 		C1269C83257F1D5800A5C1EC /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		C1269C87257F1D6700A5C1EC /* Join.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Join.storyboard; sourceTree = "<group>"; };
 		C1269C8B257F343A00A5C1EC /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		C1269C91257F3A7900A5C1EC /* LoginAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIAgent.swift; sourceTree = "<group>"; };
 		C1269C98257F466300A5C1EC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C1269C9C257F467500A5C1EC /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		C1269CA0257F483800A5C1EC /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
@@ -379,7 +377,6 @@
 				C1269C7B257F121C00A5C1EC /* Login.storyboard */,
 				C1269C83257F1D5800A5C1EC /* JoinViewController.swift */,
 				C1269C87257F1D6700A5C1EC /* Join.storyboard */,
-				C1269C91257F3A7900A5C1EC /* LoginAPIAgent.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -720,7 +717,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1210;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					C1655C90256B7ED10067E3C5 = {
 						CreatedOnToolsVersion = 12.1;
@@ -867,12 +864,10 @@
 				C1604D0D257DFC450019E6E2 /* RealmImpression.swift in Sources */,
 				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
 				C1604D19257E0EF90019E6E2 /* ImpressionLocalAgent.swift in Sources */,
-				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
 				C1E6C41B2574D4BE00BD4B4B /* BucketCoordinator.swift in Sources */,
 				C175D190256CC028001144F0 /* DetailListUseCase.swift in Sources */,
 				8285704F257FBA4300E3FEA9 /* Response.swift in Sources */,
 				C1269C8C257F343A00A5C1EC /* LoginCoordinator.swift in Sources */,
-				C1269C92257F3A7900A5C1EC /* LoginAPIAgent.swift in Sources */,
 				C168DD9E258100B500EE3849 /* NetworkPathMonitor.swift in Sources */,
 				8215F5242579A81800DDCD09 /* BucketListSearchViewModel.swift in Sources */,
 				C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */,

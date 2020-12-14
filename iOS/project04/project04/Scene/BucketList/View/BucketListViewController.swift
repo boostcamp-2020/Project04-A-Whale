@@ -67,14 +67,6 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
     @IBAction func didTouchPlusButton(_ sender: UIBarButtonItem) {
         coordinator.pushToBucketListAdd(from: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? DetailListViewController {
-            if let bucket = sender as? RealmBucket {
-                destination.bucket = bucket
-            }
-        }
-    }
 }
 
 extension BucketListViewController: UICollectionViewDelegate {

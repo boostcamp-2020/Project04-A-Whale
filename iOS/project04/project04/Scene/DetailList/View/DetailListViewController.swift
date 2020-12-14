@@ -8,18 +8,18 @@
 import UIKit
 import RealmSwift
 
-protocol ImpressionDelegate {
+protocol ImpressionDelegate: class {
     var impressionViewModel: ImpressionViewModelProtocol { get set }
 }
 
 class DetailListViewController: UIViewController, ImpressionDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<RealmDetail.Section, RealmDetail>! = nil
-    var bucket: RealmBucket?
-    var coordinator: DetailAddCoordinator?
-    var collectionViewModel: DetailListViewModelProtocol?
-    var delegate: BucketListObserverDelegate
-    var index: Int
+    private var bucket: RealmBucket?
+    private var coordinator: DetailAddCoordinator?
+    private var collectionViewModel: DetailListViewModelProtocol?
+    private weak var delegate: BucketListObserverDelegate?
+    private var index: Int
     var impressionViewModel: ImpressionViewModelProtocol
 
     init?(coder: NSCoder,
@@ -77,8 +77,8 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
     }
 }
 
-extension DetailListViewController {
-    private func createLayout() -> UICollectionViewLayout {
+private extension DetailListViewController {
+    func createLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         config.headerMode = .supplementary
         config.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
@@ -104,12 +104,12 @@ extension DetailListViewController {
         return UICollectionViewCompositionalLayout.list(using: config)
     }
     
-    private func configureHierarchy() {
+    func configureHierarchy() {
         collectionView.collectionViewLayout = createLayout()
         collectionView.delegate = self
     }
     
-    private func configureDataSource() {
+    func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> {
             (cell, indexPath, item) in
             var content = cell.defaultContentConfiguration()
@@ -127,7 +127,7 @@ extension DetailListViewController {
         configureHeaderView()
     }
     
-    private func configureHeaderView() {
+    func configureHeaderView() {
         dataSource.supplementaryViewProvider = { [weak self]
             (collectionView, kind, indexPath) -> UICollectionReusableView? in
             let sectionIdentifier = self?.dataSource?.snapshot().sectionIdentifiers[indexPath.section].rawValue
@@ -177,7 +177,7 @@ extension DetailListViewController {
         registerCollectionHeaderView()
     }
     
-    private func registerCollectionHeaderView() {
+    func registerCollectionHeaderView() {
         collectionView.register(UINib(nibName: "DetailSectionHeaderView", bundle: nil),
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: DetailSectionHeaderView.description())
@@ -192,7 +192,7 @@ extension DetailListViewController {
                                 withReuseIdentifier: DetailSectionGraphView.description())
     }
     
-    private func updateList() {
+    func updateList() {
         var snapshot = NSDiffableDataSourceSnapshot<RealmDetail.Section, RealmDetail>()
         var sections: [RealmDetail.Section] = [.todo, .done]
         
@@ -215,27 +215,23 @@ extension DetailListViewController {
         
     }
     
-    private func configureSuccessHandler() {
+    func configureSuccessHandler() {
         let alert = UIAlertController(title: "달성 여부",
                                       message: "버킷을 달성처리 하시겠습니까? 달성 시, 달성 취소가 불가능 합니다.",
                                       preferredStyle: .alert)
         
         let successAction = UIAlertAction(title: "예", style: .default, handler: { [weak self] _ in
-            // 소감 작성 페이지로
-            // todo 추가 불가능하게
-            // 소감 작성 완료 시 리로드 해줘야함 (소감 섹션, 그래프 섹션 추가)
-            // bucket으로 돌아갈 때, todo에서 done으로 바뀌어야함
-            self?.delegate.bucketListViewModel.reviseStatus(index: self?.index ?? 0)
+            self?.delegate?.bucketListViewModel.reviseStatus(index: self?.index ?? 0)
             self?.coordinator?.presentImpression(self?.navigationController, viewModel: self!, bucketNo: self?.bucket?.no ?? 0)
         })
         let cancelAction = UIAlertAction(title: "아니오", style: .cancel)
         alert.addAction(successAction)
         alert.addAction(cancelAction)
         
-        self.present(alert, animated: false, completion: nil)
+        present(alert, animated: false, completion: nil)
     }
     
-    private func animatePieView(viewModel: DetailListViewModelProtocol?) {
+    func animatePieView(viewModel: DetailListViewModelProtocol?) {
         let headerViews = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionHeader)
         let headerView = headerViews.filter { $0.isKind(of: DetailSectionGraphView.self) }
             .map { $0 as? DetailSectionGraphView }.first
@@ -257,7 +253,7 @@ extension DetailListViewController {
                                             duration: 1)
     }
     
-    private func detailSuccessChecker(viewModel: DetailListViewModelProtocol?) {
+    func detailSuccessChecker(viewModel: DetailListViewModelProtocol?) {
         if viewModel?.list[.todo]?.count == 0,
            viewModel?.list[.done]?.count != 0,
            bucket?.status == "O" {
@@ -267,7 +263,7 @@ extension DetailListViewController {
         }
     }
     
-    private func isHiddenHeaderSuccessButton(status: Bool) {
+    func isHiddenHeaderSuccessButton(status: Bool) {
         let headerViews = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionHeader)
         let headerView = headerViews.filter { $0.isKind(of: DetailSectionHeaderView.self) }
             .map { $0 as? DetailSectionHeaderView }
@@ -278,7 +274,7 @@ extension DetailListViewController {
 
 extension DetailListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let sectionIdentifier = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section].rawValue
+        let sectionIdentifier = dataSource?.snapshot().sectionIdentifiers[indexPath.section].rawValue
         if sectionIdentifier == "todo" && bucket?.status != "A" {
             coordinator?.presentDetailListAdd(navigationController,
                                               viewModel: collectionViewModel,
