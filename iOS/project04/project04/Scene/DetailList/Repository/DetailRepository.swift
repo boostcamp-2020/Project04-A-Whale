@@ -56,7 +56,6 @@ class DetailRepository: DetailRepositoryProtocol {
                                             let response = try? JSONDecoder().decode(Response<[String: RealmDetail]>.self, from: data)
                                             let detail = response?.data["detail"]
                                             element.no = detail?.no ?? 0
-                                            break
                                         case .failure(let error):
                                             print(error)
                                             

@@ -9,9 +9,9 @@ import UIKit
 
 class ImpressionViewController: UIViewController {
     @IBOutlet weak var impressionTextView: UITextView!
-    var delegate: ImpressionDelegate
-    var isEdited: Bool = false
-    var bucketNo: Int
+    private weak var delegate: ImpressionDelegate?
+    private var isEdited: Bool = false
+    private var bucketNo: Int
     
     init?(coder: NSCoder, viewModel: ImpressionDelegate, bucketNo: Int) {
         self.delegate = viewModel
@@ -27,7 +27,7 @@ class ImpressionViewController: UIViewController {
         super.viewDidLoad()
         
         print(bucketNo)
-        impressionTextView.text = delegate.impressionViewModel.impressionText
+        impressionTextView.text = delegate?.impressionViewModel.impressionText
         isEdited = (impressionTextView.text != "")
         impressionTextView.delegate = self
         impressionTextView.becomeFirstResponder()
@@ -41,11 +41,10 @@ class ImpressionViewController: UIViewController {
         }
         
         if isEdited {
-            delegate.impressionViewModel.impressionEdit(text: impressionTextView.text)
+            delegate?.impressionViewModel.impressionEdit(text: impressionTextView.text)
         } else {
-            print(bucketNo)
-            var impression = RealmImpression(value: [0, impressionTextView.text, bucketNo])
-            delegate.impressionViewModel.impressionSave(impression)
+            let impression = RealmImpression(value: [0, impressionTextView.text ?? "", bucketNo])
+            delegate?.impressionViewModel.impressionSave(impression)
         }
         
         dismiss(animated: true, completion: nil)

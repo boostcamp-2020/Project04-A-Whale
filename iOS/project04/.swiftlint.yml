@@ -1,8 +1,10 @@
 excluded:
 - SupportFiles/AppDelegate.swift
 - SupportFiles/SceneDelegate.swift
+- Pods
 disabled_rules:
 - trailing_whitespace
 - line_length
-type_name:
-  min_length: 2
+- identifier_name
+- empty_enum_arguments
+- void_return

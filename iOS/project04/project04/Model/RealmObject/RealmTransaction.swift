@@ -11,5 +11,5 @@ import RealmSwift
 class RealmTransaction: Object {
     @objc dynamic var url: String = ""
     @objc dynamic var method: String = ""
-    @objc dynamic var data: Data? = nil
+    @objc dynamic var data: Data?
 }

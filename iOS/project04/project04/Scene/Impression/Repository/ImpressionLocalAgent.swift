@@ -31,8 +31,6 @@ class ImpressionLocalAgent {
             let realm = try Realm()
             
             try realm.write {
-//                let object = realm.objects(RealmImpression.self).filter("#bucketNo == \(element.bucketNo)")
-//                realm.delete(object)
                 realm.add(element)
             }
         } catch {

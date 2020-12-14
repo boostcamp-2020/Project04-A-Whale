@@ -41,7 +41,6 @@
 		C1269C84257F1D5800A5C1EC /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269C83257F1D5800A5C1EC /* JoinViewController.swift */; };
 		C1269C88257F1D6700A5C1EC /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1269C87257F1D6700A5C1EC /* Join.storyboard */; };
 		C1269C8C257F343A00A5C1EC /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269C8B257F343A00A5C1EC /* LoginCoordinator.swift */; };
-		C1269C92257F3A7900A5C1EC /* LoginAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269C91257F3A7900A5C1EC /* LoginAPIAgent.swift */; };
 		C1269C99257F466300A5C1EC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269C98257F466300A5C1EC /* SettingViewController.swift */; };
 		C1269C9D257F467500A5C1EC /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1269C9C257F467500A5C1EC /* Setting.storyboard */; };
 		C1269CA1257F483800A5C1EC /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1269CA0257F483800A5C1EC /* SettingCoordinator.swift */; };
@@ -142,7 +141,6 @@
 		C1269C83257F1D5800A5C1EC /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		C1269C87257F1D6700A5C1EC /* Join.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Join.storyboard; sourceTree = "<group>"; };
 		C1269C8B257F343A00A5C1EC /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		C1269C91257F3A7900A5C1EC /* LoginAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIAgent.swift; sourceTree = "<group>"; };
 		C1269C98257F466300A5C1EC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C1269C9C257F467500A5C1EC /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		C1269CA0257F483800A5C1EC /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
@@ -379,7 +377,6 @@
 				C1269C7B257F121C00A5C1EC /* Login.storyboard */,
 				C1269C83257F1D5800A5C1EC /* JoinViewController.swift */,
 				C1269C87257F1D6700A5C1EC /* Join.storyboard */,
-				C1269C91257F3A7900A5C1EC /* LoginAPIAgent.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -456,6 +453,7 @@
 		C1655C88256B7ED10067E3C5 = {
 			isa = PBXGroup;
 			children = (
+				C11AC45F256B7F8B00E45667 /* .swiftlint.yml */,
 				C1655C93256B7ED10067E3C5 /* project04 */,
 				C175D1A2256CD242001144F0 /* project04Tests */,
 				C1655C92256B7ED10067E3C5 /* Products */,
@@ -477,7 +475,6 @@
 			isa = PBXGroup;
 			children = (
 				C1655CA2256B7ED30067E3C5 /* Info.plist */,
-				C11AC45F256B7F8B00E45667 /* .swiftlint.yml */,
 				C1E6C4152574D41600BD4B4B /* Coordinator */,
 				C1900D79256B84C70071E8C7 /* App */,
 				C1900D77256B83970071E8C7 /* Scene */,
@@ -684,6 +681,7 @@
 				C1655C8E256B7ED10067E3C5 /* Frameworks */,
 				C1655C8F256B7ED10067E3C5 /* Resources */,
 				CA16B30F5314673F2287B2F5 /* [CP] Embed Pods Frameworks */,
+				C164F4A52586FB9F00FF6362 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -719,7 +717,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1210;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					C1655C90256B7ED10067E3C5 = {
 						CreatedOnToolsVersion = 12.1;
@@ -806,6 +804,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C164F4A52586FB9F00FF6362 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
 		CA16B30F5314673F2287B2F5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -849,12 +864,10 @@
 				C1604D0D257DFC450019E6E2 /* RealmImpression.swift in Sources */,
 				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
 				C1604D19257E0EF90019E6E2 /* ImpressionLocalAgent.swift in Sources */,
-				8261DBAF25789EC20027F6F8 /* BucketListAddCoordinator.swift in Sources */,
 				C1E6C41B2574D4BE00BD4B4B /* BucketCoordinator.swift in Sources */,
 				C175D190256CC028001144F0 /* DetailListUseCase.swift in Sources */,
 				8285704F257FBA4300E3FEA9 /* Response.swift in Sources */,
 				C1269C8C257F343A00A5C1EC /* LoginCoordinator.swift in Sources */,
-				C1269C92257F3A7900A5C1EC /* LoginAPIAgent.swift in Sources */,
 				C168DD9E258100B500EE3849 /* NetworkPathMonitor.swift in Sources */,
 				8215F5242579A81800DDCD09 /* BucketListSearchViewModel.swift in Sources */,
 				C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */,

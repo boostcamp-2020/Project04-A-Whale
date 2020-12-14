@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-protocol BucketListObserverDelegate {
+protocol BucketListObserverDelegate: class {
     var bucketListViewModel: BucketListViewModelProtocol { get set }
 }
 
@@ -66,14 +66,6 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
     
     @IBAction func didTouchPlusButton(_ sender: UIBarButtonItem) {
         coordinator.pushToBucketListAdd(from: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? DetailListViewController {
-            if let bucket = sender as? RealmBucket {
-                destination.bucket = bucket
-            }
-        }
     }
 }
 

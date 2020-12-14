@@ -25,7 +25,7 @@ class JoinViewController: UIViewController {
             return
         }
         
-        let data = try! JSONEncoder().encode([
+        let data = try? JSONEncoder().encode([
             "id": textFields[0].text ?? "",
             "password": textFields[1].text ?? "",
             "nickname": textFields[2].text ?? "",
@@ -47,7 +47,6 @@ class JoinViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.present(alert, animated: true, completion: nil)
                 }
-                break
             }
         })
     }

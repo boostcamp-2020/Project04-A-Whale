@@ -7,12 +7,6 @@
 
 import Foundation
 
-
-//protocol ImpressionUseCaseProtocol {
-//    func fetch(bucketNo: Int)
-//    func save(text: String)
-//    func edit(text: String)
-//}
 protocol ImpressionRepositoryProtocol {
     func fetchImpression(bucketNo: Int, completion: @escaping (RealmImpression?) -> Void)
     func saveImpression(_ element: RealmImpression)
@@ -52,11 +46,10 @@ class ImpressionRepository: ImpressionRepositoryProtocol {
                                         
                                         switch result {
                                         case .success(let responseData):
-                                            let response = try? JSONSerialization.jsonObject(with: responseData, options: []) as? [String : Any]
+                                            let response = try? JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
                                             
                                             let no = response?["achieveNo"] as? Int
                                             element.no = no ?? 0
-                                            break
                                         case .failure(_):
                                             TransactionRecorder.shared.record(url: Endpoint.achieves.urlString, method: .POST, data: data)
                                             
@@ -76,9 +69,8 @@ class ImpressionRepository: ImpressionRepositoryProtocol {
                                       completion: { result in
                                         
                                         switch result {
-                                        case .success(let data):
-                                            let reponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String]
-                                            print(reponse?["message"])
+                                        case .success(_):
+                                            break
                                         case .failure(let error):
                                             print(error)
                                             TransactionRecorder.shared.record(url: url, method: .PUT, data: data)

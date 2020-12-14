@@ -11,7 +11,7 @@ import RealmSwift
 class TransactionRecorder {
     static let shared = TransactionRecorder()
     
-    private init(){}
+    private init() {}
     
     func record(url: String, method: HTTPMethod, data: Data?) {
         let transaction = RealmTransaction(value: [url, method.rawValue, data])

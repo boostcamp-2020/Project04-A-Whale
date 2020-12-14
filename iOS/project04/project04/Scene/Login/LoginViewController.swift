@@ -45,8 +45,7 @@ class LoginViewController: UIViewController {
             return
         }
         
-        
-        let data = try! JSONEncoder().encode(["id": id, "password": pw])
+        let data = try? JSONEncoder().encode(["id": id, "password": pw])
         NetworkService.shared.request(from: Endpoint.login.urlString,
                                       method: .POST,
                                       body: data,
@@ -66,7 +65,6 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.present(alert, animated: true, completion: nil)
                 }
-                break
             }
         })
     }
@@ -97,7 +95,7 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
          self.view.endEditing(true)
     }
 }
