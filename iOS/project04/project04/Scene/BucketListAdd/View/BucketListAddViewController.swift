@@ -16,7 +16,7 @@ class BucketListAddViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<RealmDetail.Section, RealmDetail>
     
     var dataSource: DataSource?
-    var delegate: BucketListObserverDelegate
+    weak var delegate: BucketListObserverDelegate?
     var coordinator: BucketListAddCoordinator
     var bucketListAddViewModel: BucketViewModelProtocol & DetailListViewModelProtocol {
         didSet {
@@ -58,8 +58,8 @@ class BucketListAddViewController: UIViewController {
         let bucket = RealmBucket(value: [-1, title, description, "O"])
 //        delegate.bucketListViewModel.append(bucket: bucket)
         bucketListAddViewModel.bucket = bucket
-        bucketListAddViewModel.saveAction(completion: { [weak self] check in
-            self?.delegate.bucketListViewModel.fetch()
+        bucketListAddViewModel.saveAction(completion: { [weak self] _ in
+            self?.delegate?.bucketListViewModel.fetch()
         })
         navigationController?.popViewController(animated: true)
     }
@@ -93,7 +93,9 @@ extension BucketListAddViewController: UICollectionViewDelegate {
     }
 
     private func configureDataSource(collectionView: UICollectionView,
-                             cellProvider: @escaping (UICollectionView, IndexPath, RealmDetail) -> UICollectionViewListCell?) {
+                                     cellProvider: @escaping (UICollectionView,
+                                                              IndexPath,
+                                                              RealmDetail) -> UICollectionViewListCell?) {
         dataSource = DataSource(collectionView: collectionView, cellProvider: cellProvider)
         dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
             guard kind == UICollectionView.elementKindSectionHeader else {

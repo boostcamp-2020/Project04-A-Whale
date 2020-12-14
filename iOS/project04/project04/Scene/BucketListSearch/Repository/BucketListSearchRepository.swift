@@ -13,7 +13,6 @@ protocol SearchRepositoryProtocol {
 
 class BucketListSearchRepository: SearchRepositoryProtocol {
     func search(with keyword: String, completion: @escaping ([SearchBucket]) -> Void) {
-        var list: [SearchBucket]?
         NetworkService.shared.request(from: Endpoint.presets.urlString  + "?keyword=\(keyword)", method: .GET) { (result) in
             switch result {
             case .success(let data):
@@ -23,7 +22,6 @@ class BucketListSearchRepository: SearchRepositoryProtocol {
                 }
             case .failure(let error):
                 print(error)
-                break
             }
             
         }

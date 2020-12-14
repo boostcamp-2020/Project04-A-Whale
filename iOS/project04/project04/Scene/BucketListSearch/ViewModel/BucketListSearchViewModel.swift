@@ -17,7 +17,6 @@ protocol BucketListSearchViewModelProtocol {
     func search(with keyword: String) -> Void
 }
 
-
 class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
     var count: Int {
         self.buckets.count
@@ -35,7 +34,6 @@ class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
     
     var handler: (() -> Void)?
 
-    
     init(usecase: SearchUseCase) {
         self.usecase = usecase
     }
@@ -52,6 +50,5 @@ class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
             self?.filteredBuckets = buckets
         }
     }
-    
-    
+
 }

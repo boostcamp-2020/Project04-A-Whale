@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-func showToast(message : String, font: UIFont) {
+func showToast(message: String, font: UIFont) {
     guard let vc = UIApplication.shared.windows.first?.rootViewController else {
         return
     }
@@ -16,10 +16,10 @@ func showToast(message : String, font: UIFont) {
     toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
     toastLabel.textColor = UIColor.white
     toastLabel.font = font
-    toastLabel.textAlignment = .center;
+    toastLabel.textAlignment = .center
     toastLabel.text = message
     toastLabel.alpha = 1.0
-    toastLabel.layer.cornerRadius = 10;
+    toastLabel.layer.cornerRadius = 10
     toastLabel.clipsToBounds = true
     vc.view.addSubview(toastLabel)
     UIView.animate(withDuration: 1.0,
@@ -27,9 +27,8 @@ func showToast(message : String, font: UIFont) {
                    options: .curveEaseIn,
                    animations: {
                     toastLabel.alpha = 0.0
-                   }, completion: { (isCompleted)
-                    in toastLabel.removeFromSuperview()
+                   }, completion: { (_) in
+                    toastLabel.removeFromSuperview()
                    })
     
 }
-

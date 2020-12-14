@@ -36,6 +36,5 @@ extension BucketListAddCoordinator: DetailAddPushCoordinator {
         })
         navigationController?.present(viewController, animated: false)
     }
-    
-    
+
 }

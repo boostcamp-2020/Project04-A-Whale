@@ -11,10 +11,10 @@ import RealmSwift
 class TransactionRecorder {
     static let shared = TransactionRecorder()
     
-    private init(){}
+    private init() { }
     
     func record(url: String, method: HTTPMethod, data: Data?) {
-        let transaction = RealmTransaction(value: [url, method.rawValue, data])
+        let transaction = RealmTransaction(value: [url, method.rawValue, data as Any])
         do {
             let realm = try Realm()
             try realm.write {
@@ -46,10 +46,8 @@ class TransactionRecorder {
                 switch result {
                 case .success(_):
                     executedTransactions.append(transaction)
-                    break
                 case .failure(let error):
                     print(error)
-                    break
                 }
             }
         }
