@@ -13,7 +13,13 @@ const MyBucketListPage = () => {
   }));
 
   useEffect(() => {
-    dispatch(getBuckets());
+    const api = '/api/buckets';
+    chrome.storage.local.get(api, (items) => {
+      console.log('버킷 받아옴');
+      if (items[api] === 'modified' || JSON.stringify(items) === '{}') {
+        dispatch(getBuckets());
+      }
+    });
   }, [dispatch]);
 
   return (
