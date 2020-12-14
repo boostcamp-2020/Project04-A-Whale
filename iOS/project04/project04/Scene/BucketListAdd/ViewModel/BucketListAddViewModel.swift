@@ -9,31 +9,54 @@ import Foundation
 import RealmSwift
 
 protocol BucketViewModelProtocol {
-    var bucket: RealmBucket? { get set }
+    var bucket: RealmBucket { get set }
     var didChangeBucket: ((RealmBucket) -> Void)? { get set }
     func saveAction(completion: @escaping (Bool) -> Void)
 }
 
 class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtocol {
-    var bucket: RealmBucket? {
-        didSet {
-            guard let bucket = self.bucket else { return }
-            didChangeBucket?(bucket)
-        }
-    }
     var didChangeBucket: ((RealmBucket) -> Void)?
-    
+    var usecase: DetailListUseCaseProtocol
+    var listDidChange: ((DetailListViewModelProtocol) -> Void)?
     var list: [RealmDetail.Section: [RealmDetail]] = [:] {
         didSet {
             listDidChange?(self)
         }
     }
     
-    var usecase: DetailListUseCaseProtocol
-    var listDidChange: ((DetailListViewModelProtocol) -> Void)?
+    var bucket: RealmBucket = RealmBucket() {
+        didSet {
+            didChangeBucket?(bucket)
+        }
+    }
     
     init(usecase: DetailListUseCaseProtocol) {
         self.usecase = usecase
+    }
+    
+    func saveAction(completion: @escaping (Bool) -> Void) {
+        var details =  [[String: String]]()
+        
+        if let list =  list[.todo] {
+            details = list.map { ["title": $0.title,
+                                  "status": "O",
+                                  "dueDate": $0.dueDate]
+            }
+        }
+        
+        let data: [String: Any] = ["title": bucket.title,
+                                   "description": bucket.subTitle,
+                                   "details": details]
+        
+        let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        NetworkService.shared.request(from: Endpoint.buckets.urlString, method: .POST, body: body) { (result) in
+            switch result {
+            case .success(_):
+                completion(true)
+            case .failure(_):
+                completion(false)
+            }
+        }
     }
     
     func listDeleteAction(at index: Int) {
@@ -59,31 +82,6 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
         usecase.fetch(with: index, completion: { [weak self] list in
             self?.list[.todo] = list
         })
-    }
-    
-    func saveAction(completion: @escaping (Bool) -> Void) {
-        var details =  [[String: String]]()
-        if let list =  list[.todo] {
-            details = list.map({ ["title": $0.title,
-                                              "status": "O",
-                                              "dueDate": $0.dueDate
-            ] })
-        }
-        print(details)
-        let data: [String: Any] = ["title": bucket?.title ?? "",
-                    "description": bucket?.subTitle ?? "",
-                    "details": details
-        ]
-        let body = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-        NetworkService.shared.request(from: Endpoint.buckets.urlString, method: .POST, body: body) { (result) in
-            switch result {
-            case .success(_):
-                completion(true)
-            case .failure(_):
-                completion(false)
-            }
-        }
-        
     }
     
     func autoIncreaseIdValue() -> Int {
