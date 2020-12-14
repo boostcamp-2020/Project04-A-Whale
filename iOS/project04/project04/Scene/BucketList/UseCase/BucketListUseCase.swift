@@ -11,7 +11,7 @@ class BucketListUseCase: ListUseCase {
     
     typealias Item = RealmBucket
     
-    let repository: BucketListRepository
+    private let repository: BucketListRepository
     
     init(repository: BucketListRepository) {
         self.repository = repository
