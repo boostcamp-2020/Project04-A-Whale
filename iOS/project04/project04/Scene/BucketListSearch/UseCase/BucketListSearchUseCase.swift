@@ -13,7 +13,7 @@ protocol SearchUseCase {
 }
 
 class BucketListSearchUseCase: SearchUseCase {
-    var repository: SearchRepositoryProtocol
+    private var repository: SearchRepositoryProtocol
     
     init(repository: SearchRepositoryProtocol) {
         self.repository = repository
