@@ -5,7 +5,7 @@ import buckets from './buckets';
 import loading from './loading';
 import details from './details';
 import follow from './follow';
-import userInfo from './userinfo';
+import userInfo from './userInfo';
 import user from './user';
 import feeds from './feeds';
 

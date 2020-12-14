@@ -22,7 +22,6 @@ const initialState = {
     giveUpBuckets: [],
   },
 };
-
 const userInfo = handleActions(
   {
     [GET_USERBUCKETS_SUCCESS]: (state, action) => ({
