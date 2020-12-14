@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import StyledButton from '../../atoms/styled_button';
@@ -13,12 +13,11 @@ const BucketCreateButton = ({
 }) => {
   const history = useHistory();
   const style = {
-    margin: '15px',
-    minWidth: '120px',
-    minHeight: '30px',
-    backgroundColor: 'blue',
+    minWidth: '100%',
+    minHeight: '40px',
+    backgroundColor: '#454552',
     color: 'white',
-    fontWeight: 'bold',
+    fontSize: 20,
   };
 
   const disabled = storeTitle.length * storeDetails.length === 0;
@@ -34,7 +33,7 @@ const BucketCreateButton = ({
       type="Text"
       style={style}
       variant="contained"
-      content="추가"
+      content="생성"
       onClickHandler={onClickHandler}
       disabled={disabled}
     />

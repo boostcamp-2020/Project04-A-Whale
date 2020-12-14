@@ -46,7 +46,7 @@ const MyBucketList = ({ buckets }) => {
   };
 
   return (
-    <div className={classes.root}>
+    <main className={classes.root}>
       <div className={classes.header} />
       <AppBar position="static" color="default">
         <Tabs
@@ -58,7 +58,7 @@ const MyBucketList = ({ buckets }) => {
           aria-label="full width tabs example"
         >
           {tabItems.map((v, i) => (
-            <Tab key={i} label={v} {...getIdAndAriaControls(i)} />
+            <Tab className={classes.text} key={i} label={v} {...getIdAndAriaControls(i)} />
           ))}
         </Tabs>
       </AppBar>
@@ -70,7 +70,7 @@ const MyBucketList = ({ buckets }) => {
       <Link to="/createbucket">
         <AddFabButton />
       </Link>
-    </div>
+    </main>
   );
 };
 

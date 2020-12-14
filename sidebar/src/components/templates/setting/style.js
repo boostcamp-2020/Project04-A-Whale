@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '5px',
   },
   title: {
-    fontSize: '1.5rem',
-    fontFamily: 'Nanum Brush Script, sans-serif !important',
+    // fontSize: '1.5rem',
+    fontSize: 18,
+    // fontFamily: 'Nanum Brush Script, sans-serif !important',
     fontWeight: 'bold',
   },
   input: {

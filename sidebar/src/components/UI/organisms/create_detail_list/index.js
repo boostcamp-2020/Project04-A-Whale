@@ -6,7 +6,7 @@ import CreateDetailListItem from '../../molecules/create_detail_list_item';
 import { addDetailAction, removeDetailAction } from '../../../../modules/actions/createbucket';
 
 const DetailListWrapper = styled.div`
-  padding: 15px;
+  margin-top: 15px;
 `;
 
 const CreateDetailList = ({ details }) => {

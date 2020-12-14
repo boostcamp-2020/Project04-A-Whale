@@ -5,7 +5,6 @@ import { BucketListItemWrapper, BucketTitleTextWrapper } from './style';
 import HoverButton from '../../atoms/hover_button';
 import ConfirmDialog from '../confirm_dialog';
 import { updateBucketStatus } from '../../../../modules/buckets';
-import Text from '../../atoms/text';
 import { OPEN, GIVEUP } from '../../../../constants/status';
 
 const BucketListItem = ({ bucket }) => {
@@ -57,7 +56,7 @@ const BucketListItem = ({ bucket }) => {
     >
       {getIcon()}
       <BucketTitleTextWrapper onClick={() => history.push(`/detail/${bucket.no}`)}>
-        <Text value={bucket.title} fontSize="16px" />
+        {bucket.title}
       </BucketTitleTextWrapper>
       {hidden ? null : getButton()}
       <ConfirmDialog

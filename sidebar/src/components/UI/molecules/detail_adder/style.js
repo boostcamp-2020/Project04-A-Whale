@@ -6,32 +6,30 @@ export const root = {
   marginBottom: '10px',
 };
 
-export const DatePicker = {
-  marginLeft: '10px',
-};
-
 export const cancleButton = {
   margin: '4px',
   padding: '8px',
   color: 'white',
-  background: 'red',
+  width: '100px',
+  background: '#e85a71',
 };
 
 export const addButton = {
   margin: '4px',
   padding: '8px',
   color: 'white',
-  background: 'blue',
+  width: '100px',
+  background: '#454552',
 };
 
 export const BoldFont = { fontWeight: 'bold', fontSize: '16px' };
 
 export const editButton = {
-  background: 'white',
-  color: '#646464',
+  background: '#4ea1d3',
+  color: 'white',
   fontSize: '20px',
   width: '100%',
-  height: '60px',
+  height: '40px',
 };
 
 const useStyles = makeStyles(() => ({
@@ -42,6 +40,12 @@ const useStyles = makeStyles(() => ({
   buttons: {
     display: 'flex',
     flexDirection: 'row-reverse',
+  },
+  detailInputWrapper: {
+    display: 'flex',
+  },
+  detailInput: {
+    marginRight: 20,
   },
 }));
 

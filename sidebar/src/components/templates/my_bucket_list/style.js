@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
+  text: {
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
 }));
 
 export default useStyles;

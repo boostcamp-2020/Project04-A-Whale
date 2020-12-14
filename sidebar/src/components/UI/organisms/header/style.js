@@ -5,9 +5,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   text: {
-    fontSize: '2rem',
-    fontFamily: 'Nanum Brush Script, sans-serif !important',
-    fontWeight: 'bold',
+    fontSize: '1.5rem',
+    // fontFamily: 'NanumBarunGothic',
+    // fontFamily: 'Nanum Brush Script, sans-serif !important',
+    // fontWeight: 'bold',
   },
   appBar: {
     // backgroundColor: '#33ccff',

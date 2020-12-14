@@ -127,6 +127,7 @@ const Login = ({ setRegisterInfo }) => {
           <RegisterBox>
             <form onSubmit={submitClickHandler}>
               <TextField
+                required
                 className={classes.input}
                 label="아이디"
                 variant="outlined"
@@ -136,6 +137,7 @@ const Login = ({ setRegisterInfo }) => {
                 helperText={idErrorMsg}
               />
               <TextField
+                required
                 className={classes.input}
                 label="패스워드"
                 type="password"
@@ -146,6 +148,7 @@ const Login = ({ setRegisterInfo }) => {
                 helperText={passwordErrorMsg}
               />
               <TextField
+                required
                 className={classes.input}
                 label="패스워드 확인"
                 type="password"
@@ -156,6 +159,7 @@ const Login = ({ setRegisterInfo }) => {
                 helperText={passwordRepeatErrorMsg}
               />
               <TextField
+                required
                 className={classes.input}
                 label="닉네임"
                 variant="outlined"
@@ -173,7 +177,7 @@ const Login = ({ setRegisterInfo }) => {
               <Button
                 className={classes.outlineButton}
                 variant="outlined"
-                color="secondary"
+                color="primary"
                 onClick={goBack}
               >
                 취소
@@ -181,17 +185,17 @@ const Login = ({ setRegisterInfo }) => {
               <Button
                 className={classes.outlineButton}
                 variant="outlined"
-                color="primary"
+                color="secondary"
                 type="submit"
               >
                 가입
               </Button>
             </form>
-            <Link className={classes.link} to="/">
+            {/* <Link className={classes.link} to="/">
               <Button className={classes.naverButton} variant="contained">
                 Naver 아이디로 회원가입
               </Button>
-            </Link>
+            </Link> */}
           </RegisterBox>
         </RegisterContainer>
       </RegisterLayout>

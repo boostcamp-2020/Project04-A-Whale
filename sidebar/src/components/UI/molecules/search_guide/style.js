@@ -3,12 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   root: (props) => ({
     position: 'absolute',
-    top: `${props.posY - 90}px`,
-    left: `${props.posX - 320}px`,
-    background: '#5677f4',
-    color: 'white',
+    top: `${props.posY + 35}px`,
+    left: `${props.posX - 220}px`,
+    background: '#454552',
+    color: '#fff',
     padding: '13px',
-    borderRadius: '20rem',
+    borderRadius: '5px',
     display: props.isVisible,
     '&:after': {
       borderTop: '0px solid transparent',
@@ -21,16 +21,14 @@ const useStyles = makeStyles({
       left: '200px',
     },
   }),
-  top: {
+  title: {
     display: 'inline-block',
     margin: '0 2px',
     transform: 'scale(0.8)',
+    fontSize: 20,
   },
-  middle: {
-    fontSize: 14,
-  },
-  low: {
-    marginBottom: 12,
+  desc: {
+    marginBottom: 10,
   },
 });
 

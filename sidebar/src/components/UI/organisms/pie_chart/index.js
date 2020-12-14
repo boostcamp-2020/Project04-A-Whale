@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { PieChart, Pie, Sector, Cell } from 'recharts';
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
+const COLORS = ['#4ea1d3', '#454552'];
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -81,33 +81,35 @@ const PieChart1 = ({ details }) => {
   }, [details.openDetails.length]);
 
   return (
-    <PieChart
-      width={400}
-      height={400}
-      style={{
-        display: 'inline-block',
-        margin: '12px auto',
-        border: '1px solid #eee',
-        borderRadius: '10px',
-      }}
-    >
-      <Pie
-        activeIndex={activeIndex}
-        activeShape={renderActiveShape}
-        data={data}
-        cx={200}
-        cy={200}
-        innerRadius={60}
-        outerRadius={80}
-        fill="#eeeeee"
-        dataKey="value"
-        onMouseEnter={onPieEnter}
+    <ResponsiveContainer width="100%" aspect={4.0 / 3.0}>
+      <PieChart
+        // width={400}
+        // height={400}
+        style={{
+          display: 'inline-block',
+          margin: '12px auto',
+          border: '1px solid #eee',
+          borderRadius: '10px',
+        }}
       >
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-    </PieChart>
+        <Pie
+          activeIndex={activeIndex}
+          activeShape={renderActiveShape}
+          data={data}
+          // cx={200}
+          // cy={200}
+          innerRadius={60}
+          outerRadius={80}
+          fill="#eeeeee"
+          dataKey="value"
+          onMouseEnter={onPieEnter}
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+      </PieChart>
+    </ResponsiveContainer>
   );
 };
 

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   list: {
-    background: '#fafafa',
+    background: '#fdfdfd',
     paddingLeft: 10,
     paddingRight: 10,
   },
@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 45,
   },
   avatar: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
   },
   nickname: {
-    fontSize: 20,
+    fontSize: 24,
     marginLeft: 16,
   },
   rankText: {
@@ -43,8 +43,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 16,
     marginTop: 2,
   },
-  followerText: {
-    marginLeft: 17,
+  menuText: {
+    color: '#000',
+    fontSize: 20,
   },
 }));
 
@@ -57,6 +58,7 @@ const FollowerWrapper = styled.div`
   margin-left: 17px;
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 18px;
 `;
 
 const DescriptionWrapper = styled.div`
@@ -67,6 +69,7 @@ const DescriptionWrapper = styled.div`
   padding: 10px;
   margin-right: 17px;
   border-radius: 5px;
+  font-size: 18px;
 `;
 
 export { useStyles, UserInfoWrapper, FollowerWrapper, DescriptionWrapper };

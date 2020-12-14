@@ -1,16 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 
-export const loadButton = {
-  marginTop: '10px',
-  background: 'blue',
-  color: 'white',
-};
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+`;
 
 export const guide = {
   textAlign: 'center',
   verticalAlign: 'middle',
   fontSize: '20px',
-  color: 'gray',
+  color: '#454552',
 };
 
 export const presetItem = {
@@ -40,6 +41,7 @@ const useStyles = makeStyles(() => ({
     '-moz-transform': 'translate(-50%, -50%)',
     '-o-transform': 'translate(-50%, -50%)',
     transform: 'translate(-50%, -50%)',
+    borderRadius: 5,
   },
   SearchBar: {
     width: '120px',
@@ -48,6 +50,16 @@ const useStyles = makeStyles(() => ({
     minHeight: '240px',
     marginTop: '10px',
   },
+  loadButton: {
+    background: '#4ea1d3',
+    color: 'white',
+    width: 192,
+  },
+  cancelButton: {
+    background: '#454552',
+    color: 'white',
+    width: 192,
+  },
 }));
 
-export default useStyles;
+export { useStyles, ButtonWrapper };

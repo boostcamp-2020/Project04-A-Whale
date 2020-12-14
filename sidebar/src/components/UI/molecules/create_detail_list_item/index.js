@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
-import Span from '../../atoms/span';
-import StyledButton from '../../atoms/styled_button';
-import InputText from '../../atoms/input_text';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import IconButton from '@material-ui/core/IconButton';
+import DatePicker from '../../atoms/date_picker';
 import {
   removeDetailAction,
   updateDetailDueAction,
@@ -12,37 +11,24 @@ import {
 
 const DetailListItemWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  position: relative;
   vertical-align: middle;
   border: 1.5px;
   border-right: 0px;
   border-left: 0px;
   border-style: ridge;
-  padding: 15px;
   font-size: 14px;
+  justify-content: space-between;
 `;
 
-const DatePicker = {
-  position: 'absolute',
-  right: '18%',
-  padding: '1px',
-  margin: '-5px',
-};
-
-const RemoveIcon = {
-  position: 'absolute',
-  right: '4%',
-  padding: '1px',
-  backgroundColor: 'white',
-  height: '20px',
-};
+const Title = styled.span`
+  align-self: center;
+  font-size: 20px;
+  flex: 4;
+  height: 40px;
+  padding-top: 5px;
+`;
 
 const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActionConnect }) => {
-  const style = {
-    color: 'inherit',
-  };
-
   const onClickHandler = () => {
     removeDetailActionConnect(detail.title);
   };
@@ -54,30 +40,20 @@ const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActi
     });
   };
 
-  console.log(detail);
-
-  const content = (
+  return (
     <DetailListItemWrapper>
-      <Span content={detail.title} />
-      <InputText
-        style={DatePicker}
-        type="date"
-        onChangeHandler={dateChangeHandler}
-        defaultValue={detail.dueDate}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <StyledButton
-        type="Icon"
-        style={RemoveIcon}
-        variant="add detail"
-        content={<RemoveCircleIcon />}
-        onClickHandler={onClickHandler}
-      />
+      <Title>{detail.title}</Title>
+      <DatePicker date={detail.dueDate} handler={dateChangeHandler} />
+      <IconButton
+        edge="end"
+        aria-label="remove"
+        onClick={onClickHandler}
+        style={{ paddingTop: 16 }}
+      >
+        <HighlightOffIcon fontSize="large" />
+      </IconButton>
     </DetailListItemWrapper>
   );
-  return <Span style={style} content={content} />;
 };
 
 const mapStateToProps = () => ({});

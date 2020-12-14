@@ -8,15 +8,20 @@ const CancelSaveButton = ({ handleCancel, handleSave }) => {
   return (
     <ButtonWrapper>
       <Button
-        style={{ marginRight: '10px' }}
+        style={{ marginRight: '10px', background: '#e85a71', color: '#fff' }}
         variant="contained"
-        color="default"
         startIcon={<BlockIcon />}
         onClick={handleCancel}
       >
         취소
       </Button>
-      <Button variant="contained" color="default" startIcon={<SaveIcon />} onClick={handleSave}>
+      <Button
+        style={{ color: '#fff' }}
+        variant="contained"
+        color="secondary"
+        startIcon={<SaveIcon />}
+        onClick={handleSave}
+      >
         저장
       </Button>
     </ButtonWrapper>

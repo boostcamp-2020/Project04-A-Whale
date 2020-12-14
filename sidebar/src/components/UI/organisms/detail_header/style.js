@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flex: 4,
     fontSize: '3rem',
-    fontFamily: 'Nanum Brush Script, sans-serif !important',
+    // fontFamily: 'Nanum Brush Script, sans-serif !important',
     '&:hover': {
       cursor: 'default',
     },
