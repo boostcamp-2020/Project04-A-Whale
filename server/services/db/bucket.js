@@ -63,7 +63,7 @@ exports.selectBucketWithAchieve = async (no) => {
     include: [
       {
         model: Achieve,
-        attributes: ['description'],
+        attributes: ['no', 'description'],
       },
     ],
   });
