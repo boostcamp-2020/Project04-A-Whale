@@ -60,13 +60,7 @@ extension JoinViewController: UITextFieldDelegate {
         self.view.frame.origin.y = 0
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
          self.view.endEditing(true)
     }
 }
