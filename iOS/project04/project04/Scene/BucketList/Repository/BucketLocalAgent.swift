@@ -14,7 +14,6 @@ class BucketLocalAgent: LocalService {
     func load() -> [RealmBucket] {
         do {
             let realm = try Realm()
-            
             let buckets = realm.objects(RealmBucket.self)
             return buckets.map { $0 }
         } catch {
@@ -52,7 +51,8 @@ class BucketLocalAgent: LocalService {
 
     func reviseStatus(element: RealmBucket) {
         do {
-            try Realm().write {
+            let realm = try Realm()
+            try realm.write {
                 element.status = "A"
             }
         } catch {
@@ -64,7 +64,6 @@ class BucketLocalAgent: LocalService {
         do {
             let realm = try Realm()
             let result = realm.objects(RealmBucket.self)
-            
             try realm.write {
                 realm.delete(result)
                 realm.add(buckets)
