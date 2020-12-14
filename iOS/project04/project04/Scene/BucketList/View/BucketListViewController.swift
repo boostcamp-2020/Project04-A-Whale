@@ -23,8 +23,8 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
             bucketListViewModel.handler = { [weak self] (data) in
                 var snapshot = Snapshot()
                 snapshot.appendSections([.todo, .done])
-                snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
-                snapshot.appendItems(data?[.done] ?? [], toSection: .done)
+                snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
+                snapshot.appendItems(data[.done] ?? [], toSection: .done)
 
                 DispatchQueue.main.async {
                     self?.dataSource?.apply(snapshot, animatingDifferences: false)
@@ -50,8 +50,8 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
         bucketListViewModel.handler = { [weak self](data) in
             var snapshot = Snapshot()
             snapshot.appendSections([.todo, .done])
-            snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
-            snapshot.appendItems(data?[.done] ?? [], toSection: .done)
+            snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
+            snapshot.appendItems(data[.done] ?? [], toSection: .done)
             
             DispatchQueue.main.async {
                 self?.dataSource?.apply(snapshot, animatingDifferences: false)
@@ -130,7 +130,7 @@ extension BucketListViewController: UICollectionViewDelegate {
         var section: RealmBucket.Section?
         
         indexPath.section == 0 ? (section = .todo) : (section = .done)
-        let bucket = bucketListViewModel.buckets?[section ?? .todo]?[indexPath.item]
+        let bucket = bucketListViewModel.buckets[section ?? .todo]?[indexPath.item]
         coordinator.pushToDetailList(bucket: bucket, index: indexPath.item, delegate: self)
     }
 }

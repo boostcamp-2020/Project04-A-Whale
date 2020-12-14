@@ -9,39 +9,38 @@ import Foundation
 import RealmSwift
 
 protocol BucketListViewModelProtocol {
-    var buckets: [RealmBucket.Section: [RealmBucket]]? { get set }
+    var buckets: [RealmBucket.Section: [RealmBucket]] { get set }
     var count: Int { get }
-    var handler: (([RealmBucket.Section: [RealmBucket]]?) -> Void)? { get set }
+    var handler: (([RealmBucket.Section: [RealmBucket]]) -> Void)? { get set }
     func fetch() -> Void
     func append(bucket: RealmBucket) -> Void
     func revise(at index: Int) -> Void
-    func autoIncreaseIdValue() -> Int
     func reviseStatus(index: Int)
+    func autoIncreaseIdValue() -> Int
 }
 
 class BucketListViewModel: BucketListViewModelProtocol {
     
-    var buckets: [RealmBucket.Section: [RealmBucket]]? {
+    private let useCase: BucketListUseCase
+    var handler: (([RealmBucket.Section: [RealmBucket]]) -> Void)?
+    var buckets: [RealmBucket.Section: [RealmBucket]] = [:] {
         didSet {
             handler?(buckets)
         }
     }
     
     var count: Int {
-        (self.buckets?[.todo]?.count ?? 0) + (self.buckets?[.done]?.count ?? 0)
+        (buckets[.todo]?.count ?? 0) + (buckets[.done]?.count ?? 0)
     }
-    
-    let useCase: BucketListUseCase    
-    var handler: (([RealmBucket.Section: [RealmBucket]]?) -> Void)?
     
     init(useCase: BucketListUseCase) {
         self.useCase = useCase
     }
     
     func fetch() {
-        self.useCase.fetch { [weak self] list in
+        useCase.fetch { [weak self] list in
             let buckets: [RealmBucket.Section: [RealmBucket]] = [.todo: list.filter({ $0.status == "O" }),
-                           .done: list.filter({ $0.status == "A" })]
+                                                                 .done: list.filter({ $0.status == "A" })]
             self?.buckets = buckets
         }
     }
@@ -49,15 +48,25 @@ class BucketListViewModel: BucketListViewModelProtocol {
     func append(bucket: RealmBucket) {
         let newId = autoIncreaseIdValue()
         bucket.no = newId
-        self.buckets?[.todo]?.append(bucket)
+        buckets[.todo]?.append(bucket)
         useCase.append(bucket)
     }
     
     func revise(at index: Int) {
-        guard let bucket = self.buckets?[.todo]?.remove(at: index) else { return }
-        self.buckets?[.done]?.append(bucket)
+        guard let bucket = buckets[.todo]?.remove(at: index) else {
+            return
+        }
+        buckets[.done]?.append(bucket)
         
         useCase.revise(at: bucket.no, element: bucket)
+    }
+
+    func reviseStatus(index: Int) {
+        guard let bucket = buckets[.todo]?.remove(at: index) else {
+            return
+        }
+        buckets[.done]?.append(bucket)
+        useCase.reviseStatus(element: bucket)
     }
     
     func autoIncreaseIdValue() -> Int {
@@ -71,13 +80,5 @@ class BucketListViewModel: BucketListViewModelProtocol {
             print(error)
         }
         return 0
-    }
-    
-    func reviseStatus(index: Int) {
-        guard let bucket = buckets?[.todo]?.remove(at: index) else {
-            return
-        }
-        buckets?[.done]?.append(bucket)
-        useCase.reviseStatus(element: bucket)
     }
 }
