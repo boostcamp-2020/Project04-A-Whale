@@ -7,20 +7,28 @@
 
 import Foundation
 
-class DetailListUseCase: ListUseCase {
+protocol DetailListUseCaseProtocol {
+    func fetch(with index: Int?, completion: @escaping ([RealmDetail]) -> Void)
+    func append(_ element: RealmDetail)
+    func remove(at index: Int)
+    func revise(element: RealmDetail, title: String, dueDate: String)
+    func reviseStatus(element: RealmDetail)
+}
+
+class DetailListUseCase: DetailListUseCaseProtocol {
     let repository: DetailRepositoryProtocol
     
     init(repository: DetailRepositoryProtocol) {
         self.repository = repository
     }
     
-    func fetch(completion: @escaping ([Detail]) -> Void) {
-        repository.fetchDetailList(completion: { list in
+    func fetch(with index: Int?, completion: @escaping ([RealmDetail]) -> Void) {
+        repository.fetchDetailList(bucketNo: index ?? 0, completion: { list in
             completion(list)
         })
     }
 
-    func append(_ element: Detail) {
+    func append(_ element: RealmDetail) {
         repository.appendDetailList(element)
     }
 
@@ -28,9 +36,11 @@ class DetailListUseCase: ListUseCase {
         repository.removeDetailList(at: index)
     }
 
-    func revise(at index: Int, element: Detail) {
-        repository.reviseDetailList(at: index, element: element)
+    func revise(element: RealmDetail, title: String, dueDate: String) {
+        repository.reviseDetailList(element: element, title: title, dueDate: dueDate)
     }
     
-    
+    func reviseStatus(element: RealmDetail) {
+        repository.reviseDetailListStatus(element: element)
+    }
 }

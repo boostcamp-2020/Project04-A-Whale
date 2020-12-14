@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 protocol DetailListPushCoordinator {
-    func pushToDetailList(bucket: RealmBucket?)
+    func pushToDetailList(bucket: RealmBucket?, index: Int, delegate: BucketListObserverDelegate)
 }
 
-protocol BucketListAddCoordinator {
-    func pushToBucketListAdd(from deletage: BucketListAddDelegate)
+protocol BucketListAddPushCoordinator {
+    func pushToBucketListAdd(from deletage: BucketListObserverDelegate)
 }
 
 final class BucketCoordinator: NavigationCoordinator {
@@ -24,9 +24,8 @@ final class BucketCoordinator: NavigationCoordinator {
     }
     
     func pushViewController() {
-        let network = BucketAPIAgent()
         let local = BucketLocalAgent()
-        let repository = BucketListRepository(network: network, local: local)
+        let repository = BucketListRepository(local: local)
         let useCase = BucketListUseCase(repository: repository)
         let bucketListViewModel = BucketListViewModel(useCase: useCase)
         
@@ -40,33 +39,45 @@ final class BucketCoordinator: NavigationCoordinator {
 }
 
 extension BucketCoordinator: DetailListPushCoordinator {
-    func pushToDetailList(bucket: RealmBucket?) {
+    func pushToDetailList(bucket: RealmBucket?, index: Int, delegate: BucketListObserverDelegate) {
         let viewModel = configureDetailListViewModel(bucket: bucket)
+        let impressionViewModel = configureImpressionViewModel()
         let coordinator = DetailAddCoordinator(navigationController)
         let viewController = UIStoryboard(name: "DetailList", bundle: nil).instantiateViewController(identifier: "DetailListViewController", creator: { coder in
             return DetailListViewController(coder: coder,
                                             bucket: bucket,
                                             viewModel: viewModel,
-                                            coordinator: coordinator)
+                                            coordinator: coordinator,
+                                            index: index,
+                                            delegate: delegate,
+                                            impressionViewModel: impressionViewModel)
         })
         navigationController.pushViewController(viewController, animated: true)
     }
     
     private func configureDetailListViewModel(bucket: RealmBucket?) -> DetailListViewModel {
-        let networkAgent = DetailAPIAgent()
-        let localAgent = DetailLocalAgent(bucketNumber: bucket?.id ?? 0)
-        let repository = DetailRepository(network: networkAgent, local: localAgent)
+        let localAgent = DetailLocalAgent(bucketNumber: bucket?.no ?? 0)
+        let repository = DetailRepository(local: localAgent)
         let usecase = DetailListUseCase(repository: repository)
         return DetailListViewModel(usecase: usecase)
     }
+    
+    private func configureImpressionViewModel() -> ImpressionViewModel {
+        let localAgent = ImpressionLocalAgent()
+        let repository = ImpressionRepository(local: localAgent)
+        let usecase = ImpressionUseCase(repository: repository)
+        return ImpressionViewModel(usecase: usecase)
+    }
 }
 
-extension BucketCoordinator: BucketListAddCoordinator {
-    func pushToBucketListAdd(from delegate: BucketListAddDelegate) {
+extension BucketCoordinator: BucketListAddPushCoordinator {
+    func pushToBucketListAdd(from delegate: BucketListObserverDelegate) {
         let viewController = UIStoryboard(name: "BucketListAdd", bundle: nil).instantiateViewController(identifier: "BucketListAddViewController", creator: { (coder) -> BucketListAddViewController? in
-            let usecase = BucketListAddUseCase()
+            let detailMemory = DetailMemoryAgent()
+            let repository = BucketListAddRepository(memory: detailMemory)
+            let usecase = BucketListAddUseCase(repository: repository)
             let viewModel = BucketListAddViewModel(usecase: usecase)
-            let coordinator = BucketListSearchCoordinator(self.navigationController)
+            let coordinator = BucketListAddCoordinator(self.navigationController)
             return BucketListAddViewController(coder: coder, viewModel: viewModel, delegate: delegate, coordinator: coordinator)
         })
         navigationController.pushViewController(viewController, animated: true)

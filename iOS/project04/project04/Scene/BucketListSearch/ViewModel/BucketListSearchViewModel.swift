@@ -8,15 +8,14 @@
 import Foundation
 
 protocol BucketListSearchViewModelProtocol {
-    var buckets: [Bucket] { get }
-    var filteredBuckets: [Bucket] { get }
+    var buckets: [SearchBucket] { get }
+    var filteredBuckets: [SearchBucket] { get }
     var handler: (() -> Void)? { get set }
     var count: Int { get }
     var filteredCount: Int { get }
     func fetch() -> Void
     func search(with keyword: String) -> Void
 }
-
 
 class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
     var count: Int {
@@ -29,13 +28,12 @@ class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
     
     let usecase: SearchUseCase
 
-    var buckets: [Bucket] = []
+    var buckets: [SearchBucket] = []
     
-    var filteredBuckets: [Bucket] = []
+    var filteredBuckets: [SearchBucket] = []
     
     var handler: (() -> Void)?
 
-    
     init(usecase: SearchUseCase) {
         self.usecase = usecase
     }
@@ -43,6 +41,7 @@ class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
     func fetch() {
         usecase.fetch { [weak self] (buckets) in
             self?.buckets = buckets
+            self?.handler?()
         }
     }
     
@@ -51,6 +50,5 @@ class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
             self?.filteredBuckets = buckets
         }
     }
-    
-    
+
 }

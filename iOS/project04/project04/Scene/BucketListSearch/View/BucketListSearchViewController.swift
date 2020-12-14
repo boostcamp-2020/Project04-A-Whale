@@ -16,12 +16,13 @@ class BucketListSearchViewController: UITableViewController {
             }
         }
     }
-    var didSelectRowHandler: (Bucket) -> Void
+    var didSelectRowHandler: (SearchBucket) -> Void
     
-    init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol, didSelectRowHandler: @escaping (Bucket) -> Void) {
+    init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol, didSelectRowHandler: @escaping (SearchBucket) -> Void) {
         self.viewModel = viewModel
+
+        self.viewModel.fetch()
         self.didSelectRowHandler = didSelectRowHandler
-        viewModel.fetch()
         super.init(coder: coder)
     }
     
@@ -32,6 +33,10 @@ class BucketListSearchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchController()
+        self.viewModel.handler = {
+            self.tableView.reloadData()
+        }
+        self.viewModel.fetch()
     }
     
     func isFiltering() -> Bool {
@@ -70,19 +75,27 @@ extension BucketListSearchViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let item: Bucket
+        let item: SearchBucket
         if isFiltering() {
             item = viewModel.filteredBuckets[indexPath.row]
         } else {
             item = viewModel.buckets[indexPath.row]
         }
-        cell.textLabel?.text = item.title
-        cell.detailTextLabel?.text = item.description
+        
+        let fontSize = UIFont.boldSystemFont(ofSize: 12)
+        let text = "\(item.title)    @\(item.nickname)"
+        let range = (text as NSString).range(of: "@\(item.nickname)")
+        let attributedStr = NSMutableAttributedString(string: text)
+        attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: fontSize, range: range)
+        attributedStr.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.secondaryLabel, range: range)
+        cell.textLabel?.attributedText = attributedStr
+        cell.detailTextLabel?.text = item.bucketDescription
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item: Bucket
+        let item: SearchBucket
         if isFiltering() {
             item = viewModel.filteredBuckets[indexPath.row]
         } else {

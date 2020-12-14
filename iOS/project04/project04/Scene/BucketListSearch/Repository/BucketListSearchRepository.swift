@@ -8,18 +8,23 @@
 import Foundation
 
 protocol SearchRepositoryProtocol {
-    func fetch(completion: @escaping ([Bucket]) -> Void)
-    func search(with keyword: String, completion: @escaping ([Bucket]) -> Void)
+    func search(with keyword: String, completion: @escaping ([SearchBucket]) -> Void)
 }
 
 class BucketListSearchRepository: SearchRepositoryProtocol {
-    let buckets = (1...100).map({ Bucket(id: nil, title: "목표 \($0)",description: "목표 \($0) 설명", status: "O") })
-    func fetch(completion: @escaping ([Bucket]) -> Void) {
-        completion(buckets)
-    }
-    
-    func search(with keyword: String, completion: @escaping ([Bucket]) -> Void) {
-        completion(buckets.filter({$0.title.contains(keyword)}))
+    func search(with keyword: String, completion: @escaping ([SearchBucket]) -> Void) {
+        NetworkService.shared.request(from: Endpoint.presets.urlString  + "?keyword=\(keyword)", method: .GET) { (result) in
+            switch result {
+            case .success(let data):
+                let response = try? JSONDecoder().decode(Response<[SearchBucket]>.self, from: data)
+                DispatchQueue.main.async {
+                    completion(response?.data ?? [])
+                }
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
     }
     
 }

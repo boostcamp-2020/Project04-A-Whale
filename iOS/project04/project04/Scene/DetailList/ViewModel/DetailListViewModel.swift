@@ -9,54 +9,53 @@ import Foundation
 import RealmSwift
 
 protocol DetailListViewModelProtocol {
-    var list: [Detail.Section: [Detail]] { get }
-    var usecase: DetailListUseCase { get }
+    var list: [RealmDetail.Section: [RealmDetail]] { get }
+    var usecase: DetailListUseCaseProtocol { get }
     var listDidChange: ((DetailListViewModelProtocol) -> ())? { get set }
     func listDeleteAction(at index: Int)
-    func listAddAction(_ newElement: Detail)
-    func listReviseAction(_ newElement: Detail, at index: Int)
+    func listAddAction(_ newElement: RealmDetail)
+    func listReviseAction(_ element: RealmDetail, title: String, dueDate: String)
     func listStatusReviseAction(at index: Int)
-    func listFetchAction()
-    init(usecase: DetailListUseCase)
+    func listFetchAction(with index: Int?)
 }
 
 class DetailListViewModel: DetailListViewModelProtocol {
     
-    var list: [Detail.Section: [Detail]] = [:] {
+    var list: [RealmDetail.Section: [RealmDetail]] = [:] {
         didSet {
             self.listDidChange?(self)
         }
     }
     
     var listDidChange: ((DetailListViewModelProtocol) -> ())?
-    var usecase: DetailListUseCase
+    var usecase: DetailListUseCaseProtocol
     
-    required init(usecase: DetailListUseCase) {
+    required init(usecase: DetailListUseCaseProtocol) {
         self.usecase = usecase
     }
     
-    func listFetchAction() {
-        usecase.fetch(completion: { [weak self] list in
+    func listFetchAction(with index: Int?) {
+        usecase.fetch(with: index, completion: { [weak self] list in
             self?.list[.done] = list.filter { $0.status == "A" }
             self?.list[.todo] = list.filter { $0.status == "O" }
         })
     }
     
     func listDeleteAction(at index: Int) {
-        list[.todo]?.remove(at: index)
+        list[.todo]?.removeAll(where: { $0.no == index })
         usecase.remove(at: index)
     }
     
-    func listAddAction(_ newElement: Detail) {
-        var item = newElement
+    func listAddAction(_ newElement: RealmDetail) {
+        let item = newElement
         item.no = autoIncreaseIdValue()
         list[.todo]?.append(item)
         usecase.append(item)
     }
     
-    func listReviseAction(_ newElement: Detail, at index: Int) {
-        list[.todo]?[index] = newElement
-        usecase.revise(at: index, element: newElement)
+    func listReviseAction(_ element: RealmDetail, title: String, dueDate: String) {
+        usecase.revise(element: element, title: title, dueDate: dueDate)
+        listDidChange?(self)
     }
     
     func autoIncreaseIdValue() -> Int {
@@ -73,12 +72,11 @@ class DetailListViewModel: DetailListViewModelProtocol {
     }
     
     func listStatusReviseAction(at index: Int) {
-        guard var detail = list[.todo]?.remove(at: index) else {
+        guard let detail = list[.todo]?.remove(at: index) else {
             return
         }
         list[.done]?.append(detail)
         
-        detail.status = "A"
-        usecase.revise(at: index, element: detail)
+        usecase.reviseStatus(element: detail)
     }
 }

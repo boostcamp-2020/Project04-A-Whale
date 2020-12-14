@@ -1,0 +1,11 @@
+excluded:
+- project04/App/AppDelegate.swift
+- project04/App/SceneDelegate.swift
+- Pods
+disabled_rules:
+- trailing_whitespace
+- line_length
+- identifier_name
+- empty_enum_arguments
+- void_return
+- redundant_void_return

@@ -8,7 +8,28 @@
 import Foundation
 import RealmSwift
 
-class RealmDetail: Object {
+struct Info: Codable {
+    let bucket: RealmBucket
+    let details: Details
+}
+
+struct Details: Codable {
+    let achieveDetails, openDetails: [RealmDetail]
+    
+    var allDetails: [RealmDetail] {
+        return achieveDetails + openDetails
+    }
+}
+
+class RealmDetail: Object, Codable {
+    enum Section: String {
+        case todo
+        case graph
+        case feel
+        case done
+        case input
+    }
+    
     @objc dynamic var no: Int = 0
     @objc dynamic var title: String = ""
     @objc dynamic var status: String = ""
@@ -17,8 +38,4 @@ class RealmDetail: Object {
     @objc dynamic var updatedAt: String = ""
     @objc dynamic var deletedAt: String?
     @objc dynamic var bucketNo: Int = 0
-}
-
-class RealmDetailList: Object {
-    var detailList = List<RealmDetail>()
 }

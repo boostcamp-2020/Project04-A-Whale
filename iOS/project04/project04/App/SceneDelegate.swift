@@ -10,13 +10,27 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    let monitor = NetworkStatus.shared
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let controller = MainTabBarController()
-        window?.rootViewController = controller
+        let navigationController = UINavigationController()
+        var controller: UIViewController
+        
+        let auth = AccessToken()
+        if auth.token.isEmpty {
+            controller = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginViewController", creator: { coder in
+                let coordinator = LoginCoordinator(navigationController)
+                return LoginViewController(coder: coder, coordinator: coordinator)
+            })
+            window?.rootViewController = navigationController
+            navigationController.pushViewController(controller, animated: false)
+
+        } else {
+            controller = MainTabBarController()
+            window?.rootViewController = controller
+        }
         window?.makeKeyAndVisible()
     }
 
@@ -34,7 +48,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {
     }
-
-
 }
-

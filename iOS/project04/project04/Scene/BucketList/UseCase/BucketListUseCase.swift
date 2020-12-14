@@ -8,7 +8,8 @@
 import Foundation
 
 class BucketListUseCase: ListUseCase {
-    typealias Item = Bucket
+    
+    typealias Item = RealmBucket
     
     let repository: BucketListRepository
     
@@ -16,13 +17,13 @@ class BucketListUseCase: ListUseCase {
         self.repository = repository
     }
     
-    func fetch(completion: @escaping ([Bucket]) -> Void) {
+    func fetch(completion: @escaping ([RealmBucket]) -> Void) {
         repository.fetchBucketList { (list) in
             completion(list)
         }
     }
     
-    func append(_ element: Bucket) {
+    func append(_ element: RealmBucket) {
         repository.appendBucketList(element)
     }
     
@@ -30,10 +31,15 @@ class BucketListUseCase: ListUseCase {
         repository.removeBucketList(at: index)
     }
     
-    func revise(at index: Int, element: Bucket) {
+    func revise(at index: Int, element: RealmBucket) {
         repository.reviseBucketList(at: index, element: element)
     }
     
-    
+    func reviseStatus(element: RealmBucket) {
+        repository.reviseBucketListStatus(element: element)
+    }
    
+    func revise(element: RealmBucket, title: String, dueDate: String) {
+        
+    }
 }
