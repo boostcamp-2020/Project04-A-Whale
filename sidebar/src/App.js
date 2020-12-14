@@ -18,6 +18,7 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
+  chrome.storage.local.clear();
   return (
     <>
       <ThemeProvider theme={theme}>
