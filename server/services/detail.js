@@ -38,6 +38,11 @@ exports.getDetails = async (bucketNo) => {
   return result;
 };
 
+exports.getDetailsByDDay = async (dday) => {
+  const details = await db.selectDetailsByDDay(dday);
+  return details;
+};
+
 const formattingBurndownChart = (details) => {
   if (!details.length) return [];
   const dates = details.map(({ dueDate }) => dueDate);

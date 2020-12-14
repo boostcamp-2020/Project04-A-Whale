@@ -38,6 +38,19 @@ exports.selectBuckets = async (userNo) => {
   return results;
 };
 
+exports.selectBucketsByBucketNos = async (bucketNos) => {
+  const results = await Bucket.findAll({
+    raw: true,
+    where: {
+      no: {
+        [Op.in]: [bucketNos],
+      },
+    },
+  });
+
+  return results;
+};
+
 exports.updateBucketStatus = async (no, status) => {
   const results = await Bucket.update({ status }, { where: { no } });
 

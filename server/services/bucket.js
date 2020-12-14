@@ -42,6 +42,11 @@ exports.getBuckets = async (userNo) => {
   return bucketsByStatus(buckets);
 };
 
+exports.getBucketsByBucketNos = async (bucketNos) => {
+  const buckets = await db.selectBucketsByBucketNos(bucketNos);
+  return buckets;
+};
+
 exports.updateBucketStatus = async (no, status) => {
   const result = await db.updateBucketStatus(no, status);
   return result;
