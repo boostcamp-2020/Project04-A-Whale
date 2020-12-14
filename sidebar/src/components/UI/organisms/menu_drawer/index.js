@@ -27,7 +27,7 @@ const MenuDrawer = ({ open, toggleDrawer }) => {
   useEffect(() => {
     const api = '/api/users/userinfo';
     chrome.storage.local.get(api, (items) => {
-      if (items[api] === 'modified' || JSON.stringify(items) === '{}') {
+      if (items[api] === 'modified' || JSON.stringify(items[api]) === '{}') {
         console.log('유저 받아옴');
         dispatch(getUser());
       }
