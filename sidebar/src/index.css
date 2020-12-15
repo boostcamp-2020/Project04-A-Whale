@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'NanumBarunpen';
+  font-style: normal;
+  font-weight: normal;
+  src: url('fonts/NanumBarunpenR.woff') format('woff'),
+    url('fonts/NanumBarunpenR.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NanumBarunpen';
+  font-style: normal;
+  font-weight: bold;
+  src: url('fonts/NanumBarunpenB.woff') format('woff'),
+    url('fonts/NanumBarunpenB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NanumSquareRound';
+  font-style: normal;
+  font-weight: 100;
+  src: url('fonts/NanumSquareRoundL.woff') format('woff'),
+    url('fonts/NanumSquareRoundL.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NanumSquareRound';
+  font-style: normal;
+  font-weight: normal;
+  src: url('fonts/NanumSquareRoundR.woff') format('woff'),
+    url('fonts/NanumSquareRoundR.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NanumSquareRound';
+  font-style: normal;
+  font-weight: bold;
+  src: url('fonts/NanumSquareRoundB.woff') format('woff'),
+    url('fonts/NanumSquareRoundB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bazzi';
+  font-style: normal;
+  font-weight: normal;
+  src: url('fonts/Bazzi.woff') format('woff'),
+    url('fonts/Bazzi.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Maplestory';
+  font-style: normal;
+  font-weight: normal;
+  src: url('fonts/Maplestory Light.woff') format('woff'),
+    url('fonts/Maplestory Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Maplestory';
+  font-style: normal;
+  font-weight: bold;
+  src: url('fonts/Maplestory Bold.woff') format('woff'),
+    url('fonts/Maplestory Bold.ttf') format('truetype');
+}
