@@ -4,8 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import useStyles from './style';
-import { getDetailsByDDay } from '../../../lib/api';
-import { createAlarm, removeAllAlarms } from '../../../lib/alarm';
+import { removeAllAlarms, updateAlarm, updateDueDetailsAndAlarm } from '../../../lib/alarm';
 import { getChromeLocalStorage, setChromeLocalStorage } from '../../../lib/chromeLocalStorage';
 
 const Setting = () => {
@@ -39,45 +38,21 @@ const Setting = () => {
     // 알람 삭제
     await removeAllAlarms();
     // 스위치 업데이트
-    setChromeLocalStorage({ ...items, sw });
-    return null;
-  };
-
-  const updateAlarm = async (items, dueDetails) => {
-    // 설정 및 응답 저장
-    setChromeLocalStorage({ ...items, sw, alarm, dueDetails });
-    // 알람 삭제
-    await removeAllAlarms();
-    // 알람 생성
-    createAlarm(dueDetails.details.length, alarm.time);
-    return null;
-  };
-
-  const updateDueDetailsAndAlarm = async (items) => {
-    // api 요청
-    let dueDetails = null;
-    try {
-      const response = await getDetailsByDDay(alarm.dday);
-      dueDetails = response.data.data;
-    } catch (error) {
-      dueDetails = { details: [] };
-      console.log(error);
-    }
-    updateAlarm(items, dueDetails);
+    setChromeLocalStorage({ ...items, sw, alarm });
     return null;
   };
 
   const alarmTurnOn = async (items) => {
-    return updateDueDetailsAndAlarm(items);
+    return updateDueDetailsAndAlarm(items, { sw, alarm });
   };
 
   const changeDDay = async (items) => {
-    return updateDueDetailsAndAlarm(items);
+    return updateDueDetailsAndAlarm(items, { sw, alarm });
   };
 
   const changeTime = async (items) => {
-    const dueDetails = { details: [] };
-    return updateAlarm(items, dueDetails);
+    const dueDetails = [];
+    return updateAlarm(items, dueDetails, { sw, alarm });
   };
 
   useEffect(() => {
@@ -101,22 +76,27 @@ const Setting = () => {
             // alarm on -> off
             if (localSw.alarmOn && !sw.alarmOn) {
               await alarmTurnOff(items);
+              return;
             }
             // alarm off -> on
             if (!localSw.alarmOn && sw.alarmOn) {
               await alarmTurnOn(items);
+              return;
             }
 
             if (sw.alarmOn) {
               // alarm on + dday 변경
               if (localAlarm.dday !== alarm.dday) {
                 await changeDDay(items);
+                return;
               }
               // alarm on + time 변경
               if (localAlarm.time !== alarm.time) {
                 await changeTime(items);
+                return;
               }
             }
+            setChromeLocalStorage({ ...items, sw, alarm });
           }
         } else {
           // 로컬에 값이 없을 때, 저장
@@ -124,6 +104,7 @@ const Setting = () => {
         }
       });
     } catch (error) {
+      console.log(error);
       setIsWhaleExt(false);
     }
   }, [sw, alarm]);
