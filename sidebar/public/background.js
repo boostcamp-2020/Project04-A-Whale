@@ -37,10 +37,13 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   );
 });
 
-chrome.notifications.onButtonClicked.addListener(function (notifId, btnIdx) {
+chrome.notifications.onButtonClicked.addListener(async (notifId, btnIdx) => {
   if (notifId === myNotificationID) {
     if (btnIdx === 0) {
-      whale.sidebarAction.show({ url: '/#/?popup=true' });
+      whale.runtime.sendMessage({ popup: true }, (res) => {
+        console.log(res);
+      });
+      whale.sidebarAction.show();
     }
   }
 });
