@@ -45,7 +45,6 @@ exports.selectDetailsByDDay = async (dday) => {
     },
     order: [['dueDate', 'ASC']],
   });
-  console.log(results);
   return results;
 };
 
