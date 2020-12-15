@@ -13,6 +13,9 @@
 		825B3EA325885248003FBA22 /* RealmFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825B3EA225885248003FBA22 /* RealmFeed.swift */; };
 		825B3EAC258853DF003FBA22 /* FeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825B3EAB258853DF003FBA22 /* FeedRepository.swift */; };
 		825B3EB125885D8E003FBA22 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825B3EB025885D8E003FBA22 /* FeedTableViewCell.swift */; };
+		825B3ED52588767E003FBA22 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825B3ED32588767E003FBA22 /* UserInfoView.swift */; };
+		825B3ED62588767E003FBA22 /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 825B3ED42588767E003FBA22 /* UserInfoView.xib */; };
+		825B3EDB258883BB003FBA22 /* RealmUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825B3EDA258883BB003FBA22 /* RealmUserData.swift */; };
 		8261DB7C2575F89F0027F6F8 /* BucketListAdd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8261DB7B2575F89F0027F6F8 /* BucketListAdd.storyboard */; };
 		8261DB802575F8C40027F6F8 /* BucketListAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DB7F2575F8C40027F6F8 /* BucketListAddViewController.swift */; };
 		8261DB8A25761A420027F6F8 /* BucketListAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DB8925761A420027F6F8 /* BucketListAddViewModel.swift */; };
@@ -154,6 +157,9 @@
 		825B3EA225885248003FBA22 /* RealmFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeed.swift; sourceTree = "<group>"; };
 		825B3EAB258853DF003FBA22 /* FeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRepository.swift; sourceTree = "<group>"; };
 		825B3EB025885D8E003FBA22 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		825B3ED32588767E003FBA22 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		825B3ED42588767E003FBA22 /* UserInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
+		825B3EDA258883BB003FBA22 /* RealmUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserData.swift; sourceTree = "<group>"; };
 		8261DB7B2575F89F0027F6F8 /* BucketListAdd.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BucketListAdd.storyboard; sourceTree = "<group>"; };
 		8261DB7F2575F8C40027F6F8 /* BucketListAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddViewController.swift; sourceTree = "<group>"; };
 		8261DB8925761A420027F6F8 /* BucketListAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddViewModel.swift; sourceTree = "<group>"; };
@@ -607,6 +613,8 @@
 			children = (
 				C1655C98256B7ED10067E3C5 /* BucketListViewController.swift */,
 				C1E6C40D2574D27900BD4B4B /* BucketList.storyboard */,
+				825B3ED32588767E003FBA22 /* UserInfoView.swift */,
+				825B3ED42588767E003FBA22 /* UserInfoView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -667,6 +675,7 @@
 				C1604D0C257DFC450019E6E2 /* RealmImpression.swift */,
 				82E8B7532581C0040008A22A /* RealmTransaction.swift */,
 				825B3EA225885248003FBA22 /* RealmFeed.swift */,
+				825B3EDA258883BB003FBA22 /* RealmUserData.swift */,
 			);
 			path = RealmObject;
 			sourceTree = "<group>";
@@ -906,6 +915,7 @@
 				C1E6C4122574D31300BD4B4B /* DetailList.storyboard in Resources */,
 				C1655C9E256B7ED30067E3C5 /* Assets.xcassets in Resources */,
 				C1269C7C257F121C00A5C1EC /* Login.storyboard in Resources */,
+				825B3ED62588767E003FBA22 /* UserInfoView.xib in Resources */,
 				8261DB98257767080027F6F8 /* BucketListAddHeaderView.xib in Resources */,
 				8261DBA725789E140027F6F8 /* BucketListSearch.storyboard in Resources */,
 				C16019C125792FEE00506430 /* DetailSectionGraphView.xib in Resources */,
@@ -1002,6 +1012,7 @@
 				C1655C99256B7ED10067E3C5 /* BucketListViewController.swift in Sources */,
 				C160C4E2257DCC6700578BE3 /* ImpressionViewModel.swift in Sources */,
 				C175AA8025752F72009D8103 /* DetailCoordinator.swift in Sources */,
+				825B3ED52588767E003FBA22 /* UserInfoView.swift in Sources */,
 				C175AA7825752C57009D8103 /* DetailListAddViewController.swift in Sources */,
 				82A72917256F43E100BD5797 /* BucketLocalAgent.swift in Sources */,
 				82F12FD82579B59C0079DB71 /* BucketListSearchRepository.swift in Sources */,
@@ -1060,6 +1071,7 @@
 				C1900D7E256B85ED0071E8C7 /* DetailListViewController.swift in Sources */,
 				C1754EDC256E13650037C805 /* DetailRepository.swift in Sources */,
 				C1604D11257DFEB30019E6E2 /* ImpressionUseCase.swift in Sources */,
+				825B3EDB258883BB003FBA22 /* RealmUserData.swift in Sources */,
 				8261DB8A25761A420027F6F8 /* BucketListAddViewModel.swift in Sources */,
 				82A7290E256F41DD00BD5797 /* BucketListUseCase.swift in Sources */,
 				C16BEFB52579CF2000108265 /* extension+UIColor.swift in Sources */,

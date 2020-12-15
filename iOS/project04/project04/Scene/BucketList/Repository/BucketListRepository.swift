@@ -14,6 +14,22 @@ class BucketListRepository {
         self.local = local
     }
     
+    func fetchUserIfo(completion: @escaping (RealmUserData) -> Void) {
+        NetworkService.shared.request(from: Endpoint.userInfo.urlString, method: .GET) { (result) in
+            switch result {
+            case .success(let data):
+                guard let response = try? JSONDecoder().decode(Response<RealmUserData>.self, from: data) else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    completion(response.data)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func fetchBucketList(completion: @escaping ([RealmBucket]) -> Void) {
         NetworkService.shared.request(from: Endpoint.buckets.urlString, method: .GET) { [weak self] (result) in
             switch result {
