@@ -33,6 +33,7 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        checkTokenExpired()
         bucketListViewModel.fetch()
     }
     

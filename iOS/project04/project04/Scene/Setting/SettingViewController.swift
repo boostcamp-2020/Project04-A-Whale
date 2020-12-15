@@ -19,6 +19,11 @@ class SettingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkTokenExpired()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
