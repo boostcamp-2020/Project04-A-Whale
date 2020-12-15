@@ -38,8 +38,9 @@ exports.getDetails = async (req, res, next) => {
 */
 exports.getDetailsByDDay = async (req, res, next) => {
   try {
+    const userNo = req.user.no;
     const { dday } = req.params;
-    const dueDetails = await detailServices.getDetailsByDDay(dday);
+    const dueDetails = await detailServices.getDetailsByDDay(userNo, dday);
     const data = dueDetails;
 
     res.status(OK).json({

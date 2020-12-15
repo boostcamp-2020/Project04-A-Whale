@@ -29,14 +29,18 @@ exports.selectDetails = async (bucketNo) => {
   return results;
 };
 
-exports.selectDetailsByDDay = async (dday) => {
+exports.selectDetailsByDDay = async (userNo, dday) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const dDay = new Date();
   dDay.setDate(today.getDate() + Number(dday));
   const results = await Detail.findAll({
-    raw: true,
-    include: Bucket,
+    include: {
+      model: Bucket,
+      where: {
+        userNo,
+      },
+    },
     where: {
       status: 'O',
       dueDate: {
@@ -45,6 +49,7 @@ exports.selectDetailsByDDay = async (dday) => {
     },
     order: [['dueDate', 'ASC']],
   });
+  console.log(results);
   return results;
 };
 

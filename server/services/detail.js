@@ -38,8 +38,8 @@ exports.getDetails = async (bucketNo) => {
   return result;
 };
 
-exports.getDetailsByDDay = async (dday) => {
-  const details = await db.selectDetailsByDDay(dday);
+exports.getDetailsByDDay = async (userNo, dday) => {
+  const details = await db.selectDetailsByDDay(userNo, dday);
   return details;
 };
 
