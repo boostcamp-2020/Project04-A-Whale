@@ -26,21 +26,25 @@ const useStyles = makeStyles((theme) => ({
   },
   bigTitle: {
     padding: theme.spacing(2),
+    paddingLeft: 0,
     fontSize: '3rem',
     fontWeight: 'bold',
-    // fontFamily: 'Nanum Brush Script, sans-serif !important',
   },
   date: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     fontSize: '1.5rem',
-    // fontFamily: 'Nanum Brush Script, sans-serif !important',
   },
   description: {
     padding: theme.spacing(3),
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
-    border: '1px solid #eeeeee',
+    border: '1px solid #ddd',
     borderRadius: '5px',
+  },
+  dateWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
 }));
 

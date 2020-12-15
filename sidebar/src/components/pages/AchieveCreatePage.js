@@ -1,10 +1,11 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-
+import { updateBucketStatus } from '../../modules/buckets';
 import { reset, changeInput, setAchieve } from '../../modules/achieve';
 import AchieveCreateLayout from '../templates/achieve_create';
 import Header from '../UI/organisms/header';
+import { ACHIEVE } from '../../constants/status';
 
 const AchieveCreatePage = ({ match }) => {
   const location = useLocation();
@@ -19,6 +20,7 @@ const AchieveCreatePage = ({ match }) => {
   }, []);
 
   const submitAchieve = useCallback((text) => {
+    dispatch(updateBucketStatus({ no: bucketNo, status: ACHIEVE }));
     dispatch(setAchieve({ description: text, bucketNo }));
   }, []);
 
@@ -30,7 +32,6 @@ const AchieveCreatePage = ({ match }) => {
   }, [acheiveState]);
 
   useEffect(() => {
-    // url 직접 접근 제한
     if (!location.state) {
       history.goBack();
       return;

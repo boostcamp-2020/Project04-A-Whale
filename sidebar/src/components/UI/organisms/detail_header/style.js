@@ -1,18 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   title: {
     flex: 4,
     fontSize: '3rem',
-    // fontFamily: 'Nanum Brush Script, sans-serif !important',
     '&:hover': {
       cursor: 'default',
     },
   },
   description: {
     padding: '8px',
-    fontSize: '1rem',
+    fontSize: '1.2rem',
     '&:hover': {
       cursor: 'default',
     },
@@ -29,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     color: '#555555',
   },
   achieveButton: {
-    marginLeft: '10px',
+    marginLeft: 10,
+    fontSize: 16,
   },
 }));
 

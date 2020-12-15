@@ -17,6 +17,7 @@ import {
   LoginLayout,
   LoginContainer,
   LoginBox,
+  LoginWrapper,
 } from './style';
 
 const Login = ({ setLoginInfo }) => {
@@ -59,7 +60,7 @@ const Login = ({ setLoginInfo }) => {
     [id, password]
   );
   return (
-    <>
+    <LoginWrapper>
       <LogoWrapper>
         <AppTitle>올해는 꼭</AppTitle>
         <WhaleWrapper>
@@ -88,14 +89,6 @@ const Login = ({ setLoginInfo }) => {
             viewBox="0 0 750 500"
             preserveAspectRatio="xMidYMax slice"
           >
-            {/* <rect
-              className="mask"
-              width="750"
-              height="200"
-              opacity="0.8"
-              fill="#ffffff"
-              transform="translate(0 400)"
-            /> */}
             <g className="clouds" fill="#dddddd">
               <Cloud4 d="M402.34,341.68c9.9-10.24,23.76-7.43,36.05-5.48C448,332,458.88,329,468.9,334c-.95-7.91,8.65-14.92,15.9-11.61-3.34-11.77,13-13.9,20.53-8.34A13.53,13.53,0,0,1,522,310.16c2.64-18.11,27.85-24.13,38.38-9.17,3.54-5.51,12.12-6.88,17.2-2.74,6.59-43.22,70.78-27.93,65.83,12.62,14.7-4.43,32,6.72,34.08,21.93,5.76-2.23,29.28,1,21.76,9.26" />
               <Cloud3 d="M382.94,363.16c-7-10.5-18.72-9.06-28.19-4.53-12.19-6.71-26.73-11.74-39.62-3.13,1-15.45-18-25.51-28-12.41-14.59-29.67-56.68-34.41-72-3.09-1.41,4-4.73,6.07-8.1,2.88-23.13-25.66-57.12-30.25-67.73,8.21-13.05-1.88-33.42-9.15-37.47,10.07a38.08,38.08,0,0,0-36.36,2.11" />
@@ -146,15 +139,10 @@ const Login = ({ setLoginInfo }) => {
                 </Button>
               </Link>
             </form>
-            {/* <Link className={classes.link} to="/">
-              <Button className={classes.naverButton} variant="contained">
-                Naver 아이디로 로그인
-              </Button>
-            </Link> */}
           </LoginBox>
         </LoginContainer>
       </LoginLayout>
-    </>
+    </LoginWrapper>
   );
 };
 
