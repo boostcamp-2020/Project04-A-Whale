@@ -1,7 +1,7 @@
 # 📆 올해는 꼭 ❕❕
 
 <p align="center">
-  <img width="500" alt="logoImage4" src="https://media2.pl/g/750/72257.jpg">
+  <img width="500" alt="logoImage4" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/f6eccea5-8f89-4aed-934d-24743a99aef4/GIF_2020-12-15__10-42-41.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20201215%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20201215T084906Z&X-Amz-Expires=86400&X-Amz-Signature=d88ce7b36f85cda6391b5f9fd7e2975390491fe352c5e2596d501df284e30e96&X-Amz-SignedHeaders=host">
 </p>
 
 <p align="center">
