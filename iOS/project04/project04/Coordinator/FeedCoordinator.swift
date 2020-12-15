@@ -19,7 +19,8 @@ final class FeedCoordinator: NavigationCoordinator {
     
     func pushViewController() {
         let viewController = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(identifier: "FeedTableViewController", creator: { coder in
-            let repository = FeedRepository()
+            let local = FeedLocalAgent()
+            let repository = FeedRepository(local: local)
             let viewModel = FeedViewModel(repository: repository)
             return FeedTableViewController(coder: coder, viewModel: viewModel)
         })
