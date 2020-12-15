@@ -2,8 +2,6 @@ const { OK, CREATED, BAD_REQUEST } = require('../../config/statusCode').statusCo
 const followServices = require('../../services/follow');
 const userServices = require('../../services/user');
 
-const userNo = 1;
-
 /*
     GET /api/follows/counts
     * 팔로우 수, 팔로워 수 조회 API
@@ -29,6 +27,7 @@ exports.getFollowCounts = async (req, res, next) => {
 */
 exports.getFollowingList = async (req, res, next) => {
   try {
+    const userNo = req.user.no;
     const followingList = await followServices.getFollowingList(userNo);
 
     res.status(OK).json({
@@ -48,6 +47,7 @@ exports.getFollowingList = async (req, res, next) => {
 */
 exports.getFollowedList = async (req, res, next) => {
   try {
+    const userNo = req.user.no;
     const followedList = await followServices.getFollowedList(userNo);
 
     res.status(OK).json({
@@ -63,6 +63,7 @@ exports.getFollowedList = async (req, res, next) => {
 
 exports.getFollowingUsers = async (req, res, next) => {
   try {
+    const userNo = req.user.no;
     const followedList = await followServices.getFollowingUsers(userNo);
 
     res.status(OK).json({
@@ -78,6 +79,8 @@ exports.getFollowingUsers = async (req, res, next) => {
 
 exports.getFollowedUsers = async (req, res, next) => {
   try {
+    const userNo = req.user.no;
+    console.log(userNo);
     const followedList = await followServices.getFollowedUsers(userNo);
 
     res.status(OK).json({
