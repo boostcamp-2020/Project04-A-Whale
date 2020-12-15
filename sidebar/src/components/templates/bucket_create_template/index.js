@@ -43,7 +43,6 @@ const BucketCreateTemplate = () => {
   const classes = useStyles();
   const [isHover, setHover] = useState(false);
   const [open, setOpen] = useState(false);
-
   return (
     <main className={classes.root}>
       <div className={classes.header} />

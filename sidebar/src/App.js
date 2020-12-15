@@ -5,6 +5,7 @@ import Routes from './routes';
 import theme from './theme';
 
 const App = () => {
+  chrome.storage.local.clear();
   return (
     <>
       <ThemeProvider theme={theme}>

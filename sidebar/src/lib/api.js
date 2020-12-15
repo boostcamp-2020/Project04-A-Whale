@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getStorage, setStorage } from './storage';
 
 axios.defaults.baseURL =
   process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://101.101.210.76:8000';
@@ -40,69 +41,148 @@ export const userRegister = ({ id, password, nickname, description }) =>
     description,
   });
 
-export const getUser = () => axios.get('/api/users/info');
+export const getUser = () => {
+  return axios.get('/api/users/info').then((res) => {
+    chrome.storage.local.set({ '/api/users/info': 'not modified' });
+    return res;
+  });
+};
 
 export const isDuplicated = (id) => axios.get(`/api/users/${id}`);
 
 // buckets
-export const getBuckets = () => axios.get('/api/buckets');
+export const getBuckets = () => {
+  const res = axios.get('/api/buckets').then((res) => {
+    chrome.storage.local.set({ '/api/buckets': 'not modified' });
+    return res;
+  });
+  return res;
+};
 export const getBucketsbyNo = (no) => axios.get(`/api/buckets/${no}`);
 
 export const createBucket = (title, description, details, ref) =>
-  axios.post('/api/buckets', {
-    title,
-    description,
-    details,
-    ref,
-  });
+  axios
+    .post('/api/buckets', {
+      title,
+      description,
+      details,
+      ref,
+    })
+    .then((res) => {
+      chrome.storage.local.set({ '/api/buckets': 'modified' });
+      chrome.storage.local.set({ '/api/users/info': 'modified' });
+      console.log('버킷 및 유저정보 변경');
+      return res;
+    });
 
 export const getPresets = (keyword) => axios.get(`/api/buckets/presets?keyword=${keyword}`);
 
 export const updateBucketStatus = ({ no, status }) =>
-  axios.patch(`/api/buckets/${no}`, {
-    status,
-  });
+  axios
+    .patch(`/api/buckets/${no}`, {
+      status,
+    })
+    .then((res) => {
+      chrome.storage.local.set({ '/api/buckets': 'modified' });
+      chrome.storage.local.set({ '/api/users/info': 'modified' });
+      console.log('버킷 및 유저정보 변경');
+      return res;
+    });
 
 export const updateBucketInfo = ({ no, title, description }) =>
-  axios.patch(`/api/buckets/${no}`, {
-    title,
-    description,
-  });
+  axios
+    .patch(`/api/buckets/${no}`, {
+      title,
+      description,
+    })
+    .then((res) => {
+      chrome.storage.local.set({ '/api/buckets': 'modified' });
+      chrome.storage.local.set({ '/api/users/info': 'modified' });
+      console.log('버킷 및 유저정보 변경');
+      return res;
+    });
 
 // details
-export const getDetails = (bucketNo) => axios.get(`/api/details/${bucketNo}`);
+export const getDetails = (bucketNo) =>
+  axios.get(`/api/details/${bucketNo}`).then((res) => {
+    chrome.storage.local.set({ [`/api/details/${bucketNo}`]: 'not modified' });
+    return res;
+  });
 
 export const updateDetailStatus = ({ no, status }) =>
-  axios.patch(`/api/details/${no}`, {
-    status,
-  });
+  axios
+    .patch(`/api/details/${no}`, {
+      status,
+    })
+    .then((res) => {
+      chrome.storage.local.set({ [`/api/details/${no}`]: 'modified' });
+      chrome.storage.local.set({ '/api/buckets': 'modified' });
+      chrome.storage.local.set({ '/api/users/info': 'modified' });
+      console.log('버킷 및 디테일 및 유저정보 변경');
+      return res;
+    });
 
 export const updateDetailInfo = ({ no, title, dueDate }) =>
-  axios.patch(`/api/details/${no}`, {
-    title,
-    dueDate,
-  });
+  axios
+    .patch(`/api/details/${no}`, {
+      title,
+      dueDate,
+    })
+    .then((res) => {
+      chrome.storage.local.set({ [`/api/details/${no}`]: 'modified' });
+      console.log('디테일 변경');
+      return res;
+    });
 
-export const deleteDetail = ({ no }) => axios.delete(`/api/details/${no}`);
+export const deleteDetail = ({ no }) =>
+  axios.delete(`/api/details/${no}`).then((res) => {
+    chrome.storage.local.set({ [`/api/details/${no}`]: 'modified' });
+    console.log('버킷 및 디테일 및 유저정보 변경');
+    return res;
+  });
 
 export const createDetail = ({ bucketNo, title, dueDate }) =>
-  axios.post(`/api/details`, {
-    bucketNo,
-    title,
-    dueDate,
-  });
+  axios
+    .post(`/api/details`, {
+      bucketNo,
+      title,
+      dueDate,
+    })
+    .then((res) => {
+      chrome.storage.local.set({ [`/api/details/${bucketNo}`]: 'modified' });
+      chrome.storage.local.set({ '/api/buckets': 'modified' });
+      chrome.storage.local.set({ '/api/users/info': 'modified' });
+      console.log('버킷 및 디테일 및 유저정보 변경');
+      return res;
+    });
 
 // achieves
 export const setAchieves = ({ bucketNo, description }) =>
-  axios.post('/api/achieves', {
-    bucketNo,
-    description,
-  });
+  axios
+    .post('/api/achieves', {
+      bucketNo,
+      description,
+    })
+    .then((res) => {
+      chrome.storage.local.set({ [`/api/details/${bucketNo}`]: 'modified' });
+      chrome.storage.local.set({ '/api/buckets': 'modified' });
+      chrome.storage.local.set({ '/api/users/info': 'modified' });
+      console.log('버킷 및 디테일 및 유저정보 변경');
+      return res;
+    });
 
 export const updateAchieves = ({ achieveNo, description }) =>
-  axios.put(`/api/achieves/${achieveNo}`, {
-    description,
-  });
+  axios
+    .put(`/api/achieves/${achieveNo}`, {
+      description,
+    })
+    .then((res) => {
+      chrome.storage.local.set({ [`/api/details/${bucketNo}`]: 'modified' });
+      chrome.storage.local.set({ '/api/buckets': 'modified' });
+      chrome.storage.local.set({ '/api/users/info': 'modified' });
+      console.log('버킷 및 디테일 및 유저정보 변경');
+      return res;
+    });
 
 export const uploadObjectStorage = (file) => {
   const formData = new FormData();
