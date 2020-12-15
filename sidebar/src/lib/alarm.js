@@ -1,3 +1,6 @@
+import { getDetailsByDDay } from './api';
+import { setChromeLocalStorage } from './chromeLocalStorage';
+
 export const createAlarm = (lengthOfDueDetails, time) => {
   // 알람 등록
   const date = new Date();
@@ -17,5 +20,29 @@ export const removeAllAlarms = async () => {
   // 알람 삭제
   await chrome.alarms.clearAll();
   console.log('알람이 모두 삭제되었습니다.');
+  return null;
+};
+
+export const updateAlarm = async (items, dueDetails, { sw, alarm }) => {
+  // 설정 및 응답 저장
+  setChromeLocalStorage({ ...items, sw, alarm, dueDetails });
+  // 알람 삭제
+  await removeAllAlarms();
+  // 알람 생성
+  createAlarm(dueDetails.length, alarm.time);
+  return null;
+};
+
+export const updateDueDetailsAndAlarm = async (items, { sw, alarm }) => {
+  // api 요청
+  let dueDetails = [];
+  try {
+    const response = await getDetailsByDDay(alarm.dday);
+    dueDetails = response.data.data;
+  } catch (error) {
+    dueDetails = [];
+    console.log(error);
+  }
+  updateAlarm(items, dueDetails, { sw, alarm });
   return null;
 };
