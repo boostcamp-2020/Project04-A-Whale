@@ -42,7 +42,7 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
         configureCollectionView()
         bucketListViewModel.handler = { [weak self](data) in
             var snapshot = Snapshot()
-            snapshot.appendSections([.todo, .done])
+            snapshot.appendSections([.info, .todo, .done])
             snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
             snapshot.appendItems(data[.done] ?? [], toSection: .done)
             
@@ -74,6 +74,9 @@ private extension BucketListViewController {
                             cellProvider: cellProvider(collectionView:indexPath:bucket:))
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         configuration.headerMode = .supplementary
+        let userInfoView = UINib(nibName: "UserInfoView", bundle: nil)
+        collectionView.register(userInfoView, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "UserInfoView")
+        
         let headerRegistration = UICollectionView.SupplementaryRegistration
         <UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, _, indexPath) in
             let headerItem = self?.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
@@ -81,12 +84,33 @@ private extension BucketListViewController {
             configuration.text = headerItem?.rawValue
             headerView.contentConfiguration = configuration
         }
-        dataSource?.supplementaryViewProvider = { [unowned self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
-            if elementKind == UICollectionView.elementKindSectionHeader {
-                return self.collectionView.dequeueConfiguredReusableSupplementary(
-                    using: headerRegistration, for: indexPath)
+        dataSource?.supplementaryViewProvider = { [unowned self] (collectionView, kind, indexPath) -> UICollectionReusableView? in
+
+            guard kind == UICollectionView.elementKindSectionHeader else {
+                return nil
             }
-            return nil
+            let sectionIdentifier = self.dataSource?.snapshot().sectionIdentifiers[indexPath.section]
+
+            switch sectionIdentifier {
+            case .info:
+                let view = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: "UserInfoView",
+                    for: indexPath) as? UserInfoView
+                view?.configure(with: bucketListViewModel.userInfo)
+                view?.logoutHandler = { [weak self] in
+                    let sceneDelegate = self?.view.window?.windowScene?.delegate as? SceneDelegate
+                    
+                    sceneDelegate?.switchRootViewController()
+                }
+                return view
+            case .todo:
+                return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+            case .done:
+                return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+            default:
+                return nil
+            }
         }
         
         collectionView.collectionViewLayout = createLayout(using: configuration)
@@ -119,7 +143,7 @@ extension BucketListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var section: RealmBucket.Section?
         
-        indexPath.section == 0 ? (section = .todo) : (section = .done)
+        indexPath.section == 1 ? (section = .todo) : (section = .done)
         let bucket = bucketListViewModel.buckets[section ?? .todo]?[indexPath.item]
         coordinator.pushToDetailList(bucket: bucket, index: indexPath.item, delegate: self)
     }

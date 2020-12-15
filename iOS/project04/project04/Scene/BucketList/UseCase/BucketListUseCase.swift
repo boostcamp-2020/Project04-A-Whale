@@ -17,6 +17,12 @@ class BucketListUseCase: ListUseCase {
         self.repository = repository
     }
     
+    func fetch(completion: @escaping (RealmUserData) -> Void) {
+        repository.fetchUserIfo { (userData) in
+            completion(userData)
+        }
+    }
+
     func fetch(completion: @escaping ([RealmBucket]) -> Void) {
         repository.fetchBucketList { (list) in
             completion(list)

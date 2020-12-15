@@ -10,6 +10,7 @@ import RealmSwift
 
 class RealmBucket: Object, Codable {
     enum Section: String {
+        case info
         case todo
         case done
     }
