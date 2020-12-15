@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RealmFeed: Object {
+class RealmFeed: Object, Codable {
     @objc dynamic var no: Int = 0
     @objc dynamic var content: String = ""
     @objc dynamic var userNo: Int = 0

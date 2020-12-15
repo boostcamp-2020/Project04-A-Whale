@@ -16,6 +16,7 @@ enum Endpoint: String {
     case login = "users/login"
     case join = "users"
     case userInfo = "users/info"
+    case feeds
   
     var urlString: String {
         return Endpoint.baseURL + "/\(self.rawValue)"

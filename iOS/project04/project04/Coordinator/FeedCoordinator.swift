@@ -19,7 +19,9 @@ final class FeedCoordinator: NavigationCoordinator {
     
     func pushViewController() {
         let viewController = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(identifier: "FeedTableViewController", creator: { coder in
-            return FeedTableViewController(coder: coder)
+            let repository = FeedRepository()
+            let viewModel = FeedViewModel(repository: repository)
+            return FeedTableViewController(coder: coder, viewModel: viewModel)
         })
         navigationController.pushViewController(viewController, animated: false)
     }
