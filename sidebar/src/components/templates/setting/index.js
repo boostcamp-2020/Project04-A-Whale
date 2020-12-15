@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import useStyles from './style';
+import { getDetailsByDDay } from '../../../lib/api';
+import { createAlarm, removeAllAlarms } from '../../../lib/alarm';
+import { getChromeLocalStorage, setChromeLocalStorage } from '../../../lib/chromeLocalStorage';
 
 const Setting = () => {
   const classes = useStyles();
-  const [state, setState] = useState({
-    displayDark: false,
-    browserSave: false,
-    alarmOn: false,
-  });
-  const [alarm, setAlarm] = useState({ time: '09:10', dday: 7 });
+  const [isWhaleExt, setIsWhaleExt] = useState(true);
+  const [isChromeLocalLoaded, setIsChromeLocalLoaded] = useState(false);
+  const [sw, setSw] = useState({ displayDark: false, alarmOn: false, browserSave: false });
+  const [alarm, setAlarm] = useState({ time: '09:00', dday: 7 });
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    if (isWhaleExt) {
+      setSw({ ...sw, [event.target.name]: event.target.checked });
+    } else {
+      alert('웨일 브라우저 확장앱에서만 사용하실 수 있습니다.');
+    }
   };
 
   const alarmChange = (event) => {
@@ -30,6 +35,99 @@ const Setting = () => {
     }
   };
 
+  const alarmTurnOff = async (items) => {
+    // 알람 삭제
+    await removeAllAlarms();
+    // 스위치 업데이트
+    setChromeLocalStorage({ ...items, sw });
+    return null;
+  };
+
+  const updateAlarm = async (items, dueDetails) => {
+    // 설정 및 응답 저장
+    setChromeLocalStorage({ ...items, sw, alarm, dueDetails });
+    // 알람 삭제
+    await removeAllAlarms();
+    // 알람 생성
+    createAlarm(dueDetails.details.length, alarm.time);
+    return null;
+  };
+
+  const updateDueDetailsAndAlarm = async (items) => {
+    // api 요청
+    let dueDetails = null;
+    try {
+      const response = await getDetailsByDDay(alarm.dday);
+      dueDetails = response.data.data;
+    } catch (error) {
+      dueDetails = { details: [] };
+      console.log(error);
+    }
+    updateAlarm(items, dueDetails);
+    return null;
+  };
+
+  const alarmTurnOn = async (items) => {
+    return updateDueDetailsAndAlarm(items);
+  };
+
+  const changeDDay = async (items) => {
+    return updateDueDetailsAndAlarm(items);
+  };
+
+  const changeTime = async (items) => {
+    const dueDetails = { details: [] };
+    return updateAlarm(items, dueDetails);
+  };
+
+  useEffect(() => {
+    try {
+      // whale API 고유 기능을 분기 처리
+      const keys = ['sw', 'alarm', 'dueDetails'];
+      getChromeLocalStorage(keys, async (items) => {
+        const localSw = items.sw;
+        const localAlarm = items.alarm;
+
+        // 로컬에 값이 존재
+        if (localSw && localAlarm) {
+          // 크롬 로컬에서 로드하지 않음
+          if (!isChromeLocalLoaded) {
+            // 최초 불러오기
+            setSw(localSw);
+            setAlarm(localAlarm);
+            setIsChromeLocalLoaded(true);
+          } else {
+            // 로컬 스토리지 로드 후 변경 사항
+            // alarm on -> off
+            if (localSw.alarmOn && !sw.alarmOn) {
+              await alarmTurnOff(items);
+            }
+            // alarm off -> on
+            if (!localSw.alarmOn && sw.alarmOn) {
+              await alarmTurnOn(items);
+            }
+
+            if (sw.alarmOn) {
+              // alarm on + dday 변경
+              if (localAlarm.dday !== alarm.dday) {
+                await changeDDay(items);
+              }
+              // alarm on + time 변경
+              if (localAlarm.time !== alarm.time) {
+                await changeTime(items);
+              }
+            }
+          }
+        } else {
+          // 로컬에 값이 없을 때, 저장
+          setChromeLocalStorage({ ...items, sw, alarm, dueDetails: [] });
+        }
+      });
+    } catch (error) {
+      setIsWhaleExt(false);
+    }
+  }, [sw, alarm]);
+
   return (
     <div className={classes.root}>
       <div className={classes.header} />
@@ -37,7 +135,7 @@ const Setting = () => {
         <Typography className={classes.title}>화면 설정</Typography>
         <div className={classes.section}>
           <Switch
-            checked={state.displayDark}
+            checked={sw.displayDark}
             onChange={handleChange}
             color="primary"
             name="displayDark"
@@ -48,7 +146,7 @@ const Setting = () => {
         <Typography className={classes.title}>알림 설정</Typography>
         <div className={classes.section}>
           <Switch
-            checked={state.alarmOn}
+            checked={sw.alarmOn}
             onChange={handleChange}
             color="primary"
             name="alarmOn"
@@ -56,13 +154,14 @@ const Setting = () => {
           />
           <span>켜기/끄기</span>
           <div>
-            알림 시각:
+            알림 시각: 매일&nbsp;
             <input
               className={classes.input}
               type="time"
               name="time"
               value={alarm.time}
               onChange={alarmChange}
+              disabled={!sw.alarmOn}
             />
           </div>
           <div>
@@ -75,6 +174,7 @@ const Setting = () => {
               min="0"
               max="7"
               onChange={alarmChange}
+              disabled={!sw.alarmOn}
             />
             일까지 알림
           </div>
@@ -82,7 +182,7 @@ const Setting = () => {
         <Typography className={classes.title}>브라우저에 데이터 저장</Typography>
         <div className={classes.section}>
           <Switch
-            checked={state.browserSave}
+            checked={sw.browserSave}
             onChange={handleChange}
             color="primary"
             name="browserSave"
