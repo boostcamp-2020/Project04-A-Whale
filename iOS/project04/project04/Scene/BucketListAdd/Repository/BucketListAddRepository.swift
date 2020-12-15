@@ -14,7 +14,7 @@ protocol BucketListAddRepositoryProtocol {
 }
 
 class BucketListAddRepository: BucketListAddRepositoryProtocol {
-    var memory: DetailMemoryAgent
+    private var memory: DetailMemoryAgent
     
     init(memory: DetailMemoryAgent) {
         self.memory = memory

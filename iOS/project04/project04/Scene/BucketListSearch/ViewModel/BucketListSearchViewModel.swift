@@ -18,6 +18,10 @@ protocol BucketListSearchViewModelProtocol {
 }
 
 class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
+    private let usecase: SearchUseCase
+    var buckets: [SearchBucket] = []
+    var filteredBuckets: [SearchBucket] = []
+    var handler: (() -> Void)?
     var count: Int {
         self.buckets.count
     }
@@ -26,14 +30,6 @@ class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
         self.filteredBuckets.count
     }
     
-    let usecase: SearchUseCase
-
-    var buckets: [SearchBucket] = []
-    
-    var filteredBuckets: [SearchBucket] = []
-    
-    var handler: (() -> Void)?
-
     init(usecase: SearchUseCase) {
         self.usecase = usecase
     }
@@ -50,5 +46,4 @@ class BucketListSearchViewModel: BucketListSearchViewModelProtocol {
             self?.filteredBuckets = buckets
         }
     }
-
 }

@@ -15,23 +15,11 @@ protocol BucketListObserverDelegate: class {
 class BucketListViewController: UIViewController, BucketListObserverDelegate {
     typealias DataSource = UICollectionViewDiffableDataSource<RealmBucket.Section, RealmBucket>
     typealias Snapshot = NSDiffableDataSourceSnapshot<RealmBucket.Section, RealmBucket>
-    var dataSource: DataSource?
-    var coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator
     @IBOutlet weak var collectionView: UICollectionView!
-    var bucketListViewModel: BucketListViewModelProtocol {
-        didSet {
-            bucketListViewModel.handler = { [weak self] (data) in
-                var snapshot = Snapshot()
-                snapshot.appendSections([.todo, .done])
-                snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
-                snapshot.appendItems(data?[.done] ?? [], toSection: .done)
 
-                DispatchQueue.main.async {
-                    self?.dataSource?.apply(snapshot, animatingDifferences: false)
-                }
-            }
-        }
-    }
+    private var dataSource: DataSource?
+    private var coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator
+    internal var bucketListViewModel: BucketListViewModelProtocol
     
     init?(coder: NSCoder, coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator, viewModel: BucketListViewModelProtocol) {
         self.coordinator = coordinator
@@ -43,6 +31,11 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bucketListViewModel.fetch()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .black
@@ -50,8 +43,8 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
         bucketListViewModel.handler = { [weak self](data) in
             var snapshot = Snapshot()
             snapshot.appendSections([.todo, .done])
-            snapshot.appendItems(data?[.todo] ?? [], toSection: .todo)
-            snapshot.appendItems(data?[.done] ?? [], toSection: .done)
+            snapshot.appendItems(data[.todo] ?? [], toSection: .todo)
+            snapshot.appendItems(data[.done] ?? [], toSection: .done)
             
             DispatchQueue.main.async {
                 self?.dataSource?.apply(snapshot, animatingDifferences: false)
@@ -59,29 +52,24 @@ class BucketListViewController: UIViewController, BucketListObserverDelegate {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        bucketListViewModel.fetch()
-    }
-    
     @IBAction func didTouchPlusButton(_ sender: UIBarButtonItem) {
         coordinator.pushToBucketListAdd(from: self)
     }
 }
 
-extension BucketListViewController: UICollectionViewDelegate {
-    private func createLayout(using configuration: UICollectionLayoutListConfiguration) -> UICollectionViewLayout {
+private extension BucketListViewController {
+    func createLayout(using configuration: UICollectionLayoutListConfiguration) -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout.list(using: configuration)
     }
 
-    private func configureDataSource(collectionView: UICollectionView,
-                                     cellProvider: @escaping (UICollectionView,
-                                                              IndexPath,
-                                                              RealmBucket) -> UICollectionViewListCell?) {
+    func configureDataSource(collectionView: UICollectionView,
+                             cellProvider: @escaping (UICollectionView,
+                                                      IndexPath,
+                                                      RealmBucket) -> UICollectionViewListCell?) {
         dataSource = DataSource(collectionView: collectionView, cellProvider: cellProvider)
     }
     
-    private func configureCollectionView() {
+    func configureCollectionView() {
         configureDataSource(collectionView: collectionView,
                             cellProvider: cellProvider(collectionView:indexPath:bucket:))
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -105,7 +93,7 @@ extension BucketListViewController: UICollectionViewDelegate {
         collectionView.delegate = self
     }
     
-    private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmBucket> {
+    func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmBucket> {
         return UICollectionView.CellRegistration<UICollectionViewListCell, RealmBucket> { (cell, _, bucket) in
             var content = cell.defaultContentConfiguration()
             content.text = bucket.title
@@ -118,19 +106,21 @@ extension BucketListViewController: UICollectionViewDelegate {
         }
     }
     
-    private func cellProvider(collectionView: UICollectionView,
-                              indexPath: IndexPath,
-                              bucket: RealmBucket) -> UICollectionViewListCell? {
+    func cellProvider(collectionView: UICollectionView,
+                      indexPath: IndexPath,
+                      bucket: RealmBucket) -> UICollectionViewListCell? {
         let cell = collectionView.dequeueConfiguredReusableCell(using: configureCell(), for: indexPath, item: bucket)
         
         return cell
     }
-    
+}
+
+extension BucketListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var section: RealmBucket.Section?
         
         indexPath.section == 0 ? (section = .todo) : (section = .done)
-        let bucket = bucketListViewModel.buckets?[section ?? .todo]?[indexPath.item]
+        let bucket = bucketListViewModel.buckets[section ?? .todo]?[indexPath.item]
         coordinator.pushToDetailList(bucket: bucket, index: indexPath.item, delegate: self)
     }
 }

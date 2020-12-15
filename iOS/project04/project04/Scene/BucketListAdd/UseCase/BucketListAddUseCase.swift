@@ -10,11 +10,12 @@ import RealmSwift
 
 class BucketListAddUseCase: DetailListUseCaseProtocol {
 
-    let repository: BucketListAddRepositoryProtocol
+    private let repository: BucketListAddRepositoryProtocol
     
     init(repository: BucketListAddRepositoryProtocol) {
         self.repository = repository
     }
+    
     func fetch(with index: Int?, completion: @escaping ([RealmDetail]) -> Void) {
         repository.fetch(with: index) { (list) in
             completion(list)

@@ -8,32 +8,15 @@
 import UIKit
 
 class BucketListAddViewController: UIViewController {
-
-    @IBOutlet weak var collectionView: UICollectionView!
-    var sectionHeader: BucketListAddHeaderView?
-    
     typealias DataSource = UICollectionViewDiffableDataSource<RealmDetail.Section, RealmDetail>
     typealias Snapshot = NSDiffableDataSourceSnapshot<RealmDetail.Section, RealmDetail>
     
-    var dataSource: DataSource?
-    weak var delegate: BucketListObserverDelegate?
-    var coordinator: BucketListAddCoordinator
-    var bucketListAddViewModel: BucketViewModelProtocol & DetailListViewModelProtocol {
-        didSet {
-            bucketListAddViewModel.didChangeBucket = { [weak self] bucket in
-                self?.sectionHeader?.configure(with: bucket)
-            }
-            bucketListAddViewModel.listDidChange = { [weak self] viewModel in
-                var snapshot = Snapshot()
-                snapshot.appendSections([.input, .todo])
-                snapshot.appendItems(viewModel.list[.todo] ?? [], toSection: .todo)
-                DispatchQueue.main.async {
-                    self?.dataSource?.apply(snapshot, animatingDifferences: false)
-                }
-            }
-//            bucketListAddViewModel.listFetchAction(with: bucketListAddViewModel.bucket?.no ?? 0)
-        }
-    }
+    @IBOutlet weak var collectionView: UICollectionView!
+    private weak var delegate: BucketListObserverDelegate?
+    private var sectionHeader: BucketListAddHeaderView?
+    private var dataSource: DataSource?
+    private var coordinator: BucketListAddCoordinator
+    private var bucketListAddViewModel: BucketViewModelProtocol & DetailListViewModelProtocol
     
     init?(coder: NSCoder, viewModel: BucketViewModelProtocol & DetailListViewModelProtocol, delegate: BucketListObserverDelegate, coordinator: BucketListAddCoordinator) {
         self.bucketListAddViewModel = viewModel
@@ -46,24 +29,6 @@ class BucketListAddViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBAction func didToucAddButton(_ sender: UIBarButtonItem) {
-        guard let title = sectionHeader?.titleTextField.text,
-              let description = sectionHeader?.descriptionTextView.text,
-              !title.isEmpty
-        else {
-            let alert = defaultAlertViewController(title: "추가 불가", message: "목표는 필수로 입력해야합니다.")
-            present(alert, animated: true, completion: nil)
-            return
-        }
-        let bucket = RealmBucket(value: [-1, title, description, "O"])
-//        delegate.bucketListViewModel.append(bucket: bucket)
-        bucketListAddViewModel.bucket = bucket
-        bucketListAddViewModel.saveAction(completion: { [weak self] _ in
-            self?.delegate?.bucketListViewModel.fetch()
-        })
-        navigationController?.popViewController(animated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
@@ -71,12 +36,31 @@ class BucketListAddViewController: UIViewController {
             self?.sectionHeader?.configure(with: bucket)
         }
         bucketListAddViewModel.listDidChange = { [weak self] viewModel in
-            var snapshot = Snapshot()
-            snapshot.appendSections([.input, .todo])
-            snapshot.appendItems(viewModel.list[.todo] ?? [], toSection: .todo)
-            self?.dataSource?.apply(snapshot, animatingDifferences: false)
+            DispatchQueue.main.async {
+                var snapshot = Snapshot()
+                snapshot.appendSections([.input, .todo])
+                snapshot.appendItems(viewModel.list[.todo] ?? [], toSection: .todo)
+                self?.dataSource?.apply(snapshot, animatingDifferences: false)
+            }
         }
         bucketListAddViewModel.listFetchAction(with: nil)
+    }
+    
+    @IBAction func didToucAddButton(_ sender: UIBarButtonItem) {
+        guard let title = sectionHeader?.titleTextField.text,
+              let description = sectionHeader?.descriptionTextView.text,
+              !title.isEmpty else {
+            let alert = defaultAlertViewController(title: "추가 불가", message: "목표는 필수로 입력해야합니다.")
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let bucket = RealmBucket(value: [-1, title, description, "O"])
+        bucketListAddViewModel.bucket = bucket
+        bucketListAddViewModel.saveAction(completion: { [weak self] _ in
+            self?.delegate?.bucketListViewModel.fetch()
+        })
+        navigationController?.popViewController(animated: true)
     }
 
     @objc func didTouchSearchButton(sender: UIButton) {
@@ -87,15 +71,15 @@ class BucketListAddViewController: UIViewController {
     }
 }
 
-extension BucketListAddViewController: UICollectionViewDelegate {
-    private func createLayout(using configuration: UICollectionLayoutListConfiguration) -> UICollectionViewLayout {
+private extension BucketListAddViewController {
+    func createLayout(using configuration: UICollectionLayoutListConfiguration) -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout.list(using: configuration)
     }
 
-    private func configureDataSource(collectionView: UICollectionView,
-                                     cellProvider: @escaping (UICollectionView,
-                                                              IndexPath,
-                                                              RealmDetail) -> UICollectionViewListCell?) {
+    func configureDataSource(collectionView: UICollectionView,
+                             cellProvider: @escaping (UICollectionView,
+                                                      IndexPath,
+                                                      RealmDetail) -> UICollectionViewListCell?) {
         dataSource = DataSource(collectionView: collectionView, cellProvider: cellProvider)
         dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
             guard kind == UICollectionView.elementKindSectionHeader else {
@@ -134,7 +118,7 @@ extension BucketListAddViewController: UICollectionViewDelegate {
         }
     }
     
-    private func configureCollectionView() {
+    func configureCollectionView() {
         configureDataSource(collectionView: collectionView,
                             cellProvider: cellProvider(collectionView:indexPath:detail:))
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -161,7 +145,7 @@ extension BucketListAddViewController: UICollectionViewDelegate {
         collectionView.register(detailHeaderNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailSectionHeaderView.description())
     }
     
-    private func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> {
+    func configureCell() -> UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> {
         return UICollectionView.CellRegistration<UICollectionViewListCell, RealmDetail> { (cell, _, detail) in
             var content = cell.defaultContentConfiguration()
             content.text = "목표: \(detail.title)"
@@ -171,14 +155,16 @@ extension BucketListAddViewController: UICollectionViewDelegate {
         }
     }
     
-    private func cellProvider(collectionView: UICollectionView,
-                              indexPath: IndexPath,
-                              detail: RealmDetail) -> UICollectionViewListCell? {
+    func cellProvider(collectionView: UICollectionView,
+                      indexPath: IndexPath,
+                      detail: RealmDetail) -> UICollectionViewListCell? {
         let cell = collectionView.dequeueConfiguredReusableCell(using: configureCell(), for: indexPath, item: detail)
         
         return cell
     }
-    
+}
+
+extension BucketListAddViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         coordinator.presentDetailListAdd(navigationController,
                                           viewModel: bucketListAddViewModel,

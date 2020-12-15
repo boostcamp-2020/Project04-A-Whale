@@ -8,7 +8,7 @@
 import Foundation
 
 class BucketListRepository {
-    var local: BucketLocalAgent
+    private let local: BucketLocalAgent
     
     init(local: BucketLocalAgent) {
         self.local = local
@@ -20,13 +20,14 @@ class BucketListRepository {
             case .success(let data):
                 let response = try? JSONDecoder().decode(Response<ResponseBucket>.self, from: data)
                 let buckets = response?.data.allBuckets
+                
                 DispatchQueue.main.async {
                     self?.local.sync(buckets: buckets ?? [])
                 }
-                
             case .failure(let error):
                 print(error)
             }
+            
             DispatchQueue.main.async {
                 completion(self?.local.load() ?? [])
             }
@@ -48,6 +49,7 @@ class BucketListRepository {
     func reviseBucketListStatus(element: RealmBucket) {
         let data = try? JSONEncoder().encode(["status": "A"])
         let url = Endpoint.buckets.urlString + "/\(element.no)"
+        
         NetworkService.shared.request(from: url, method: .PATCH, body: data) { (result) in
             switch result {
             case .success(_):
@@ -56,6 +58,7 @@ class BucketListRepository {
                 TransactionRecorder.shared.record(url: url, method: .PATCH, data: data)
             }
         }
+        
         local.reviseStatus(element: element)
     }
 }

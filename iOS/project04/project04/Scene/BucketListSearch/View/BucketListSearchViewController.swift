@@ -8,19 +8,12 @@
 import UIKit
 
 class BucketListSearchViewController: UITableViewController {
-    var searchController = UISearchController(searchResultsController: nil)
-    var viewModel: BucketListSearchViewModelProtocol {
-        didSet {
-            viewModel.handler = {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    var didSelectRowHandler: (SearchBucket) -> Void
+    private var searchController = UISearchController(searchResultsController: nil)
+    private var viewModel: BucketListSearchViewModelProtocol
+    private var didSelectRowHandler: (SearchBucket) -> Void
     
     init?(coder: NSCoder, viewModel: BucketListSearchViewModelProtocol, didSelectRowHandler: @escaping (SearchBucket) -> Void) {
         self.viewModel = viewModel
-
         self.viewModel.fetch()
         self.didSelectRowHandler = didSelectRowHandler
         super.init(coder: coder)
@@ -33,10 +26,10 @@ class BucketListSearchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchController()
-        self.viewModel.handler = {
-            self.tableView.reloadData()
+        viewModel.handler = { [weak self] in
+            self?.tableView.reloadData()
         }
-        self.viewModel.fetch()
+        viewModel.fetch()
     }
     
     func isFiltering() -> Bool {
@@ -44,12 +37,7 @@ class BucketListSearchViewController: UITableViewController {
     }
 }
 
-extension BucketListSearchViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        viewModel.search(with: searchController.searchBar.text!)
-        tableView.reloadData()
-    }
-    
+extension BucketListSearchViewController {
     func configureSearchController() {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater = self
@@ -57,6 +45,13 @@ extension BucketListSearchViewController: UISearchResultsUpdating {
         searchController.searchBar.placeholder = "목표를 검색해주세요"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+}
+
+extension BucketListSearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        viewModel.search(with: searchController.searchBar.text!)
+        tableView.reloadData()
     }
 }
 
