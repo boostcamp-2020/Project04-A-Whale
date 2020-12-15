@@ -8,9 +8,9 @@ const a11yProps = (index) => {
   };
 };
 
-const createTabList = (tabs) => {
+const createTabList = (tabs, classes) => {
   return tabs.map((tab, index) => {
-    return <Tab key={index} label={tab.label} {...a11yProps(index)} />;
+    return <Tab className={classes.text} key={index} label={tab.label} {...a11yProps(index)} />;
   });
 };
 

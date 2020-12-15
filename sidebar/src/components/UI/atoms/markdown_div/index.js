@@ -7,7 +7,7 @@ const MarkdownDiv = ({ value }) => {
 
   return (
     <div className={classes.root}>
-      <ReactMarkdown source={value} />
+      {value === '' ? <span>달성소감이 없습니다.</span> : <ReactMarkdown source={value} />}
     </div>
   );
 };

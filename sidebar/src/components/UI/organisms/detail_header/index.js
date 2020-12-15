@@ -3,13 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import CreateIcon from '@material-ui/icons/Create';
 import Button from '@material-ui/core/Button';
 import CancelSaveButton from '../../molecules/cancle_save_button';
-import { updateBucketInfo, updateBucketStatus } from '../../../../modules/buckets';
+import { updateBucketInfo } from '../../../../modules/buckets';
 import ConfirmDialog from '../../molecules/confirm_dialog';
 import { useStyles, TitleWrapper } from './style';
-import { ACHIEVE } from '../../../../constants/status';
+import ModifyButton from '../../atoms/modify_button';
 
 const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
   const classes = useStyles();
@@ -45,10 +44,6 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
   };
 
   const handleAchieve = () => {
-    const params = {};
-    params.no = bucket.no;
-    params.status = ACHIEVE;
-    dispatch(updateBucketStatus(params));
     history.push({ pathname: `/achieves/${bucket.no}/create`, state: { bucket } });
   };
 
@@ -94,7 +89,7 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
             </Typography>
             {isAchieve ? null : (
               <>
-                <CreateIcon onClick={handleClick} />
+                <ModifyButton onClick={handleClick} />
                 <Button
                   className={classes.achieveButton}
                   variant="outlined"
@@ -115,8 +110,7 @@ const DetailHeader = ({ bucket, achieveDisable, isAchieve }) => {
         open={open}
         handleClose={handleClose}
         handleClick={handleAchieve}
-        text="달성을 완료하시겠습니까?"
-        subText="완료하시면 다시 되돌릴 수 없습니다"
+        text="소감작성 페이지로 이동하시겠습니까?"
       />
     </>
   );

@@ -1,8 +1,9 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { WriteText, TextArea, UploadPicture } from './style';
+import { WriteText, TextArea, UploadPicture, useStyles, UploadPictureLabel } from './style';
 import { uploadObjectStorage } from '../../../../lib/api';
 
 const WriteTextPicture = ({ placeholder, text, changeText }) => {
+  const classes = useStyles();
   const [localText, setLocalText] = useState(text);
   const [dragging, setDragging] = useState(false);
   const textarea = useRef();
@@ -39,7 +40,6 @@ const WriteTextPicture = ({ placeholder, text, changeText }) => {
   }, []);
 
   const uploadImageHandler = useCallback(async (e) => {
-    console.log(e.target.files[0]);
     await uploadImage(e.target.files[0]);
     e.target.value = null;
   }, []);
@@ -56,12 +56,14 @@ const WriteTextPicture = ({ placeholder, text, changeText }) => {
       style={dragging ? { boxShadow: '0 0 3px 3px #ddddff' } : {}}
     >
       <TextArea
+        className={classes.textInput}
         placeholder={placeholder}
         value={localText}
         ref={textarea}
         onChange={localTextChangeHandler}
       />
-      <UploadPicture type="file" onChange={uploadImageHandler} />
+      <UploadPictureLabel htmlFor="ex_file">이미지 파일 선택</UploadPictureLabel>
+      <UploadPicture type="file" onChange={uploadImageHandler} id="ex_file" />
     </WriteText>
   );
 };

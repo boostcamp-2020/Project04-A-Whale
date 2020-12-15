@@ -11,6 +11,9 @@ const useStyles = makeStyles(() => ({
   datailInput: {
     marginRight: 20,
   },
+  thumb: {
+    fontSize: 20,
+  },
 }));
 
 const DetailTextWrapper = styled.div`

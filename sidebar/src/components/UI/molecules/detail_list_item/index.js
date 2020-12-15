@@ -75,7 +75,8 @@ const DetailListItem = ({ detail, handleToggle, checked, isAchieve }) => {
         <ListItem role={undefined} dense button onClick={handleToggle(detail)}>
           {isAchieve ? (
             <ListItemIcon>
-              <ThumbUpIcon />
+              <span className={classes.thumb}>👍</span>
+              {/* <ThumbUpIcon /> */}
             </ListItemIcon>
           ) : (
             <ListItemIcon>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +13,15 @@ const DetailList = ({ details, handleAchieveButton, isAchieve }) => {
   const dispatch = useDispatch();
   const { openDetails, achieveDetails } = details;
   const [checked, setChecked] = useState([...achieveDetails]);
+
+  const isAllChecked = (checkedList) => {
+    return checkedList.length === details.openDetails.length + details.achieveDetails.length;
+  };
+
+  useEffect(() => {
+    if (isAllChecked(checked)) handleAchieveButton(false);
+    else handleAchieveButton(true);
+  }, []);
 
   const statusChange = (detail) => {
     const params = {};
@@ -30,11 +39,8 @@ const DetailList = ({ details, handleAchieveButton, isAchieve }) => {
     if (currentIndex === -1) newChecked.push(value);
     else newChecked.splice(currentIndex, 1);
 
-    if (newChecked.length === details.openDetails.length + details.achieveDetails.length) {
-      handleAchieveButton(false);
-    } else {
-      handleAchieveButton(true);
-    }
+    if (isAllChecked(newChecked)) handleAchieveButton(false);
+    else handleAchieveButton(true);
     setChecked(newChecked);
     statusChange(value);
   };
@@ -54,16 +60,16 @@ const DetailList = ({ details, handleAchieveButton, isAchieve }) => {
     <>
       {isAchieve ? (
         <>
-          <Typography className={classes.text}>상세 목표</Typography>
+          <Typography className={classes.text}>📑 상세 목표</Typography>
           <Divider />
           <List className={classes.list}>{getDetailListItem(achieveDetails)}</List>
         </>
       ) : (
         <>
-          <Typography className={classes.text}>진행중</Typography>
+          <Typography className={classes.text}>⏳ 진행중</Typography>
           <Divider />
           <List className={classes.list}>{getDetailListItem(openDetails)}</List>
-          <Typography className={classes.text}>달성</Typography>
+          <Typography className={classes.text}>🎉 달성</Typography>
           <Divider />
           <List className={classes.list}>{getDetailListItem(achieveDetails)}</List>
         </>
