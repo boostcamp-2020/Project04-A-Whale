@@ -19,14 +19,7 @@ exports.insertAchieve = async ({ description, bucketNo }) => {
 };
 
 exports.updateAchieve = async ({ description, no }) => {
-  const result = await Achieve.update(
-    {
-      description,
-    },
-    {
-      where: { no },
-    }
-  );
+  const result = await Achieve.update({ description }, { where: { no } });
 
   return result;
 };
