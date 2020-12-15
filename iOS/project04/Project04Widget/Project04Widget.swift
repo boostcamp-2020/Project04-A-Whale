@@ -10,19 +10,19 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> UserInfoEntry {
-        UserInfoEntry(date: Date(), data: UserData(no: 0, nickname: "",
-                                                   description: "",
-                                                   rank: "",
-                                                   achieveRate: 0,
+        UserInfoEntry(date: Date(), data: UserData(no: 0, nickname: "이름",
+                                                   description: "소개글",
+                                                   rank: "랭크",
+                                                   achieveRate: 50,
                                                    followerCount: 0,
                                                    followingCount: 0))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (UserInfoEntry) -> ()) {
-        let entry = UserInfoEntry(date: Date(), data: UserData(no: 0, nickname: "",
-                                                               description: "",
-                                                               rank: "",
-                                                               achieveRate: 0,
+        let entry = UserInfoEntry(date: Date(), data: UserData(no: 0, nickname: "이름",
+                                                               description: "소개글",
+                                                               rank: "랭크",
+                                                               achieveRate: 50,
                                                                followerCount: 0,
                                                                followingCount: 0))
         completion(entry)
@@ -65,24 +65,59 @@ struct UserData: Codable, Hashable {
 
 struct Project04WidgetEntryView: View {
     var entry: Provider.Entry
+    @State var progressAmount = 0.3
+    @Environment(\.widgetFamily) var family
+    @ViewBuilder
 
     var body: some View {
-        VStack {
-            Text("RANK: \(entry.data?.rank ?? "언랭크")")
-                .font(.system(size: 17))
-                .bold()
-            Text("닉네임: \(entry.data?.nickname ?? "로그인x")")
-                .font(.system(size: 12))
-                .bold()
-            
-            ProgressBar(progress: Float(entry.data?.achieveRate ?? 0)/100.0)
-                .frame(width: 80.0, height: 80.0)
-            
+        switch family {
+        case .systemSmall:
+            VStack {
+                Text("RANK: \(entry.data?.rank ?? "언랭크")")
+                    .font(.system(size: 17))
+                    .bold()
+                Text("닉네임: \(entry.data?.nickname ?? "로그인x")")
+                    .font(.system(size: 12))
+                    .bold()
+                ProgressCircle(progress: Float(entry.data?.achieveRate ?? 0)/100.0)
+                    .frame(width: 80.0, height: 80.0)
+            }
+        case .systemMedium:
+            VStack {
+                Text("RANK: \(entry.data?.rank ?? "언랭크")")
+                    .font(.title)
+                    .bold()
+                Text("닉네임: \(entry.data?.nickname ?? "로그인x")")
+                    .font(.body)
+                    .bold()
+                    .padding(2)
+                    .opacity(0.7)
+                
+                HStack {
+                    Text("팔로워 \(entry.data?.followerCount ?? 0)명")
+                        .font(.system(size: 12))
+                    Text("팔로잉 \(entry.data?.followingCount ?? 0)명")
+                        .font(.system(size: 12))
+                }
+                
+                HStack {
+                    Text("🏆")
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 20))
+                    
+                    ProgressBar(progress: CGFloat(entry.data?.achieveRate ?? 0)/100.0)
+                        .frame(width: 250, height: 15, alignment: .center)
+                }
+            }
+        case .systemLarge:
+            Text("")
+        @unknown default:
+            Text("")
         }
     }
 }
 
-struct ProgressBar: View {
+struct ProgressCircle: View {
     var progress: Float
     
     var body: some View {
@@ -106,6 +141,32 @@ struct ProgressBar: View {
     }
 }
 
+struct ProgressBar: View {
+    var progress: CGFloat
+    var bgColor = Color.init("GraphColor").opacity(0.3)
+    var filledColor = Color.init("GraphColor")
+    
+    var body: some View {
+        GeometryReader { geometry in
+            let height = geometry.size.height
+            let width = geometry.size.width
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .foregroundColor(bgColor)
+                    .frame(width: width,
+                           height: height)
+                    .cornerRadius(height / 2.0)
+                
+                Rectangle()
+                    .foregroundColor(filledColor)
+                    .frame(width: width * self.progress,
+                           height: height)
+                    .cornerRadius(height / 2.0)
+            }
+        }
+    }
+}
+
 @main
 struct Project04Widget: Widget {
     let kind: String = "Project04Widget"
@@ -116,13 +177,13 @@ struct Project04Widget: Widget {
         }
         .configurationDisplayName("올해는 꼭!")
         .description("사용자 정보를 간략하게 볼 수 있습니다!")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
 struct Project04Widget_Previews: PreviewProvider {
     static var previews: some View {
         Project04WidgetEntryView(entry: UserInfoEntry(date: Date(), data: nil))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
