@@ -1,4 +1,5 @@
-const { Detail } = require('../../models');
+const { Op } = require('sequelize');
+const { Detail, Bucket } = require('../../models');
 
 exports.bulkCreate = async (details) => {
   const results = await Detail.bulkCreate(details);
@@ -25,6 +26,26 @@ exports.selectDetails = async (bucketNo) => {
     order: [['dueDate', 'ASC']],
   });
 
+  return results;
+};
+
+exports.selectDetailsByDDay = async (dday) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const dDay = new Date();
+  dDay.setDate(today.getDate() + Number(dday));
+  const results = await Detail.findAll({
+    raw: true,
+    include: Bucket,
+    where: {
+      status: 'O',
+      dueDate: {
+        [Op.between]: [today, dDay],
+      },
+    },
+    order: [['dueDate', 'ASC']],
+  });
+  console.log(results);
   return results;
 };
 

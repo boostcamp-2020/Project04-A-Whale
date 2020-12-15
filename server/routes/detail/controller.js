@@ -33,6 +33,25 @@ exports.getDetails = async (req, res, next) => {
 };
 
 /*
+    GET /api/details/dday/:dday
+    * D-Day 별 버킷 상세 목록 조회 API
+*/
+exports.getDetailsByDDay = async (req, res, next) => {
+  try {
+    const { dday } = req.params;
+    const dueDetails = await detailServices.getDetailsByDDay(dday);
+    const data = dueDetails;
+
+    res.status(OK).json({
+      message: 'D-Day 별 버킷 상세 목록 조회 성공',
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
     PATCH /api/details/:no
     * 버킷 상세 수정 API
 */
