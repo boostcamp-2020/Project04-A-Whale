@@ -98,6 +98,11 @@ private extension BucketListViewController {
                     withReuseIdentifier: "UserInfoView",
                     for: indexPath) as? UserInfoView
                 view?.configure(with: bucketListViewModel.userInfo)
+                view?.logoutHandler = { [weak self] in
+                    let sceneDelegate = self?.view.window?.windowScene?.delegate as? SceneDelegate
+                    
+                    sceneDelegate?.switchRootViewController()
+                }
                 return view
             case .todo:
                 return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)

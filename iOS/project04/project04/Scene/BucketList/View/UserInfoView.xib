@@ -21,6 +21,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jm2-vB-L8z">
                             <rect key="frame" x="261" y="18" width="52" height="30"/>
                             <state key="normal" title="로그아웃"/>
+                            <connections>
+                                <action selector="didTouchLogoutButton:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="L7K-F3-FIW"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팔로워  22명" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4F-s6-zPn">
                             <rect key="frame" x="17" y="63.5" width="73" height="17"/>

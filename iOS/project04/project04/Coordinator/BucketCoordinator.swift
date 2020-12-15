@@ -36,6 +36,19 @@ final class BucketCoordinator: NavigationCoordinator {
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.pushViewController(viewController, animated: false)
     }
+    
+    func presentLogin(_ navigationController: UINavigationController) {
+        
+        let controller = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginViewController", creator: { coder in
+            let coordinator = LoginCoordinator(navigationController)
+            return LoginViewController(coder: coder, coordinator: coordinator)
+        })
+        guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
+            return
+        }
+        
+        navigationController.pushViewController(controller, animated: false)
+    }
 }
 
 extension BucketCoordinator: DetailListPushCoordinator {

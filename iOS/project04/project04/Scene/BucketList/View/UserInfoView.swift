@@ -12,10 +12,18 @@ class UserInfoView: UICollectionReusableView {
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
-    
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var logoutHandler: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    @IBAction func didTouchLogoutButton(_ sender: Any) {
+        var auth = AccessToken()
+        auth.token = ""
+        logoutHandler?()
     }
     
     func configure(with user: RealmUserData) {
