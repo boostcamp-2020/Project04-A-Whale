@@ -23,7 +23,6 @@ class DetailRepository: DetailRepositoryProtocol {
     }
     
     func fetchDetailList(bucketNo: Int, completion: @escaping ([RealmDetail]) -> Void) {
-        
         NetworkService.shared.request(from: Endpoint.details.urlString + "/\(bucketNo)",
                                       method: .GET,
                                       completion: { [weak self] result in
@@ -45,7 +44,7 @@ class DetailRepository: DetailRepositoryProtocol {
     }
     
     func appendDetailList(_ element: RealmDetail) {
-        let data = try? JSONEncoder().encode(["bucketNo": "\(element.bucketNo)", "title": element.title, "dueDate": element.dueDate])
+        let data = try? JSONSerialization.data(withJSONObject: ["bucketNo": element.bucketNo, "title": element.title, "dueDate": element.dueDate], options: [])
         
         NetworkService.shared.request(from: Endpoint.details.urlString,
                                       method: .POST,

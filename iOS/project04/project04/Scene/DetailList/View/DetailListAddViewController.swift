@@ -108,25 +108,25 @@ extension DetailListAddViewController: UITextViewDelegate {
     }
 }
 
-extension DetailListAddViewController {
-    @objc private func keyboardWillShow(_ notification: NSNotification) {
+private extension DetailListAddViewController {
+    @objc func keyboardWillShow(_ notification: NSNotification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             
-            self.view.frame.origin.y = -keyboardHeight
+            view.frame.origin.y = -keyboardHeight
         }
     }
     
-    @objc private func keyboardWillHide(_ notification: NSNotification) {
-        self.view.frame.origin.y = 0
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        view.frame.origin.y = 0
     }
     
-    private func textViewContentSizeChange(value: CGFloat) {
+    func textViewContentSizeChange(value: CGFloat) {
         heightConstraint.constant += value
     }
     
-    private func checkReviseMode() {
+    func checkReviseMode() {
         guard let item = detail else {
             return
         }

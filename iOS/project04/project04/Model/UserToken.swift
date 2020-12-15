@@ -7,15 +7,22 @@
 
 import Foundation
 
+extension UserDefaults {
+    static var shared: UserDefaults {
+        let appGroupId = "group.namkibeom.project04"
+        return UserDefaults(suiteName: appGroupId)!
+    }
+}
+
 @propertyWrapper
 struct UserInfo {
     private let key: String
     var wrappedValue: String {
         get {
-            UserDefaults.standard.string(forKey: key) ?? ""
+            UserDefaults.shared.string(forKey: key) ?? ""
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: key)
+            UserDefaults.shared.set(newValue, forKey: key)
         }
     }
     

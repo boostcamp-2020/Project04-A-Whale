@@ -17,6 +17,7 @@ protocol ImpressionViewModelProtocol {
 }
 
 class ImpressionViewModel: ImpressionViewModelProtocol {
+    private var usecase: ImpressionUseCaseProtocol
     var realmImpression: RealmImpression?
     
     var impressionText: String = "" {
@@ -25,7 +26,6 @@ class ImpressionViewModel: ImpressionViewModelProtocol {
         }
     }
     
-    var usecase: ImpressionUseCaseProtocol
     var textChange: ((ImpressionViewModelProtocol) -> ())?
     
     required init(usecase: ImpressionUseCaseProtocol) {
