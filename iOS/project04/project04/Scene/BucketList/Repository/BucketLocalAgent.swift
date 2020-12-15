@@ -75,6 +75,9 @@ class BucketLocalAgent: LocalService {
         do {
             let realm = try Realm()
             let result = realm.objects(RealmBucket.self)
+            if buckets.count == result.count {
+                return
+            }
             try realm.write {
                 realm.delete(result)
                 realm.add(buckets)
