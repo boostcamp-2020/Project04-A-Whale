@@ -32,6 +32,9 @@
 		82E8B7542581C0040008A22A /* RealmTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8B7532581C0040008A22A /* RealmTransaction.swift */; };
 		82E8B7582581C0D20008A22A /* TransactionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8B7572581C0D20008A22A /* TransactionRecorder.swift */; };
 		82E8B75C258300500008A22A /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8B75B2583004F0008A22A /* Toast.swift */; };
+		82F108A725884A68009CB2A2 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F108A625884A68009CB2A2 /* Feed.storyboard */; };
+		82F108BC25884B6A009CB2A2 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F108BB25884B6A009CB2A2 /* FeedTableViewController.swift */; };
+		82F108C125884D5F009CB2A2 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F108C025884D5F009CB2A2 /* FeedCoordinator.swift */; };
 		82F12FD12579AD620079DB71 /* BucketListSearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F12FD02579AD620079DB71 /* BucketListSearchUseCase.swift */; };
 		82F12FD82579B59C0079DB71 /* BucketListSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F12FD72579B59C0079DB71 /* BucketListSearchRepository.swift */; };
 		B20CB3CD1814FA9193815C42 /* Pods_project04.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549A8B673E411EE0B839D8C7 /* Pods_project04.framework */; };
@@ -166,6 +169,9 @@
 		82E8B7532581C0040008A22A /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
 		82E8B7572581C0D20008A22A /* TransactionRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRecorder.swift; sourceTree = "<group>"; };
 		82E8B75B2583004F0008A22A /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		82F108A625884A68009CB2A2 /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
+		82F108BB25884B6A009CB2A2 /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		82F108C025884D5F009CB2A2 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		82F12FD02579AD620079DB71 /* BucketListSearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchUseCase.swift; sourceTree = "<group>"; };
 		82F12FD72579B59C0079DB71 /* BucketListSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListSearchRepository.swift; sourceTree = "<group>"; };
 		C11AC45F256B7F8B00E45667 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -406,6 +412,23 @@
 			path = Singleton;
 			sourceTree = "<group>";
 		};
+		82F108A425884A4A009CB2A2 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				82F108A525884A51009CB2A2 /* View */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		82F108A525884A51009CB2A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82F108A625884A68009CB2A2 /* Feed.storyboard */,
+				82F108BB25884B6A009CB2A2 /* FeedTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		82F12FCF2579AD330079DB71 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,6 +667,7 @@
 		C1900D77256B83970071E8C7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				82F108A425884A4A009CB2A2 /* Feed */,
 				C1269C97257F465400A5C1EC /* Setting */,
 				C1269C76257F11F600A5C1EC /* Login */,
 				C160C4D2257DC79700578BE3 /* Impression */,
@@ -731,6 +755,7 @@
 				8261DBAE25789EC20027F6F8 /* BucketListAddCoordinator.swift */,
 				C1269C8B257F343A00A5C1EC /* LoginCoordinator.swift */,
 				C1269CA0257F483800A5C1EC /* SettingCoordinator.swift */,
+				82F108C025884D5F009CB2A2 /* FeedCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -843,6 +868,7 @@
 			files = (
 				C1269C9D257F467500A5C1EC /* Setting.storyboard in Resources */,
 				C11AC460256B7F8B00E45667 /* .swiftlint.yml in Resources */,
+				82F108A725884A68009CB2A2 /* Feed.storyboard in Resources */,
 				C1655CA1256B7ED30067E3C5 /* LaunchScreen.storyboard in Resources */,
 				C160C4DE257DC85D00578BE3 /* Impression.storyboard in Resources */,
 				8261DB7C2575F89F0027F6F8 /* BucketListAdd.storyboard in Resources */,
@@ -977,6 +1003,7 @@
 				C1604D15257E0E3C0019E6E2 /* ImpressionRepository.swift in Sources */,
 				C1754EE3256E17F20037C805 /* LocalService.swift in Sources */,
 				C160DBA925775FA400290EAE /* DetailSectionHeaderView.swift in Sources */,
+				82F108C125884D5F009CB2A2 /* FeedCoordinator.swift in Sources */,
 				82DDAEFF2580528C0033F39A /* SearchBucket.swift in Sources */,
 				8259AAFD256B9D49006698FC /* BucketListViewModel.swift in Sources */,
 				82F12FD12579AD620079DB71 /* BucketListSearchUseCase.swift in Sources */,
@@ -986,6 +1013,7 @@
 				C1655C97256B7ED10067E3C5 /* SceneDelegate.swift in Sources */,
 				C1269CA1257F483800A5C1EC /* SettingCoordinator.swift in Sources */,
 				C1269C84257F1D5800A5C1EC /* JoinViewController.swift in Sources */,
+				82F108BC25884B6A009CB2A2 /* FeedTableViewController.swift in Sources */,
 				C175D19B256CCF3C001144F0 /* RealmDetailList.swift in Sources */,
 				C1E6C41F2574E83200BD4B4B /* NavigationCoordinator.swift in Sources */,
 				C160DBB025776DB800290EAE /* DetailSectionImpressionHeaderView.swift in Sources */,
