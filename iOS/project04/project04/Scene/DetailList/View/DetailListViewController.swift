@@ -70,6 +70,7 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         detailSuccessChecker(viewModel: collectionViewModel)
+        checkTokenExpired()
     }
     
     @IBAction func detailAppendAction(_ sender: UIBarButtonItem) {

@@ -12,16 +12,27 @@ protocol FeedRepositoryProtocol {
 }
 
 class FeedRepository: FeedRepositoryProtocol {
+    let local: FeedLocalAgent
+    
+    init(local: FeedLocalAgent) {
+        self.local = local
+    }
+    
     func fetch(completion: @escaping ([RealmFeed]) -> Void) {
-        NetworkService.shared.request(from: Endpoint.feeds.urlString, method: .GET) { (result) in
+        NetworkService.shared.request(from: Endpoint.feeds.urlString, method: .GET) { [weak self]  (result) in
             switch result {
             case .success(let data):
                 guard let response = try? JSONDecoder().decode(Response<[RealmFeed]>.self, from: data) else {
                     return
                 }
-                completion(response.data)
+                DispatchQueue.main.async {
+                    self?.local.sync(feeds: response.data)
+                }
             case .failure(let error):
                 print(error)
+            }
+            DispatchQueue.main.async {
+                completion(self?.local.load() ?? [])
             }
         }
     }

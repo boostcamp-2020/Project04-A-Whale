@@ -16,6 +16,9 @@
 		825B3ED52588767E003FBA22 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825B3ED32588767E003FBA22 /* UserInfoView.swift */; };
 		825B3ED62588767E003FBA22 /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 825B3ED42588767E003FBA22 /* UserInfoView.xib */; };
 		825B3EDB258883BB003FBA22 /* RealmUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825B3EDA258883BB003FBA22 /* RealmUserData.swift */; };
+		825B3EE025889E69003FBA22 /* checkTokenExpired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825B3EDF25889E69003FBA22 /* checkTokenExpired.swift */; };
+		825B3EEA25889F95003FBA22 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8ACB6257F721B00041785 /* NetworkService.swift */; };
+		825B3EF5258901EF003FBA22 /* FeedLocalAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825B3EF4258901EF003FBA22 /* FeedLocalAgent.swift */; };
 		8261DB7C2575F89F0027F6F8 /* BucketListAdd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8261DB7B2575F89F0027F6F8 /* BucketListAdd.storyboard */; };
 		8261DB802575F8C40027F6F8 /* BucketListAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DB7F2575F8C40027F6F8 /* BucketListAddViewController.swift */; };
 		8261DB8A25761A420027F6F8 /* BucketListAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261DB8925761A420027F6F8 /* BucketListAddViewModel.swift */; };
@@ -99,7 +102,6 @@
 		C19696AD25879C7C0095D470 /* Project04Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19696AC25879C7C0095D470 /* Project04Widget.swift */; };
 		C19696AF25879C7D0095D470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C19696AE25879C7D0095D470 /* Assets.xcassets */; };
 		C19696B325879C7D0095D470 /* Project04WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C19696A625879C7C0095D470 /* Project04WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C19696BB25879F910095D470 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8ACB6257F721B00041785 /* NetworkService.swift */; };
 		C19696BF25879F9D0095D470 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1754EF0256E1A570037C805 /* NetworkError.swift */; };
 		C19696C325879FA00095D470 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285704A257F77BF00E3FEA9 /* Endpoint.swift */; };
 		C19696C725879FA30095D470 /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C168DD962580EBC100EE3849 /* UserToken.swift */; };
@@ -160,6 +162,8 @@
 		825B3ED32588767E003FBA22 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		825B3ED42588767E003FBA22 /* UserInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
 		825B3EDA258883BB003FBA22 /* RealmUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserData.swift; sourceTree = "<group>"; };
+		825B3EDF25889E69003FBA22 /* checkTokenExpired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkTokenExpired.swift; sourceTree = "<group>"; };
+		825B3EF4258901EF003FBA22 /* FeedLocalAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLocalAgent.swift; sourceTree = "<group>"; };
 		8261DB7B2575F89F0027F6F8 /* BucketListAdd.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BucketListAdd.storyboard; sourceTree = "<group>"; };
 		8261DB7F2575F8C40027F6F8 /* BucketListAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddViewController.swift; sourceTree = "<group>"; };
 		8261DB8925761A420027F6F8 /* BucketListAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListAddViewModel.swift; sourceTree = "<group>"; };
@@ -329,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				825B3EAB258853DF003FBA22 /* FeedRepository.swift */,
+				825B3EF4258901EF003FBA22 /* FeedLocalAgent.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -778,6 +783,7 @@
 				C15F33602577BC9E0032EACF /* extension+String.swift */,
 				C16BEFB42579CF2000108265 /* extension+UIColor.swift */,
 				82E8B75B2583004F0008A22A /* Toast.swift */,
+				825B3EDF25889E69003FBA22 /* checkTokenExpired.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -1013,6 +1019,7 @@
 				C160C4E2257DCC6700578BE3 /* ImpressionViewModel.swift in Sources */,
 				C175AA8025752F72009D8103 /* DetailCoordinator.swift in Sources */,
 				825B3ED52588767E003FBA22 /* UserInfoView.swift in Sources */,
+				825B3EF5258901EF003FBA22 /* FeedLocalAgent.swift in Sources */,
 				C175AA7825752C57009D8103 /* DetailListAddViewController.swift in Sources */,
 				82A72917256F43E100BD5797 /* BucketLocalAgent.swift in Sources */,
 				82F12FD82579B59C0079DB71 /* BucketListSearchRepository.swift in Sources */,
@@ -1037,6 +1044,7 @@
 				8215F5242579A81800DDCD09 /* BucketListSearchViewModel.swift in Sources */,
 				C1655C95256B7ED10067E3C5 /* AppDelegate.swift in Sources */,
 				825B3EAC258853DF003FBA22 /* FeedRepository.swift in Sources */,
+				825B3EE025889E69003FBA22 /* checkTokenExpired.swift in Sources */,
 				82857053257FBAA200E3FEA9 /* ResponseBucket.swift in Sources */,
 				8261DB8E25761B7F0027F6F8 /* BucketListAddUseCase.swift in Sources */,
 				C16019BB25792DCC00506430 /* PieView.swift in Sources */,
@@ -1098,12 +1106,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C19696BF25879F9D0095D470 /* NetworkError.swift in Sources */,
-				C19696BB25879F910095D470 /* NetworkService.swift in Sources */,
 				C19696CB25879FAD0095D470 /* HTTPMethod.swift in Sources */,
 				C19696C725879FA30095D470 /* UserToken.swift in Sources */,
 				C19696C325879FA00095D470 /* Endpoint.swift in Sources */,
 				C19696AD25879C7C0095D470 /* Project04Widget.swift in Sources */,
 				C19696CF2587A6AA0095D470 /* Response.swift in Sources */,
+				825B3EEA25889F95003FBA22 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

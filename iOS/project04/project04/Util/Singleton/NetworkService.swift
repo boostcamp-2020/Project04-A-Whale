@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NetworkService {
     static let shared =  NetworkService()
@@ -18,7 +19,6 @@ class NetworkService {
                  method: HTTPMethod,
                  body: Data? = nil,
                  completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        
         var semaphore: DispatchSemaphore?
         
         if sync {
@@ -49,16 +49,22 @@ class NetworkService {
             }
             
             guard let response = response as? HTTPURLResponse,
-                  (200...299).contains(response.statusCode),
                   let data = data else {
                 completion(.failure(.responseError))
                 semaphore?.signal()
                 return
             }
             
-            completion(.success(data))
+            if (200...299).contains(response.statusCode) {
+                completion(.success(data))
+                semaphore?.signal()
+                return
+            } else if response.statusCode == 401 {
+                var auth = AccessToken()
+                auth.token = ""
+            }
+            completion(.failure(.responseError))
             semaphore?.signal()
-            
         }.resume()
 
         semaphore?.wait()
