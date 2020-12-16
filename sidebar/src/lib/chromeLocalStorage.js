@@ -7,3 +7,11 @@ export const setChromeLocalStorage = (data) => {
 export const getChromeLocalStorage = (keys, callback) => {
   chrome.storage.local.get(keys, callback);
 };
+
+export const removeAPIStorage = (keys, callback) => {
+  try {
+    chrome.storage.local.remove(keys, callback);
+  } catch (error) {
+    console.log('확장앱 API 이용불가');
+  }
+};
