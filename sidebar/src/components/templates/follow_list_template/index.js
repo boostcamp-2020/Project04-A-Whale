@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './style';
+import { resetSearchResult } from '../../../modules/follow';
 import UserItem from '../../UI/molecules/user_item';
 import UserSearch from '../../UI/organisms/user_search';
 
@@ -24,7 +25,7 @@ const TabPanel = ({ users, value, index }) => {
       {value === 2 && value === index && (
         <>
           <UserSearch />
-          {users ? (
+          {users && users.length !== 0 ? (
             users.map((user, i) => <UserItem key={i} user={user} />)
           ) : (
             <span className={classes.noResult}>검색 결과가 없습니다</span>
@@ -37,12 +38,14 @@ const TabPanel = ({ users, value, index }) => {
 
 const FollowListTemplate = ({ followed, following }) => {
   const classes = useStyles();
-  const searchResult = useSelector((state) => state.follow.search);
+  const dispatch = useDispatch();
+  const searchResult = useSelector((state) => state.follow.searchResult);
   const [value, setValue] = useState(0);
-  const tabItems = [`팔로우`, `팔로워`, `사용자 검색`];
+  const tabItems = ['팔로우', '팔로워', '사용자 검색'];
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    dispatch(resetSearchResult());
   };
 
   const getIdAndAriaControls = (index) => {
