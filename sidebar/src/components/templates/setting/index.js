@@ -5,7 +5,7 @@ import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import useStyles from './style';
 import { removeAllAlarms, updateAlarm, updateDueDetailsAndAlarm } from '../../../lib/alarm';
-import { getChromeLocalStorage, setChromeLocalStorage } from '../../../lib/chromeLocalStorage';
+import { getWhaleLocalStorage, setWhaleLocalStorage } from '../../../lib/whaleLocalStorage';
 
 const Setting = () => {
   const classes = useStyles();
@@ -38,7 +38,7 @@ const Setting = () => {
     // 알람 삭제
     await removeAllAlarms();
     // 스위치 업데이트
-    setChromeLocalStorage({ ...items, sw, alarm });
+    setWhaleLocalStorage({ ...items, sw, alarm });
     return null;
   };
 
@@ -59,7 +59,7 @@ const Setting = () => {
     try {
       // whale API 고유 기능을 분기 처리
       const keys = ['sw', 'alarm', 'dueDetails'];
-      getChromeLocalStorage(keys, async (items) => {
+      getWhaleLocalStorage(keys, async (items) => {
         const localSw = items.sw;
         const localAlarm = items.alarm;
 
@@ -96,11 +96,11 @@ const Setting = () => {
                 return;
               }
             }
-            setChromeLocalStorage({ ...items, sw, alarm });
+            setWhaleLocalStorage({ ...items, sw, alarm });
           }
         } else {
           // 로컬에 값이 없을 때, 저장
-          setChromeLocalStorage({ ...items, sw, alarm, dueDetails: [] });
+          setWhaleLocalStorage({ ...items, sw, alarm, dueDetails: [] });
         }
       });
     } catch (error) {

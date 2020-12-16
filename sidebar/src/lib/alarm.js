@@ -1,5 +1,5 @@
 import { getDetailsByDDay } from './api';
-import { setChromeLocalStorage } from './chromeLocalStorage';
+import { setWhaleLocalStorage } from './whaleLocalStorage';
 
 export const createAlarm = (lengthOfDueDetails, time) => {
   // 알람 등록
@@ -9,7 +9,7 @@ export const createAlarm = (lengthOfDueDetails, time) => {
   const name = String(lengthOfDueDetails);
   const when = date.getTime();
   const periodInMinutes = 24 * 60;
-  chrome.alarms.create(name, {
+  whale.alarms.create(name, {
     when,
     periodInMinutes,
   });
@@ -18,7 +18,7 @@ export const createAlarm = (lengthOfDueDetails, time) => {
 
 export const removeAllAlarms = async () => {
   // 알람 삭제
-  await chrome.alarms.clearAll();
+  await whale.alarms.clearAll();
   console.log('알람이 모두 삭제되었습니다.');
   return null;
 };
@@ -26,7 +26,7 @@ export const removeAllAlarms = async () => {
 export const updateAlarm = async (items, dueDetails, { sw, alarm }) => {
   // 설정 및 응답 저장
   console.log('local에 저장되는 스케줄', dueDetails);
-  setChromeLocalStorage({ ...items, sw, alarm, dueDetails });
+  setWhaleLocalStorage({ ...items, sw, alarm, dueDetails });
   // 알람 삭제
   await removeAllAlarms();
   // 알람 생성

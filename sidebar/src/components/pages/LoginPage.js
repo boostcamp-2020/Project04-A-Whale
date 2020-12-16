@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import Login from '../templates/login';
 import { userLogin } from '../../lib/api';
 import { updateDueDetailsAndAlarm } from '../../lib/alarm';
-import { getChromeLocalStorage, removeAPIStorage } from '../../lib/chromeLocalStorage';
+import { getWhaleLocalStorage, removeAPIStorage } from '../../lib/whaleLocalStorage';
 import { getBuckets } from '../../modules/buckets';
 import { getUser } from '../../modules/user';
 
@@ -27,7 +27,7 @@ const LoginPage = () => {
         }
         return null;
       };
-      getChromeLocalStorage(keys, callback);
+      getWhaleLocalStorage(keys, callback);
     } catch (error) {
       console.log(error);
       console.log('웨일 확장앱이 아닙니다. 알람을 설정하지 않습니다.');

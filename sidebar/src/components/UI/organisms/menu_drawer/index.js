@@ -15,7 +15,7 @@ import { getUser } from '../../../../modules/user';
 import Spinner from '../../atoms/spinner';
 import AchieveRate from '../../molecules/achieve_rate';
 import { useStyles, UserInfoWrapper, FollowerWrapper, DescriptionWrapper } from './style';
-import { getChromeLocalStorage } from '../../../../lib/chromeLocalStorage';
+import { getWhaleLocalStorage } from '../../../../lib/whaleLocalStorage';
 
 const MenuDrawer = ({ open, toggleDrawer }) => {
   const classes = useStyles();
@@ -32,7 +32,7 @@ const MenuDrawer = ({ open, toggleDrawer }) => {
       if (isExt === false) {
         dispatch(getUser());
       } else if (isExt === true) {
-        getChromeLocalStorage([api], (items) => {
+        getWhaleLocalStorage([api], (items) => {
           if (items[api] === 'modified' || JSON.stringify(items[api]) === '{}') {
             console.log('유저 받아옴');
             dispatch(getUser());
