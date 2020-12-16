@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import Login from '../templates/login';
 import { userLogin } from '../../lib/api';
 import { updateDueDetailsAndAlarm } from '../../lib/alarm';
-import { getChromeLocalStorage } from '../../lib/chromeLocalStorage';
+import { getChromeLocalStorage, removeAPIStorage } from '../../lib/chromeLocalStorage';
 import { getBuckets } from '../../modules/buckets';
 import { getUser } from '../../modules/user';
 
@@ -45,7 +45,9 @@ const LoginPage = () => {
   }, []);
 
   useEffect(() => {
-    // chrome.storage.local.clear();
+    removeAPIStorage(['/api/buckets', '/api/users/info'], () => {
+      console.log('기존 버킷 및 사용자 정보 관련 스토리지 삭제');
+    });
     if (loginInfo.id && loginInfo.password) {
       axiosLogin({ ...loginInfo });
     }

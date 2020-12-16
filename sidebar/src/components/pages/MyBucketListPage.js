@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBuckets } from '../../modules/buckets';
 import Spinner from '../UI/atoms/spinner';
 import MyBucketList from '../templates/my_bucket_list';
 import Header from '../UI/organisms/header';
+import { getChromeLocalStorage } from '../../lib/chromeLocalStorage';
 
 const MyBucketListPage = () => {
   const dispatch = useDispatch();
@@ -12,14 +13,26 @@ const MyBucketListPage = () => {
     loadingBuckets: loading['buckets/GET_BUCKETS'],
   }));
 
+  const [isExt, setIsExt] = useState(true);
+
   useEffect(() => {
-    const api = '/api/buckets';
-    chrome.storage.local.get(api, (items) => {
-      if (items[api] === 'modified' || JSON.stringify(items[api]) === '{}') {
-        console.log('버킷 받아옴');
+    try {
+      const api = '/api/buckets';
+      if (isExt === false) {
         dispatch(getBuckets());
+      } else if (isExt === true) {
+        getChromeLocalStorage([api], (items) => {
+          if (items[api] === 'modified' || JSON.stringify(items[api]) === '{}') {
+            console.log('버킷 받아옴');
+            dispatch(getBuckets());
+          }
+        });
       }
-    });
+    } catch (error) {
+      console.log(error);
+      setIsExt(false);
+      dispatch(getBuckets());
+    }
   }, [dispatch]);
 
   return (
