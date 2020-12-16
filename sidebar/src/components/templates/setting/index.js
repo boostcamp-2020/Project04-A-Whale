@@ -10,7 +10,7 @@ import { getWhaleLocalStorage, setWhaleLocalStorage } from '../../../lib/whaleLo
 const Setting = () => {
   const classes = useStyles();
   const [isWhaleExt, setIsWhaleExt] = useState(true);
-  const [isChromeLocalLoaded, setIsChromeLocalLoaded] = useState(false);
+  const [isWhaleLocalLoaded, setIsWhaleLocalLoaded] = useState(false);
   const [sw, setSw] = useState({ displayDark: false, alarmOn: false, browserSave: false });
   const [alarm, setAlarm] = useState({ time: '09:00', dday: 7 });
 
@@ -66,11 +66,11 @@ const Setting = () => {
         // 로컬에 값이 존재
         if (localSw && localAlarm) {
           // 크롬 로컬에서 로드하지 않음
-          if (!isChromeLocalLoaded) {
+          if (!isWhaleLocalLoaded) {
             // 최초 불러오기
             setSw(localSw);
             setAlarm(localAlarm);
-            setIsChromeLocalLoaded(true);
+            setIsWhaleLocalLoaded(true);
           } else {
             // 로컬 스토리지 로드 후 변경 사항
             // alarm on -> off
