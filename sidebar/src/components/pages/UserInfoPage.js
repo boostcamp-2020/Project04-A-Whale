@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../UI/organisms/header';
-import { getUserInfo, getIsFollowing, getUserBuckets } from '../../modules/userInfo';
+import { getUserInfo, getIsFollowing, getUserBuckets } from '../../modules/userinfo';
 import Spinner from '../UI/atoms/spinner';
 import UserInfoTemplate from '../templates/user_info_template';
 
