@@ -10,7 +10,7 @@ const FollowListPage = () => {
 
   return (
     <>
-      <Header title="팔로우 리스트" isGoBack />
+      <Header title="팔로우" isGoBack />
       <FollowListTemplate followed={followed} following={following} />
     </>
   );

@@ -47,7 +47,7 @@ const DetailListItem = ({ detail, handleToggle, checked, isAchieve }) => {
 
   const handleSave = () => {
     dispatch(updateDetailInfo({ no: detail.no, title, dueDate: selectedDate }));
-    setSelectedDate(getFormatData(selectedDate));
+    setSelectedDate(getFormatData(new Date(selectedDate)));
     setEdit(false);
   };
 
