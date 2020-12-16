@@ -24,16 +24,7 @@ const persistor = persistStore(store);
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <div
-        style={{
-          display: 'flex',
-          width: '100%',
-          backgroundColor: '#ffffff',
-          filter: 'invert(1) hue-rotate(180deg)',
-        }}
-      >
-        <App />
-      </div>
+      <App />
     </PersistGate>
   </Provider>,
   document.getElementById('root')

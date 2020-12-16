@@ -11,7 +11,7 @@ const Setting = () => {
   const classes = useStyles();
   const [isWhaleExt, setIsWhaleExt] = useState(true);
   const [isWhaleLocalLoaded, setIsWhaleLocalLoaded] = useState(false);
-  const [sw, setSw] = useState({ displayDark: false, alarmOn: false, browserSave: false });
+  const [sw, setSw] = useState({ darkMode: false, alarmOn: false, browserSave: false });
   const [alarm, setAlarm] = useState({ time: '09:00', dday: 7 });
 
   const handleChange = (event) => {
@@ -115,13 +115,13 @@ const Setting = () => {
         <Typography className={classes.title}>화면 설정</Typography>
         <div className={classes.section}>
           <Switch
-            checked={sw.displayDark}
+            checked={sw.darkMode}
             onChange={handleChange}
             color="primary"
-            name="displayDark"
+            name="darkMode"
             inputProps={{ 'aria-label': 'primary checkbox' }}
           />
-          <span>화면 색상 반전</span>
+          <span>화면 어둡게</span>
         </div>
         <Typography className={classes.title}>알림 설정</Typography>
         <div className={classes.section}>

@@ -22,7 +22,7 @@ const LoginPage = () => {
       const callback = async (items) => {
         const { sw, alarm } = items;
         console.log(sw, alarm);
-        if (sw.alarmOn) {
+        if (sw && sw.alarmOn) {
           await updateDueDetailsAndAlarm(items, { sw, alarm });
         }
         return null;
