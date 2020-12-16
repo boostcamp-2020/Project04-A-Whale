@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+ 
+  "name": "올해는 꼭",
+  "description": "버킷리스트 앱",
+  "version": "1.0",
+
+  "icons": {"120": "icon.png"},
+  
+  "sidebar_action": {
+      "default_page": "index.html",
+      "default_title": "올해는 꼭",
+      "use_navigation_bar": true, 
+      "mobile_user_agent": true 
+  },
+  "background": {
+    "scripts": [
+        "background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "alarms",
+    "notifications",
+    "storage",
+    "tabs"
+  ],
+  "content_security_policy": "script-src 'self' 'sha256-dgez3yKJooOgLv+oh9PqL746qrdBwihRHJo9SWZKRfI='; object-src 'self'"
+}

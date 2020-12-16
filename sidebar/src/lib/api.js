@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://101.101.210.76:8000';
+  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://localhost:8000';
 
 axios.interceptors.request.use((config) => {
   config.headers = {
@@ -18,7 +18,7 @@ axios.interceptors.response.use(
   (error) => {
     console.log(error);
     if (error.response.status === 401 && localStorage.getItem('accessToken')) {
-      alert('accessToken 기한 만료! 재로그인해주세요');
+      alert('재로그인해주세요.');
       localStorage.removeItem('accessToken');
       window.location.reload(false);
     }
@@ -107,6 +107,8 @@ export const getDetails = (bucketNo) =>
     chrome.storage.local.set({ [`/api/details/${bucketNo}`]: 'not modified' });
     return res;
   });
+
+export const getDetailsByDDay = (dday) => axios.get(`/api/details/dday/${dday}`);
 
 export const updateDetailStatus = ({ no, status }) =>
   axios
