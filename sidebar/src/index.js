@@ -20,7 +20,6 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(ReduxThunk, logger))
 );
 
-// export default createStore(enhancedReducer, applyMiddleware(logger));
 const persistor = persistStore(store);
 
 ReactDOM.render(
