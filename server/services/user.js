@@ -40,7 +40,8 @@ exports.getUserInfo = async (no) => {
   }, 0);
   delete user.dataValues.buckets;
   const temp = { ...user.dataValues };
-  temp.achieveRate = Math.round((achieve / total) * 100);
+  const achieveRate = Math.round((achieve / total) * 100);
+  temp.achieveRate = achieveRate === null ? 0 : achieveRate;
   temp.followerCount = follower.length;
   temp.followingCount = following.length;
 
