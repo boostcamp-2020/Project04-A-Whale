@@ -42,7 +42,6 @@ export const updateDueDetailsAndAlarm = async (items, { sw, alarm }) => {
     dueDetails = response.data.data;
   } catch (error) {
     dueDetails = [];
-    console.log(error);
   }
   updateAlarm(items, dueDetails, { sw, alarm });
   return null;

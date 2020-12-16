@@ -31,7 +31,6 @@ const Header = ({ title, isGoBack = null }) => {
         }
       });
     } catch (error) {
-      console.log(error);
       console.log('웨일 확장앱이 아닙니다. 팝업창을 띄우지 않습니다.');
     }
   }, [popUpOpen]);

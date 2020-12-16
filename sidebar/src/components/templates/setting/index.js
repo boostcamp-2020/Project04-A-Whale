@@ -104,7 +104,6 @@ const Setting = () => {
         }
       });
     } catch (error) {
-      console.log(error);
       setIsWhaleExt(false);
     }
   }, [sw, alarm]);

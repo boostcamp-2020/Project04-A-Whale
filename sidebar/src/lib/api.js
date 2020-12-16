@@ -16,7 +16,6 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log(error);
     if (error.response.status === 401 && localStorage.getItem('accessToken')) {
       alert('인증 시간이 만료되었습니다. 다시 로그인해주세요.');
       localStorage.removeItem('accessToken');

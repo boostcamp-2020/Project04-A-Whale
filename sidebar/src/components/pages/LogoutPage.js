@@ -9,7 +9,6 @@ const LogoutPage = () => {
     try {
       removeAllAlarms();
     } catch (error) {
-      console.log(error);
       console.log('웨일 확장앱이 아닙니다. 알람 삭제 기능을 수행하지 않습니다.');
     }
 

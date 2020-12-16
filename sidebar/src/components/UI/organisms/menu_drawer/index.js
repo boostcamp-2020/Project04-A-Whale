@@ -40,7 +40,6 @@ const MenuDrawer = ({ open, toggleDrawer }) => {
         });
       }
     } catch (error) {
-      console.log(error);
       setIsExt(false);
       dispatch(getUser());
     }

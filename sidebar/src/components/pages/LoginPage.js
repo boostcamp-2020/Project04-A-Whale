@@ -29,7 +29,6 @@ const LoginPage = () => {
       };
       getWhaleLocalStorage(keys, callback);
     } catch (error) {
-      console.log(error);
       console.log('웨일 확장앱이 아닙니다. 알람을 설정하지 않습니다.');
     }
   };

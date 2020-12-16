@@ -29,7 +29,6 @@ const MyBucketListPage = () => {
         });
       }
     } catch (error) {
-      console.log(error);
       setIsExt(false);
       dispatch(getBuckets());
     }
