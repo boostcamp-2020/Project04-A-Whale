@@ -10,7 +10,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import rootReducer from './modules';
 import enhancedReducer from './store';
 
 const logger = createLogger();
@@ -25,7 +24,16 @@ const persistor = persistStore(store);
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          backgroundColor: '#ffffff',
+          filter: 'invert(1) hue-rotate(180deg)',
+        }}
+      >
+        <App />
+      </div>
     </PersistGate>
   </Provider>,
   document.getElementById('root')
