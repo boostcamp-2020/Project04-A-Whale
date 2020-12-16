@@ -101,7 +101,7 @@ exports.getFollowedUsers = async (req, res, next) => {
 exports.setFollowing = async (req, res, next) => {
   try {
     const { followingNo } = req.body;
-    console.log(userNo, followingNo);
+    const userNo = req.user.no;
     const result = await followServices.setFollowing({ userNo, followingNo });
     res.status(CREATED).json({
       message: '팔로우 추가 성공',
