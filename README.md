@@ -19,6 +19,8 @@
 [<img width="400" src=""/>]()
 > 클릭하시면 youtube로 이동합니다💨
 
+- [iOS 데모 영상](https://youtu.be/13W6UZBxbm4)
+
 ## 📊 DB Model
 ![whale](https://user-images.githubusercontent.com/39231606/101657839-b06f1d00-3a87-11eb-8a0b-101c27a0082c.png)
 
