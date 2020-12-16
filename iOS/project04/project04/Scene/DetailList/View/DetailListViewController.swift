@@ -67,12 +67,12 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
         if bucket?.status == "A" {
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
+        impressionViewModel.impressionFetch(bucketNo: bucket?.no ?? 0)
+        collectionViewModel?.listFetchAction(with: bucket?.no)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        impressionViewModel.impressionFetch(bucketNo: bucket?.no ?? 0)
-        collectionViewModel?.listFetchAction(with: bucket?.no)
         detailSuccessChecker(viewModel: collectionViewModel)
         checkTokenExpired()
     }
