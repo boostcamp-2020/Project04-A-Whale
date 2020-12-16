@@ -35,12 +35,14 @@ const LoginPage = () => {
 
   const axiosLogin = useCallback(async (body) => {
     const result = await userLogin(body);
-    localStorage.setItem('accessToken', result.data.accessToken);
-    resetLoginInfo();
-    await alarmSetting();
-    dispatch(getBuckets());
-    dispatch(getUser());
-    history.replace('/');
+    if (result) {
+      localStorage.setItem('accessToken', result.data.accessToken);
+      resetLoginInfo();
+      await alarmSetting();
+      dispatch(getBuckets());
+      dispatch(getUser());
+      history.replace('/');
+    }
   }, []);
 
   useEffect(() => {
