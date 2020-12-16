@@ -20,11 +20,6 @@ class FeedTableViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        checkTokenExpired()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.completion = { [weak self] in
@@ -32,7 +27,12 @@ class FeedTableViewController: UITableViewController {
                 self?.tableView.reloadData()
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         viewModel.fetch()
+        checkTokenExpired()
     }
 
     // MARK: - Table view data source
