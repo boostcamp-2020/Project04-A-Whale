@@ -22,11 +22,11 @@ const PopUp = ({ dueDetails }) => {
   return (
     <div className={classes.root}>
       <Dialog
-        className={classes.dialog}
+        fullWidth
+        maxWidth="md"
         onClose={handleClose}
         aria-labelledby="popup-dialog-title"
         open={open}
-        maxWidth={false}
       >
         <DialogTitle id="popup-dialog-title">[오늘은 꼭] &nbsp; 지정된 알림</DialogTitle>
         <List>

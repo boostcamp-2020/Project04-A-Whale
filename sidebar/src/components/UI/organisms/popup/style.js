@@ -4,9 +4,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  dialog: {
-    width: '80%',
-  },
   text: {
     fontSize: '1.5rem',
     // fontFamily: 'NanumBarunGothic',
