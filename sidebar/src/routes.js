@@ -27,8 +27,8 @@ const routes = () => {
       <PrivateRoute component={FeedPage} path={pathURI.feed} exact />
       <PrivateRoute component={SettingPage} path={pathURI.setting} exact />
       <PrivateRoute component={LogoutPage} path={pathURI.logout} exact />
-      <PrivateRoute component={FollowListPage} path={pathURI.follow} />
-      <PrivateRoute component={UserInfoPage} path={pathURI.userInfo} />
+      <PrivateRoute component={FollowListPage} path={pathURI.follow} exact />
+      <PrivateRoute component={UserInfoPage} path={pathURI.userInfo} exact />
     </Switch>
   );
 };

@@ -188,5 +188,5 @@ export const LoginBox = styled.div`
 export const LoginWrapper = styled.div`
   position: absolute;
   top: 7%;
-  width: 100%;
+  width: calc(100% - 8px);
 `;
