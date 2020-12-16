@@ -25,6 +25,7 @@ export const removeAllAlarms = async () => {
 
 export const updateAlarm = async (items, dueDetails, { sw, alarm }) => {
   // 설정 및 응답 저장
+  console.log('local에 저장되는 스케줄', dueDetails);
   setChromeLocalStorage({ ...items, sw, alarm, dueDetails });
   // 알람 삭제
   await removeAllAlarms();

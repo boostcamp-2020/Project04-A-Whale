@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getStorage, setStorage } from './storage';
+// import { getStorage, setStorage } from './storage';
 
 axios.defaults.baseURL =
   process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://localhost:8000';

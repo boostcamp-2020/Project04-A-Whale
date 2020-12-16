@@ -11,7 +11,6 @@ const PopUp = ({ dueDetails }) => {
   const classes = useStyles();
   const history = useHistory();
   const [open, setOpen] = useState(true);
-  // const [rows, setRows] = useState([]);
   const handleClose = () => {
     setOpen(false);
   };
@@ -22,17 +21,32 @@ const PopUp = ({ dueDetails }) => {
 
   return (
     <div className={classes.root}>
-      <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-        <DialogTitle id="simple-dialog-title">[오늘은 꼭] &nbsp; 지정된 알림</DialogTitle>
+      <Dialog
+        className={classes.dialog}
+        onClose={handleClose}
+        aria-labelledby="popup-dialog-title"
+        open={open}
+        maxWidth={false}
+      >
+        <DialogTitle id="popup-dialog-title">[오늘은 꼭] &nbsp; 지정된 알림</DialogTitle>
         <List>
-          {dueDetails.map((dueDetail, index) => (
-            <ListItem button onClick={() => handleListItemClick(dueDetail.bucket.no)} key={index}>
+          {dueDetails.length > 0 ? (
+            dueDetails.map((dueDetail, index) => (
+              <ListItem button onClick={() => handleListItemClick(dueDetail.bucket.no)} key={index}>
+                <ListItemText
+                  primary={`${dueDetail.title}    in  ${dueDetail.bucket.title}`}
+                  secondary={`(${dueDetail.dueDate})`}
+                />
+              </ListItem>
+            ))
+          ) : (
+            <ListItem button key={0}>
               <ListItemText
-                primary={`${dueDetail.title}    in  ${dueDetail.bucket.title}`}
-                secondary={`(${dueDetail.dueDate})`}
+                primary="설정된 기간 중에 스케줄이 없습니다."
+                secondary="여유를 즐겨보세요."
               />
             </ListItem>
-          ))}
+          )}
         </List>
       </Dialog>
     </div>

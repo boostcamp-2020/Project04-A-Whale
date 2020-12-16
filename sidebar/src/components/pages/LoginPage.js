@@ -45,7 +45,7 @@ const LoginPage = () => {
   }, []);
 
   useEffect(() => {
-    chrome.storage.local.clear();
+    // chrome.storage.local.clear();
     if (loginInfo.id && loginInfo.password) {
       axiosLogin({ ...loginInfo });
     }
