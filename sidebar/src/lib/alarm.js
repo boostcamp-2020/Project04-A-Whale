@@ -18,8 +18,13 @@ export const createAlarm = (lengthOfDueDetails, time) => {
 
 export const removeAllAlarms = async () => {
   // 알람 삭제
-  await whale.alarms.clearAll();
-  console.log('알람이 모두 삭제되었습니다.');
+  try {
+    await whale.alarms.clearAll();
+    console.log('알람이 모두 삭제되었습니다.');
+  } catch (error) {
+    console.log('웨일 확장앱이 아닙니다. 알람 삭제 기능을 수행하지 않습니다.');
+  }
+
   return null;
 };
 
