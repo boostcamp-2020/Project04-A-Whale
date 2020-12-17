@@ -5,13 +5,13 @@ import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import useStyles from './style';
 import { removeAllAlarms, updateAlarm, updateDueDetailsAndAlarm } from '../../../lib/alarm';
-import { getChromeLocalStorage, setChromeLocalStorage } from '../../../lib/chromeLocalStorage';
+import { getWhaleLocalStorage, setWhaleLocalStorage } from '../../../lib/whaleLocalStorage';
 
 const Setting = () => {
   const classes = useStyles();
   const [isWhaleExt, setIsWhaleExt] = useState(true);
-  const [isChromeLocalLoaded, setIsChromeLocalLoaded] = useState(false);
-  const [sw, setSw] = useState({ displayDark: false, alarmOn: false, browserSave: false });
+  const [isWhaleLocalLoaded, setIsWhaleLocalLoaded] = useState(false);
+  const [sw, setSw] = useState({ darkMode: false, alarmOn: false, browserSave: false });
   const [alarm, setAlarm] = useState({ time: '09:00', dday: 7 });
 
   const handleChange = (event) => {
@@ -38,7 +38,7 @@ const Setting = () => {
     // 알람 삭제
     await removeAllAlarms();
     // 스위치 업데이트
-    setChromeLocalStorage({ ...items, sw, alarm });
+    setWhaleLocalStorage({ ...items, sw, alarm });
     return null;
   };
 
@@ -59,18 +59,18 @@ const Setting = () => {
     try {
       // whale API 고유 기능을 분기 처리
       const keys = ['sw', 'alarm', 'dueDetails'];
-      getChromeLocalStorage(keys, async (items) => {
+      getWhaleLocalStorage(keys, async (items) => {
         const localSw = items.sw;
         const localAlarm = items.alarm;
 
         // 로컬에 값이 존재
         if (localSw && localAlarm) {
           // 크롬 로컬에서 로드하지 않음
-          if (!isChromeLocalLoaded) {
+          if (!isWhaleLocalLoaded) {
             // 최초 불러오기
             setSw(localSw);
             setAlarm(localAlarm);
-            setIsChromeLocalLoaded(true);
+            setIsWhaleLocalLoaded(true);
           } else {
             // 로컬 스토리지 로드 후 변경 사항
             // alarm on -> off
@@ -96,15 +96,14 @@ const Setting = () => {
                 return;
               }
             }
-            setChromeLocalStorage({ ...items, sw, alarm });
+            setWhaleLocalStorage({ ...items, sw, alarm });
           }
         } else {
           // 로컬에 값이 없을 때, 저장
-          setChromeLocalStorage({ ...items, sw, alarm, dueDetails: [] });
+          setWhaleLocalStorage({ ...items, sw, alarm, dueDetails: [] });
         }
       });
     } catch (error) {
-      console.log(error);
       setIsWhaleExt(false);
     }
   }, [sw, alarm]);
@@ -116,13 +115,13 @@ const Setting = () => {
         <Typography className={classes.title}>화면 설정</Typography>
         <div className={classes.section}>
           <Switch
-            checked={sw.displayDark}
+            checked={sw.darkMode}
             onChange={handleChange}
             color="primary"
-            name="displayDark"
+            name="darkMode"
             inputProps={{ 'aria-label': 'primary checkbox' }}
           />
-          <span>화면 색상 반전</span>
+          <span>화면 어둡게</span>
         </div>
         <Typography className={classes.title}>알림 설정</Typography>
         <div className={classes.section}>

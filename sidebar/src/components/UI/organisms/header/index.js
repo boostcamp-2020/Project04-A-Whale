@@ -8,7 +8,7 @@ import MenuDrawer from '../menu_drawer';
 import MenuButton from '../../atoms/menu_button';
 import useStyles from './style';
 import PopUp from '../popup';
-import { getChromeLocalStorage } from '../../../../lib/chromeLocalStorage';
+import { getWhaleLocalStorage } from '../../../../lib/whaleLocalStorage';
 
 const Header = ({ title, isGoBack = null }) => {
   const classes = useStyles();
@@ -19,19 +19,18 @@ const Header = ({ title, isGoBack = null }) => {
 
   useEffect(() => {
     try {
-      chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+      whale.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         if (msg.popup) {
           setPopUpOpen(true);
           const keys = ['dueDetails'];
           const callback = async (items) => {
             setDueDetails(items.dueDetails);
           };
-          getChromeLocalStorage(keys, callback);
+          getWhaleLocalStorage(keys, callback);
           sendResponse({ done: true });
         }
       });
     } catch (error) {
-      console.log(error);
       console.log('웨일 확장앱이 아닙니다. 팝업창을 띄우지 않습니다.');
     }
   }, [popUpOpen]);

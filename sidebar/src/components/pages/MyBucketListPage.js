@@ -4,7 +4,7 @@ import { getBuckets } from '../../modules/buckets';
 import Spinner from '../UI/atoms/spinner';
 import MyBucketList from '../templates/my_bucket_list';
 import Header from '../UI/organisms/header';
-import { getChromeLocalStorage } from '../../lib/chromeLocalStorage';
+import { getWhaleLocalStorage } from '../../lib/whaleLocalStorage';
 
 const MyBucketListPage = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const MyBucketListPage = () => {
       if (isExt === false) {
         dispatch(getBuckets());
       } else if (isExt === true) {
-        getChromeLocalStorage([api], (items) => {
+        getWhaleLocalStorage([api], (items) => {
           if (items[api] === 'modified' || JSON.stringify(items[api]) === '{}') {
             console.log('버킷 받아옴');
             dispatch(getBuckets());
@@ -29,7 +29,6 @@ const MyBucketListPage = () => {
         });
       }
     } catch (error) {
-      console.log(error);
       setIsExt(false);
       dispatch(getBuckets());
     }

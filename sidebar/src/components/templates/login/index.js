@@ -60,7 +60,7 @@ const Login = ({ setLoginInfo }) => {
     [id, password]
   );
   return (
-    <LoginWrapper>
+    <LoginWrapper className={classes.root}>
       <LogoWrapper>
         <AppTitle>올해는 꼭</AppTitle>
         <WhaleWrapper>

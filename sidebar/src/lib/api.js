@@ -16,11 +16,15 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log(error);
-    if (error.response.status === 401 && localStorage.getItem('accessToken')) {
-      alert('인증 시간이 만료되었습니다. 다시 로그인해주세요.');
-      localStorage.removeItem('accessToken');
-      window.location.reload(false);
+    if (error.response.status === 401) {
+      if (localStorage.getItem('accessToken')) {
+        alert('인증 시간이 만료되었습니다. 다시 로그인해주세요.');
+        localStorage.removeItem('accessToken');
+        window.location.reload(false);
+      } else {
+        alert('아이디 또는 패스워드를 확인해주세요');
+        window.location.reload(false);
+      }
     }
   }
 );
@@ -43,7 +47,7 @@ export const userRegister = ({ id, password, nickname, description }) =>
 export const getUser = () => {
   return axios.get('/api/users/info').then((res) => {
     try {
-      chrome.storage.local.set({ '/api/users/info': 'not modified' });
+      whale.storage.local.set({ '/api/users/info': 'not modified' });
       return res;
     } catch (error) {
       console.log('확장앱 API 이용 불가:', error);
@@ -58,7 +62,7 @@ export const isDuplicated = (id) => axios.get(`/api/users/${id}`);
 export const getBuckets = () => {
   const res = axios.get('/api/buckets').then((res) => {
     try {
-      chrome.storage.local.set({ '/api/buckets': 'not modified' });
+      whale.storage.local.set({ '/api/buckets': 'not modified' });
       return res;
     } catch (error) {
       console.log('확장앱 API 이용 불가:', error);
@@ -79,8 +83,8 @@ export const createBucket = (title, description, details, ref) =>
     })
     .then((res) => {
       try {
-        chrome.storage.local.set({ '/api/buckets': 'modified' });
-        chrome.storage.local.set({ '/api/users/info': 'modified' });
+        whale.storage.local.set({ '/api/buckets': 'modified' });
+        whale.storage.local.set({ '/api/users/info': 'modified' });
         console.log('버킷 및 유저정보 변경');
         return res;
       } catch (error) {
@@ -98,8 +102,8 @@ export const updateBucketStatus = ({ no, status }) =>
     })
     .then((res) => {
       try {
-        chrome.storage.local.set({ '/api/buckets': 'modified' });
-        chrome.storage.local.set({ '/api/users/info': 'modified' });
+        whale.storage.local.set({ '/api/buckets': 'modified' });
+        whale.storage.local.set({ '/api/users/info': 'modified' });
         console.log('버킷 및 유저정보 변경');
         return res;
       } catch (error) {
@@ -116,8 +120,8 @@ export const updateBucketInfo = ({ no, title, description }) =>
     })
     .then((res) => {
       try {
-        chrome.storage.local.set({ '/api/buckets': 'modified' });
-        chrome.storage.local.set({ '/api/users/info': 'modified' });
+        whale.storage.local.set({ '/api/buckets': 'modified' });
+        whale.storage.local.set({ '/api/users/info': 'modified' });
         console.log('버킷 및 유저정보 변경');
         return res;
       } catch (error) {
@@ -138,8 +142,8 @@ export const updateDetailStatus = ({ no, status }) =>
     })
     .then((res) => {
       try {
-        chrome.storage.local.set({ '/api/buckets': 'modified' });
-        chrome.storage.local.set({ '/api/users/info': 'modified' });
+        whale.storage.local.set({ '/api/buckets': 'modified' });
+        whale.storage.local.set({ '/api/users/info': 'modified' });
         console.log('버킷 및 디테일 및 유저정보 변경');
         return res;
       } catch (error) {
@@ -164,8 +168,8 @@ export const createDetail = ({ bucketNo, title, dueDate }) =>
     })
     .then((res) => {
       try {
-        chrome.storage.local.set({ '/api/buckets': 'modified' });
-        chrome.storage.local.set({ '/api/users/info': 'modified' });
+        whale.storage.local.set({ '/api/buckets': 'modified' });
+        whale.storage.local.set({ '/api/users/info': 'modified' });
         console.log('버킷 및 디테일 및 유저정보 변경');
         return res;
       } catch (error) {
@@ -183,8 +187,8 @@ export const setAchieves = ({ bucketNo, description }) =>
     })
     .then((res) => {
       try {
-        chrome.storage.local.set({ '/api/buckets': 'modified' });
-        chrome.storage.local.set({ '/api/users/info': 'modified' });
+        whale.storage.local.set({ '/api/buckets': 'modified' });
+        whale.storage.local.set({ '/api/users/info': 'modified' });
         console.log('버킷 및 디테일 및 유저정보 변경');
         return res;
       } catch (error) {
@@ -200,8 +204,8 @@ export const updateAchieves = ({ achieveNo, description }) =>
     })
     .then((res) => {
       try {
-        chrome.storage.local.set({ '/api/buckets': 'modified' });
-        chrome.storage.local.set({ '/api/users/info': 'modified' });
+        whale.storage.local.set({ '/api/buckets': 'modified' });
+        whale.storage.local.set({ '/api/users/info': 'modified' });
         console.log('버킷 및 디테일 및 유저정보 변경');
         return res;
       } catch (error) {

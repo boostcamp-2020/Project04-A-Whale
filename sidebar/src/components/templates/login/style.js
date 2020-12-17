@@ -1,7 +1,17 @@
 import styled, { keyframes } from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    position: 'relative',
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    color: '#555555',
+  },
   input: {
     display: 'block',
     margin: '10px 0',
@@ -185,8 +195,4 @@ export const LoginBox = styled.div`
   box-shadow: 0 0 3px #9c9c9c;
 `;
 
-export const LoginWrapper = styled.div`
-  position: absolute;
-  top: 7%;
-  width: 100%;
-`;
+export const LoginWrapper = styled.div``;

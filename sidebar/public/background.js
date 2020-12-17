@@ -14,8 +14,8 @@
 
 let myNotificationID = null;
 
-chrome.alarms.onAlarm.addListener((alarm) => {
-  chrome.notifications.create(
+whale.alarms.onAlarm.addListener((alarm) => {
+  whale.notifications.create(
     {
       type: 'basic',
       iconUrl: 'icon.png',
@@ -37,13 +37,16 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   );
 });
 
-chrome.notifications.onButtonClicked.addListener(async (notifId, btnIdx) => {
+whale.notifications.onButtonClicked.addListener(async (notifId, btnIdx) => {
   if (notifId === myNotificationID) {
     if (btnIdx === 0) {
-      whale.runtime.sendMessage({ popup: true }, (res) => {
-        console.log(res);
-      });
       whale.sidebarAction.show();
+      setTimeout(
+        whale.runtime.sendMessage({ popup: true }, (res) => {
+          console.log(res);
+        }),
+        2000
+      );
     }
   }
 });
