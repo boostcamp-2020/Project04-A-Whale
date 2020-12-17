@@ -9,9 +9,11 @@ const useStyle = makeStyles(() => ({
     margin: '8px 0px 0px 0px',
     '&:hover': {
       cursor: 'pointer',
+      background: '#f5f5f5',
     },
     boxShadow: 'none',
     border: '1px solid #ddd',
+    background: 'none',
   },
 }));
 

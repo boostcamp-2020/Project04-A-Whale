@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BucketListItemWrapper, BucketTitleTextWrapper } from './style';
 import Text from '../../atoms/text';
 import { OPEN, GIVEUP } from '../../../../constants/status';
 
 const UserBucketListItem = ({ bucket }) => {
   const getIcon = () => {
-    console.log('bucket:', bucket);
     if (bucket.status === GIVEUP) return <div className="list-icon">🔒</div>;
     if (bucket.status === OPEN) return <div className="list-icon">⏳</div>;
     return <div className="list-icon">🎉</div>;

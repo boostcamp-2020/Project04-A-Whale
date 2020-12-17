@@ -12,12 +12,12 @@ import {
 const DetailListItemWrapper = styled.div`
   display: flex;
   vertical-align: middle;
-  border: 1.5px;
-  border-right: 0px;
-  border-left: 0px;
-  border-style: ridge;
   font-size: 14px;
   justify-content: space-between;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0px 8px 0px 8px;
+  margin-top: 10px;
 `;
 
 const Title = styled.span`

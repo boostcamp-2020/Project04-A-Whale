@@ -12,7 +12,6 @@ axios.interceptors.request.use((config) => {
 
 axios.interceptors.response.use(
   (response) => {
-    console.log(response);
     return response;
   },
   (error) => {
@@ -231,8 +230,8 @@ export const getFollowedUsers = () => axios.get('/api/follows/followedusers');
 export const getFollowingUsers = () => axios.get('/api/follows/followingusers');
 export const searchUser = (keyword) => axios.get(`/api/follows/search?keyword=${keyword}`);
 export const getUserInfo = (no) => axios.get(`/api/users/info/${no}`);
-export const isFollowing = ({ following, followed }) =>
-  axios.get(`/api/follows/isfollowing?following=${following}&followed=${followed}`);
+export const isFollowing = ({ followed }) =>
+  axios.get(`/api/follows/isfollowing?followed=${followed}`);
 
 // feed
 export const getFeeds = () => axios.get('/api/feeds');

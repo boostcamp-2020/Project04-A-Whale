@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import StyledButton from '../../atoms/styled_button';
@@ -19,8 +19,12 @@ const BucketCreateButton = ({
     color: 'white',
     fontSize: 20,
   };
+  const [disabled, setDisabled] = useState(true);
 
-  const disabled = storeTitle.length * storeDetails.length === 0;
+  useEffect(() => {
+    if (storeTitle.length * storeDetails.length !== 0) setDisabled(false);
+    else setDisabled(true);
+  }, [storeTitle, storeDetails]);
 
   const onClickHandler = async () => {
     await createBucket(storeTitle, storeDescription, storeDetails);

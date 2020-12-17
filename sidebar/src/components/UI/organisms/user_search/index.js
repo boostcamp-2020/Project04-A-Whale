@@ -27,6 +27,7 @@ const UserSearch = () => {
       <TextField
         className={classes.searchInput}
         onChange={onChangeHandler}
+        autoFocus
         InputProps={{
           classes: {
             input: classes.resize,

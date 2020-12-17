@@ -16,7 +16,7 @@ const UserInfoPage = ({ match }) => {
 
   useEffect(() => {
     dispatch(getUserInfo(userNo));
-    dispatch(getIsFollowing({ following: 1, followed: userNo }));
+    dispatch(getIsFollowing({ followed: userNo }));
     dispatch(getUserBuckets(userNo));
   }, [dispatch]);
 

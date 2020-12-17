@@ -10,21 +10,15 @@ const FollowButton = ({ userNo }) => {
 
   const [follow, setFollow] = useState(isFollow);
   const style = {
-    // margin: '17px',
-    // minWidth: '120px',
     minHeight: '30px',
     background: `${follow ? '#454552' : '#4ea1d3'}`,
     color: 'white',
-    // fontWeight: 'bold',
     width: '100%',
   };
 
   const clickFollowButton = () => {
-    if (follow === false) {
-      setFollowing(userNo);
-    } else {
-      deleteFollowing(userNo);
-    }
+    if (follow === false) setFollowing(userNo);
+    else deleteFollowing(userNo);
     setFollow(!follow);
   };
 
