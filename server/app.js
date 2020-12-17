@@ -14,6 +14,7 @@ const { NotFound } = require('./utils/errors');
 
 const app = express();
 
+app.use(cors({ origin: true, credentials: true }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,7 +36,7 @@ models.sequelize
 app.use(passport.initialize());
 passportConfig();
 
-app.use('/api', cors(), apiRouter);
+app.use('/api', apiRouter);
 
 app.use((req, res, next) => {
   throw new NotFound('API URL is invalid');
