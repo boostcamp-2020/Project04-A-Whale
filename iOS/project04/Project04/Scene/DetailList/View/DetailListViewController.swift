@@ -42,10 +42,6 @@ class DetailListViewController: UIViewController, ImpressionDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        print("??")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = bucket?.title
