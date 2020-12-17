@@ -10,6 +10,7 @@ const LogoutPage = () => {
 
     if (isLogin()) {
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('isExt');
       history.replace('/login');
     }
   }, []);
