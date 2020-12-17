@@ -8,19 +8,6 @@
 import Foundation
 import RealmSwift
 
-struct Info: Codable {
-    let bucket: RealmBucket
-    let details: Details
-}
-
-struct Details: Codable {
-    let achieveDetails, openDetails: [RealmDetail]
-    
-    var allDetails: [RealmDetail] {
-        return achieveDetails + openDetails
-    }
-}
-
 class RealmDetail: Object, Codable {
     enum Section: String {
         case todo

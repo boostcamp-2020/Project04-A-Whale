@@ -35,20 +35,23 @@ class TransactionRecorder {
         } catch {
             print(error)
         }
-        
         transactions.forEach { (transaction) in
             guard let method = HTTPMethod(rawValue: transaction.method) else {
                 return
             }
             
-            NetworkService.shared.request(sync: true, from: transaction.url, method: method, body: transaction.data) { (result) in
+            let semaphore = DispatchSemaphore(value: 0)
+            NetworkService.shared.request(from: transaction.url, method: method, body: transaction.data) { (result) in
                 switch result {
                 case .success(_):
                     executedTransactions.append(transaction)
                 case .failure(let error):
                     print(error)
                 }
+                semaphore.signal()
             }
+            
+            semaphore.wait()
         }
         do {
             let realm = try Realm()

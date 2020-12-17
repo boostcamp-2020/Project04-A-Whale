@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ResponseBucket: Codable {
+struct Buckets: Codable {
     let openBuckets, achieveBuckets, giveUpBuckets: [RealmBucket]
     
     var allBuckets: [RealmBucket] {

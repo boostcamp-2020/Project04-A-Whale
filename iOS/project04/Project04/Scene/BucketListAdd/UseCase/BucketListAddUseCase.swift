@@ -8,8 +8,12 @@
 import Foundation
 import RealmSwift
 
-class BucketListAddUseCase: DetailListUseCaseProtocol {
+protocol BucketListAddUseCaseProtocol {
+    func fetch(with index: Int?, completion: @escaping ([RealmDetail]) -> Void)
+    func revise(element: RealmDetail, title: String, dueDate: String)
+}
 
+class BucketListAddUseCase: BucketListAddUseCaseProtocol {
     private let repository: BucketListAddRepositoryProtocol
     
     init(repository: BucketListAddRepositoryProtocol) {
@@ -20,22 +24,6 @@ class BucketListAddUseCase: DetailListUseCaseProtocol {
         repository.fetch(with: index) { (list) in
             completion(list)
         }
-    }
-    
-    func append(_ element: RealmDetail) {
-        
-    }
-    
-    func remove(at index: Int) {
-        
-    }
-    
-    func revise(at index: Int, element: RealmDetail) {
-
-    }
-    
-    func reviseStatus(element: RealmDetail) {
-        
     }
     
     func revise(element: RealmDetail, title: String, dueDate: String) {

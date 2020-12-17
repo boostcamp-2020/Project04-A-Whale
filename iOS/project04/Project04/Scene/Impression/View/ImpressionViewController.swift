@@ -49,11 +49,6 @@ class ImpressionViewController: UIViewController {
     }
 }
 extension ImpressionViewController: UITextViewDelegate {
-    func configureTextViewPlaceholder() {
-        impressionTextView.text = "소감을 입력해주세요."
-        impressionTextView.textColor = .secondaryLabel
-    }
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .secondaryLabel {
             textView.textColor = .label
@@ -65,5 +60,12 @@ extension ImpressionViewController: UITextViewDelegate {
         if textView.text.isEmpty {
             configureTextViewPlaceholder()
         }
+    }
+}
+
+private extension ImpressionViewController {
+    func configureTextViewPlaceholder() {
+        impressionTextView.text = "소감을 입력해주세요."
+        impressionTextView.textColor = .secondaryLabel
     }
 }

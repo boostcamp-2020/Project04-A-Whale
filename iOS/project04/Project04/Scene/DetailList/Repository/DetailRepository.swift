@@ -16,9 +16,9 @@ protocol DetailRepositoryProtocol {
 }
 
 class DetailRepository: DetailRepositoryProtocol {
-    private var local: DetailLocalAgent
+    private var local: DetailLocalAgentProtocol
     
-    required init(local: DetailLocalAgent) {
+    required init(local: DetailLocalAgentProtocol) {
         self.local = local
     }
     
@@ -28,7 +28,7 @@ class DetailRepository: DetailRepositoryProtocol {
                                       completion: { [weak self] result in
                                         switch result {
                                         case .success(let data):
-                                            let detailFetch = try? JSONDecoder().decode(Response<Info>.self, from: data)
+                                            let detailFetch = try? JSONDecoder().decode(Response<Bucket>.self, from: data)
                                             DispatchQueue.main.async {
                                                 self?.local.sync(details: detailFetch?.data.details.allDetails ?? [])
                                             }
@@ -37,7 +37,7 @@ class DetailRepository: DetailRepositoryProtocol {
                                             
                                         }
                                         DispatchQueue.main.async {
-                                            completion(self?.local.load() ?? [])
+                                            completion(self?.local.load(bucketNo: bucketNo) ?? [])
                                         }
                                       })
         

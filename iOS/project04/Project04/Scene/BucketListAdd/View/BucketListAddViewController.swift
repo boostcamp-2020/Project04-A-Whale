@@ -91,7 +91,7 @@ private extension BucketListAddViewController {
             case .input:
                 let view = collectionView.dequeueReusableSupplementaryView(
                     ofKind: kind,
-                    withReuseIdentifier: BucketListAddHeaderView.reuseIdentifier,
+                    withReuseIdentifier: BucketListAddHeaderView.description(),
                     for: indexPath) as? BucketListAddHeaderView
                 view?.configureTextViewPlaceholder()
                 view?.descriptionTextView.delegate = view
@@ -140,7 +140,7 @@ private extension BucketListAddViewController {
         collectionView.delegate = self
         
         let inputHeaderNib = UINib(nibName: "BucketListAddHeaderView", bundle: nil)
-        collectionView.register(inputHeaderNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BucketListAddHeaderView.reuseIdentifier)
+        collectionView.register(inputHeaderNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BucketListAddHeaderView.description())
         let detailHeaderNib = UINib(nibName: "DetailSectionHeaderView", bundle: nil)
         collectionView.register(detailHeaderNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailSectionHeaderView.description())
     }

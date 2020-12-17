@@ -14,9 +14,9 @@ protocol ImpressionRepositoryProtocol {
 }
 
 class ImpressionRepository: ImpressionRepositoryProtocol {
-    private var local: ImpressionLocalAgent
+    private var local: ImpressionLocalAgentProtocol
     
-    init(local: ImpressionLocalAgent) {
+    init(local: ImpressionLocalAgentProtocol) {
         self.local = local
     }
     

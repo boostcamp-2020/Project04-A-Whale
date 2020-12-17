@@ -14,9 +14,9 @@ protocol BucketListAddRepositoryProtocol {
 }
 
 class BucketListAddRepository: BucketListAddRepositoryProtocol {
-    private var memory: DetailMemoryAgent
+    private var memory: DetailMemoryAgentProtocol
     
-    init(memory: DetailMemoryAgent) {
+    init(memory: DetailMemoryAgentProtocol) {
         self.memory = memory
     }
     
@@ -30,7 +30,7 @@ class BucketListAddRepository: BucketListAddRepositoryProtocol {
                                       completion: { [weak self] result in
                                         switch result {
                                         case .success(let data):
-                                            let detailFetch = try? JSONDecoder().decode(Response<Info>.self, from: data)
+                                            let detailFetch = try? JSONDecoder().decode(Response<Bucket>.self, from: data)
                                             completion(detailFetch?.data.details.allDetails ?? [])
                                         case .failure(let error):
                                             print(error)

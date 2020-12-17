@@ -8,10 +8,6 @@
 import UIKit
 
 class BucketListAddHeaderView: UICollectionReusableView {
-    static var reuseIdentifier: String {
-        return String(describing: BucketListAddHeaderView.self)
-    }
-    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var searchButton: UIButton!

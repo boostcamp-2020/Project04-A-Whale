@@ -15,11 +15,11 @@ protocol BucketListObserverDelegate: class {
 class BucketListViewController: UIViewController, BucketListObserverDelegate {
     typealias DataSource = UICollectionViewDiffableDataSource<RealmBucket.Section, RealmBucket>
     typealias Snapshot = NSDiffableDataSourceSnapshot<RealmBucket.Section, RealmBucket>
+    
     @IBOutlet weak var collectionView: UICollectionView!
-
     private var dataSource: DataSource?
     private var coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator
-    internal var bucketListViewModel: BucketListViewModelProtocol
+    var bucketListViewModel: BucketListViewModelProtocol
     
     init?(coder: NSCoder, coordinator: DetailListPushCoordinator & BucketListAddPushCoordinator, viewModel: BucketListViewModelProtocol) {
         self.coordinator = coordinator

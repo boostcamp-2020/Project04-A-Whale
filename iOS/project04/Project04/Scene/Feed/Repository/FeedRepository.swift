@@ -12,9 +12,9 @@ protocol FeedRepositoryProtocol {
 }
 
 class FeedRepository: FeedRepositoryProtocol {
-    let local: FeedLocalAgent
+    private let local: FeedLocalAgentProtocol
     
-    init(local: FeedLocalAgent) {
+    init(local: FeedLocalAgentProtocol) {
         self.local = local
     }
     

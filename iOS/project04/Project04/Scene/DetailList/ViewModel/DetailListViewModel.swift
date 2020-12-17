@@ -10,7 +10,6 @@ import RealmSwift
 
 protocol DetailListViewModelProtocol {
     var list: [RealmDetail.Section: [RealmDetail]] { get }
-    var usecase: DetailListUseCaseProtocol { get }
     var listDidChange: ((DetailListViewModelProtocol) -> ())? { get set }
     func listDeleteAction(at index: Int)
     func listAddAction(_ newElement: RealmDetail)

@@ -69,7 +69,7 @@ extension BucketCoordinator: DetailListPushCoordinator {
     }
     
     private func configureDetailListViewModel(bucket: RealmBucket?) -> DetailListViewModel {
-        let localAgent = DetailLocalAgent(bucketNumber: bucket?.no ?? 0)
+        let localAgent = DetailLocalAgent()
         let repository = DetailRepository(local: localAgent)
         let usecase = DetailListUseCase(repository: repository)
         return DetailListViewModel(usecase: usecase)

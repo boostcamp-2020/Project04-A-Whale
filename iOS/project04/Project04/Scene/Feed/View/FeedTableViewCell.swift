@@ -9,7 +9,6 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var nickNameButton: UIButton!
-    
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     

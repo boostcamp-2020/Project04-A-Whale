@@ -14,14 +14,11 @@ protocol BucketListViewModelProtocol {
     var count: Int { get }
     var handler: (([RealmBucket.Section: [RealmBucket]]) -> Void)? { get set }
     func fetch() -> Void
-    func append(bucket: RealmBucket) -> Void
-    func revise(at index: Int) -> Void
     func reviseStatus(index: Int)
     func autoIncreaseIdValue() -> Int
 }
 
 class BucketListViewModel: BucketListViewModelProtocol {
-    
     private let useCase: BucketListUseCase
     var userInfo: RealmUserData = RealmUserData() {
         didSet {
@@ -54,22 +51,6 @@ class BucketListViewModel: BucketListViewModelProtocol {
                                                                  .done: list.filter({ $0.status == "A" })]
             self?.buckets = buckets
         }
-    }
-    
-    func append(bucket: RealmBucket) {
-        let newId = autoIncreaseIdValue()
-        bucket.no = newId
-        buckets[.todo]?.append(bucket)
-        useCase.append(bucket)
-    }
-    
-    func revise(at index: Int) {
-        guard let bucket = buckets[.todo]?.remove(at: index) else {
-            return
-        }
-        buckets[.done]?.append(bucket)
-        
-        useCase.revise(at: bucket.no, element: bucket)
     }
 
     func reviseStatus(index: Int) {

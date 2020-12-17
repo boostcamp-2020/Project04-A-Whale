@@ -8,7 +8,12 @@
 import Foundation
 import RealmSwift
 
-class FeedLocalAgent {
+protocol FeedLocalAgentProtocol {
+    func load() -> [RealmFeed]
+    func sync(feeds: [RealmFeed])
+}
+
+class FeedLocalAgent: FeedLocalAgentProtocol {
     func load() -> [RealmFeed] {
         do {
             let realm = try Realm()

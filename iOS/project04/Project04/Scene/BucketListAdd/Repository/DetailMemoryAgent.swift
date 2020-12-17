@@ -7,10 +7,16 @@
 
 import Foundation
 
-class DetailMemoryAgent: LocalService {
-    typealias Item = RealmDetail
-    
+protocol DetailMemoryAgentProtocol {
+    func load() -> [RealmDetail]
+    func append(_ element: RealmDetail)
+    func remove(at index: Int)
+    func revise(at index: Int, element: RealmDetail)
+}
+
+class DetailMemoryAgent: DetailMemoryAgentProtocol {
     private var list = [RealmDetail]()
+    
     func load() -> [RealmDetail] {
         return list
     }
@@ -25,9 +31,5 @@ class DetailMemoryAgent: LocalService {
     
     func revise(at index: Int, element: RealmDetail) {
         list[index] = element
-    }
-    
-    func reviseStatus(element: RealmDetail) {
-        element.status = "A"
     }
 }

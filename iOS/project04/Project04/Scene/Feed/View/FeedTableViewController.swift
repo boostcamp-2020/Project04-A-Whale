@@ -8,7 +8,6 @@
 import UIKit
 
 class FeedTableViewController: UITableViewController {
-
     private var viewModel: FeedViewModelProtocol
     
     init?(coder: NSCoder, viewModel: FeedViewModelProtocol) {
@@ -51,7 +50,6 @@ class FeedTableViewController: UITableViewController {
         }
         let feed = viewModel.item(forAt: indexPath)
         cell.configure(with: feed)
-        // Configure the cell...
 
         return cell
     }

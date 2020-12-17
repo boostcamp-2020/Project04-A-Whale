@@ -8,17 +8,20 @@
 import Foundation
 import RealmSwift
 
-class DetailLocalAgent: LocalService {
-    var bucketNo: Int?
-    
-    init(bucketNumber: Int?) {
-        self.bucketNo = bucketNumber
-    }
-    
-    func load() -> [RealmDetail] {
+protocol DetailLocalAgentProtocol {
+    func load(bucketNo: Int) -> [RealmDetail]
+    func append(_ element: RealmDetail)
+    func remove(at index: Int)
+    func revise(element: RealmDetail, title: String, dueDate: String)
+    func reviseStatus(element: RealmDetail)
+    func sync(details: [RealmDetail])
+}
+
+class DetailLocalAgent: DetailLocalAgentProtocol {
+    func load(bucketNo: Int) -> [RealmDetail] {
         do {
             let result = try Realm().objects(RealmDetail.self)
-                .filter("bucketNo == \(bucketNo ?? -1)")
+                .filter("bucketNo == \(bucketNo)")
 
             return result.map { $0 }
         } catch {
@@ -31,7 +34,6 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try Realm().write {
-                element.bucketNo = bucketNo ?? -1
                 realm.add(element)
             }
         } catch {
@@ -43,7 +45,7 @@ class DetailLocalAgent: LocalService {
         do {
             let realm = try Realm()
             try realm.write {
-                let result = realm.objects(RealmDetail.self).filter("bucketNo == \(bucketNo ?? -1) && #no == \(index)")
+                let result = realm.objects(RealmDetail.self).filter("#no == \(index)")
                 realm.delete(result)
             }
         } catch {
@@ -71,10 +73,6 @@ class DetailLocalAgent: LocalService {
         } catch {
             print(error)
         }
-    }
-    
-    func revise(at index: Int, element: RealmDetail) {
-         
     }
     
     func sync(details: [RealmDetail]) {

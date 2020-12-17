@@ -7,13 +7,16 @@
 
 import Foundation
 
-class BucketListUseCase: ListUseCase {
+protocol BucketListUseCaseProtocol {
+    func fetch(completion: @escaping (RealmUserData) -> Void)
+    func fetch(completion: @escaping ([RealmBucket]) -> Void)
+    func reviseStatus(element: RealmBucket)
+}
+
+class BucketListUseCase: BucketListUseCaseProtocol {
+    private let repository: BucketListRepositoryProtocol
     
-    typealias Item = RealmBucket
-    
-    private let repository: BucketListRepository
-    
-    init(repository: BucketListRepository) {
+    init(repository: BucketListRepositoryProtocol) {
         self.repository = repository
     }
     
@@ -29,23 +32,7 @@ class BucketListUseCase: ListUseCase {
         }
     }
     
-    func append(_ element: RealmBucket) {
-        repository.appendBucketList(element)
-    }
-    
-    func remove(at index: Int) {
-        repository.removeBucketList(at: index)
-    }
-    
-    func revise(at index: Int, element: RealmBucket) {
-        repository.reviseBucketList(at: index, element: element)
-    }
-    
     func reviseStatus(element: RealmBucket) {
         repository.reviseBucketListStatus(element: element)
-    }
-   
-    func revise(element: RealmBucket, title: String, dueDate: String) {
-        
     }
 }

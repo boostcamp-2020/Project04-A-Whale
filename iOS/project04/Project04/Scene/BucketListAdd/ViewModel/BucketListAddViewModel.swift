@@ -15,7 +15,7 @@ protocol BucketViewModelProtocol {
 }
 
 class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtocol {
-    var usecase: DetailListUseCaseProtocol
+    private var usecase: BucketListAddUseCaseProtocol
     var didChangeBucket: ((RealmBucket) -> Void)?
     var listDidChange: ((DetailListViewModelProtocol) -> Void)?
     var list: [RealmDetail.Section: [RealmDetail]] = [:] {
@@ -30,7 +30,7 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
         }
     }
     
-    init(usecase: DetailListUseCaseProtocol) {
+    init(usecase: BucketListAddUseCaseProtocol) {
         self.usecase = usecase
     }
     
@@ -60,12 +60,10 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
     }
     
     func listDeleteAction(at index: Int) {
-        usecase.remove(at: index)
         list[.todo]?.remove(at: index)
     }
     
     func listAddAction(_ newElement: RealmDetail) {
-        usecase.append(newElement)
         list[.todo]?.append(newElement)
     }
     
@@ -75,7 +73,7 @@ class BucketListAddViewModel: BucketViewModelProtocol, DetailListViewModelProtoc
     }
     
     func listStatusReviseAction(at index: Int) {
-        
+        return
     }
     
     func listFetchAction(with index: Int?) {

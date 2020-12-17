@@ -8,9 +8,15 @@
 import Foundation
 import RealmSwift
 
-class BucketLocalAgent: LocalService {
-    typealias Item = RealmBucket
-    
+protocol BucketLocalAgentProtocol {
+    func load() -> RealmUserData?
+    func load() -> [RealmBucket]
+    func reviseStatus(element: RealmBucket)
+    func sync(buckets: [RealmBucket])
+    func sync(userData: RealmUserData)
+}
+
+class BucketLocalAgent: BucketLocalAgentProtocol {
     func load() -> RealmUserData? {
         do {
             let realm = try Realm()
@@ -31,33 +37,6 @@ class BucketLocalAgent: LocalService {
             print(error)
             return []
         }
-    }
-    
-    func append(_ element: RealmBucket) {
-        do {
-            let realm = try Realm()
-            try Realm().write {
-                realm.add(element)
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    func remove(at index: Int) {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                let result = realm.objects(RealmBucket.self)
-                result[index].status = "A"
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    func revise(at index: Int, element: RealmBucket) {
-        
     }
 
     func reviseStatus(element: RealmBucket) {

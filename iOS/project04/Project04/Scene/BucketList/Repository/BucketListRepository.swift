@@ -7,10 +7,16 @@
 
 import Foundation
 
-class BucketListRepository {
-    private let local: BucketLocalAgent
+protocol BucketListRepositoryProtocol {
+    func fetchUserIfo(completion: @escaping (RealmUserData) -> Void)
+    func fetchBucketList(completion: @escaping ([RealmBucket]) -> Void)
+    func reviseBucketListStatus(element: RealmBucket)
+}
+
+class BucketListRepository: BucketListRepositoryProtocol {
+    private let local: BucketLocalAgentProtocol
     
-    init(local: BucketLocalAgent) {
+    init(local: BucketLocalAgentProtocol) {
         self.local = local
     }
     
@@ -37,7 +43,7 @@ class BucketListRepository {
         NetworkService.shared.request(from: Endpoint.buckets.urlString, method: .GET) { [weak self] (result) in
             switch result {
             case .success(let data):
-                let response = try? JSONDecoder().decode(Response<ResponseBucket>.self, from: data)
+                let response = try? JSONDecoder().decode(Response<Buckets>.self, from: data)
                 let buckets = response?.data.allBuckets
                 
                 DispatchQueue.main.async {
@@ -51,18 +57,6 @@ class BucketListRepository {
                 completion(self?.local.load() ?? [])
             }
         }
-    }
-    
-    func appendBucketList(_ element: RealmBucket) {
-        local.append(element)
-    }
-    
-    func removeBucketList(at index: Int) {
-        local.remove(at: index)
-    }
-    
-    func reviseBucketList(at index: Int, element: RealmBucket) {
-        local.revise(at: index, element: element)
     }
     
     func reviseBucketListStatus(element: RealmBucket) {

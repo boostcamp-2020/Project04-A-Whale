@@ -34,7 +34,6 @@ class NetworkStatus {
             }
             
             if path.status == .satisfied {
-                print("good")
                 DispatchQueue.main.async {
                     showToast(message: "네트워크가 연결되었습니다", font: .systemFont(ofSize: 14))
                 }
@@ -43,8 +42,6 @@ class NetworkStatus {
                 DispatchQueue.main.async {
                     showToast(message: "네트워크 연결이 불안정합니다.", font: .systemFont(ofSize: 14)) 
                 }
-                
-                print("not good")
             }
         }
         

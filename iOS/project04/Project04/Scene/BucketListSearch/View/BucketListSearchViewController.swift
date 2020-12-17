@@ -37,7 +37,7 @@ class BucketListSearchViewController: UITableViewController {
     }
 }
 
-extension BucketListSearchViewController {
+private extension BucketListSearchViewController {
     func configureSearchController() {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater = self
