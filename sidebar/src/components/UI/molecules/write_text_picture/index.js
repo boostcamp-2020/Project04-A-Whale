@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { WriteText, TextArea, UploadPicture, useStyles, UploadPictureLabel } from './style';
 import { uploadObjectStorage } from '../../../../lib/api';
 
-const WriteTextPicture = ({ placeholder, text, changeText }) => {
+const WriteTextPicture = ({ placeholder, text, changeText, update }) => {
   const classes = useStyles();
   const [localText, setLocalText] = useState(text);
   const [dragging, setDragging] = useState(false);
@@ -52,7 +52,9 @@ const WriteTextPicture = ({ placeholder, text, changeText }) => {
   }, [localText]);
 
   useEffect(() => {
-    setLocalText('');
+    if (!update) {
+      setLocalText('');
+    }
   }, []);
 
   return (

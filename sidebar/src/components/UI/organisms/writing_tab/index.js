@@ -5,9 +5,16 @@ import WriteTextPicture from '../../molecules/write_text_picture';
 import PreviewTextPicture from '../../atoms/preview_text_picture';
 import useStyles from './style';
 
-const WritingTab = ({ placeholder, text, changeText, submitText }) => {
+const WritingTab = ({ placeholder, text, changeText, submitText, update }) => {
   const classes = useStyles();
-  const form = <WriteTextPicture placeholder={placeholder} text={text} changeText={changeText} />;
+  const form = (
+    <WriteTextPicture
+      placeholder={placeholder}
+      text={text}
+      changeText={changeText}
+      update={update}
+    />
+  );
   const markdown = text ? (
     <ReactMarkdown source={text} />
   ) : (
