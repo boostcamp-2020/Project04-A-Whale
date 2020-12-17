@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserInfoView" id="U6b-Vx-4bR" customClass="UserInfoView" customModule="project04" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="331" height="161"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljS-Nn-eGI" customClass="RoundView" customModule="project04" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="331" height="117"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jm2-vB-L8z">
+                            <rect key="frame" x="261" y="18" width="52" height="30"/>
+                            <state key="normal" title="로그아웃"/>
+                            <connections>
+                                <action selector="didTouchLogoutButton:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="L7K-F3-FIW"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팔로워  22명" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4F-s6-zPn">
+                            <rect key="frame" x="17" y="63.5" width="73" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목표 달성률" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3h-cu-p6b">
+                            <rect key="frame" x="17" y="90.5" width="64.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Civ-Ag-z5l">
+                            <rect key="frame" x="17" y="18" width="44.5" height="20.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aYB-aG-7GS">
+                            <rect key="frame" x="107" y="97" width="206" height="4"/>
+                        </progressView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팔로워  22명" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJG-j1-Ubw">
+                            <rect key="frame" x="105" y="63.5" width="73" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNV-04-qNU">
+                            <rect key="frame" x="17" y="43.5" width="21" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="tintColor" name="GraphColor"/>
+                    <constraints>
+                        <constraint firstItem="j4F-s6-zPn" firstAttribute="top" secondItem="iNV-04-qNU" secondAttribute="bottom" constant="5" id="3b8-j7-nsX"/>
+                        <constraint firstItem="iNV-04-qNU" firstAttribute="top" secondItem="Civ-Ag-z5l" secondAttribute="bottom" constant="5" id="4wl-Kd-yAa"/>
+                        <constraint firstItem="aYB-aG-7GS" firstAttribute="centerY" secondItem="w3h-cu-p6b" secondAttribute="centerY" id="B9Q-uX-1U4"/>
+                        <constraint firstItem="EJG-j1-Ubw" firstAttribute="centerY" secondItem="j4F-s6-zPn" secondAttribute="centerY" id="FSZ-Fa-9Oc"/>
+                        <constraint firstItem="Jm2-vB-L8z" firstAttribute="top" secondItem="ljS-Nn-eGI" secondAttribute="top" constant="18" id="IVW-qa-p9Z"/>
+                        <constraint firstItem="j4F-s6-zPn" firstAttribute="leading" secondItem="ljS-Nn-eGI" secondAttribute="leading" constant="17" id="Kca-vs-chG"/>
+                        <constraint firstAttribute="trailing" secondItem="Jm2-vB-L8z" secondAttribute="trailing" constant="18" id="LRG-rf-bin"/>
+                        <constraint firstAttribute="trailing" secondItem="aYB-aG-7GS" secondAttribute="trailing" constant="18" id="Mkp-OC-TVY"/>
+                        <constraint firstItem="EJG-j1-Ubw" firstAttribute="leading" secondItem="j4F-s6-zPn" secondAttribute="trailing" constant="15" id="Pqx-2Q-M5k"/>
+                        <constraint firstItem="w3h-cu-p6b" firstAttribute="top" secondItem="j4F-s6-zPn" secondAttribute="bottom" constant="10" id="YH7-2x-PBC"/>
+                        <constraint firstItem="Civ-Ag-z5l" firstAttribute="leading" secondItem="ljS-Nn-eGI" secondAttribute="leading" constant="17" id="ZlQ-j0-oVX"/>
+                        <constraint firstItem="w3h-cu-p6b" firstAttribute="leading" secondItem="ljS-Nn-eGI" secondAttribute="leading" constant="17" id="h3J-zx-55t"/>
+                        <constraint firstAttribute="height" priority="999" constant="129" id="php-bp-B5Z"/>
+                        <constraint firstItem="aYB-aG-7GS" firstAttribute="leading" secondItem="w3h-cu-p6b" secondAttribute="trailing" constant="25.5" id="qhz-le-XC7"/>
+                        <constraint firstItem="iNV-04-qNU" firstAttribute="leading" secondItem="ljS-Nn-eGI" secondAttribute="leading" constant="17" id="sT3-9Y-cQh"/>
+                        <constraint firstItem="Civ-Ag-z5l" firstAttribute="top" secondItem="ljS-Nn-eGI" secondAttribute="top" constant="18" id="w5O-Y2-Yh7"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <constraints>
+                <constraint firstItem="ljS-Nn-eGI" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" id="aFd-7b-rOn"/>
+                <constraint firstItem="ljS-Nn-eGI" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="aPZ-Tf-1kf"/>
+                <constraint firstItem="ljS-Nn-eGI" firstAttribute="bottom" secondItem="VXr-Tz-HHm" secondAttribute="bottom" id="k8D-eP-jN7"/>
+                <constraint firstAttribute="trailing" secondItem="ljS-Nn-eGI" secondAttribute="trailing" id="mvV-TO-IcF"/>
+            </constraints>
+            <connections>
+                <outlet property="descriptionLabel" destination="iNV-04-qNU" id="eK4-tQ-UYw"/>
+                <outlet property="followLabel" destination="j4F-s6-zPn" id="riI-Hp-UlF"/>
+                <outlet property="followingLabel" destination="EJG-j1-Ubw" id="bDD-Ei-tii"/>
+                <outlet property="nicknameLabel" destination="Civ-Ag-z5l" id="ncI-fA-DET"/>
+                <outlet property="progressView" destination="aYB-aG-7GS" id="lXR-II-XZH"/>
+            </connections>
+            <point key="canvasLocation" x="229.71014492753625" y="161.71875"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <namedColor name="GraphColor">
+            <color red="0.32941176470588235" green="0.72156862745098038" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

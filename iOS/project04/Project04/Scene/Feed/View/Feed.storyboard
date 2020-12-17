@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--피드-->
+        <scene sceneID="m2b-kc-aaZ">
+            <objects>
+                <tableViewController storyboardIdentifier="FeedTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5gI-gX-gn9" customClass="FeedTableViewController" customModule="project04" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="kUg-Qg-AtS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="59" id="T3P-QH-guc" customClass="FeedTableViewCell" customModule="project04" customModuleProvider="target">
+                                <rect key="frame" x="20" y="55.5" width="374" height="59"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T3P-QH-guc" id="SVc-84-Ikw">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="4Ln-Xs-Ddo">
+                                            <rect key="frame" x="26" y="5" width="322" height="49"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RFL-lo-4pw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="162.5" height="37"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEq-RQ-Qw2">
+                                                            <rect key="frame" x="0.0" y="0.0" width="39" height="37"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <state key="normal" title="아이디">
+                                                                <color key="titleColor" name="GraphColor"/>
+                                                            </state>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="님이 무언가를 했습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGA-T4-k0L">
+                                                            <rect key="frame" x="39" y="0.0" width="123.5" height="37"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜입니다" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hh-Uz-u0t">
+                                                    <rect key="frame" x="0.0" y="37" width="43.5" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="nT2-qS-zEm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4Ln-Xs-Ddo" firstAttribute="top" secondItem="SVc-84-Ikw" secondAttribute="top" constant="5" id="CUL-mK-uEC"/>
+                                        <constraint firstAttribute="trailing" secondItem="4Ln-Xs-Ddo" secondAttribute="trailing" constant="26" id="DTi-Gp-T4Q"/>
+                                        <constraint firstAttribute="bottom" secondItem="4Ln-Xs-Ddo" secondAttribute="bottom" constant="5" id="TfU-fP-aQc"/>
+                                        <constraint firstItem="4Ln-Xs-Ddo" firstAttribute="leading" secondItem="SVc-84-Ikw" secondAttribute="leading" constant="26" id="v4m-ft-RYA"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="contentLabel" destination="DGA-T4-k0L" id="c0b-SW-Swg"/>
+                                    <outlet property="dateLabel" destination="3Hh-Uz-u0t" id="o6h-6d-qzZ"/>
+                                    <outlet property="nickNameButton" destination="CEq-RQ-Qw2" id="8GF-RY-X13"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5gI-gX-gn9" id="68b-6t-XxT"/>
+                            <outlet property="delegate" destination="5gI-gX-gn9" id="TdJ-8R-n9q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="피드" id="bCM-zl-stx"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1VG-oK-wCH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2739.130434782609" y="128.57142857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="GraphColor">
+            <color red="0.32941176470588235" green="0.72156862745098038" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
