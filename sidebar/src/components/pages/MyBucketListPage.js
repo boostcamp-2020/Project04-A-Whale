@@ -5,6 +5,7 @@ import Spinner from '../UI/atoms/spinner';
 import MyBucketList from '../templates/my_bucket_list';
 import Header from '../UI/organisms/header';
 import { getWhaleLocalStorage } from '../../lib/whaleLocalStorage';
+import { loadBuckets } from '../../lib/browserSave';
 
 const MyBucketListPage = () => {
   const dispatch = useDispatch();
@@ -16,22 +17,7 @@ const MyBucketListPage = () => {
   const [isExt, setIsExt] = useState(true);
 
   useEffect(() => {
-    try {
-      const api = '/api/buckets';
-      if (isExt === false) {
-        dispatch(getBuckets());
-      } else if (isExt === true) {
-        getWhaleLocalStorage([api], (items) => {
-          if (items[api] === 'modified' || JSON.stringify(items[api]) === '{}') {
-            console.log('버킷 받아옴');
-            dispatch(getBuckets());
-          }
-        });
-      }
-    } catch (error) {
-      setIsExt(false);
-      dispatch(getBuckets());
-    }
+    loadBuckets(dispatch, getBuckets());
   }, [dispatch]);
 
   return (
