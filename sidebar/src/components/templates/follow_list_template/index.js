@@ -64,7 +64,7 @@ const FollowListTemplate = ({ followed, following }) => {
   return (
     <main className={classes.root}>
       <div className={classes.header} />
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" className={classes.appBar}>
         <Tabs
           value={value}
           onChange={handleChange}

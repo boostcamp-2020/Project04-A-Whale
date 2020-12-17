@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     left: '40%',
   },
+  appBar: {
+    boxShadow: 'none',
+    background: 'none',
+  },
 }));
 
 export default useStyles;

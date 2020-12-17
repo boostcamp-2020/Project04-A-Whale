@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
+    background: 'none',
   },
 }));
 

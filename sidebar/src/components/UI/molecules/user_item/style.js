@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyle = makeStyles(() => ({
-  UserItem: {
+  userItem: {
     padding: '12px',
     display: 'flex',
     flexDirection: 'row',
@@ -10,6 +10,8 @@ const useStyle = makeStyles(() => ({
     '&:hover': {
       cursor: 'pointer',
     },
+    boxShadow: 'none',
+    border: '1px solid #ddd',
   },
 }));
 

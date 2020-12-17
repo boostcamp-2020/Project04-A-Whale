@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 17,
     fontWeight: 'bold',
   },
+  appBar: {
+    boxShadow: 'none',
+    background: 'none',
+  },
 }));
 
 export default useStyles;
