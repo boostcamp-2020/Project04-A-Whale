@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-func defaultAlertViewController(title: String, message: String) -> UIAlertController {
+func defaultAlertController(title: String, message: String) -> UIAlertController {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "OK", style: .destructive)
     alert.addAction(defaultAction)

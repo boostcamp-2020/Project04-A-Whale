@@ -33,7 +33,7 @@ class ImpressionViewController: UIViewController {
     
     @IBAction func impressionSaveAction(_ sender: UIButton) {
         if impressionTextView.text == "" {
-            let alert = defaultAlertViewController(title: "소감 입력", message: "소감을 입력하지 않았습니다.")
+            let alert = defaultAlertController(title: "소감 입력", message: "소감을 입력하지 않았습니다.")
             present(alert, animated: true, completion: nil)
             return
         }

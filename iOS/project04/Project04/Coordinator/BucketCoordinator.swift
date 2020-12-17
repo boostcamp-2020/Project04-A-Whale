@@ -43,7 +43,7 @@ final class BucketCoordinator: NavigationCoordinator {
             let coordinator = LoginCoordinator(navigationController)
             return LoginViewController(coder: coder, coordinator: coordinator)
         })
-        guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
+        guard (UIApplication.shared.windows.first?.rootViewController) != nil else {
             return
         }
         

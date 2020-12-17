@@ -20,7 +20,7 @@ class JoinViewController: UIViewController {
 
     @IBAction func joinAction(_ sender: UIButton) {
         if !(textFields.filter { $0.text == "" }).isEmpty {
-            let alert = defaultAlertViewController(title: "회원가입", message: "필요한 정보를 모두 입력해주세요!")
+            let alert = defaultAlertController(title: "회원가입", message: "필요한 정보를 모두 입력해주세요!")
             present(alert, animated: true, completion: nil)
             return
         }
@@ -43,7 +43,7 @@ class JoinViewController: UIViewController {
                     self?.dismiss(animated: true, completion: nil)
                 }
             case .failure(_):
-                let alert = defaultAlertViewController(title: "회원가입", message: "이미 존재하는 아이디입니다.")
+                let alert = defaultAlertController(title: "회원가입", message: "이미 존재하는 아이디입니다.")
                 DispatchQueue.main.async {
                     self?.present(alert, animated: true, completion: nil)
                 }

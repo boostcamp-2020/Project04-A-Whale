@@ -50,7 +50,7 @@ class BucketListAddViewController: UIViewController {
         guard let title = sectionHeader?.titleTextField.text,
               let description = sectionHeader?.descriptionTextView.text,
               !title.isEmpty else {
-            let alert = defaultAlertViewController(title: "추가 불가", message: "목표는 필수로 입력해야합니다.")
+            let alert = defaultAlertController(title: "추가 불가", message: "목표는 필수로 입력해야합니다.")
             present(alert, animated: true, completion: nil)
             return
         }

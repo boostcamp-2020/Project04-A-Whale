@@ -65,7 +65,7 @@ class DetailListAddViewController: UIViewController {
     
     @IBAction func submitButton(_ sender: RoundButton) {
         if textView.text == "" {
-            let alert = defaultAlertViewController(title: "추가 불가", message: "제목이 입력되지 않았습니다.")
+            let alert = defaultAlertController(title: "추가 불가", message: "제목이 입력되지 않았습니다.")
             present(alert, animated: true, completion: nil)
             return
         }

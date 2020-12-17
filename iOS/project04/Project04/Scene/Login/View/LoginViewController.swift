@@ -34,13 +34,13 @@ class LoginViewController: UIViewController {
     @IBAction func loginAction(_ sender: UIButton) {
         guard let id = idTextField.text,
               id != "" else {
-            let alert = defaultAlertViewController(title: "아이디", message: "아이디 입력해주세요!")
+            let alert = defaultAlertController(title: "아이디", message: "아이디 입력해주세요!")
             present(alert, animated: true, completion: nil)
             return
         }
         guard let pw = pwTextField.text,
               pw != "" else {
-            let alert = defaultAlertViewController(title: "비밀번호", message: "비밀번호를 입력해주세요!")
+            let alert = defaultAlertController(title: "비밀번호", message: "비밀번호를 입력해주세요!")
             present(alert, animated: true, completion: nil)
             return
         }
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
                     self?.coordinator.presentTabBarController()
                 }
             case .failure(_):
-                let alert = defaultAlertViewController(title: "로그인", message: "아이디나 비밀번호가 일치하지 않습니다.")
+                let alert = defaultAlertController(title: "로그인", message: "아이디나 비밀번호가 일치하지 않습니다.")
                 DispatchQueue.main.async {
                     self?.present(alert, animated: true, completion: nil)
                 }
