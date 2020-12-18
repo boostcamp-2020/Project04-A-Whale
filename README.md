@@ -31,8 +31,8 @@
 > 클릭하시면 youtube로 이동합니다💨
 
 ## 📄 분야별 소개
-> [iOS 더 자세히 알아보기](https://github.com/boostcamp-2020/Project04-A-Whale/blob/master/iOS/README.md) <br>
-> [WEB 더 자세히 알아보기](https://github.com/boostcamp-2020/Project04-A-Whale/blob/master/sidebar/README.md)
+#### [iOS 더 자세히 알아보기](https://github.com/boostcamp-2020/Project04-A-Whale/blob/master/iOS/README.md) <br>
+#### [WEB 더 자세히 알아보기](https://github.com/boostcamp-2020/Project04-A-Whale/blob/master/sidebar/README.md)
 
 ## 📋 [API 명세서](https://documenter.getpostman.com/view/8483132/TVmP9cKS)
 
