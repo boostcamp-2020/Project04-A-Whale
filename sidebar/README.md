@@ -6,7 +6,10 @@
 ## [🛒 Whale 스토어 링크](https://store.whale.naver.com/detail/dmnhpmpanddilnophgeiioicckioecnb)
 웨일에 추가하셔서 사용해보실 수 있습니다!
 
-## 🎥 화면
+## 🛠 Tech Stack
+![image](https://user-images.githubusercontent.com/39231606/102591855-06158a80-4156-11eb-80f2-12571f8627ae.png)
+
+## 🎥 View
 <p align="center">
   <img src="https://user-images.githubusercontent.com/39231606/102585734-4112c080-414c-11eb-8e2f-98c10057e81d.gif" width=300 height 500>
   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
