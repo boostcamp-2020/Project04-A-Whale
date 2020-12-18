@@ -44,7 +44,7 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <ThemeMode darkMode>
+        <ThemeMode darkMode={darkMode}>
           <Router>
             <Routes />
           </Router>
