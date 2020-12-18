@@ -15,7 +15,7 @@
 
 ## 📋 [API 명세서](https://documenter.getpostman.com/view/8483132/TVmP9cKS)
 
-## 📄 README.md 링크
+## 📄 분야별 소개
 [iOS README.md 링크](https://github.com/boostcamp-2020/Project04-A-Whale/blob/master/iOS/README.md)
 
 ## 📊 DB Model
