@@ -36,6 +36,8 @@
 
 ## 📋 [API 명세서](https://documenter.getpostman.com/view/8483132/TVmP9cKS)
 
+## ✍ [Wiki 보러가기](https://github.com/boostcamp-2020/Project04-A-Whale/wiki)
+
 ## 📊 DB Model
 ![whale](https://user-images.githubusercontent.com/39231606/101657839-b06f1d00-3a87-11eb-8a0b-101c27a0082c.png)
 
