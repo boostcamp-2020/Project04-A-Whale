@@ -13,34 +13,21 @@ import {
 
 const LineBarAreaComposedChart = ({ burnDownChart }) => {
   const [data, setData] = useState(burnDownChart);
-  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const resizeHandler = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', resizeHandler);
-  }, []);
 
   useEffect(() => {
     setData(burnDownChart);
   }, [burnDownChart]);
 
   return (
-    <ResponsiveContainer width="100%" aspect={4.0 / 3.0}>
+    <ResponsiveContainer width="100%" height={400}>
       <ComposedChart
-        // width={windowWidth - 465 > 400 ? windowWidth - 465 : 400}
-        // width={windowWidth}
-        // height={400}
         data={data}
         margin={{
-          // left: 20,
           top: 20,
           right: 20,
           bottom: 20,
         }}
         style={{
-          display: 'inline-block',
           margin: '12px auto',
           border: '1px solid #eee',
           borderRadius: '10px',
