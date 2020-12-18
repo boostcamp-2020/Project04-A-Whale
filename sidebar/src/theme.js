@@ -2,16 +2,16 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
 export const ThemeMode = styled.div`
-  background-color: #ffffff;
+  background-color: ${(props) => (props.darkMode ? '#111111' : '#eeeeee')};
+  color: ${(props) => (props.darkMode ? '#eeeeee' : '#555555')};
   min-height: 100vh;
   height: 100%;
-  filter: ${(props) =>
-    props.darkMode ? 'invert(1) hue-rotate(180deg)' : 'invert(0) hue-rotate(0deg)'};
 `;
 
 const theme = createMuiTheme({
   typography: {
     fontFamily: ['Bazzi', 'NanumSquareRound'].join(','),
+    color: 'inherit',
   },
   palette: {
     primary: {
@@ -19,6 +19,13 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: '#4ea1d3',
+    },
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        color: 'inherit',
+      },
     },
   },
 });
