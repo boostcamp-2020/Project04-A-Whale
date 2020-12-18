@@ -11,6 +11,8 @@
     
 ![](https://i.imgur.com/YBsFq3j.gif)
 
+[고화질 링크](https://www.youtube.com/watch?v=FuxiXbhGUSI)
+
 ### :link: **Reachability(연결성), Persistence(지속성)**
 
 > 서버에만 있는 데이터를 받아서 처리하는 것을 넘어 로컬에서도 저장되고, 오프라인 상태에서도 데이터 처리가 가능합니다.
@@ -20,7 +22,6 @@
 > repository 패턴을 통해, 로컬과 서버 통신 중 어떤 곳에서 데이터를 받아오든 동일한 데이터가 UI에 갱신되도록 적용했습니다.
 
 ![](https://i.imgur.com/Z7oKai7.png)
-
 
 ### **:art: Clean Architecture + MVVM + C 패턴 적용**
 
