@@ -40,7 +40,6 @@ const createbucket = handleActions(
         draft.details.splice(idx, 1);
       }),
     [LOAD_PRESET]: (state, { payload: input }) => {
-      console.log(input);
       const { bucketTitle, bucketDescription, bucketDetails } = input;
       const newBucketDetails = bucketDetails.map((detail) => ({ ...detail, status: 'O' }));
       return { title: bucketTitle, description: bucketDescription, details: newBucketDetails };

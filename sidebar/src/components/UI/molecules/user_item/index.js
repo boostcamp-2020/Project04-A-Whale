@@ -15,7 +15,7 @@ const UserItem = ({ user }) => {
   };
 
   return (
-    <Card className={classes.UserItem} onClick={onClickHandler}>
+    <Card className={classes.userItem} onClick={onClickHandler}>
       <div style={box}>
         <img style={profile} src="/empty-user.png" alt="profile" />
       </div>
