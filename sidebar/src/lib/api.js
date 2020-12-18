@@ -2,12 +2,13 @@ import axios from 'axios';
 import { setWhaleLocalStorage } from './whaleLocalStorage';
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://localhost:8000';
+  process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'http://101.101.210.76:8000';
 
 axios.interceptors.request.use((config) => {
   config.headers = {
     Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
   };
+  config.timeout = 2000;
   return config;
 });
 
@@ -16,6 +17,10 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
+    if (!error.response || error.code === 'ECONNABORTED') {
+      alert('네트워크 상의 문제로 이 기능을 잠시 사용할 수 없습니다.');
+      return;
+    }
     if (error.response.status === 401) {
       if (localStorage.getItem('accessToken')) {
         alert('인증 시간이 만료되었습니다. 다시 로그인해주세요.');

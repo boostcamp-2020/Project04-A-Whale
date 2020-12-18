@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { WriteText, TextArea, UploadPicture, useStyles, UploadPictureLabel } from './style';
 import { uploadObjectStorage } from '../../../../lib/api';
 
-const WriteTextPicture = ({ placeholder, text, changeText }) => {
+const WriteTextPicture = ({ placeholder, text, changeText, update }) => {
   const classes = useStyles();
   const [localText, setLocalText] = useState(text);
   const [dragging, setDragging] = useState(false);
@@ -25,8 +25,11 @@ const WriteTextPicture = ({ placeholder, text, changeText }) => {
       const fileType = file.type.split('/');
       if (fileType[0] !== 'image') return alert('이미지 파일이 아닙니다.');
       const result = await uploadObjectStorage(file);
-      // addText(`\n![${file.name}](${result.data.url})`);
-      setLocalText(`${localText}![${file.name}](${result.data.url})\n`);
+      if (result) {
+        setLocalText(`${localText ? `\n${localText}` : ''}![${file.name}](${result.data.url})\n`);
+      } else {
+        alert('이미지 업로드 실패');
+      }
       return null;
     },
     [localText]
@@ -47,6 +50,12 @@ const WriteTextPicture = ({ placeholder, text, changeText }) => {
   useEffect(() => {
     changeText(localText);
   }, [localText]);
+
+  useEffect(() => {
+    if (!update) {
+      setLocalText('');
+    }
+  }, []);
 
   return (
     <WriteText
