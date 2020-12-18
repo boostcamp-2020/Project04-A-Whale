@@ -17,7 +17,7 @@
 
 ## 📹 Demo Video
 ### iOS
-- [iOS 데모 영상](https://youtu.be/13W6UZBxbm4)
+[<img width="400" src="https://user-images.githubusercontent.com/39231606/102564586-13635280-411f-11eb-8d4b-0facb085bcdd.png"/>](https://youtu.be/-zdDoQeR3D4)
 > 클릭하시면 youtube로 이동합니다💨
 
 ## 📊 DB Model
