@@ -9,4 +9,5 @@
 ## 🎥 화면
 <p align="center">
   <img src="https://user-images.githubusercontent.com/39231606/102585734-4112c080-414c-11eb-8e2f-98c10057e81d.gif" width=300 height 500>
+  <img src="https://user-images.githubusercontent.com/39231606/102586005-b4b4cd80-414c-11eb-89b1-09b1e133ab93.gif" width=300 height 500>
 </p>
