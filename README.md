@@ -15,10 +15,8 @@
 
 ## 📋 [API 명세서](https://documenter.getpostman.com/view/8483132/TVmP9cKS)
 
-## 📹 Demo Video
-### iOS
-[<img width="400" src="https://user-images.githubusercontent.com/39231606/102564586-13635280-411f-11eb-8d4b-0facb085bcdd.png"/>](https://youtu.be/-zdDoQeR3D4)
-> 클릭하시면 youtube로 이동합니다💨
+## 📄 README.md 링크
+[iOS README.md 링크](https://github.com/boostcamp-2020/Project04-A-Whale/blob/master/iOS/README.md)
 
 ## 📊 DB Model
 ![whale](https://user-images.githubusercontent.com/39231606/101657839-b06f1d00-3a87-11eb-8a0b-101c27a0082c.png)
