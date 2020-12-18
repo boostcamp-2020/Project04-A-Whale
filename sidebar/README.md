@@ -5,5 +5,5 @@
 
 ## 화면
 <p align="center">
-  ![](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b526e1a1-1d82-4b56-be8b-9503c3f84300/.gif)
+  
 </p>
