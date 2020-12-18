@@ -16,10 +16,9 @@
 ## 📋 [API 명세서](https://documenter.getpostman.com/view/8483132/TVmP9cKS)
 
 ## 📸 데모 영상
-- iOS
-  >[<img width="400" src="https://user-images.githubusercontent.com/39231606/102564586-13635280-411f-11eb-8d4b-0facb085bcdd.png"/>](https://www.youtube.com/watch?v=13W6UZBxbm4&t=1s)
-  
-  > 클릭하시면 youtube로 이동합니다:dash:
+### iOS
+[<img width="400" src="https://user-images.githubusercontent.com/39231606/102564586-13635280-411f-11eb-8d4b-0facb085bcdd.png"/>](https://youtu.be/-zdDoQeR3D4)
+> 클릭하시면 youtube로 이동합니다💨
 
 ## 📄 분야별 소개
 > [iOS 데모 및 기술](https://github.com/boostcamp-2020/Project04-A-Whale/blob/master/iOS/README.md)
