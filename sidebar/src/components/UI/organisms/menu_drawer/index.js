@@ -16,6 +16,7 @@ import Spinner from '../../atoms/spinner';
 import AchieveRate from '../../molecules/achieve_rate';
 import { useStyles, UserInfoWrapper, FollowerWrapper, DescriptionWrapper } from './style';
 import { getWhaleLocalStorage } from '../../../../lib/whaleLocalStorage';
+import { loadUserInfo } from '../../../../lib/browserSave';
 
 const MenuDrawer = ({ open, toggleDrawer }) => {
   const classes = useStyles();
@@ -27,22 +28,7 @@ const MenuDrawer = ({ open, toggleDrawer }) => {
   }));
 
   useEffect(() => {
-    try {
-      const api = '/api/users/info';
-      if (isExt === false) {
-        dispatch(getUser());
-      } else if (isExt === true) {
-        getWhaleLocalStorage([api], (items) => {
-          if (items[api] === 'modified' || JSON.stringify(items[api]) === '{}') {
-            console.log('유저 받아옴');
-            dispatch(getUser());
-          }
-        });
-      }
-    } catch (error) {
-      setIsExt(false);
-      dispatch(getUser());
-    }
+    loadUserInfo(dispatch, getUser());
   }, [dispatch]);
 
   return (

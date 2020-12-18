@@ -6,6 +6,7 @@ import Switch from '@material-ui/core/Switch';
 import useStyles from './style';
 import { removeAllAlarms, updateAlarm, updateDueDetailsAndAlarm } from '../../../lib/alarm';
 import { getWhaleLocalStorage, setWhaleLocalStorage } from '../../../lib/whaleLocalStorage';
+import { setIsExt } from '../../../lib/browserSave';
 
 const Setting = () => {
   const classes = useStyles();
@@ -17,6 +18,10 @@ const Setting = () => {
   const handleChange = (event) => {
     if (isWhaleExt) {
       setSw({ ...sw, [event.target.name]: event.target.checked });
+      if (event.target.name === 'browserSave') {
+        console.log('setting up');
+        setIsExt(event.target.checked);
+      }
     } else {
       alert('웨일 브라우저 확장앱에서만 사용하실 수 있습니다.');
     }
