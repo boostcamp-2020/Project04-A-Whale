@@ -28,7 +28,7 @@
 ## 📸 데모 영상
 
 ### WEB
-[<img width="400" src="https://i9.ytimg.com/vi_webp/mEeJ3k4bowY/mqdefault.webp?time=1608351600000&sqp=CPD-9f4F&rs=AOn4CLCtQ8oBUTKDfsJxDnoJ1yW2LemDWA"/>](https://youtu.be/mEeJ3k4bowY)
+[<img width="400" src="https://user-images.githubusercontent.com/39231606/102689439-777e3780-4241-11eb-866b-e03b6af79036.png"/>](https://youtu.be/mEeJ3k4bowY)
 > 클릭하시면 youtube로 이동합니다💨
 
 ### iOS
