@@ -26,6 +26,11 @@
 - **매일 반복되는 알림 설정**을 통해 오늘 해야 할 일을 살펴보세요!
 
 ## 📸 데모 영상
+
+### WEB
+[<img width="400" src="https://i9.ytimg.com/vi_webp/mEeJ3k4bowY/mqdefault.webp?time=1608351600000&sqp=CPD-9f4F&rs=AOn4CLCtQ8oBUTKDfsJxDnoJ1yW2LemDWA"/>](https://youtu.be/mEeJ3k4bowY)
+> 클릭하시면 youtube로 이동합니다💨
+
 ### iOS
 [<img width="400" src="https://user-images.githubusercontent.com/39231606/102564586-13635280-411f-11eb-8d4b-0facb085bcdd.png"/>](https://youtu.be/-zdDoQeR3D4)
 > 클릭하시면 youtube로 이동합니다💨
