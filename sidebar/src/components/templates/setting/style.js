@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   section: {
     marginBottom: '20px',
     padding: '20px',
-    backgroundColor: '#eeeeee',
+    backgroundColor: 'rgba(128,128,128,0.1)',
     borderRadius: '5px',
   },
   title: {

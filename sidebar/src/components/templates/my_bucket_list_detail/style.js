@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
     '&>div': {
       padding: 10,
     },
+    '& img': {
+      width: '100%',
+    },
+    overflow: 'hidden',
   },
   achieveCommentTitle: {
     fontSize: 20,

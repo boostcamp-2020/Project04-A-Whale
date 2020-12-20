@@ -1,15 +1,14 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { WriteText, TextArea, UploadPicture, useStyles, UploadPictureLabel } from './style';
 import { uploadObjectStorage } from '../../../../lib/api';
 
-const WriteTextPicture = ({ placeholder, text, changeText, update }) => {
+const WriteTextPicture = ({ placeholder, text, changeText }) => {
   const classes = useStyles();
-  const [localText, setLocalText] = useState(text);
   const [dragging, setDragging] = useState(false);
   const textarea = useRef();
 
-  const localTextChangeHandler = useCallback((e) => {
-    setLocalText(e.target.value);
+  const changeTextHandler = useCallback((e) => {
+    changeText(e.target.value);
   }, []);
 
   const dragInHandler = useCallback(() => {
@@ -26,13 +25,11 @@ const WriteTextPicture = ({ placeholder, text, changeText, update }) => {
       if (fileType[0] !== 'image') return alert('이미지 파일이 아닙니다.');
       const result = await uploadObjectStorage(file);
       if (result) {
-        setLocalText(`${localText ? `\n${localText}` : ''}![${file.name}](${result.data.url})\n`);
-      } else {
-        alert('이미지 업로드 실패');
+        changeText(`${text ? `\n${text}` : ''}![${file.name}](${result.data.url})\n`);
       }
       return null;
     },
-    [localText]
+    [text]
   );
 
   const dropImageHandler = useCallback(async (e) => {
@@ -47,16 +44,6 @@ const WriteTextPicture = ({ placeholder, text, changeText, update }) => {
     e.target.value = null;
   }, []);
 
-  useEffect(() => {
-    changeText(localText);
-  }, [localText]);
-
-  useEffect(() => {
-    if (!update) {
-      setLocalText('');
-    }
-  }, []);
-
   return (
     <WriteText
       onDragEnter={dragInHandler}
@@ -67,9 +54,9 @@ const WriteTextPicture = ({ placeholder, text, changeText, update }) => {
       <TextArea
         className={classes.textInput}
         placeholder={placeholder}
-        value={localText}
+        value={text}
         ref={textarea}
-        onChange={localTextChangeHandler}
+        onChange={changeTextHandler}
       />
       <UploadPictureLabel htmlFor="ex_file">이미지 파일 선택</UploadPictureLabel>
       <UploadPicture type="file" onChange={uploadImageHandler} id="ex_file" />

@@ -18,16 +18,13 @@ axios.interceptors.response.use(
   },
   (error) => {
     if (!error.response || error.code === 'ECONNABORTED') {
-      alert('네트워크 상의 문제로 이 기능을 잠시 사용할 수 없습니다.');
+      alert('서버 응답 지연으로 인해 이 기능을 잠시 사용할 수 없습니다.');
       return;
     }
     if (error.response.status === 401) {
       if (localStorage.getItem('accessToken')) {
         alert('인증 시간이 만료되었습니다. 다시 로그인해주세요.');
         localStorage.removeItem('accessToken');
-        window.location.reload(false);
-      } else {
-        alert('아이디 또는 패스워드를 확인해주세요');
         window.location.reload(false);
       }
     }
