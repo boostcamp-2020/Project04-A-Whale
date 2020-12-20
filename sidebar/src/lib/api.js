@@ -55,7 +55,6 @@ export const getUser = () => {
       setWhaleLocalStorage({ '/api/users/info': 'not modified' });
       return res;
     } catch (error) {
-      console.log('확장앱 API 이용 불가:', error);
       return res;
     }
   });
@@ -70,7 +69,6 @@ export const getBuckets = () => {
       setWhaleLocalStorage({ '/api/buckets': 'not modified' });
       return res;
     } catch (error) {
-      console.log('확장앱 API 이용 불가:', error);
       return res;
     }
   });
@@ -90,10 +88,8 @@ export const createBucket = (title, description, details, ref) =>
       try {
         setWhaleLocalStorage({ '/api/buckets': 'modified' });
         setWhaleLocalStorage({ '/api/users/info': 'modified' });
-        console.log('버킷 및 유저정보 변경');
         return res;
       } catch (error) {
-        console.log('확장앱 API 이용 불가:', error);
         return res;
       }
     });
@@ -109,10 +105,8 @@ export const updateBucketStatus = ({ no, status }) =>
       try {
         setWhaleLocalStorage({ '/api/buckets': 'modified' });
         setWhaleLocalStorage({ '/api/users/info': 'modified' });
-        console.log('버킷 및 유저정보 변경');
         return res;
       } catch (error) {
-        console.log('확장앱 API 이용 불가:', error);
         return res;
       }
     });
@@ -127,10 +121,8 @@ export const updateBucketInfo = ({ no, title, description }) =>
       try {
         setWhaleLocalStorage({ '/api/buckets': 'modified' });
         setWhaleLocalStorage({ '/api/users/info': 'modified' });
-        console.log('버킷 및 유저정보 변경');
         return res;
       } catch (error) {
-        console.log('확장앱 API 이용 불가:', error);
         return res;
       }
     });
@@ -149,10 +141,8 @@ export const updateDetailStatus = ({ no, status }) =>
       try {
         setWhaleLocalStorage({ '/api/buckets': 'modified' });
         setWhaleLocalStorage({ '/api/users/info': 'modified' });
-        console.log('버킷 및 디테일 및 유저정보 변경');
         return res;
       } catch (error) {
-        console.log('확장앱 API 이용 불가:', error);
         return res;
       }
     });
@@ -175,10 +165,8 @@ export const createDetail = ({ bucketNo, title, dueDate }) =>
       try {
         setWhaleLocalStorage({ '/api/buckets': 'modified' });
         setWhaleLocalStorage({ '/api/users/info': 'modified' });
-        console.log('버킷 및 디테일 및 유저정보 변경');
         return res;
       } catch (error) {
-        console.log('확장앱 API 이용 불가:', error);
         return res;
       }
     });
@@ -194,10 +182,8 @@ export const setAchieves = ({ bucketNo, description }) =>
       try {
         setWhaleLocalStorage({ '/api/buckets': 'modified' });
         setWhaleLocalStorage({ '/api/users/info': 'modified' });
-        console.log('버킷 및 디테일 및 유저정보 변경');
         return res;
       } catch (error) {
-        console.log('확장앱 API 이용 불가:', error);
         return res;
       }
     });
@@ -211,10 +197,8 @@ export const updateAchieves = ({ achieveNo, description }) =>
       try {
         setWhaleLocalStorage({ '/api/buckets': 'modified' });
         setWhaleLocalStorage({ '/api/users/info': 'modified' });
-        console.log('버킷 및 디테일 및 유저정보 변경');
         return res;
       } catch (error) {
-        console.log('확장앱 API 이용 불가:', error);
         return res;
       }
     });
