@@ -4,16 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import StyledButton from '../../atoms/styled_button';
 import { createBucket } from '../../../../lib/api';
 import { resetBucketAction } from '../../../../modules/actions/createbucket';
+import style from './style';
 
 const BucketCreateButton = () => {
   const history = useHistory();
-  const style = {
-    minWidth: '100%',
-    minHeight: '40px',
-    backgroundColor: '#454552',
-    color: 'white',
-    fontSize: 20,
-  };
   const dispatch = useDispatch();
   const { title, description, details } = useSelector(({ createbucket }) => {
     return createbucket;
