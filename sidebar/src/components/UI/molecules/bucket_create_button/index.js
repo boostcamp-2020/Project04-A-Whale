@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import StyledButton from '../../atoms/styled_button';
 import { createBucket } from '../../../../lib/api';
-import { resetBucketAction } from '../../../../modules/actions/createbucket';
+import { resetBucketAction } from '../../../../modules/createbucket';
 import style from './style';
 
 const BucketCreateButton = () => {

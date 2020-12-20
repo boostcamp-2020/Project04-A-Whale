@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import DatePicker from '../../atoms/date_picker';
 import StyledButton from '../../atoms/styled_button';
-import { addDetailAction } from '../../../../modules/actions/createbucket';
+import { addDetailAction } from '../../../../modules/createbucket';
 import useStyle, { cancleButton, addButton, editButton } from './style';
 
 const DetailAdder = () => {

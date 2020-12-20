@@ -4,10 +4,7 @@ import { useDispatch } from 'react-redux';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import IconButton from '@material-ui/core/IconButton';
 import DatePicker from '../../atoms/date_picker';
-import {
-  removeDetailAction,
-  updateDetailDueAction,
-} from '../../../../modules/actions/createbucket';
+import { removeDetailAction, updateDetailDueAction } from '../../../../modules/createbucket';
 
 const DetailListItemWrapper = styled.div`
   display: flex;

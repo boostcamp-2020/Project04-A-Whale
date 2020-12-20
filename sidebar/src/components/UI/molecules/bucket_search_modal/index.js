@@ -8,7 +8,7 @@ import SearchResultItem from '../search_result_item';
 import Span from '../../atoms/span';
 import { useStyles, guide, presetItem, presetItemDetail, ButtonWrapper } from './style';
 import { getPresets } from '../../../../lib/api';
-import { loadPresetAction } from '../../../../modules/actions/createbucket';
+import { loadPresetAction } from '../../../../modules/createbucket';
 
 const BucketSearchModal = ({ modalClose }) => {
   const dispatch = useDispatch();

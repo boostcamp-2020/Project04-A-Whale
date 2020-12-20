@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { inputDescAction, inputTitleAction } from '../../../../modules/actions/createbucket';
+import { inputDescAction, inputTitleAction } from '../../../../modules/createbucket';
 import BucketDescription from '../../molecules/bucket_decription';
 import BucketTitle from '../../molecules/bucket_title';
 import { BucketContentsWrapper, titleStyle, decriptionStyle } from './style';
