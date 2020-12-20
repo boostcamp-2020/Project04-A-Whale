@@ -30,7 +30,7 @@
 ### WEB
 
 #### Short Version 1:32
-[<img width="400" src="https://user-images.githubusercontent.com/39231606/102689439-777e3780-4241-11eb-866b-e03b6af79036.png"/>](https://youtu.be/bs_zEAHa0-U)
+[<img width="400" src="https://user-images.githubusercontent.com/46799722/102709893-e1eeb080-42f1-11eb-9572-ddec15ae8107.PNG"/>](https://youtu.be/bs_zEAHa0-U)
 > 클릭하시면 youtube로 이동합니다💨
 
 #### Long Version 8:32
