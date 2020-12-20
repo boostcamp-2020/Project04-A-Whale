@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import StyledButton from '../../atoms/styled_button';
 import { createBucket } from '../../../../lib/api';
 import { resetBucketAction } from '../../../../modules/actions/createbucket';
 
-const BucketCreateButton = ({
-  storeTitle,
-  storeDescription,
-  storeDetails,
-  resetBucketActionConnect,
-}) => {
+const BucketCreateButton = () => {
   const history = useHistory();
   const style = {
     minWidth: '100%',
@@ -19,6 +14,12 @@ const BucketCreateButton = ({
     color: 'white',
     fontSize: 20,
   };
+  const dispatch = useDispatch();
+  const { storeTitle, storeDescription, storeDetails } = useSelector(({ createbucket }) => ({
+    title: createbucket.title,
+    descripion: createbucket.description,
+    details: createbucket.details,
+  }));
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const BucketCreateButton = ({
 
   const onClickHandler = async () => {
     await createBucket(storeTitle, storeDescription, storeDetails);
-    resetBucketActionConnect();
+    dispatch(resetBucketAction);
     history.replace('/');
   };
 
@@ -44,12 +45,4 @@ const BucketCreateButton = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  storeTitle: state.createbucket.title,
-  storeDescription: state.createbucket.description,
-  storeDetails: state.createbucket.details,
-});
-
-export default connect(mapStateToProps, {
-  resetBucketActionConnect: resetBucketAction,
-})(BucketCreateButton);
+export default BucketCreateButton;

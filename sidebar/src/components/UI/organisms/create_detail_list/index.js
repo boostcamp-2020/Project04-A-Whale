@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DetailAdder from '../../molecules/detail_adder';
 import CreateDetailListItem from '../../molecules/create_detail_list_item';
 import { addDetailAction, removeDetailAction } from '../../../../modules/actions/createbucket';
-import { DetailListWrapper } from './style'
+import DetailListWrapper from './style';
 
 const CreateDetailList = ({ details }) => {
   // TODO : state로 바꿔야함

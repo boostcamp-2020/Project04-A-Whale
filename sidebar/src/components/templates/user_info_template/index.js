@@ -3,6 +3,7 @@ import UserInfo from '../../UI/organisms/user_info';
 import FollowButton from '../../UI/molecules/follow_button';
 import UserBuckets from '../../UI/organisms/user_buckets';
 import useStyles from './style';
+
 const UserInfoTemplate = ({ userInfo, buckets, userNo }) => {
   const classes = useStyles();
   return (

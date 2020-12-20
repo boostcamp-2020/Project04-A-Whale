@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import SearchResultItem from '../../molecules/search_result_item';
 import Span from '../../atoms/span';
 import { getPresets } from '../../../../lib/api';
-import { BucketSearchWrapper } from './style';
+import BucketSearchWrapper from './style';
 
 const BucketSearch = () => {
   const [loading, setLoading] = useState(false);
