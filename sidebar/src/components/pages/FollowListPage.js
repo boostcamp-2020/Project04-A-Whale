@@ -1,8 +1,8 @@
 import React from 'react';
 import FollowListTemplate from '../templates/follow_list_template';
 import Header from '../UI/organisms/header';
-import useFollowed from '../../lib/useFollowed';
-import useFollowing from '../../lib/useFollowing';
+import useFollowed from '../../hooks/useFollowed';
+import useFollowing from '../../hooks/useFollowing';
 
 const FollowListPage = () => {
   const followed = useFollowed();

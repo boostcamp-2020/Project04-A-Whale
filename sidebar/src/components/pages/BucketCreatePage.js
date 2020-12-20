@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { resetBucketAction } from '../../modules/actions/createbucket';
+import { resetBucketAction } from '../../modules/createbucket';
 import BucketCreateTemplate from '../templates/bucket_create_template';
 import Header from '../UI/organisms/header';
 
