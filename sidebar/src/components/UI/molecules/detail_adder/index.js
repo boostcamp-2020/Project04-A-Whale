@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import DatePicker from '../../atoms/date_picker';
 import StyledButton from '../../atoms/styled_button';
 import { addDetailAction } from '../../../../modules/actions/createbucket';
 import useStyle, { cancleButton, addButton, editButton } from './style';
 
-const DetailAdder = ({ addDetailActionConnect }) => {
+const DetailAdder = () => {
   const classes = useStyle();
+  const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
   const [title, setTitle] = useState('');
   const [dueDate, setDueDate] = useState(new Date());
@@ -18,7 +19,7 @@ const DetailAdder = ({ addDetailActionConnect }) => {
   const cancleEditHandler = () => setEdit(false);
 
   const detailAddHandler = () => {
-    addDetailActionConnect({ title, dueDate });
+    dispatch(addDetailAction({ title, dueDate }));
     setEdit(false);
     setTitle('');
     setDueDate(new Date());
@@ -69,6 +70,4 @@ const DetailAdder = ({ addDetailActionConnect }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ details: state.createbucket.details });
-
-export default connect(mapStateToProps, { addDetailActionConnect: addDetailAction })(DetailAdder);
+export default DetailAdder;

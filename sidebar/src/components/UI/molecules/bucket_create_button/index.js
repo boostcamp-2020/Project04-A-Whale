@@ -15,20 +15,18 @@ const BucketCreateButton = () => {
     fontSize: 20,
   };
   const dispatch = useDispatch();
-  const { storeTitle, storeDescription, storeDetails } = useSelector(({ createbucket }) => ({
-    title: createbucket.title,
-    descripion: createbucket.description,
-    details: createbucket.details,
-  }));
+  const { title, description, details } = useSelector(({ createbucket }) => {
+    return createbucket;
+  });
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    if (storeTitle.length * storeDetails.length !== 0) setDisabled(false);
+    if (title.length * details.length !== 0) setDisabled(false);
     else setDisabled(true);
-  }, [storeTitle, storeDetails]);
+  }, [title, details]);
 
   const onClickHandler = async () => {
-    await createBucket(storeTitle, storeDescription, storeDetails);
+    await createBucket(title, description, details);
     dispatch(resetBucketAction);
     history.replace('/');
   };

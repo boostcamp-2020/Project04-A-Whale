@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import IconButton from '@material-ui/core/IconButton';
 import DatePicker from '../../atoms/date_picker';
@@ -28,16 +28,19 @@ const Title = styled.span`
   padding-top: 5px;
 `;
 
-const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActionConnect }) => {
+const DetailListItem = ({ detail }) => {
+  const dispatch = useDispatch();
   const onClickHandler = () => {
-    removeDetailActionConnect(detail.title);
+    dispatch(removeDetailAction(detail.title));
   };
 
   const dateChangeHandler = (e) => {
-    updateDetailDueActionConnect({
-      title: detail.title,
-      dueDate: e.target.value,
-    });
+    dispatch(
+      updateDetailDueAction({
+        title: detail.title,
+        dueDate: e.target.value,
+      })
+    );
   };
 
   return (
@@ -56,9 +59,4 @@ const DetailListItem = ({ detail, removeDetailActionConnect, updateDetailDueActi
   );
 };
 
-const mapStateToProps = () => ({});
-
-export default connect(mapStateToProps, {
-  removeDetailActionConnect: removeDetailAction,
-  updateDetailDueActionConnect: updateDetailDueAction,
-})(DetailListItem);
+export default DetailListItem;
