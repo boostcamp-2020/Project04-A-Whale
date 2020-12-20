@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getFollowedUsers } from './api';
+import { getFollowedUsers } from '../lib/api';
 
 const useFollowed = () => {
   const [followed, setFollowed] = useState([]);
