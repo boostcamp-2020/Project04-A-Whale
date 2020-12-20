@@ -25,24 +25,34 @@ const WriteTextPicture = ({ placeholder, text, changeText }) => {
       if (fileType[0] !== 'image') return alert('이미지 파일이 아닙니다.');
       const result = await uploadObjectStorage(file);
       if (result) {
-        changeText(`${text ? `\n${text}` : ''}![${file.name}](${result.data.url})\n`);
+        if (text && text[text.length - 1] !== '\n') {
+          changeText(`${text}\n![${file.name}](${result.data.url})\n`);
+        } else {
+          changeText(`${text}![${file.name}](${result.data.url})\n`);
+        }
       }
       return null;
     },
     [text]
   );
 
-  const dropImageHandler = useCallback(async (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    await uploadImage(e.dataTransfer.files[0]);
-    setDragging(false);
-  }, []);
+  const dropImageHandler = useCallback(
+    async (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      await uploadImage(e.dataTransfer.files[0]);
+      setDragging(false);
+    },
+    [text]
+  );
 
-  const uploadImageHandler = useCallback(async (e) => {
-    await uploadImage(e.target.files[0]);
-    e.target.value = null;
-  }, []);
+  const uploadImageHandler = useCallback(
+    async (e) => {
+      await uploadImage(e.target.files[0]);
+      e.target.value = null;
+    },
+    [text]
+  );
 
   return (
     <WriteText
