@@ -28,6 +28,12 @@
 ## 🎥 데모 영상
 
 ### WEB
+
+#### Short Version 1:32
+[<img width="400" src="https://user-images.githubusercontent.com/39231606/102689439-777e3780-4241-11eb-866b-e03b6af79036.png"/>](https://youtu.be/bs_zEAHa0-U)
+> 클릭하시면 youtube로 이동합니다💨
+
+#### Long Version 8:33
 [<img width="400" src="https://user-images.githubusercontent.com/39231606/102689439-777e3780-4241-11eb-866b-e03b6af79036.png"/>](https://youtu.be/aBapfRjr1TY)
 > 클릭하시면 youtube로 이동합니다💨
 
