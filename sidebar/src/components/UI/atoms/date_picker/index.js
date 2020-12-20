@@ -27,6 +27,7 @@ const DatePicker = ({ date, handler }) => {
         KeyboardButtonProps={{
           'aria-label': 'change date',
         }}
+        disablePast
       />
     </MuiPickersUtilsProvider>
   );
