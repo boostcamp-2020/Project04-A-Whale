@@ -1,13 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import DetailAdder from '../../molecules/detail_adder';
 import CreateDetailListItem from '../../molecules/create_detail_list_item';
 import { addDetailAction, removeDetailAction } from '../../../../modules/actions/createbucket';
-
-const DetailListWrapper = styled.div`
-  margin-top: 15px;
-`;
+import { DetailListWrapper } from './style'
 
 const CreateDetailList = ({ details }) => {
   // TODO : state로 바꿔야함
