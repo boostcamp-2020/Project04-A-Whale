@@ -42,6 +42,9 @@ const LoginPage = () => {
       dispatch(getBuckets());
       dispatch(getUser());
       history.replace('/');
+    } else {
+      alert('아이디 또는 패스워드를 확인해주세요');
+      window.location.reload(false);
     }
   }, []);
 

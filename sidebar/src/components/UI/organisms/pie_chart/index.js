@@ -81,10 +81,8 @@ const PieChart1 = ({ details }) => {
   }, [details.openDetails.length]);
 
   return (
-    <ResponsiveContainer width="100%" aspect={4.0 / 3.0}>
+    <ResponsiveContainer width="100%" height={300}>
       <PieChart
-        // width={400}
-        // height={400}
         style={{
           display: 'inline-block',
           margin: '12px auto',

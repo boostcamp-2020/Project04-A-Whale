@@ -44,11 +44,11 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        {/* <ThemeMode darkMode={darkMode}> */}
-        <Router>
-          <Routes />
-        </Router>
-        {/* </ThemeMode> */}
+        <ThemeMode darkMode={darkMode}>
+          <Router>
+            <Routes />
+          </Router>
+        </ThemeMode>
       </ThemeProvider>
     </>
   );
