@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import * as api from '../lib/api';
 import createRequestThunk from '../lib/createRequestThunk';
+import getFormatDate from '../lib/date';
 
 export const INPUT_TITLE = 'createbucket/INPUT_TITLE';
 export const INPUT_DESC = 'createbucket/INPUT_DESC';
@@ -48,7 +49,9 @@ const createbucket = handleActions(
       }),
     [LOAD_PRESET]: (state, { payload: input }) => {
       const { bucketTitle, bucketDescription, bucketDetails } = input;
-      const newBucketDetails = bucketDetails.map((detail) => ({ ...detail, status: 'O' }));
+      const newBucketDetails = bucketDetails.map((detail) => {
+        return { ...detail, status: 'O', dueDate: getFormatDate(new Date()) };
+      });
       return { title: bucketTitle, description: bucketDescription, details: newBucketDetails };
     },
     [CREATE_BUCKET]: (state, action) => ({
