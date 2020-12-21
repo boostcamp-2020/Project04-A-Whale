@@ -61,11 +61,13 @@ const formattingBurndownChart = (details) => {
       name: date,
       Ideal_burndown: ((uniqueDate.length - 1 - index) / (uniqueDate.length - 1)) * details.length,
       Completed_tasks: details.filter(
-        ({ status, updatedAt }) => status === 'A' && prevDate < updatedAt && updatedAt <= date
+        ({ status, updatedAt }) =>
+          status === 'A' && prevDate < updatedAt.split(' ')[0] && updatedAt.split(' ')[0] <= date
       ).length,
       Remaining_tasks:
         details.filter(({ status }) => status === 'O').length +
-        details.filter(({ status, updatedAt }) => status === 'A' && updatedAt > date).length,
+        details.filter(({ status, updatedAt }) => status === 'A' && updatedAt.split(' ')[0] > date)
+          .length,
     };
     prevDate = date;
     return burndownChart;
