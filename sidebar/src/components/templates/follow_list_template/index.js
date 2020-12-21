@@ -2,13 +2,30 @@ import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './style';
+import { resetSearchResult } from '../../../modules/follow';
 import UserItem from '../../UI/molecules/user_item';
 import UserSearch from '../../UI/organisms/user_search';
 
-const TabPanel = ({ users, value, index }) => {
+const TabPanel = ({ users, value, index, handleChange }) => {
   const classes = useStyles();
+  const getNoContentView = () => {
+    if (value === 0) {
+      return (
+        <div className={classes.goSearchWrapper}>
+          <span className={classes.main}>팔로우하는 사용자가 없습니다</span>
+          <button type="button" className={classes.search} onClick={(e) => handleChange(e, 2)}>
+            검색하러가기
+          </button>
+        </div>
+      );
+    }
+    if (value === 1) {
+      return <span className={classes.noResult}>팔로워가 없습니다</span>;
+    }
+    return <span className={classes.noResult}>검색 결과가 없습니다</span>;
+  };
 
   return (
     <div
@@ -17,18 +34,19 @@ const TabPanel = ({ users, value, index }) => {
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
     >
-      {value !== 2 &&
-        value === index &&
-        users &&
-        users.map((user, i) => <UserItem key={i} user={user} />)}
+      {value !== 2 && value === index && users
+        ? users.length === 0
+          ? getNoContentView()
+          : users.map((user, i) => <UserItem key={i} user={user} />)
+        : null}
       {value === 2 && value === index && (
         <>
           <UserSearch />
-          {users ? (
-            users.map((user, i) => <UserItem key={i} user={user} />)
-          ) : (
-            <span className={classes.noResult}>검색 결과가 없습니다</span>
-          )}
+          {users
+            ? users.length === 0
+              ? getNoContentView()
+              : users.map((user, i) => <UserItem key={i} user={user} />)
+            : null}
         </>
       )}
     </div>
@@ -37,12 +55,14 @@ const TabPanel = ({ users, value, index }) => {
 
 const FollowListTemplate = ({ followed, following }) => {
   const classes = useStyles();
-  const searchResult = useSelector((state) => state.follow.search);
+  const dispatch = useDispatch();
+  const searchResult = useSelector((state) => state.follow.searchResult);
   const [value, setValue] = useState(0);
-  const tabItems = [`팔로우`, `팔로워`, `사용자 검색`];
+  const tabItems = ['팔로우', '팔로워', '사용자 검색'];
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    dispatch(resetSearchResult());
   };
 
   const getIdAndAriaControls = (index) => {
@@ -61,7 +81,7 @@ const FollowListTemplate = ({ followed, following }) => {
   return (
     <main className={classes.root}>
       <div className={classes.header} />
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" className={classes.appBar}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -77,7 +97,13 @@ const FollowListTemplate = ({ followed, following }) => {
       </AppBar>
       <div>
         {tabItems.map((v, i) => (
-          <TabPanel key={i} value={value} index={i} users={getUsers(v)} />
+          <TabPanel
+            key={i}
+            value={value}
+            index={i}
+            users={getUsers(v)}
+            handleChange={handleChange}
+          />
         ))}
       </div>
     </main>

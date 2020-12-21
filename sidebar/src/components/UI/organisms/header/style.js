@@ -6,12 +6,8 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     fontSize: '1.5rem',
-    // fontFamily: 'NanumBarunGothic',
-    // fontFamily: 'Nanum Brush Script, sans-serif !important',
-    // fontWeight: 'bold',
   },
   appBar: {
-    // backgroundColor: '#33ccff',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

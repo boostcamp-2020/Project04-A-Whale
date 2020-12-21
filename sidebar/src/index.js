@@ -10,7 +10,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import rootReducer from './modules';
 import enhancedReducer from './store';
 
 const logger = createLogger();
@@ -20,7 +19,6 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(ReduxThunk, logger))
 );
 
-// export default createStore(enhancedReducer, applyMiddleware(logger));
 const persistor = persistStore(store);
 
 ReactDOM.render(

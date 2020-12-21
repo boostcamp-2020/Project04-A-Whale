@@ -1,18 +1,26 @@
-import { handleActions } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
-import {
-  ADD_DETAIL,
-  INPUT_DESC,
-  INPUT_TITLE,
-  REMOVE_DETAIL,
-  RESET_BUCKET,
-  LOAD_PRESET,
-  CREATE_BUCKET,
-  UPDATE_DETAILDUE,
-} from './actions/actionTypes';
 import * as api from '../lib/api';
 import createRequestThunk from '../lib/createRequestThunk';
+import getFormatDate from '../lib/date';
 
+export const INPUT_TITLE = 'createbucket/INPUT_TITLE';
+export const INPUT_DESC = 'createbucket/INPUT_DESC';
+export const ADD_DETAIL = 'createbucket/ADD_DETAIL';
+export const UPDATE_DETAILDUE = 'createbucket/UPDATE_DETAILDUE';
+export const REMOVE_DETAIL = 'createbucket/REMOVE_DETAIL';
+export const LOAD_PRESET = 'createbucket/LOAD_PRESET';
+export const CREATE_BUCKET = 'createbucket/CREATE_BUCKET';
+export const RESET_BUCKET = 'createbucket/RESET_BUCKET';
+
+export const inputTitleAction = createAction(INPUT_TITLE, (input) => input);
+export const inputDescAction = createAction(INPUT_DESC, (input) => input);
+export const addDetailAction = createAction(ADD_DETAIL, (input) => input);
+export const updateDetailDueAction = createAction(UPDATE_DETAILDUE, (input) => input);
+export const removeDetailAction = createAction(REMOVE_DETAIL, (input) => input);
+export const loadPresetAction = createAction(LOAD_PRESET, (input) => input);
+export const createBucketAction = createAction(CREATE_BUCKET);
+export const resetBucketAction = createAction(RESET_BUCKET);
 export const createBucket = createRequestThunk(CREATE_BUCKET, api.createBucket);
 
 const initialState = {
@@ -40,9 +48,10 @@ const createbucket = handleActions(
         draft.details.splice(idx, 1);
       }),
     [LOAD_PRESET]: (state, { payload: input }) => {
-      console.log(input);
       const { bucketTitle, bucketDescription, bucketDetails } = input;
-      const newBucketDetails = bucketDetails.map((detail) => ({ ...detail, status: 'O' }));
+      const newBucketDetails = bucketDetails.map((detail) => {
+        return { ...detail, status: 'O', dueDate: getFormatDate(new Date()) };
+      });
       return { title: bucketTitle, description: bucketDescription, details: newBucketDetails };
     },
     [CREATE_BUCKET]: (state, action) => ({

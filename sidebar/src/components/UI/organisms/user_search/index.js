@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconButton, InputAdornment, TextField, InputLabel } from '@material-ui/core';
+import { IconButton, InputAdornment, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { useDispatch } from 'react-redux';
 import { searchResult } from '../../../../modules/follow';
@@ -24,10 +24,10 @@ const UserSearch = () => {
 
   return (
     <div style={SearchBar}>
-      {/* <InputLabel>사용자 검색</InputLabel> */}
       <TextField
         className={classes.searchInput}
         onChange={onChangeHandler}
+        autoFocus
         InputProps={{
           classes: {
             input: classes.resize,

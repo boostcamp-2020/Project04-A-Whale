@@ -8,7 +8,7 @@ import SearchResultItem from '../search_result_item';
 import Span from '../../atoms/span';
 import { useStyles, guide, presetItem, presetItemDetail, ButtonWrapper } from './style';
 import { getPresets } from '../../../../lib/api';
-import { loadPresetAction } from '../../../../modules/actions/createbucket';
+import { loadPresetAction } from '../../../../modules/createbucket';
 
 const BucketSearchModal = ({ modalClose }) => {
   const dispatch = useDispatch();
@@ -27,8 +27,8 @@ const BucketSearchModal = ({ modalClose }) => {
       const response = await getPresets(keyword);
       const { data } = response.data;
       setPresets(data.splice(0, 4));
-      setLoading(false);
       setBoldWord(e.target.value);
+      setLoading(false);
     }, 1000);
   };
 

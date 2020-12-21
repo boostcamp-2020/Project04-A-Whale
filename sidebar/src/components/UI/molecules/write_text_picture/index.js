@@ -1,15 +1,14 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { WriteText, TextArea, UploadPicture, useStyles, UploadPictureLabel } from './style';
 import { uploadObjectStorage } from '../../../../lib/api';
 
 const WriteTextPicture = ({ placeholder, text, changeText }) => {
   const classes = useStyles();
-  const [localText, setLocalText] = useState(text);
   const [dragging, setDragging] = useState(false);
   const textarea = useRef();
 
-  const localTextChangeHandler = useCallback((e) => {
-    setLocalText(e.target.value);
+  const changeTextHandler = useCallback((e) => {
+    changeText(e.target.value);
   }, []);
 
   const dragInHandler = useCallback(() => {
@@ -25,28 +24,35 @@ const WriteTextPicture = ({ placeholder, text, changeText }) => {
       const fileType = file.type.split('/');
       if (fileType[0] !== 'image') return alert('이미지 파일이 아닙니다.');
       const result = await uploadObjectStorage(file);
-      // addText(`\n![${file.name}](${result.data.url})`);
-      setLocalText(`${localText}![${file.name}](${result.data.url})\n`);
+      if (result) {
+        if (text && text[text.length - 1] !== '\n') {
+          changeText(`${text}\n![${file.name}](${result.data.url})\n`);
+        } else {
+          changeText(`${text}![${file.name}](${result.data.url})\n`);
+        }
+      }
       return null;
     },
-    [localText]
+    [text]
   );
 
-  const dropImageHandler = useCallback(async (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    await uploadImage(e.dataTransfer.files[0]);
-    setDragging(false);
-  }, []);
+  const dropImageHandler = useCallback(
+    async (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      await uploadImage(e.dataTransfer.files[0]);
+      setDragging(false);
+    },
+    [text]
+  );
 
-  const uploadImageHandler = useCallback(async (e) => {
-    await uploadImage(e.target.files[0]);
-    e.target.value = null;
-  }, []);
-
-  useEffect(() => {
-    changeText(localText);
-  }, [localText]);
+  const uploadImageHandler = useCallback(
+    async (e) => {
+      await uploadImage(e.target.files[0]);
+      e.target.value = null;
+    },
+    [text]
+  );
 
   return (
     <WriteText
@@ -58,9 +64,9 @@ const WriteTextPicture = ({ placeholder, text, changeText }) => {
       <TextArea
         className={classes.textInput}
         placeholder={placeholder}
-        value={localText}
+        value={text}
         ref={textarea}
-        onChange={localTextChangeHandler}
+        onChange={changeTextHandler}
       />
       <UploadPictureLabel htmlFor="ex_file">이미지 파일 선택</UploadPictureLabel>
       <UploadPicture type="file" onChange={uploadImageHandler} id="ex_file" />

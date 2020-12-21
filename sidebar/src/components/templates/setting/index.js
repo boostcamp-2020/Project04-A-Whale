@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import useStyles from './style';
+import { removeAllAlarms, updateAlarm, updateDueDetailsAndAlarm } from '../../../lib/alarm';
+import { getWhaleLocalStorage, setWhaleLocalStorage } from '../../../lib/whaleLocalStorage';
+import { setIsExt } from '../../../lib/browserSave';
 
 const Setting = () => {
   const classes = useStyles();
-  const [state, setState] = useState({
-    displayDark: false,
-    browserSave: false,
-    alarmOn: false,
-  });
-  const [alarm, setAlarm] = useState({ time: '09:10', dday: 7 });
+  const [isWhaleExt, setIsWhaleExt] = useState(true);
+  const [isWhaleLocalLoaded, setIsWhaleLocalLoaded] = useState(false);
+  const [sw, setSw] = useState({ darkMode: false, alarmOn: false, browserSave: false });
+  const [alarm, setAlarm] = useState({ time: '09:00', dday: 7 });
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    if (isWhaleExt) {
+      setSw({ ...sw, [event.target.name]: event.target.checked });
+      if (event.target.name === 'browserSave') {
+        console.log('setting up');
+        setIsExt(event.target.checked);
+      }
+    } else {
+      alert('웨일 브라우저 확장앱에서만 사용하실 수 있습니다.');
+    }
   };
 
   const alarmChange = (event) => {
@@ -30,6 +39,86 @@ const Setting = () => {
     }
   };
 
+  const alarmTurnOff = async (items) => {
+    // 알람 삭제
+    await removeAllAlarms();
+    // 스위치 업데이트
+    setWhaleLocalStorage({ ...items, sw, alarm });
+    return null;
+  };
+
+  const alarmTurnOn = async (items) => {
+    return updateDueDetailsAndAlarm(items, { sw, alarm });
+  };
+
+  const changeDDay = async (items) => {
+    return updateDueDetailsAndAlarm(items, { sw, alarm });
+  };
+
+  const changeTime = async (items) => {
+    const dueDetails = [];
+    return updateAlarm(items, dueDetails, { sw, alarm });
+  };
+
+  useEffect(() => {
+    try {
+      // whale API 고유 기능을 분기 처리
+      const keys = ['sw', 'alarm', 'dueDetails'];
+      getWhaleLocalStorage(keys, async (items) => {
+        const localSw = items.sw;
+        const localAlarm = items.alarm;
+
+        // 로컬에 값이 존재
+        if (localSw && localAlarm) {
+          // 크롬 로컬에서 로드하지 않음
+          if (!isWhaleLocalLoaded) {
+            // 최초 불러오기
+            setSw(localSw);
+            setAlarm(localAlarm);
+            setIsWhaleLocalLoaded(true);
+          } else {
+            // 로컬 스토리지 로드 후 변경 사항
+            // alarm on -> off
+            if (localSw.alarmOn && !sw.alarmOn) {
+              await alarmTurnOff(items);
+              return;
+            }
+            // alarm off -> on
+            if (!localSw.alarmOn && sw.alarmOn) {
+              await alarmTurnOn(items);
+              return;
+            }
+
+            if (sw.alarmOn) {
+              // alarm on + dday 변경
+              if (localAlarm.dday !== alarm.dday) {
+                await changeDDay(items);
+                return;
+              }
+              // alarm on + time 변경
+              if (localAlarm.time !== alarm.time) {
+                await changeTime(items);
+                return;
+              }
+            }
+            setWhaleLocalStorage({ ...items, sw, alarm });
+          }
+        } else {
+          // 로컬에 값이 없을 때, 저장
+          setWhaleLocalStorage({ ...items, sw, alarm, dueDetails: [] });
+        }
+      });
+    } catch (error) {
+      setIsWhaleExt(false);
+    }
+  }, [sw, alarm]);
+
+  const preparing = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    alert('구현 예정입니다.');
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.header} />
@@ -37,18 +126,18 @@ const Setting = () => {
         <Typography className={classes.title}>화면 설정</Typography>
         <div className={classes.section}>
           <Switch
-            checked={state.displayDark}
+            checked={sw.darkMode}
             onChange={handleChange}
             color="primary"
-            name="displayDark"
+            name="darkMode"
             inputProps={{ 'aria-label': 'primary checkbox' }}
           />
-          <span>화면 색상 반전</span>
+          <span>화면 어둡게</span>
         </div>
         <Typography className={classes.title}>알림 설정</Typography>
         <div className={classes.section}>
           <Switch
-            checked={state.alarmOn}
+            checked={sw.alarmOn}
             onChange={handleChange}
             color="primary"
             name="alarmOn"
@@ -56,13 +145,14 @@ const Setting = () => {
           />
           <span>켜기/끄기</span>
           <div>
-            알림 시각:
+            알림 시각: 매일&nbsp;
             <input
               className={classes.input}
               type="time"
               name="time"
               value={alarm.time}
               onChange={alarmChange}
+              disabled={!sw.alarmOn}
             />
           </div>
           <div>
@@ -75,6 +165,7 @@ const Setting = () => {
               min="0"
               max="7"
               onChange={alarmChange}
+              disabled={!sw.alarmOn}
             />
             일까지 알림
           </div>
@@ -82,7 +173,7 @@ const Setting = () => {
         <Typography className={classes.title}>브라우저에 데이터 저장</Typography>
         <div className={classes.section}>
           <Switch
-            checked={state.browserSave}
+            checked={sw.browserSave}
             onChange={handleChange}
             color="primary"
             name="browserSave"
@@ -96,11 +187,11 @@ const Setting = () => {
         </div>
         <Typography className={classes.title}>회원 정보</Typography>
         <div className={classes.section} style={{ padding: 0 }}>
-          <Link className={classes.link} to="/user/info">
+          <Link className={classes.link} to="/user/info" onClick={preparing}>
             <div>회원 정보 수정 / 탈퇴</div>
           </Link>
           <Divider />
-          <Link className={classes.link} to="/user/password">
+          <Link className={classes.link} to="/user/password" onClick={preparing}>
             <div>비밀번호 수정</div>
           </Link>
         </div>

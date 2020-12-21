@@ -1,37 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 import Span from '../../atoms/span';
 import { getDetails } from '../../../../lib/api';
-
-const SearchResultItemWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const TitleStyle = {
-  fontSize: '16px',
-  display: 'inline-block',
-};
-
-const TitleStyleBold = {
-  fontWeight: 'bolder',
-  fontSize: '18px',
-  display: 'inline-block',
-};
-
-const DesignerStyle = {
-  fontSize: '12px',
-  marginLeft: '12px',
-  textAlign: 'center',
-  verticalAlign: 'center',
-};
-
-const RefNumStyle = {
-  fontSize: '10px',
-  paddingLeft: '10px',
-  textAlign: 'center',
-  verticalAlign: 'center',
-};
+import {
+  SearchResultItemWrapper,
+  TitleStyle,
+  TitleStyleBold,
+  DesignerStyle,
+  RefNumStyle,
+} from './style';
 
 const SearchResultItem = ({ bucket, boldWord, selectFunc }) => {
   const { no, title, description, refCount, nickname } = bucket;
@@ -50,7 +26,7 @@ const SearchResultItem = ({ bucket, boldWord, selectFunc }) => {
     });
   };
 
-  const onClickHandler = async () => {
+  const onClickHandler = async (e) => {
     const { data } = await getDetails(no);
     const { openDetails, achieveDetails } = data.data.details;
     const details = openDetails.concat(achieveDetails);

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import DetailHeader from '../../UI/organisms/detail_header';
 import DetailRegister from '../../UI/organisms/detail_register';
 import DetailList from '../../UI/organisms/detail_list';
@@ -64,11 +65,13 @@ const MyBucketListDetail = ({ bucket, details, burnDownChart }) => {
             maxWidth="lg"
             fullWidth
           >
+            <DialogTitle id="achieve">목표 달성 소감 수정</DialogTitle>
             <WritingTab
               placeholder="목표 달성 소감을 남겨주세요."
               text={achieveComment}
               changeText={changeAchieve}
               submitText={modifyAchieve}
+              update
             />
           </Dialog>
           <div className={classes.achieve}>

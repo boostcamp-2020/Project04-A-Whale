@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
+  appBar: {
+    boxShadow: 'none',
+    background: 'none',
+  },
 }));
 
 export default useStyles;

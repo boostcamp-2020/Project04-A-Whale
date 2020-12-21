@@ -39,7 +39,7 @@ const UserBuckets = ({ buckets }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" className={classes.appBar}>
         <Tabs
           value={value}
           onChange={handleChange}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,23 +15,20 @@ import { getUser } from '../../../../modules/user';
 import Spinner from '../../atoms/spinner';
 import AchieveRate from '../../molecules/achieve_rate';
 import { useStyles, UserInfoWrapper, FollowerWrapper, DescriptionWrapper } from './style';
+import { getWhaleLocalStorage } from '../../../../lib/whaleLocalStorage';
+import { loadUserInfo } from '../../../../lib/browserSave';
 
 const MenuDrawer = ({ open, toggleDrawer }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [isExt, setIsExt] = useState(true);
   const { user, loadingUser } = useSelector(({ user, loading }) => ({
     user: user.user,
     loadingUser: loading['details/GET_USER'],
   }));
 
   useEffect(() => {
-    const api = '/api/users/userinfo';
-    chrome.storage.local.get(api, (items) => {
-      if (items[api] === 'modified' || JSON.stringify(items[api]) === '{}') {
-        console.log('유저 받아옴');
-        dispatch(getUser());
-      }
-    });
+    loadUserInfo(dispatch, getUser());
   }, [dispatch]);
 
   return (

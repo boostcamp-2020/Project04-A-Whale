@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBuckets } from '../../modules/buckets';
 import Spinner from '../UI/atoms/spinner';
 import MyBucketList from '../templates/my_bucket_list';
 import Header from '../UI/organisms/header';
+import { getWhaleLocalStorage } from '../../lib/whaleLocalStorage';
+import { loadBuckets } from '../../lib/browserSave';
 
 const MyBucketListPage = () => {
   const dispatch = useDispatch();
@@ -12,14 +14,10 @@ const MyBucketListPage = () => {
     loadingBuckets: loading['buckets/GET_BUCKETS'],
   }));
 
+  const [isExt, setIsExt] = useState(true);
+
   useEffect(() => {
-    const api = '/api/buckets';
-    chrome.storage.local.get(api, (items) => {
-      if (items[api] === 'modified' || JSON.stringify(items[api]) === '{}') {
-        console.log('버킷 받아옴');
-        dispatch(getBuckets());
-      }
-    });
+    loadBuckets(dispatch, getBuckets());
   }, [dispatch]);
 
   return (

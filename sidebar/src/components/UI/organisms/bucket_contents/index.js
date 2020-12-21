@@ -1,39 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { inputDescAction, inputTitleAction } from '../../../../modules/actions/createbucket';
+import { useDispatch, useSelector } from 'react-redux';
+import { inputDescAction, inputTitleAction } from '../../../../modules/createbucket';
 import BucketDescription from '../../molecules/bucket_decription';
 import BucketTitle from '../../molecules/bucket_title';
+import { BucketContentsWrapper, titleStyle, decriptionStyle } from './style';
 
-const BucketContentsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
-const titleStyle = {
-  width: '100%',
-  marginTop: '10px',
-};
-
-const decriptionStyle = {
-  marginTop: '15px',
-  width: '100%',
-  rows: 4,
-  rowsMax: 10,
-};
-
-const BucketContents = ({
-  storeTitle,
-  storeDescription,
-  inputDescActionConnect,
-  inputTitleActionConnect,
-}) => {
+const BucketContents = () => {
+  const dispatch = useDispatch();
+  const { title, description, details } = useSelector(({ createbucket }) => createbucket);
   const changeTitle = (e) => {
-    inputTitleActionConnect(e.target.value);
+    dispatch(inputTitleAction(e.target.value));
   };
   const changeDesc = (e) => {
-    inputDescActionConnect(e.target.value);
+    dispatch(inputDescAction(e.target.value));
   };
 
   return (
@@ -42,24 +21,16 @@ const BucketContents = ({
         style={titleStyle}
         label="목표 Title 작성"
         onChangeHandler={changeTitle}
-        value={storeTitle}
+        value={title}
       />
       <BucketDescription
         style={decriptionStyle}
         label="목표 description 작성"
-        value={storeDescription}
+        value={description}
         onChangeHandler={changeDesc}
       />
     </BucketContentsWrapper>
   );
 };
 
-const mapStateToProps = (state) => ({
-  storeTitle: state.createbucket.title,
-  storeDescription: state.createbucket.description,
-});
-
-export default connect(mapStateToProps, {
-  inputDescActionConnect: inputDescAction,
-  inputTitleActionConnect: inputTitleAction,
-})(BucketContents);
+export default BucketContents;
