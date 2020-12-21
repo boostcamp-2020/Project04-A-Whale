@@ -113,6 +113,12 @@ const Setting = () => {
     }
   }, [sw, alarm]);
 
+  const preparing = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    alert('구현 예정입니다.');
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.header} />
@@ -181,11 +187,11 @@ const Setting = () => {
         </div>
         <Typography className={classes.title}>회원 정보</Typography>
         <div className={classes.section} style={{ padding: 0 }}>
-          <Link className={classes.link} to="/user/info">
+          <Link className={classes.link} to="/user/info" onClick={preparing}>
             <div>회원 정보 수정 / 탈퇴</div>
           </Link>
           <Divider />
-          <Link className={classes.link} to="/user/password">
+          <Link className={classes.link} to="/user/password" onClick={preparing}>
             <div>비밀번호 수정</div>
           </Link>
         </div>
