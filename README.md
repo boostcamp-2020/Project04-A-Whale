@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/badge/mysql-v5.7.32-blue?logo=mysql" />
 </p>
 
-## 📣 한 줄 소개
+## 📣 소개
 
 ### [**올해는꼭**]은  새해 목표를 더 쉽게 설정하고, 이루도록 도와줍니다!
 
